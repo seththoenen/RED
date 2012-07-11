@@ -206,7 +206,7 @@ first child of the left and right table columns */
     text-decoration: none;
 }
 
-.accordianHeader a:hover
+.accordionHeader a:hover
 {
     text-decoration: underline;
     cursor: pointer;
