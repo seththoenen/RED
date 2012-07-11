@@ -1,0 +1,70 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SeniorProject.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+    <div class="page">
+        <div class="header">
+            <div class="title">
+            </div>
+            <div class="clear hideSkiplink">
+                            <asp:ScriptManager ID="ScriptManager1" runat="server" 
+                    EnableSecureHistoryState="False">
+                </asp:ScriptManager>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>            
+                <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                        <asp:MenuItem Text="Insert">
+                            <asp:MenuItem NavigateUrl="~/Computer/AddDesktop.aspx" Text="Add Computers" />
+                            <asp:MenuItem NavigateUrl="~/Equipments/AddEquipment.aspx" Text="Add Equipment" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Update">
+                            <asp:MenuItem NavigateUrl="~/Computer/UpdateDesktops.aspx" Text="Update Computers" />
+                            <asp:MenuItem NavigateUrl="~/Equipments/UpdateEquipment.aspx" Text="Update Equipment" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="View Inventory" >
+                            <asp:MenuItem NavigateUrl="~/Computer/ViewDesktops.aspx" Text="View Computers" />
+                            <asp:MenuItem NavigateUrl="~/Equipments/ViewEquipments.aspx" Text="View Equipment" />
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Groups/ManageGroups.aspx" Text="Groups" />
+                        <asp:MenuItem NavigateUrl="~/PO/ManagePOs.aspx" Text = "Purchase Orders" />
+                        <asp:MenuItem NavigateUrl="~/Licenses/ViewLicenses.aspx" Text = "Licenses" />
+                        <asp:MenuItem Text="Transfers" >
+                            <asp:MenuItem NavigateUrl="~/Transfers/NewTransfer.aspx" Text = "New Transfer" />
+                            <asp:MenuItem NavigateUrl="~/Transfers/ViewTransfers.aspx" Text = "View Transfers" />
+                            <asp:MenuItem NavigateUrl="~/Transfers/AllTransferInventory.aspx" Text = "View All Transferred Inventory" />
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Reporting">
+                            <asp:MenuItem NavigateUrl="~/Reports/BuildingReport.aspx" Text = "Building Report" />
+                            <asp:MenuItem NavigateUrl="~/Reports/InventoryTypeReport.aspx" Text = "Inventory Type Report" />
+                        </asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/Manage.aspx" Text="Manage"/>
+                        <asp:MenuItem NavigateUrl="~/Help.aspx" Text="Help"/>
+                        <asp:MenuItem NavigateUrl="~/PatchNotes.aspx" Text="Patch Notes"/>
+                    </Items>
+                </asp:Menu>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+        <div class="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+        
+    </div>
+    </form>
+</body>
+</html>
