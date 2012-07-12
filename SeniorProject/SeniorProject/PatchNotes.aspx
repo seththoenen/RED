@@ -17,6 +17,11 @@
                 -When intentory items are added to groups they no longer remain in queue to be added<br />
                 -When inserting inventory items to the system, inventory items no longer remain in queue to be added<br />
                 -Added accordion ajax to Patch Notes<br />
+                -Fixed a bug where groups wouldn't show up in manage groups if the group had no inventory assigned to it<br />
+                -Added an update panel to view computer page for the PO section to cause partial post backs instead of full post backs<br />
+                -Changed the color of details views<br />
+                -Added update abilities for licenses<br />
+                -Removed margins from inputs and made text boxes the same width<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane110" runat="server" ContentCssClass="" 
