@@ -163,44 +163,50 @@
             <td class="style24">
                     PO No.</td>
             <td class="style20">
-                <asp:DropDownList ID="ddlPONO" runat="server" DataSourceID="SqlDataSource4" 
+                <asp:UpdatePanel ID="updatePanelPO" runat="server">
+                    <ContentTemplate>
+                        <asp:DropDownList ID="ddlPONO" runat="server" DataSourceID="SqlDataSource4" 
                     DataTextField="POno" DataValueField="POID" Height="20px" Width="142px" 
                     AutoPostBack="True">
-                    <asp:ListItem>None</asp:ListItem>
-                </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource4" runat="server" 
+                            <asp:ListItem>None</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSource4" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
                     SelectCommand="SELECT * FROM [PO] ORDER BY [POno]"></asp:SqlDataSource>
-                <asp:DetailsView ID="DetailsView2" runat="server" AutoGenerateRows="False" 
+                        <asp:DetailsView ID="DetailsView2" runat="server" AutoGenerateRows="False" 
                     CellPadding="4" DataSourceID="SqlDataSource5" ForeColor="#333333" 
                     GridLines="None" Height="50px" Width="125px">
-                    <AlternatingRowStyle BackColor="White" />
-                    <CommandRowStyle BackColor="#C5BBAF" Font-Bold="True" />
-                    <EditRowStyle BackColor="#7C6F57" />
-                    <FieldHeaderStyle BackColor="#D0D0D0" Font-Bold="True" />
-                    <Fields>
-                        <asp:BoundField DataField="RequisitionNo" HeaderText="RequisitionNo" 
+                            <AlternatingRowStyle BackColor="White" />
+                            <CommandRowStyle BackColor="#C5BBAF" Font-Bold="True" />
+                            <EditRowStyle BackColor="#7C6F57" />
+                            <FieldHeaderStyle BackColor="#D0D0D0" Font-Bold="True" />
+                            <Fields>
+                                <asp:BoundField DataField="RequisitionNo" HeaderText="RequisitionNo" 
                             SortExpression="RequisitionNo" />
-                        <asp:BoundField DataField="PurchaseDate" HeaderText="PurchaseDate" 
+                                <asp:BoundField DataField="PurchaseDate" HeaderText="PurchaseDate" 
                             SortExpression="PurchaseDate" />
-                        <asp:BoundField DataField="DeliveryDate" HeaderText="DeliveryDate" 
+                                <asp:BoundField DataField="DeliveryDate" HeaderText="DeliveryDate" 
                             SortExpression="DeliveryDate" />
-                        <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
-                    </Fields>
-                    <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#E3EAEB" />
-                </asp:DetailsView>
-                <asp:SqlDataSource ID="SqlDataSource5" runat="server" 
+                                <asp:BoundField DataField="Title" HeaderText="Title" SortExpression="Title" />
+                            </Fields>
+                            <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                            <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                            <RowStyle BackColor="#E3EAEB" />
+                        </asp:DetailsView>
+                        <asp:SqlDataSource ID="SqlDataSource5" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
                     
-                    SelectCommand="SELECT [DeliveryDate], [RequisitionNo], [PurchaseDate], [Title] FROM [PO] WHERE ([POID] = @POID)">
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="ddlPONO" Name="POID" 
+                    
+    
+                            SelectCommand="SELECT [DeliveryDate], [RequisitionNo], [PurchaseDate], [Title] FROM [PO] WHERE ([POID] = @POID)">
+                            <SelectParameters>
+                                <asp:ControlParameter ControlID="ddlPONO" Name="POID" 
                             PropertyName="SelectedValue" />
-                    </SelectParameters>
-                </asp:SqlDataSource>
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </td>
         </tr>
     </table>
