@@ -31,35 +31,35 @@
                         <td class="style2">
                             Serial No:</td>
                         <td class="style2">
-                            <asp:TextBox ID="txtBoxSerialNo" runat="server" MaxLength="45"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxSerialNo" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             SMSU Tag:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxSMSUTag" runat="server" MaxLength="45"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxSMSUTag" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Building:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxBuilding" runat="server" MaxLength="45"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxBuilding" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Room:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxRoom" runat="server" MaxLength="45"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxRoom" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             Name:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxName" runat="server" MaxLength="45"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxName" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -93,7 +93,8 @@
                 <asp:Panel ID="panelNotAuthenticated" runat="server" Visible="False">
                     You are currently not authenticated.<br /> Password:
                     <asp:TextBox ID="txtBoxPassword" runat="server" AutoPostBack="True" 
-                        ontextchanged="txtBoxPassword_TextChanged" TextMode="Password"></asp:TextBox>
+                        ontextchanged="txtBoxPassword_TextChanged" TextMode="Password" 
+                        Width="136px"></asp:TextBox>
                     <br />
                     <asp:Label ID="lblAuthMessage" runat="server" ForeColor="Red" Visible="False"></asp:Label>
                 </asp:Panel>

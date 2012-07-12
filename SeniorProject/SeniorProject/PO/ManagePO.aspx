@@ -56,7 +56,7 @@
                 <td class="style2">
                     PO Number:</td>
                 <td>
-                    <asp:TextBox ID="txtBoxPONumber" runat="server" MaxLength="45"></asp:TextBox>
+                    <asp:TextBox ID="txtBoxPONumber" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                         ControlToValidate="txtBoxPONumber" ErrorMessage="PO Number is required." 
                         ForeColor="Red"></asp:RequiredFieldValidator>
@@ -66,14 +66,15 @@
                 <td class="style2">
                     Title:</td>
                 <td>
-                    <asp:TextBox ID="txtBoxTitle" runat="server" MaxLength="45"></asp:TextBox>
+                    <asp:TextBox ID="txtBoxTitle" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td class="style2">
                     Purchase Date:</td>
                 <td>
-                    <asp:TextBox ID="txtBoxPurchaseDate" runat="server" MaxLength="45"></asp:TextBox>
+                    <asp:TextBox ID="txtBoxPurchaseDate" runat="server" MaxLength="45" 
+                        Width="136px"></asp:TextBox>
                     <asp:CalendarExtender ID="txtBoxPurchaseDate_CalendarExtender" runat="server" 
                         Enabled="True" TargetControlID="txtBoxPurchaseDate">
                     </asp:CalendarExtender>
@@ -83,7 +84,8 @@
                 <td class="style2">
                     Delivery Date:</td>
                 <td>
-                    <asp:TextBox ID="txtBoxDeliveryDate" runat="server" MaxLength="45"></asp:TextBox>
+                    <asp:TextBox ID="txtBoxDeliveryDate" runat="server" MaxLength="45" 
+                        Width="136px"></asp:TextBox>
                     <asp:CalendarExtender ID="txtBoxDeliveryDate_CalendarExtender" runat="server" 
                         Enabled="True" TargetControlID="txtBoxDeliveryDate">
                     </asp:CalendarExtender>
@@ -93,7 +95,8 @@
                 <td class="style2">
                     Requisition Number:</td>
                 <td>
-                    <asp:TextBox ID="txtBoxRequisitionNumber" runat="server" MaxLength="45"></asp:TextBox>
+                    <asp:TextBox ID="txtBoxRequisitionNumber" runat="server" MaxLength="45" 
+                        Width="136px"></asp:TextBox>
                 </td>
             </tr>
         </table>

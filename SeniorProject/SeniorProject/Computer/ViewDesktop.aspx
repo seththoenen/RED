@@ -80,24 +80,25 @@
             General</h2>
     <table class="style1">
         <tr>
-            <td class="style6">
+            <td width="150px">
                     Service Tag:</td>
-            <td class="style26" style="margin-left: 40px">
-                <asp:TextBox ID="txtBoxServiceTag" runat="server" MaxLength="45"></asp:TextBox>
+            <td width="150px">
+                <asp:TextBox ID="txtBoxServiceTag" runat="server" MaxLength="45" Height="20px" 
+                    Width="136px"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ControlToValidate="txtBoxServiceTag" ErrorMessage="*" 
                     ForeColor="Red"></asp:RequiredFieldValidator>
             </td>
-            <td class="style6">
+            <td width="150px">
                     SMSU Tag:</td>
-            <td class="style27">
-                <asp:TextBox ID="txtBoxSMSUTag" runat="server" MaxLength="45"></asp:TextBox>
+            <td width="150px">
+                <asp:TextBox ID="txtBoxSMSUTag" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td class="style6">
+            <td>
                     Manufacturer:</td>
-            <td class="style26">
+            <td>
                             <asp:DropDownList ID="ddlManufacturer" runat="server" AutoPostBack="True" 
                                 DataSourceID="SqlDataSource19" DataTextField="value" 
                                 DataValueField="value" Height="20px" Width="142px">
@@ -113,16 +114,16 @@
                                 </SelectParameters>
                             </asp:SqlDataSource>
             </td>
-            <td class="style6">
+            <td>
                     Model:</td>
-            <td class="style27">
-                <asp:TextBox ID="txtBoxModel" runat="server" MaxLength="45"></asp:TextBox>
+            <td>
+                <asp:TextBox ID="txtBoxModel" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td class="style6">
+            <td>
                     Type:</td>
-            <td class="style26">
+            <td>
                 <asp:DropDownList ID="ddlType" runat="server" Width="142px">
                     <asp:ListItem>Computer</asp:ListItem>
                     <asp:ListItem>Tablet</asp:ListItem>
@@ -130,9 +131,9 @@
                     <asp:ListItem>Server</asp:ListItem>
                 </asp:DropDownList>
             </td>
-            <td class="style6">
+            <td>
                     Status:</td>
-            <td class="style27">
+            <td>
                 <asp:DropDownList ID="ddlStatus" runat="server" Height="22px" Width="142px">
                     <asp:ListItem>Active</asp:ListItem>
                     <asp:ListItem>Storage</asp:ListItem>
@@ -153,7 +154,8 @@
             <td class="style24">
                     Purchase Price:</td>
             <td class="style20">
-                <asp:TextBox ID="txtBoxPurchasePrice" runat="server" MaxLength="15"></asp:TextBox>
+                <asp:TextBox ID="txtBoxPurchasePrice" runat="server" MaxLength="15" 
+                    Width="136px"></asp:TextBox>
                 <asp:CompareValidator ID="CompareValidator1" runat="server" 
                         ControlToValidate="txtBoxPurchasePrice" ErrorMessage="Invalid" ForeColor="Red" 
                         Operator="GreaterThanEqual" Type="Double" ValueToCompare="0"></asp:CompareValidator>
@@ -419,7 +421,7 @@
                             <td class="style9">
                                 Date:</td>
                             <td>
-                                <asp:TextBox ID="txtBoxDate" runat="server" MaxLength="45"></asp:TextBox>
+                                <asp:TextBox ID="txtBoxDate" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                                 <asp:CalendarExtender ID="txtBoxDate_CalendarExtender" runat="server" 
                                     Enabled="True" TargetControlID="txtBoxDate">
                                 </asp:CalendarExtender>
@@ -535,20 +537,20 @@
             <td class="style6">
                     Room Number:</td>
             <td>
-                <asp:TextBox ID="txtBoxRoomNumber" runat="server" MaxLength="45"></asp:TextBox>
+                <asp:TextBox ID="txtBoxRoomNumber" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="style6">
                     Primary User:</td>
             <td class="style6">
-                <asp:TextBox ID="txtBoxPrimaryUser" runat="server" MaxLength="45"></asp:TextBox>
+                <asp:TextBox ID="txtBoxPrimaryUser" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
             </td>
             <td class="style6">
                 Computer
                 Name:</td>
             <td>
-                <asp:TextBox ID="txtBoxName" runat="server" MaxLength="45"></asp:TextBox>
+                <asp:TextBox ID="txtBoxName" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
             </td>
         </tr>
     </table>
@@ -600,19 +602,20 @@
                     <td class="style6">
                         CPU:</td>
                     <td class="style21">
-                        <asp:TextBox ID="txtBoxCPU" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxCPU" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                     <td class="style21">
                         Hard Drive:</td>
                     <td class="style21">
-                        <asp:TextBox ID="txtBoxHardDrive" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxHardDrive" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style6">
                         Optical Drive:</td>
                     <td class="style21" style="margin-left: 40px">
-                        <asp:TextBox ID="txtBoxOpticalDrive" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxOpticalDrive" runat="server" MaxLength="45" 
+                            Width="136px"></asp:TextBox>
                     </td>
                     <td class="style21" style="margin-left: 40px">
                         USB Ports:</td>
@@ -636,31 +639,32 @@
                     <td class="style14">
                         Size:</td>
                     <td class="style19" style="margin-left: 80px">
-                        <asp:TextBox ID="txtBoxSize" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxSize" runat="server" Width="136px"></asp:TextBox>
                     </td>
                     <td class="style19" style="margin-left: 80px">
                         Video Card:</td>
                     <td class="style19" style="margin-left: 80px">
-                        <asp:TextBox ID="txtBoxVideoCard" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxVideoCard" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style6">
                         Memory:</td>
                     <td class="style21" style="margin-left: 120px">
-                        <asp:TextBox ID="txtBoxMemory" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxMemory" runat="server" Width="136px"></asp:TextBox>
                     </td>
                     <td class="style21" style="margin-left: 120px">
                         Removable Media:</td>
                     <td class="style21" style="margin-left: 120px">
-                        <asp:TextBox ID="txtBoxRemovableMedia" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxRemovableMedia" runat="server" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style14">
                         Other Connectivity:</td>
                     <td class="style19" style="margin-left: 200px">
-                        <asp:TextBox ID="txtBoxOtherConnectivity" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxOtherConnectivity" runat="server" MaxLength="45" 
+                            Width="136px"></asp:TextBox>
                     </td>
                     <td class="style19" style="margin-left: 200px">
                     </td>
@@ -872,14 +876,16 @@
                             <td class="style13">
                                 Warranty Type:</td>
                             <td>
-                                <asp:TextBox ID="txtBoxWarrantyType" runat="server" MaxLength="45"></asp:TextBox>
+                                <asp:TextBox ID="txtBoxWarrantyType" runat="server" MaxLength="45" 
+                                    Width="136px"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="style13">
                                 Start Date:</td>
                             <td class="style9">
-                                <asp:TextBox ID="txtBoxWarrantyStartDate" runat="server" MaxLength="45"></asp:TextBox>
+                                <asp:TextBox ID="txtBoxWarrantyStartDate" runat="server" MaxLength="45" 
+                                    Width="136px"></asp:TextBox>
                                 <asp:CalendarExtender ID="txtBoxWarrantyStartDate_CalendarExtender" 
                                     runat="server" Enabled="True" TargetControlID="txtBoxWarrantyStartDate">
                                 </asp:CalendarExtender>
@@ -890,7 +896,8 @@
                             <td class="style13">
                                 End Date:</td>
                             <td>
-                                <asp:TextBox ID="txtBoxWarrantyEndDate" runat="server" MaxLength="45"></asp:TextBox>
+                                <asp:TextBox ID="txtBoxWarrantyEndDate" runat="server" MaxLength="45" 
+                                    Width="136px"></asp:TextBox>
                                 <asp:CalendarExtender ID="txtBoxWarrantyEndDate_CalendarExtender" 
                                     runat="server" Enabled="True" TargetControlID="txtBoxWarrantyEndDate">
                                 </asp:CalendarExtender>

@@ -64,7 +64,7 @@
                         <td class="style2">
                             Name:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxName" runat="server" MaxLength="45" Width="300px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxName" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                                 ControlToValidate="txtBoxName" ErrorMessage="Name is required." ForeColor="Red"></asp:RequiredFieldValidator>
                         </td>

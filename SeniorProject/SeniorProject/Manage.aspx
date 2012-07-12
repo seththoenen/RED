@@ -67,7 +67,7 @@
                     <td class="style5">
                         Size:</td>
                     <td class="style7">
-                        <asp:TextBox ID="txtBoxSize" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxSize" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                     <td class="style9" rowspan="6">
                         Current Monitors:<br />
@@ -120,35 +120,35 @@
                     <td class="style4">
                         Brand:</td>
                     <td class="style8">
-                        <asp:TextBox ID="txtBoxBrand" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxBrand" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
                         Model:</td>
                     <td class="style8">
-                        <asp:TextBox ID="txtBoxModel" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxModel" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
                         Resolution:</td>
                     <td class="style8">
-                        <asp:TextBox ID="txtBoxResolution" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxResolution" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
                         Connectors:</td>
                     <td class="style8">
-                        <asp:TextBox ID="txtBoxConnectors" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxConnectors" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style4">
                         Display Text:</td>
                     <td class="style8">
-                        <asp:TextBox ID="txtBoxDisplayText" runat="server" MaxLength="45"></asp:TextBox>
+                        <asp:TextBox ID="txtBoxDisplayText" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                     </td>
                 </tr>
             </table>
@@ -186,13 +186,13 @@
                     </td>
                     <td class="style11">
                         <asp:TextBox ID="txtBoxBuilding" runat="server" 
-                Width="150px" MaxLength="45"></asp:TextBox>
+                Width="136px" MaxLength="45"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtBoxBuilding" 
                 ErrorMessage="Building name is required" ForeColor="Red" 
                 ValidationGroup="Building"></asp:RequiredFieldValidator>
                         <br />
                         <asp:Button ID="btnAddBuilding" runat="server" 
-                onclick="btnAddBuilding_Click" Text="Add Building" Width="150px" 
+                onclick="btnAddBuilding_Click" Text="Add Building" Width="136px" 
                             ValidationGroup="Building" />
                         <br />
                         <asp:Label ID="lblBuildingMessage" runat="server" Visible="False"></asp:Label>
@@ -225,7 +225,7 @@
                             Width="200px" />
                     </td>
                     <td>
-                        <asp:TextBox ID="txtBoxManufacturer" runat="server" Width="150px" 
+                        <asp:TextBox ID="txtBoxManufacturer" runat="server" Width="136px" 
                             MaxLength="45"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                             ControlToValidate="txtBoxManufacturer" ErrorMessage="Building name is required" 
@@ -233,7 +233,7 @@
                         <br />
                         <asp:Button ID="btnAddManufacturer" runat="server" 
                             onclick="btnAddManufacturer_Click" Text="Add Manufacturer" 
-                            ValidationGroup="Manufacturer" Width="150px" />
+                            ValidationGroup="Manufacturer" Width="136px" />
                         <br />
                         <asp:Label ID="lblManufacturerMessage" runat="server" Visible="False"></asp:Label>
                     </td>

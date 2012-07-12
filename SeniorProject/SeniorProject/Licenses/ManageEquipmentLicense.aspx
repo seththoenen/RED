@@ -60,7 +60,7 @@
                         <td class="style2">
                             Software:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxSoftware" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxSoftware" runat="server" Width="136px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                                 ControlToValidate="txtBoxSoftware" ErrorMessage="Software is required" 
                                 ForeColor="Red"></asp:RequiredFieldValidator>
@@ -70,7 +70,7 @@
                         <td class="style2">
                             OS:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxOperatingSystem" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxOperatingSystem" runat="server" Width="136px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                                 ControlToValidate="txtBoxOperatingSystem" 
                                 ErrorMessage="Operating System is required" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -80,7 +80,7 @@
                         <td class="style2">
                             License Key:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxKey" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxKey" runat="server" Width="136px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                                 ControlToValidate="txtBoxKey" ErrorMessage="Key is required" ForeColor="Red"></asp:RequiredFieldValidator>
                         </td>
@@ -89,7 +89,7 @@
                         <td class="style2">
                             Number of Copies:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxNumOfCopies" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxNumOfCopies" runat="server" Width="136px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                                 ControlToValidate="txtBoxNumOfCopies" 
                                 ErrorMessage="Number of Copies is required" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -103,7 +103,7 @@
                         <td class="style2">
                             Expiration Date:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxExpirationDate" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxExpirationDate" runat="server" Width="136px"></asp:TextBox>
                             <ajaxToolkit:CalendarExtender ID="txtBoxExpirationDate_CalendarExtender" 
                                 runat="server" Enabled="True" TargetControlID="txtBoxExpirationDate">
                             </ajaxToolkit:CalendarExtender>

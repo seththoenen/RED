@@ -67,7 +67,7 @@
                         <td class="style2">
                             Transfer To:</td>
                         <td>
-                            <asp:TextBox ID="txtBoxWhere" runat="server" MaxLength="45" Width="150px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxWhere" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                                 ControlToValidate="txtBoxWhere" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
                         </td>
@@ -76,7 +76,7 @@
                         <td class="style2">
                             Date:</td>
                         <td style="margin-left: 40px">
-                            <asp:TextBox ID="txtBoxDate" runat="server" MaxLength="45" Width="150px"></asp:TextBox>
+                            <asp:TextBox ID="txtBoxDate" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                             <asp:CalendarExtender ID="txtBoxDate_CalendarExtender" runat="server" 
                                 Enabled="True" TargetControlID="txtBoxDate">
                             </asp:CalendarExtender>
