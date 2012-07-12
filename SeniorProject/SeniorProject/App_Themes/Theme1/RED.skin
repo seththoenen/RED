@@ -32,3 +32,7 @@ Default skin template. The following skins are provided as examples only.
 <asp:LinkButton runat="server" ForeColor="White" />
 
 <asp:button runat="server" BackColor="#E0E0E0 " BorderStyle="Groove"/>
+
+<asp:DetailsView runat="server" >
+    <FieldHeaderStyle BackColor="#E0E0E0" Font-Bold="True" ForeColor="Black"/>
+</asp:DetailsView>
