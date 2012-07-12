@@ -95,6 +95,27 @@ namespace SeniorProject
 
             return license;
         }
+
+        public static License getLicense(int licenseID, string connectionString)
+        {
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlTransaction transaction;
+
+            sConnection = connectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+            transaction = dbConn.BeginTransaction("Transaction");
+            dbCmd.Transaction = transaction;
+            dbCmd.Connection = dbConn;
+
+            License lic = new License();
+            lic = LicenseDA.getLicense(dbCmd, licenseID);
+
+            return lic;
+        }
         
         public static bool licenseExist(SqlCommand cmd, License license) 
         {
@@ -586,6 +607,54 @@ namespace SeniorProject
                 transaction.Rollback();
                 return message.ToString();
             }
+        }
+
+        public static string updateLicense(License license, string connectionString)
+        {
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlTransaction transaction;
+
+            sConnection = connectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+            transaction = dbConn.BeginTransaction("Transaction");
+            dbCmd.Transaction = transaction;
+            dbCmd.Connection = dbConn;
+            StringBuilder message = new StringBuilder();
+
+            try
+            {
+                string sqlCommand = "UPDATE Licenses SET Software = @Software, OS = @OS, LicenseKey = @LicenseKey, NumOfCopies = @NumOfCopies, " +
+                        "ExpirationDate = @ExpirationDate, Notes = @Notes WHERE LicID = @LicID";
+
+                dbCmd.CommandText = sqlCommand;
+
+                dbCmd.Parameters.AddWithValue("LicID", license.ID);
+                dbCmd.Parameters.AddWithValue("Software", license.Software);
+                dbCmd.Parameters.AddWithValue("OS", license.OS);
+                dbCmd.Parameters.AddWithValue("LicenseKey", license.Key);
+                dbCmd.Parameters.AddWithValue("NumOfCopies", license.NumOfCopies);
+                dbCmd.Parameters.AddWithValue("ExpirationDate", license.ExpirationDate);
+                dbCmd.Parameters.AddWithValue("Notes", license.Notes);
+
+                dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
+
+                transaction.Commit();
+                dbConn.Close();
+                message.Append("License updated successfully!<bR>");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                message.Append(ex.ToString() + "<bR>");
+                transaction.Rollback();
+            }
+            return message.ToString();
         }
     }
 }
