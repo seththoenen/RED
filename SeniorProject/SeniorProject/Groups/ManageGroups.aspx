@@ -105,7 +105,8 @@
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
                 
-                SelectCommand="SELECT Groups.GroupId, Groups.Name, Groups.Notes, COUNT(Groups.Type) AS Count FROM Groups INNER JOIN GroupInventory ON Groups.GroupId = GroupInventory.GroupID WHERE (Groups.Type = 'Computer') GROUP BY Groups.GroupId, Groups.Name, Groups.Notes">
+                
+                SelectCommand="SELECT Groups.GroupId, Groups.Name, Groups.Notes, COUNT(GroupInventory.InvID) AS Count FROM Groups LEFT OUTER JOIN GroupInventory ON Groups.GroupId = GroupInventory.GroupID WHERE (Groups.Type = 'Computer') GROUP BY Groups.GroupId, Groups.Name, Groups.Notes">
             </asp:SqlDataSource>
             <h3>
                 Equipment Groups</h3>
@@ -142,7 +143,8 @@
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
                 
-                SelectCommand="SELECT Groups.GroupId, Groups.Name, Groups.Notes, COUNT(Groups.Type) AS Count FROM Groups INNER JOIN GroupInventory ON Groups.GroupId = GroupInventory.GroupID WHERE (Groups.Type = 'Equipment')GROUP BY Groups.GroupId, Groups.Name, Groups.Notes">
+                
+                SelectCommand="SELECT Groups.GroupId, Groups.Name, Groups.Notes, COUNT(GroupInventory.InvID) AS Count FROM Groups LEFT OUTER JOIN GroupInventory ON Groups.GroupId = GroupInventory.GroupID WHERE (Groups.Type = 'Equipment') GROUP BY Groups.GroupId, Groups.Name, Groups.Notes">
             </asp:SqlDataSource>
         </ContentTemplate>
     </asp:UpdatePanel>
