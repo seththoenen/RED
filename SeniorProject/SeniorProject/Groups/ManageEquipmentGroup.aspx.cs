@@ -28,6 +28,10 @@ namespace SeniorProject.Groups
         {
             if (!IsPostBack)
             {
+                if (Session["CurrentGroup"] == null)
+                {
+                    Response.Redirect("~/Groups/ManageGroups.aspx");
+                }
                 txtBoxSerialNo.Focus();
 
                 populateDDLs();

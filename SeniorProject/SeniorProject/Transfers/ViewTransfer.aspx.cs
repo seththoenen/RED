@@ -11,7 +11,13 @@ namespace SeniorProject.Transfers
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["CurrentTransfer"] == null)
+                {
+                    Response.Redirect("~/Transfers/ViewTransfers.aspx");
+                }
+            }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

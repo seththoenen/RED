@@ -18,6 +18,10 @@ namespace SeniorProject
         {
             if (!IsPostBack)
             {
+                if (Session["CurrentComputer"] == null)
+                {
+                    Response.Redirect("~/Computer/ViewDesktops.aspx");
+                }
                 string compID = Session["CurrentComputer"].ToString();
                 Computer comp = new Computer();
                 comp = ComputerDA.getComputer(compID, connString);
@@ -45,7 +49,7 @@ namespace SeniorProject
                 else
                 {
                     ddlManufacturer.Text = comp.Manufacturer;
-                }                
+                }
                 txtBoxModel.Text = comp.Model;
 
                 ddlBuilding.DataBind();
@@ -62,7 +66,7 @@ namespace SeniorProject
                     ddlBuilding.Items.Add(comp.CurrentLocation.Building);
                     ddlBuilding.Text = comp.CurrentLocation.Building;
                 }
-                else 
+                else
                 {
                     ddlBuilding.Text = comp.CurrentLocation.Building;
                 }

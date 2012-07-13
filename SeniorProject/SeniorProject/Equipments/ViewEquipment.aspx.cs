@@ -17,6 +17,10 @@ namespace SeniorProject.Equipments
         {
             if (!IsPostBack)
             {
+                if (Session["CurrentEquipment"] == null)
+                {
+                    Response.Redirect("~/Equipments/ViewEquipments.aspx");
+                }
                 Equipment equip = new Equipment();
                 equip = EquipmentDA.getEquipment(Convert.ToInt32(Session["CurrentEquipment"]), connString);
 

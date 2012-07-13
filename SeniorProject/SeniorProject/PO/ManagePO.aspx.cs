@@ -14,7 +14,13 @@ namespace SeniorProject.PO
         
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["CurrentPurchaseOrder"] == null)
+                {
+                    Response.Redirect("~/PO/ManagePOs.aspx");
+                }
+            }
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

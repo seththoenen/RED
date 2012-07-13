@@ -29,6 +29,10 @@ namespace SeniorProject.Groups
         {
             if (!IsPostBack)
             {
+                if (Session["CurrentGroup"] == null)
+                {
+                    Response.Redirect("~Groups/ManageGroups.aspx");
+                }
                 int groupID;
                 groupID = Convert.ToInt16(Session["CurrentGroup"]);
 

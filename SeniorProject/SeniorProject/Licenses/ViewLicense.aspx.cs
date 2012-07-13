@@ -16,7 +16,11 @@ namespace SeniorProject.Licenses
         {
             if (!IsPostBack)
             {
-                if (Session["Authenticated"].ToString() != "True")
+                if (Session["CurrentLicense"] == null)
+                {
+                    Response.Redirect("~/Licenses/ViewLicenses.aspx");
+                }
+                if (Session["Authenticated"] == null || Session["Authenticated"].ToString() != "True")
                 {
                     Response.Redirect("~/default.aspx");
                 }

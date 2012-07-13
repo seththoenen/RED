@@ -22,6 +22,7 @@
                 -Changed the color of details views<br />
                 -Added update abilities for licenses<br />
                 -Removed margins from inputs and made text boxes the same width<br />
+                -Made buttons a universal size and changed text accordingly<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane110" runat="server" ContentCssClass="" 

@@ -14,7 +14,7 @@ namespace SeniorProject.Licenses
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Authenticated"].ToString() != "True")
+            if (Session["Authenticated"] == null || Session["Authenticated"].ToString() != "True")
             {
                 Response.Redirect("~/default.aspx");
             }
