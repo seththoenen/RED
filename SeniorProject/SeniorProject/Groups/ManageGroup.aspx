@@ -52,11 +52,12 @@
                     </SelectParameters>
                 </asp:SqlDataSource>
                 <asp:Button ID="btnEditGroup" runat="server" onclick="btnEditGroup_Click" 
-                    Text="Edit Group" />
+                    Text="Edit Group" Width="136px" />
                 &nbsp;<asp:Button ID="btnAddComputers" runat="server" 
-                    Text="Add Computers to Group" onclick="btnAddComputers_Click" />
+                    Text="Add to Group" onclick="btnAddComputers_Click" Width="136px" />
                 &nbsp;<asp:Button ID="btnCalcelAddComputers" runat="server" CausesValidation="False" 
-                    onclick="btnCalcelAddComputers_Click" Text="Cancel" Visible="False" />
+                    onclick="btnCalcelAddComputers_Click" Text="Cancel" Visible="False" 
+                    Width="136px" />
             </p>
             <asp:Panel ID="Panel1" runat="server" Visible="False">
                 <table class="style1">
@@ -79,7 +80,7 @@
                     </tr>
                 </table>
                 <asp:Button ID="btnUpdateGroup" runat="server" onclick="btnUpdateGroup_Click" 
-                    Text="Update Group" Width="122px" />
+                    Text="Update Group" Width="136px" />
             </asp:Panel>
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
             <asp:Panel ID="panelComputers" runat="server">
@@ -136,7 +137,7 @@
                 <br />
                 <div id="sidebar">
                     <asp:Button ID="btnToggle" runat="server" CausesValidation="False" 
-                        onclick="btnToggle_Click" Text="Add With Text Box" />
+                        onclick="btnToggle_Click" Text="Add With Text Box" Width="136px" />
                     <span class="page">
                     <br />
                     Service Tag(s)/Serial No.(s):<br />
@@ -151,8 +152,8 @@
                                 SelectionMode="Multiple" Width="162px"></asp:ListBox>
                             <br />
                             <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                                onclick="btnRemoveSelected_Click" Text="Remove Selected Entries" 
-                                Width="165px" />
+                                onclick="btnRemoveSelected_Click" Text="Remove Selected" 
+                                Width="136px" />
                             <br />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo0" runat="server" 
                                 ControlToValidate="lstBoxSerialNos" 
@@ -372,7 +373,7 @@
                             <tr>
                                 <td class="style14">
                                     <asp:Button ID="btnAddWithTextBox" runat="server" CausesValidation="False" 
-                                        onclick="btnAddWithTextBox_Click" Text="Add" Width="100px" />
+                                        onclick="btnAddWithTextBox_Click" Text="Add" Width="136px" />
                                 </td>
                                 <td>
                                     &nbsp;</td>

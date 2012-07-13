@@ -45,9 +45,10 @@
                 </asp:SqlDataSource>
             </p>
             <asp:Button ID="btnAddEquipment" runat="server" onclick="btnAddEquipment_Click" 
-                Text="Add Equipment to Group" />
+                Text="Add to Group" Width="136px" />
             &nbsp;<asp:Button ID="btnCancelAddEquipment" runat="server" CausesValidation="False" 
-                onclick="btnCancelAddEquipment_Click" Text="Cancel" Visible="False" />
+                onclick="btnCancelAddEquipment_Click" Text="Cancel" Visible="False" 
+                Width="136px" />
             <br />
             <br />
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
@@ -105,7 +106,7 @@
                 <div ID="sidebar">
                     <span class="page">
                     <asp:Button ID="btnToggle" runat="server" CausesValidation="False" 
-                        onclick="btnToggle_Click" Text="Add With Text Box" />
+                        onclick="btnToggle_Click" Text="Add With Text Box" Width="136px" />
                     <br />
                     Service Tag(s)/Serial No.(s):<br />
                     <asp:UpdatePanel ID="updatePanelSerialNo0" runat="server">
@@ -119,8 +120,8 @@
                                 SelectionMode="Multiple" Width="162px"></asp:ListBox>
                             <br />
                             <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                                onclick="btnRemoveSelected_Click" Text="Remove Selected Entries" 
-                                Width="165px" />
+                                onclick="btnRemoveSelected_Click" Text="Remove Selected" 
+                                Width="136px" />
                             <br />
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo0" runat="server" 
                                 ControlToValidate="lstBoxSerialNos" 
@@ -338,7 +339,7 @@
                         <tr>
                             <td class="style2">
                                 <asp:Button ID="btnAddWithTextBox" runat="server" CausesValidation="False" 
-                                    onclick="btnAddWithTextBox_Click" Text="Add" Width="100px" />
+                                    onclick="btnAddWithTextBox_Click" Text="Add" Width="136px" />
                             </td>
                             <td>
                                 &nbsp;</td>

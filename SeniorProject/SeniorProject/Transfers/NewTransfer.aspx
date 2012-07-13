@@ -31,8 +31,8 @@
                     SelectionMode="Multiple" Width="162px"></asp:ListBox>
                 <br />
                 <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                    onclick="btnRemoveSelected_Click" Text="Remove Selected Entries" 
-                    Width="165px" />
+                    onclick="btnRemoveSelected_Click" Text="Remove Selected" 
+                    Width="136px" />
 <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo0" runat="server" 
                     ControlToValidate="lstBoxSerialNos" 
@@ -47,7 +47,8 @@
                     Width="156px" SelectionMode="Multiple"></asp:ListBox>
                 <br />
                 <asp:Button ID="btnSelectGroup" runat="server" CausesValidation="False" 
-                    Enabled="False" onclick="btnSelectGroup_Click" Text="Select Group(s)" />
+                    Enabled="False" onclick="btnSelectGroup_Click" Text="Select Group(s)" 
+                    Width="136px" />
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
@@ -55,11 +56,11 @@
     <asp:UpdatePanel ID="updatePanelPage" runat="server">
         <ContentTemplate>
             <asp:Button ID="btnAddComputers" runat="server" CausesValidation="False" 
-                onclick="btnAddComputers_Click" Text="Add Computers with GridView" 
-                Width="198px" />
+                onclick="btnAddComputers_Click" Text="Add Computers" 
+                Width="136px" />
             &nbsp;<asp:Button ID="btnAddEquipment" runat="server" CausesValidation="False" 
-                onclick="btnAddEquipment_Click" Text="Add Equipment with GridView" 
-                Width="205px" />
+                onclick="btnAddEquipment_Click" Text="Add Equipment" 
+                Width="136px" />
 <br />
             <asp:Panel ID="panelTransfer" runat="server">
                 <table class="style1">
@@ -94,12 +95,12 @@
                     </tr>
                 </table>
                 <asp:Button ID="btnCreateTransfer" runat="server" 
-                    onclick="btnCreateTransfer_Click" Text="Create Transfer" />
+                    onclick="btnCreateTransfer_Click" Text="Create Transfer" Width="136px" />
                 <br />
                 <asp:Label ID="lblTransferMessage" runat="server" Visible="False"></asp:Label>
                 <br />
                 <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" 
-                    Text="Clear" Visible="False" />
+                    Text="Clear" Visible="False" Width="136px" />
             </asp:Panel>
 <br />
             <asp:Panel ID="panelComputers" runat="server" Visible="False">

@@ -217,40 +217,40 @@ namespace SeniorProject.Transfers
 
         protected void btnAddComputers_Click(object sender, EventArgs e)
         {
-            if (btnAddComputers.Text == "Add Computers with GridView")
+            if (btnAddComputers.Text == "Add Computers")
             {
                 panelTransfer.Visible = false;
                 panelComputers.Visible = true;
                 panelEquipment.Visible = false;
-                btnAddComputers.Text = "Done Adding Computers";
-                btnAddEquipment.Text = "Add Equipment with GridView";
+                btnAddComputers.Text = "Done";
+                btnAddEquipment.Text = "Add Equipment";
             }
-            else if (btnAddComputers.Text == "Done Adding Computers")
+            else if (btnAddComputers.Text == "Done")
             {
                 panelTransfer.Visible = true;
                 panelComputers.Visible = false;
                 panelEquipment.Visible = false;
-                btnAddComputers.Text = "Add Computers with GridView";
+                btnAddComputers.Text = "Add Computers";
             }
             
         }
 
         protected void btnAddEquipment_Click(object sender, EventArgs e)
         {
-            if (btnAddEquipment.Text == "Add Equipment with GridView")
+            if (btnAddEquipment.Text == "Add Equipment")
             {
                 panelTransfer.Visible = false;
                 panelComputers.Visible = false;
                 panelEquipment.Visible = true;
-                btnAddEquipment.Text = "Done Adding Equipment";
-                btnAddComputers.Text = "Add Computers with GridView";
+                btnAddEquipment.Text = "Done";
+                btnAddComputers.Text = "Add Computers";
             }
-            else if (btnAddEquipment.Text == "Done Adding Equipment")
+            else if (btnAddEquipment.Text == "Done")
             {
                 panelTransfer.Visible = true;
                 panelComputers.Visible = false;
                 panelEquipment.Visible = false;
-                btnAddEquipment.Text = "Add Equipment with GridView";
+                btnAddEquipment.Text = "Add Equipment";
             }
         }
 

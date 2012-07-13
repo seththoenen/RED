@@ -319,9 +319,9 @@ namespace SeniorProject
             {
                 panelPage.Visible = false;
                 panelTextBox.Visible = true;
-                btnAddWithTextBoxToggle.Text = "Done Adding With Text Box";
+                btnAddWithTextBoxToggle.Text = "Done";
             }
-            else if (btnAddWithTextBoxToggle.Text == "Done Adding With Text Box")
+            else if (btnAddWithTextBoxToggle.Text == "Done")
             {
                 panelPage.Visible = true;
                 panelTextBox.Visible = false;

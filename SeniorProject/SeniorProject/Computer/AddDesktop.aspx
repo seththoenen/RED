@@ -41,7 +41,7 @@
                 Add Computer(s)
                 <asp:Button ID="btnAddWithTextBoxToggle" runat="server" 
                     CausesValidation="False" onclick="btnAddWithTextBoxToggle_Click" 
-                    Text="Add With Text Box" />
+                    Text="Add With Text Box" Width="136px" />
             </h1>
             &nbsp;
         </ContentTemplate>
@@ -60,8 +60,8 @@
                 </asp:ListBox>
                 <br />
                 <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                    onclick="btnRemoveSelected_Click" Text="Remove Selected Entries" 
-                    Width="165px" />
+                    onclick="btnRemoveSelected_Click" Text="Remove Selected" 
+                    Width="136px" />
 <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo" runat="server" 
                     ControlToValidate="lstBoxSerialNos" 
@@ -267,7 +267,7 @@
                                             Width="150px"></asp:ListBox>
                                         <br />
                                         <asp:Button ID="btnRemoveMonitors" runat="server" Enabled="False" 
-                                            onclick="btnRemoveMonitors_Click" Text="Remove Selected" Width="150px" />
+                                            onclick="btnRemoveMonitors_Click" Text="Remove Selected" Width="136px" />
                                         <br />
                                         Monitor Count:
                                         <asp:Label ID="lblMonitorCount" runat="server" Text="0"></asp:Label>
@@ -434,7 +434,7 @@
                                                 </asp:ListBox>
                                                 <br />
                                                 <asp:Button ID="btnRemoveLicense" runat="server" 
-                                                    onclick="btnRemoveLicense_Click" Text="Remove Selected License" Width="200px" />
+                                                    onclick="btnRemoveLicense_Click" Text="Remove Selected" Width="136px" />
                                             </td>
                                             <td>
                                                 <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
@@ -492,8 +492,8 @@
                                         </asp:ListBox>
                                         <br />
                                         <asp:Button ID="btnRemoveWarranty" runat="server" CausesValidation="False" 
-                                            onclick="btnRemoveWarranty_Click" Text="Remove Selected Warranty" 
-                                            Width="200px" />
+                                            onclick="btnRemoveWarranty_Click" Text="Remove Selected" 
+                                            Width="136px" />
                                     </td>
                                     <td class="style13">
                                         Manufacturer:</td>
@@ -551,7 +551,8 @@
                                         <br />
                                         <br />
                                         <asp:Button ID="btnAddWarranty" runat="server" onclick="btnAddWarranty_Click" 
-                                            style="height: 26px" Text="Add Warranty" ValidationGroup="warranty" />
+                                            style="height: 26px" Text="Add Warranty" ValidationGroup="warranty" 
+                                            Width="136px" />
                                     </td>
                                 </tr>
                             </table>
@@ -565,14 +566,14 @@
                     </p>
                     <p>
                         <asp:Button ID="btnAddDesktop" runat="server" onclick="btnAddDesktop_Click" 
-                            Text="Add" Width="100px" />
+                            Text="Add" Width="136px" />
                     </p>
                     <asp:UpdatePanel ID="updatePanelMessage" runat="server">
                         <ContentTemplate>
                             <asp:Label ID="lblMessage" runat="server"></asp:Label>
                             <br />
                             <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" 
-                                Text="Clear Message" Visible="False" Width="100px" />
+                                Text="Clear" Visible="False" Width="136px" />
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="btnAddDesktop" />
@@ -594,7 +595,7 @@
                         <tr>
                             <td class="style14">
                                 <asp:Button ID="btnAddWithTextBox" runat="server" CausesValidation="False" 
-                                    onclick="btnAddWithTextBox_Click" Text="Add" Width="100px" />
+                                    onclick="btnAddWithTextBox_Click" Text="Add" Width="136px" />
                             </td>
                             <td>
                                 &nbsp;</td>

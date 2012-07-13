@@ -66,8 +66,8 @@
                     SelectionMode="Multiple" Width="164px"></asp:ListBox>
                 <br />
                 <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                    onclick="btnRemoveSelected_Click" Text="Remove Selected Entries" 
-                    Width="162px" />
+                    onclick="btnRemoveSelected_Click" Text="Remove Selected" 
+                    Width="136px" />
 <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo0" runat="server" 
                     ControlToValidate="lstBoxSerialNos" 
@@ -81,7 +81,8 @@
                     Width="165px" SelectionMode="Multiple"></asp:ListBox>
                 <br />
                 <asp:Button ID="btnSelectGroup" runat="server" CausesValidation="False" 
-                    Enabled="False" onclick="btnSelectGroup_Click" Text="Select Group(s)" />
+                    Enabled="False" onclick="btnSelectGroup_Click" Text="Select Group(s)" 
+                    Width="136px" />
             </ContentTemplate>
         </asp:UpdatePanel>
         <br />
@@ -92,11 +93,11 @@
         <asp:UpdatePanel ID="updatePanelPage" runat="server">
             <ContentTemplate>
             <asp:Button ID="btnToggle" runat="server" CausesValidation="False" 
-    onclick="btnToggle_Click" Text="Select With GridView" />
+    onclick="btnToggle_Click" Text="Select With GridView" Width="136px" />
 
                 &nbsp;<asp:Button ID="btnAddWithTextBoxToggle" runat="server" 
                     CausesValidation="False" onclick="btnAddWithTextBoxToggle_Click" 
-                    Text="Add With Text Box" />
+                    Text="Add With Text Box" Width="136px" />
 
                 <asp:Panel ID="panelGeneral" runat="server">
                     <h2>
@@ -162,7 +163,7 @@
                     <asp:UpdatePanel ID="updatePanelLogistics" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnUpdateLogistics" runat="server" 
-                                onclick="btnUpdateLogistics_Click" Text="UpdateLogistics" Width="150px" />
+                                onclick="btnUpdateLogistics_Click" Text="UpdateLogistics" Width="136px" />
                             <br />
                             <asp:Panel ID="panelUpdateLogistics" runat="server" Visible="False">
                                 <table class="style1">
@@ -202,13 +203,14 @@
                                 </table>
                                 <br />
                                 <asp:Button ID="btnApplyLogisticsUpdates" runat="server" 
-                                    onclick="btnApplyLogisticsUpdates_Click" Text="UpdateLogistics" Width="150px" />
+                                    onclick="btnApplyLogisticsUpdates_Click" Text="UpdateLogistics" 
+                                    Width="136px" />
                                 &nbsp;<asp:Button ID="btnCancelLogistics" runat="server" 
-                                    onclick="btnCancelLogistics_Click" Text="Cancel" />
+                                    onclick="btnCancelLogistics_Click" Text="Cancel" Width="136px" />
                                 <br />
                                 <asp:Label ID="lblLogisticsMessage" runat="server" Visible="False"></asp:Label>
                                 <br />
-                                <asp:Button ID="btnClearLogistics" runat="server" Text="Button" />
+                                <asp:Button ID="btnClearLogistics" runat="server" Text="Button" Width="136px" />
                             </asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -231,7 +233,7 @@
                                 <asp:UpdatePanel ID="pdatePanelPO" runat="server">
                                     <ContentTemplate>
                                         <asp:Button ID="btnUpdatePO" runat="server" onclick="btnUpdatePO_Click" 
-                                            Text="Update PO" />
+                                            Text="Update PO" Width="136px" />
                                         <br />
                                         <asp:Panel ID="panelPO" runat="server" Visible="False">
                                             <asp:DropDownList ID="ddlPONO" runat="server" AutoPostBack="True" 
@@ -274,7 +276,7 @@
                                             </asp:SqlDataSource>
                                             <br />
                                             <asp:Button ID="btnDontUpdatePO" runat="server" onclick="btnDontUpdatePO_Click" 
-                                                Text="Don't Update PO" />
+                                                Text="Don't Update PO" Width="136px" />
                                         </asp:Panel>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -324,14 +326,15 @@
                     <asp:UpdatePanel ID="updatePanelLicensing" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnManageLicensing" runat="server" 
-                                onclick="btnManageLicensing_Click" Text="ManageLicensing" Width="150px" />
+                                onclick="btnManageLicensing_Click" Text="ManageLicensing" Width="136px" />
                             <asp:Panel ID="panelLicensing" runat="server" Visible="False">
                                 <asp:CheckBox ID="chkBoxRemoveAllLicensing" runat="server" AutoPostBack="True" 
                                     oncheckedchanged="chkBoxRemoveAllLicensing_CheckedChanged" 
                                     Text="Remove all licensing from selected computers." ViewStateMode="Enabled" />
                                 <br />
                                 <asp:Button ID="btnApplyRemoveAllLicenses" runat="server" 
-                                    onclick="btnApplyRemoveAllLicenses_Click" Text="Apply" Visible="False" />
+                                    onclick="btnApplyRemoveAllLicenses_Click" Text="Apply" Visible="False" 
+                                    Width="136px" />
                                 <br />
                                 <asp:CheckBox ID="chkBoxRemoveCertainLicenses" runat="server" 
                                     AutoPostBack="True" 
@@ -401,7 +404,7 @@
                                 </asp:GridView>
                                 <br />
                                 <asp:Button ID="btnCancelLicensing" runat="server" CausesValidation="False" 
-                                    onclick="btnCancelLicensing_Click" Text="Cancel" />
+                                    onclick="btnCancelLicensing_Click" Text="Cancel" Width="136px" />
                                 <br />
                                 <asp:Label ID="lblLicenseMessage" runat="server" Visible="False"></asp:Label>
                             </asp:Panel>
@@ -412,7 +415,8 @@
                     <asp:UpdatePanel ID="updatePanelWarranties" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnManageWarranties" runat="server" 
-                                onclick="btnManageWarranties_Click" Text="Manage Warranties" Width="150px" />
+                                onclick="btnManageWarranties_Click" Text="Manage Warranties" 
+                                Width="136px" />
                             <br />
                             <asp:Panel ID="panelWarranty" runat="server" Visible="False">
                                 <asp:CheckBox ID="chkBoxRemoveAllWarranties" runat="server" AutoPostBack="True" 
@@ -420,7 +424,8 @@
                                     Text="Remove All Warranties" ViewStateMode="Enabled" />
                                 <br />
                                 <asp:Button ID="btnApplyRemoveAllWarranties" runat="server" 
-                                    onclick="btnApplyRemoveAllWarranties_Click" Text="Apply" Visible="False" />
+                                    onclick="btnApplyRemoveAllWarranties_Click" Text="Apply" Visible="False" 
+                                    Width="136px" />
                                 <br />
                                 <asp:CheckBox ID="chkBoxAddWarranty" runat="server" AutoPostBack="True" 
                                     oncheckedchanged="chkBoxAddWarranty_CheckedChanged" Text="Add a Warranty" 
@@ -485,7 +490,8 @@
                                                 <br />
                                                 <br />
                                                 <asp:Button ID="btnAddWarranty" runat="server" onclick="btnAddWarranty_Click" 
-                                                    style="height: 26px" Text="Add Warranty" ValidationGroup="warranty" />
+                                                    style="height: 26px" Text="Add Warranty" ValidationGroup="warranty" 
+                                                    Width="136px" />
                                                 &nbsp;<br />
                                             </td>
                                         </tr>
@@ -503,7 +509,7 @@
                     <asp:UpdatePanel ID="updatePanelMaintenance" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnAddMaintenance" runat="server" 
-                                onclick="btnAddMaintenance_Click" Text="Add Maintenance" Width="150px" />
+                                onclick="btnAddMaintenance_Click" Text="Add Maintenance" Width="136px" />
                             <br />
                             <asp:Panel ID="panelMaintenance" runat="server" Visible="False">
                                 <table class="style8">
@@ -529,9 +535,10 @@
                                     </tr>
                                 </table>
                                 <asp:Button ID="btnInsertMaintenance" runat="server" 
-                                    onclick="btnInsertMaintenance_Click" Text="Add Maintenance" />
+                                    onclick="btnInsertMaintenance_Click" Text="Add Maintenance" 
+                                    Width="136px" />
                                 &nbsp;<asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
-                                    onclick="btnCancel_Click" Text="Cancel" />
+                                    onclick="btnCancel_Click" Text="Cancel" Width="136px" />
                                 <br />
                                 <asp:Label ID="lblMaintenanceMessage" runat="server" Visible="False"></asp:Label>
                             </asp:Panel>
@@ -547,12 +554,12 @@
                     <asp:UpdatePanel ID="updatePanelMessage" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnUpdateEquipment" runat="server" 
-                                onclick="btnUpdateEquipment_Click" Text="Update" Width="100px" />
+                                onclick="btnUpdateEquipment_Click" Text="Update" Width="136px" />
                             <br />
                             <asp:Label ID="lblMessage" runat="server"></asp:Label>
                             <br />
                             <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" 
-                                Text="Clear" Visible="False" />
+                                Text="Clear" Visible="False" Width="136px" />
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <br />
@@ -761,7 +768,7 @@
                         <tr>
                             <td class="style14">
                                 <asp:Button ID="btnAddWithTextBox" runat="server" CausesValidation="False" 
-                                    onclick="btnAddWithTextBox_Click" Text="Add" Width="100px" />
+                                    onclick="btnAddWithTextBox_Click" Text="Add" Width="136px" />
                             </td>
                             <td>
                                 &nbsp;</td>

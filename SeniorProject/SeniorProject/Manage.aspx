@@ -76,7 +76,7 @@
                         Height="156px" Width="202px"></asp:ListBox>
                         <br />
                         <asp:Button ID="btnEdit" runat="server" onclick="btnEdit_Click" 
-                        Text="Edit Selected" />
+                        Text="Edit Selected" Width="136px" />
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                         ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
                         SelectCommand="SELECT [MonID], [Display] FROM [Monitor]"></asp:SqlDataSource>
@@ -153,9 +153,9 @@
                 </tr>
             </table>
             <asp:Button ID="btnAddMonitor" runat="server" onclick="btnAddMonitor_Click" 
-                Text="Add Monitor" />
+                Text="Add Monitor" Width="136px" />
             &nbsp;<asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" 
-                Text="Cancel" Visible="False" />
+                Text="Cancel" Visible="False" Width="136px" />
             <br />
             <asp:Label ID="lblMessage" runat="server"></asp:Label>
         </ContentTemplate>
@@ -182,7 +182,7 @@
                             </SelectParameters>
                         </asp:SqlDataSource>
                         <asp:Button ID="btnRemoveBuilding" runat="server" 
-                Text="Remove Selected Building" Width="200px" onclick="btnRemoveBuilding_Click" />
+                Text="Remove Selected" Width="136px" onclick="btnRemoveBuilding_Click" />
                     </td>
                     <td class="style11">
                         <asp:TextBox ID="txtBoxBuilding" runat="server" 
@@ -221,8 +221,8 @@
                             </SelectParameters>
                         </asp:SqlDataSource>
                         <asp:Button ID="btnRemoveManufacturer" runat="server" 
-                            onclick="btnRemoveManufacturer_Click" Text="Remove Selected Manufacturer" 
-                            Width="200px" />
+                            onclick="btnRemoveManufacturer_Click" Text="Remove Selected" 
+                            Width="136px" />
                     </td>
                     <td>
                         <asp:TextBox ID="txtBoxManufacturer" runat="server" Width="136px" 

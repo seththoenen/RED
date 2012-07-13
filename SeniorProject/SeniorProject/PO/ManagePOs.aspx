@@ -19,7 +19,7 @@
     <asp:UpdatePanel ID="updatePanelNewPO" runat="server">
         <ContentTemplate>
             <asp:Button ID="btnCreateNewPO" runat="server" Text="Create PO" 
-                onclick="btnCreateNewPO_Click" />
+                onclick="btnCreateNewPO_Click" Width="136px" />
             <br />
             <asp:Panel ID="panelCreateNewPO" runat="server" Visible="False">
                 <table class="style1">
@@ -69,9 +69,9 @@
                     </tr>
                 </table>
                 <asp:Button ID="btnAddPO" runat="server" onclick="btnAddPO_Click" 
-                Text="Add Purchase Order" />
+                Text="Add PO" Width="136px" />
                 &nbsp;<asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" 
-                    Text="Cancel" />
+                    Text="Cancel" Width="136px" />
             </asp:Panel>
             
             <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>

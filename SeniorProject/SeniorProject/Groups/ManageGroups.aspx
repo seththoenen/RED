@@ -27,7 +27,7 @@
     <asp:UpdatePanel ID="updatePanelAddGroup" runat="server">
         <ContentTemplate>
             <asp:Button ID="btnAddNewGroup" runat="server" onclick="btnAddNewGroup_Click" 
-                Text="Create Group" />
+                Text="Create Group" Width="136px" />
             <asp:Panel ID="panelAddGroup" runat="server" Visible="False">
                 <table class="style1">
                     <tr>
@@ -59,9 +59,9 @@
                     </tr>
                 </table>
                 <asp:Button ID="btnAddGroup" runat="server" onclick="btnAddGroup_Click" 
-                    Text="Add Group" />
+                    Text="Add Group" Width="136px" />
                 &nbsp;<asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" 
-                    Text="Cancel" CausesValidation="False" />
+                    Text="Cancel" CausesValidation="False" Width="136px" />
                 <br />
             </asp:Panel>
             <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>

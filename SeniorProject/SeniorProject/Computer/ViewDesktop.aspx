@@ -223,14 +223,16 @@
                     <asp:UpdatePanel ID="updatePanelSelectMonitor" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnAddMonitor" runat="server" CausesValidation="False" 
-                                onclick="btnAddMonitor_Click" Text="Add a Monitor" Width="150px" />
+                                onclick="btnAddMonitor_Click" Text="Add a Monitor" Width="136px" />
                     <br />
                             <asp:DropDownList ID="ddlMonitor" runat="server" DataSourceID="SqlDataSource13" 
-                                DataTextField="Display" DataValueField="MonID" Visible="False" Width="150px">
+                                DataTextField="Display" DataValueField="MonID" Visible="False" 
+                                Width="142px">
                             </asp:DropDownList>
                             <br />
                             <asp:Button ID="btnCancelAddMonitor" runat="server" 
-                                onclick="btnCancelAddMonitor_Click" Text="Cancel" Visible="False" />
+                                onclick="btnCancelAddMonitor_Click" Text="Cancel" Visible="False" 
+                                Width="136px" />
                             <br />
                             <asp:SqlDataSource ID="SqlDataSource13" runat="server" 
                                 ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
@@ -242,7 +244,7 @@
                             </asp:ListBox>
                             <br />
                             <asp:Button ID="btnRemoveMonitor" runat="server" Enabled="False" 
-                                onclick="btnRemoveMonitor_Click" Text="Remove Selected" Width="150px" />
+                                onclick="btnRemoveMonitor_Click" Text="Remove Selected" Width="136px" />
                             <br />
                             <asp:Label ID="lblMonitorMessage" runat="server" Visible="False"></asp:Label>
                             <br />
@@ -310,11 +312,11 @@
                                         </SelectParameters>
                                     </asp:SqlDataSource>
                                     <asp:Button ID="btnAddLicense" runat="server" onclick="btnAddLicense_Click" 
-                                    Text="Add a License" Width="170px" />
+                                    Text="Add a License" Width="136px" />
                                     <br />
                                     <asp:Button ID="btnRemoveLicense" runat="server" Enabled="False" 
                                     onclick="btnRemoveLicense_Click" Text="Remove Selected License" 
-                                    Width="170px" />
+                                    Width="136px" />
                                 </ContentTemplate>
                             </asp:UpdatePanel>
                             <br />
@@ -402,7 +404,7 @@
                             </SelectParameters>
                         </asp:SqlDataSource>
                         <asp:Button ID="btnCancelLicense" runat="server" 
-                        onclick="btnCancelLicense_Click" Text="Cancel" />
+                        onclick="btnCancelLicense_Click" Text="Cancel" Width="136px" />
                         <br />
                         <asp:Label ID="lblLicenseMessage" runat="server" Text="Label" Visible="False"></asp:Label>
                     </asp:Panel>
@@ -414,7 +416,7 @@
         <asp:UpdatePanel ID="updatePanelMaintenance" runat="server">
             <ContentTemplate>
                 <asp:Button ID="btnAddMaintenance" runat="server" CausesValidation="False" 
-                    onclick="btnAddMaintenance_Click" Text="Add Maintenance" Width="130px" />
+                    onclick="btnAddMaintenance_Click" Text="Add Maintenance" Width="136px" />
                 <asp:Panel ID="Panel1" runat="server" Visible="False">
                     <table class="style8">
                         <tr>
@@ -442,9 +444,10 @@
                         </tr>
                     </table>
                     <asp:Button ID="btnInsertMaintenance" runat="server" 
-                        onclick="btnInsertMaintenance_Click" Text="Add Maintenance" />
+                        onclick="btnInsertMaintenance_Click" Text="Add Maintenance" 
+                        Width="136px" />
                     &nbsp;<asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
-                        onclick="btnCancel_Click" Text="Done" />
+                        onclick="btnCancel_Click" Text="Done" Width="136px" />
                 <br />
                     <asp:Label ID="lblMaintenanceMessage" runat="server" Visible="False"></asp:Label>
                 </asp:Panel>
@@ -557,7 +560,7 @@
     <asp:UpdatePanel ID="updatePanelHistory" runat="server">
         <ContentTemplate>
             <asp:Button ID="btnLogistics" runat="server" onclick="btnLogistics_Click" 
-                Text="Show/Hide History" Width="178px" />
+                Text="Show/Hide History" Width="136px" />
     <br />
             <asp:GridView ID="GridView2" runat="server" AllowPaging="True" 
                 AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource7" 
@@ -683,12 +686,12 @@
                     <asp:UpdatePanel ID="pdatePanelGroups" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnGoToGroup" runat="server" Enabled="False" 
-                                onclick="btnGoToGroup_Click" Text="Go To Group" Width="102px" />
+                                onclick="btnGoToGroup_Click" Text="Go To Group" Width="136px" />
                 <br />
                             <asp:ListBox ID="lstBoxGroups" runat="server" AutoPostBack="True" 
                                 DataSourceID="SqlDataSource14" DataTextField="Name" DataValueField="GroupId" 
                                 Height="134px" onselectedindexchanged="lstBoxGroups_SelectedIndexChanged" 
-                                Width="127px"></asp:ListBox>
+                                Width="136px"></asp:ListBox>
                         <br />
                             <asp:SqlDataSource ID="SqlDataSource14" runat="server" 
                                 ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
@@ -698,12 +701,13 @@
                                 </SelectParameters>
                             </asp:SqlDataSource>
                             <asp:Button ID="btnEditGroups" runat="server" onclick="btnEditGroups_Click" 
-                                Text="Edit Groups" />
+                                Text="Edit Groups" Width="136px" />
                         <br />
                             <asp:Button ID="btnUpdateGroups" runat="server" onclick="btnUpdateGroups_Click" 
-                                Text="Update Groups" Visible="False" />
+                                Text="Update Groups" Visible="False" Width="136px" />
                             <asp:Button ID="btnCancelEditGroups" runat="server" CausesValidation="False" 
-                                onclick="btnCancelEditGroups_Click" Text="Cancel" Visible="False" />
+                                onclick="btnCancelEditGroups_Click" Text="Cancel" Visible="False" 
+                                Height="26px" Width="136px" />
                         <br />
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -747,7 +751,7 @@
         <asp:UpdatePanel ID="updatePanelWarranty" runat="server">
             <ContentTemplate>
                 <asp:Button ID="btnAddWarranty" runat="server" onclick="btnAddWarranty_Click1" 
-                    Text="Add a Warranty" />
+                    Text="Add a Warranty" Width="136px" />
             <br />
                 <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" 
                     CellPadding="4" DataKeyNames="WarID,InvID" DataSourceID="SqlDataSource15" 
@@ -914,9 +918,10 @@
                             <br />
                             <br />
                                 <asp:Button ID="btnAddWarranty0" runat="server" onclick="btnAddWarranty_Click" 
-                                    style="height: 26px" Text="Add Warranty" ValidationGroup="warranty" />
+                                    style="height: 26px" Text="Add Warranty" ValidationGroup="warranty" 
+                                    Width="136px" />
                                 &nbsp;<asp:Button ID="brnCancelWarranty" runat="server" 
-                                    onclick="brnCancelWarranty_Click" Text="Cancel" />
+                                    onclick="brnCancelWarranty_Click" Text="Cancel" Width="136px" />
                             <br />
                                 <asp:Label ID="lblWarrantyMessage" runat="server" Visible="False"></asp:Label>
                             </td>
@@ -932,12 +937,12 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <asp:Button ID="btnUpdateDesktop" runat="server" 
-                            onclick="btnUpdateDesktop_Click" Text="Update" Width="100px" />
+                            onclick="btnUpdateDesktop_Click" Text="Update" Width="136px" />
                         <br />
                         <asp:Label ID="lblMessage" runat="server"></asp:Label>
                         <br />
                         <asp:Button ID="btnClear" runat="server" onclick="btnClear_Click" Text="Clear" 
-                            Visible="False" />
+                            Visible="False" Width="136px" />
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="btnUpdateDesktop" EventName="Click" />

@@ -27,7 +27,7 @@
 <asp:UpdatePanel ID="updatePanelNewLicense" runat="server">
     <ContentTemplate>
         <asp:Button ID="btnCreateLicense" runat="server" 
-            onclick="btnCreateLicense_Click" Text="Create License" />
+            onclick="btnCreateLicense_Click" Text="Create License" Width="136px" />
 <br />
         <asp:Panel ID="panelCreateLicense" runat="server" Visible="False">
             <table class="style1">
@@ -107,9 +107,9 @@
                 </tr>
             </table>
             <asp:Button ID="btnAddLicense" runat="server" onclick="btnAddLicense_Click" 
-                Text="Add License" />
+                Text="Add License" Width="136px" />
             &nbsp;<asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
-                onclick="btnCancel_Click" Text="Cancel" />
+                onclick="btnCancel_Click" Text="Cancel" Width="136px" />
         </asp:Panel>
         <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>
     </ContentTemplate>

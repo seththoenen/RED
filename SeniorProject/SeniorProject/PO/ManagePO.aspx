@@ -49,7 +49,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
     <asp:Button ID="btnEditPurchaseOrder" runat="server" 
-        Text="Edit Purchas Order" onclick="btnEditPurchaseOrder_Click" />
+        Text="Edit PO" onclick="btnEditPurchaseOrder_Click" Width="136px" />
     <asp:Panel ID="panelEditPurchaseOrder" runat="server" Visible="False">
         <table class="style1">
             <tr>
@@ -101,7 +101,7 @@
             </tr>
         </table>
             <asp:Button ID="btnUpdatePO" runat="server" Text="Update PO" 
-            onclick="btnUpdatePO_Click" />
+            onclick="btnUpdatePO_Click" Width="136px" />
         <br />
         <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>
     </asp:Panel>

@@ -664,10 +664,10 @@ namespace SeniorProject
                 panelGeneral.Visible = false;
                 PanelGridView.Visible = true;
                 panelTextBox.Visible = false;
-                btnToggle.Text = "Back To Normal Mode";
+                btnToggle.Text = "Done";
                 btnAddWithTextBoxToggle.Text = "Add With Text Box";
             }
-            else if (btnToggle.Text == "Back To Normal Mode")
+            else if (btnToggle.Text == "Done")
             {
                 panelGeneral.Visible = true;
                 PanelGridView.Visible = false;
@@ -995,10 +995,10 @@ namespace SeniorProject
                 panelGeneral.Visible = false;
                 PanelGridView.Visible = false;
                 panelTextBox.Visible = true;
-                btnAddWithTextBoxToggle.Text = "Done Adding With Text Box";
+                btnAddWithTextBoxToggle.Text = "Done";
                 btnToggle.Text = "Select With GridView";
             }
-            else if (btnAddWithTextBoxToggle.Text == "Done Adding With Text Box")
+            else if (btnAddWithTextBoxToggle.Text == "Done")
             {
                 panelGeneral.Visible = true;
                 PanelGridView.Visible = false;

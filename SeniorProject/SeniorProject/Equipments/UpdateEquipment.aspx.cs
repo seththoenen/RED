@@ -740,14 +740,16 @@ namespace SeniorProject.Equipments
                 panelGeneral.Visible = false;
                 panelGridView.Visible = true;
                 panelTextBox.Visible = false;
-                btnToggle.Text = "Back To Normal Mode";
+                btnToggle.Text = "Done";
+                btnAddWithTextBox.Text = "Add With Text Box";
             }
-            else if (btnToggle.Text == "Back To Normal Mode")
+            else if (btnToggle.Text == "Done")
             {
                 panelGeneral.Visible = true;
                 panelGridView.Visible = false;
                 panelTextBox.Visible = false;
                 btnToggle.Text = "Select With GridView";
+                btnAddWithTextBox.Text = "Add With Text Box";
             }
         }
 
@@ -758,10 +760,10 @@ namespace SeniorProject.Equipments
                 panelGeneral.Visible = false;
                 panelGridView.Visible = false;
                 panelTextBox.Visible = true;
-                btnAddWithTextBoxToggle.Text = "Done Adding With Text Box";
+                btnAddWithTextBoxToggle.Text = "Done";
                 btnToggle.Text = "Select With GridView";
             }
-            else if (btnAddWithTextBoxToggle.Text == "Done Adding With Text Box")
+            else if (btnAddWithTextBoxToggle.Text == "Done")
             {
                 panelGeneral.Visible = true;
                 panelGridView.Visible = false;

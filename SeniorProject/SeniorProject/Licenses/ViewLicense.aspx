@@ -48,7 +48,7 @@
                 </SelectParameters>
             </asp:SqlDataSource>
             <asp:Button ID="btnUpdateLicense" runat="server" CausesValidation="False" 
-                onclick="btnUpdateLicense_Click" Text="Update License" />
+                onclick="btnUpdateLicense_Click" Text="Update License" Width="136px" />
             <br />
             <asp:Panel ID="panelUpdateLicense" runat="server" Visible="False" Width="830px">
                 <table class="style1">
@@ -116,7 +116,7 @@
                 </table>
                 <br />
                 <asp:Button ID="btnUpdate" runat="server" onclick="btnUpdate_Click" 
-                    Text="Update" />
+                    Text="Update" Width="136px" />
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
