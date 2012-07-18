@@ -10,7 +10,7 @@
         <Panes>
         <asp:AccordionPane ID="AccordionPane111" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
-            <Header><a>Release 1.1.1 - (Date Here)</a></Header>
+            <Header><a>Release 1.1.1 - July 18, 2012</a></Header>
             <Content>
                 -Added ajax to main menu bar (for mobile device viewing)<br />
                 -Added title to Patch Notes page<br />
