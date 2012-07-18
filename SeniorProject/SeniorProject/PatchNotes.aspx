@@ -23,6 +23,7 @@
                 -Added update abilities for licenses<br />
                 -Removed margins from inputs and made text boxes the same width<br />
                 -Made buttons a universal size and changed text accordingly<br />
+                -Added filters fo all transferred inventory page<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane110" runat="server" ContentCssClass="" 
