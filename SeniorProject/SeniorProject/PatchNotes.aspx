@@ -8,6 +8,13 @@
     <asp:Accordion ID="Accordion1" runat="server" Height="637px" Width="1227px" 
         HeaderCssClass="accordionHeader" ContentCssClass="accordionContent">
         <Panes>
+        <asp:AccordionPane ID="AccordionPane112" runat="server" ContentCssClass="" 
+                HeaderCssClass="">
+            <Header><a>Release 1.1.2 - (Release Date Here)</a></Header>
+            <Content>
+                -First Entry Here<br />
+            </Content>
+        </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane111" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
             <Header><a>Release 1.1.1 - July 18, 2012</a></Header>
