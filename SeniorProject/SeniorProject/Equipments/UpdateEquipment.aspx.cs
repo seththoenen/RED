@@ -236,6 +236,7 @@ namespace SeniorProject.Equipments
                 equip.NetworkCapable = ddlNetworkCapable.Text;
                 equip.Other = txtBoxOther.Text;
                 equip.Notes = txtBoxNotes.Text;
+                equip.PhysicalAddress = txtBoxPhysicalAddress.Text;
 
 
                 if (ddlPONO.Visible == true)

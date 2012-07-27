@@ -61,14 +61,6 @@
         {
             width: 315px;
         }
-        .style26
-        {
-            width: 165px;
-        }
-        .style27
-        {
-            width: 137px;
-        }
         </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -670,8 +662,10 @@
                             Width="136px"></asp:TextBox>
                     </td>
                     <td class="style19" style="margin-left: 200px">
-                    </td>
+                        Physical Address:</td>
                     <td class="style19" style="margin-left: 200px">
+                        <asp:TextBox ID="txtBoxPhysicalAddress" runat="server" MaxLength="20" 
+                            Width="136px"></asp:TextBox>
                     </td>
                 </tr>
             </table>

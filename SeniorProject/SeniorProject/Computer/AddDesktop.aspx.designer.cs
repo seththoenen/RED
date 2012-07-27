@@ -445,6 +445,15 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.TextBox txtBoxSize;
         
         /// <summary>
+        /// txtBoxPhysicalAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxPhysicalAddress;
+        
+        /// <summary>
         /// chkBoxListGroups1 control.
         /// </summary>
         /// <remarks>

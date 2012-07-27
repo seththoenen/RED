@@ -84,6 +84,7 @@ namespace SeniorProject
                 ddlUSBPorts.SelectedValue = comp.USBports.ToString();
                 txtBoxOtherConnectivity.Text = comp.OtherConnectivity;
                 txtBoxSize.Text = comp.Size;
+                txtBoxPhysicalAddress.Text = comp.PhysicalAddress;
                 txtBoxNotes.Text = comp.Notes;
                 ddlType.Text = comp.Type;
                 ddlPONO.SelectedValue = comp.PO.ID.ToString();
@@ -213,6 +214,8 @@ namespace SeniorProject
             comp.Status = ddlStatus.Text;
             comp.Notes = txtBoxNotes.Text;
             comp.Type = ddlType.Text;
+            comp.PhysicalAddress = txtBoxPhysicalAddress.Text;
+
             if (ddlStatus.Enabled == false)
             {
                 comp.Status = "Transferred";

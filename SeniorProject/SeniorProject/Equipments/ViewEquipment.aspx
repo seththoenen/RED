@@ -229,9 +229,11 @@
                     <asp:TextBox ID="txtBoxOther" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                 </td>
                 <td class="style14">
-                    &nbsp;</td>
+                    Physical Address:</td>
                 <td class="style20">
-                    &nbsp;</td>
+                    <asp:TextBox ID="txtBoxPhysicalAddress" runat="server" MaxLength="20" 
+                        Width="136px"></asp:TextBox>
+                </td>
             </tr>
         </table>
     

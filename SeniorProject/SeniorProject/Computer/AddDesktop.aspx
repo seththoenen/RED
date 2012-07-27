@@ -259,7 +259,7 @@
                                 <asp:TextBox ID="txtBoxCPU" runat="server" MaxLength="45" TabIndex="13" 
                                     Width="136px"></asp:TextBox>
                             </td>
-                            <td class="style9" rowspan="9">
+                            <td class="style9" rowspan="10">
                                 <asp:UpdatePanel ID="updatePanelMonitors" runat="server">
                                     <ContentTemplate>
                                         Monitor(s):<asp:ListBox ID="lstBoxMonitors" runat="server" AutoPostBack="True" 
@@ -277,7 +277,7 @@
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </td>
-                            <td rowspan="9">
+                            <td rowspan="10">
                                 <asp:UpdatePanel ID="updatePanelSelectMonitor" runat="server">
                                     <ContentTemplate>
                                         <asp:DropDownList ID="ddlMonitor" runat="server" AutoPostBack="True" 
@@ -396,6 +396,14 @@
                             <td class="style9" style="margin-left: 200px">
                                 <asp:TextBox ID="txtBoxSize" runat="server" MaxLength="45" TabIndex="21" 
                                     Width="136px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="style9">
+                                Physical Address:</td>
+                            <td class="style9" style="margin-left: 200px">
+                                <asp:TextBox ID="txtBoxPhysicalAddress" runat="server" MaxLength="20" 
+                                    TabIndex="21" Width="136px"></asp:TextBox>
                             </td>
                         </tr>
                     </table>

@@ -23,6 +23,7 @@ namespace SeniorProject
         protected Logistics currentLocation;
         protected ArrayList licenses;
         protected ArrayList warranties;
+        protected string physicalAddress;
 
         public int InvID
         {
@@ -202,6 +203,18 @@ namespace SeniorProject
             set
             {
                 notes = value;
+            }
+        }
+
+        public string PhysicalAddress
+        {
+            get
+            {
+                return physicalAddress;
+            }
+            set
+            {
+                physicalAddress = value;
             }
         }
     }

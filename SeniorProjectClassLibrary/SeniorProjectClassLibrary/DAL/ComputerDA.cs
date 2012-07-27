@@ -30,8 +30,8 @@ namespace SeniorProject
                     Computer comp = (Computer)computers[i];
 
                     //Insert Into Inventory Table
-                    string sqlCommand = "INSERT INTO Inventory (SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, Status) " +
-                        "VALUES (@SMSUTag, @SerialNo, @Manufacturer, @Model, @PurchasePrice, @Notes, @Status)";
+                    string sqlCommand = "INSERT INTO Inventory (SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, Status, PhysicalAddress) " +
+                        "VALUES (@SMSUTag, @SerialNo, @Manufacturer, @Model, @PurchasePrice, @Notes, @Status, @PhysicalAddress)";
 
                     dbCmd.CommandText = sqlCommand;
                     dbCmd.Parameters.AddWithValue("SMSUtag", comp.SMSUtag);
@@ -41,6 +41,7 @@ namespace SeniorProject
                     dbCmd.Parameters.AddWithValue("PurchasePrice", comp.PurchasePrice);
                     dbCmd.Parameters.AddWithValue("Notes", comp.Notes);
                     dbCmd.Parameters.AddWithValue("Status", comp.Status);
+                    dbCmd.Parameters.AddWithValue("PhysicalAddress", comp.PhysicalAddress);
 
                     dbCmd.ExecuteNonQuery();
                     dbCmd.Parameters.Clear();
@@ -287,7 +288,7 @@ namespace SeniorProject
 
             try
             {
-                string sql = "SELECT CompID, SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, CPU, VideoCard, HardDrive, Memory, OpticalDrive, RemovableMedia, USBports,"+
+                string sql = "SELECT CompID, SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, PhysicalAddress, CPU, VideoCard, HardDrive, Memory, OpticalDrive, RemovableMedia, USBports,"+
                     " OtherConnectivity, FormFactor, Type, Inventory.Status, Building, Room, PrimaryUser, Name FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
                 + "Inventory.InvID = Logistics.InvID AND Inventory.InvID = @InvID AND Logistics.Status = @Status";
 
@@ -311,6 +312,7 @@ namespace SeniorProject
                     comp.Model = dbReader["Model"].ToString();
                     comp.PurchasePrice = Convert.ToDouble(dbReader["PurchasePrice"]);
                     comp.Notes = dbReader["Notes"].ToString();
+                    comp.PhysicalAddress = dbReader["PhysicalAddress"].ToString();
                     comp.CPU = dbReader["CPU"].ToString();
                     comp.VideoCard = dbReader["VideoCard"].ToString();
                     comp.HardDrive = dbReader["HardDrive"].ToString();
@@ -433,7 +435,7 @@ namespace SeniorProject
                 {
                     
                     String sqlCommand = "UPDATE Inventory SET SMSUTag = @SMSUTag, SerialNo = @SerialNo, Manufacturer = @Manufacturer, Model = @Model, PurchasePrice = @PurchasePrice, " +
-                        "Notes = @Notes, Status = @Status WHERE InvID = @InvID";
+                        "Notes = @Notes, Status = @Status, PhysicalAddress = @PhysicalAddress WHERE InvID = @InvID";
 
 
                     dbCmd.CommandText = sqlCommand;
@@ -446,6 +448,7 @@ namespace SeniorProject
                     dbCmd.Parameters.AddWithValue("Notes", comp.Notes);
                     dbCmd.Parameters.AddWithValue("Status", comp.Status);
                     dbCmd.Parameters.AddWithValue("InvID", comp.InvID);
+                    dbCmd.Parameters.AddWithValue("PhysicalAddress", comp.PhysicalAddress);
 
                     dbCmd.ExecuteNonQuery();
                     dbCmd.Parameters.Clear();
@@ -571,6 +574,11 @@ namespace SeniorProject
                     {
                         sqlCommand.Append("Notes = @Notes,");
                         dbCmd.Parameters.AddWithValue("Notes", comp.Notes);
+                    }
+                    if (comp.PhysicalAddress != "")
+                    {
+                        sqlCommand.Append("PhysicalAddress = @PhysicalAddress,");
+                        dbCmd.Parameters.AddWithValue("PhysicalAddress", comp.PhysicalAddress);
                     }
                     if (comp.Status != "")
                     {

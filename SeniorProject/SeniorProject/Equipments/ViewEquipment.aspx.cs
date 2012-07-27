@@ -88,6 +88,7 @@ namespace SeniorProject.Equipments
                 txtBoxConnectivity.Text = equip.Connectivity;
                 ddlNetworkCapable.Text = equip.NetworkCapable;
                 txtBoxOther.Text = equip.Other;
+                txtBoxPhysicalAddress.Text = equip.PhysicalAddress;
 
                 txtBoxNotes.Text = equip.Notes;
 
@@ -212,6 +213,7 @@ namespace SeniorProject.Equipments
             equip.Connectivity = txtBoxConnectivity.Text;
             equip.NetworkCapable = ddlNetworkCapable.Text;
             equip.Other = txtBoxOther.Text;
+            equip.PhysicalAddress = txtBoxPhysicalAddress.Text;
 
             equip.Notes = txtBoxNotes.Text;
 

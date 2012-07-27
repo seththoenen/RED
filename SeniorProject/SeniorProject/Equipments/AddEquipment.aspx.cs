@@ -137,6 +137,7 @@ namespace SeniorProject
                 equip.CurrentLocation.PrimaryUser = txtBoxPrimaryUser.Text;
                 equip.CurrentLocation.Name = txtBoxName.Text;
                 equip.NetworkCapable = ddlNetworkCapable.Text;
+                equip.PhysicalAddress = txtBoxPhysicalAddress.Text;
 
                 equip.PO.ID = Convert.ToInt32(ddlPONO.SelectedValue);
                 equip.Groups = groupList;

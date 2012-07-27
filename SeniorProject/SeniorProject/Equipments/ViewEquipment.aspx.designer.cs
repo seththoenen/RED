@@ -193,6 +193,15 @@ namespace SeniorProject.Equipments {
         protected global::System.Web.UI.WebControls.TextBox txtBoxOther;
         
         /// <summary>
+        /// txtBoxPhysicalAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxPhysicalAddress;
+        
+        /// <summary>
         /// updatePanelGroups control.
         /// </summary>
         /// <remarks>

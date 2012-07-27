@@ -12,7 +12,7 @@
                 HeaderCssClass="">
             <Header><a>Release 1.1.2 - (Release Date Here)</a></Header>
             <Content>
-                -First Entry Here<br />
+                -Added a field for physical address to all inventory items<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane111" runat="server" ContentCssClass="" 

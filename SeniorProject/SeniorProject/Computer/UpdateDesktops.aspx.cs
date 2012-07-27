@@ -98,6 +98,7 @@ namespace SeniorProject
 
                 comp.OtherConnectivity = txtBoxOtherConnectivity.Text;
                 comp.Size = txtBoxSize.Text;
+                comp.PhysicalAddress = txtBoxPhysicalAddress.Text;
 
                 comp.Notes = txtBoxNotes.Text;
                 comp.Type = ddlType.Text;

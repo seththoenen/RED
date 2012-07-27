@@ -31,8 +31,8 @@ namespace SeniorProject
                     Equipment equip = (Equipment)equipment[i];
 
                     //Insert Into Inventory Table
-                    string sqlCommand = "INSERT INTO Inventory (SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, Status) " +
-                        "VALUES (@SMSUTag, @SerialNo, @Manufacturer, @Model, @PurchasePrice, @Notes, @Status)";
+                    string sqlCommand = "INSERT INTO Inventory (SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, Status, PhysicalAddress) " +
+                        "VALUES (@SMSUTag, @SerialNo, @Manufacturer, @Model, @PurchasePrice, @Notes, @Status, @PhysicalAddress)";
 
                     dbCmd.CommandText = sqlCommand;
                     dbCmd.Parameters.AddWithValue("SMSUtag", equip.SMSUtag);
@@ -42,6 +42,7 @@ namespace SeniorProject
                     dbCmd.Parameters.AddWithValue("PurchasePrice", equip.PurchasePrice);
                     dbCmd.Parameters.AddWithValue("Notes", equip.Notes);
                     dbCmd.Parameters.AddWithValue("Status", equip.Status);
+                    dbCmd.Parameters.AddWithValue("PhysicalAddress", equip.PhysicalAddress);
 
                     dbCmd.ExecuteNonQuery();
                     dbCmd.Parameters.Clear();
@@ -155,6 +156,7 @@ namespace SeniorProject
                     equip.Model = dbReader["Model"].ToString();
                     equip.PurchasePrice = Convert.ToDouble(dbReader["PurchasePrice"]);
                     equip.Notes = dbReader["Notes"].ToString();
+                    equip.PhysicalAddress = dbReader["PhysicalAddress"].ToString();
 
                     equip.EquipmentType = dbReader["EquipmentType"].ToString();
                     equip.Connectivity = dbReader["Connectivity"].ToString();
@@ -355,7 +357,7 @@ namespace SeniorProject
                 {
 
                     String sqlCommand = "UPDATE Inventory SET SMSUTag = @SMSUTag, SerialNo = @SerialNo, Manufacturer = @Manufacturer, Model = @Model, PurchasePrice = @PurchasePrice, " +
-                        "Notes = @Notes, Status = @Status WHERE InvID = @InvID";
+                        "Notes = @Notes, Status = @Status, PhysicalAddress = @PhysicalAddress WHERE InvID = @InvID";
 
 
                     dbCmd.CommandText = sqlCommand;
@@ -366,6 +368,8 @@ namespace SeniorProject
                     dbCmd.Parameters.AddWithValue("Model", equip.Model);
                     dbCmd.Parameters.AddWithValue("PurchasePrice", equip.PurchasePrice);
                     dbCmd.Parameters.AddWithValue("Notes", equip.Notes);
+                    dbCmd.Parameters.AddWithValue("PhysicalAddress", equip.PhysicalAddress);
+
                     if (oEquip.Status != "Transferred")
                     {
                         dbCmd.Parameters.AddWithValue("Status", equip.Status);
@@ -482,6 +486,11 @@ namespace SeniorProject
                         {
                             sqlCommand.Append("Notes = @Notes,");
                             dbCmd.Parameters.AddWithValue("Notes", equip.Notes);
+                        }
+                        if (equip.PhysicalAddress!= "")
+                        {
+                            sqlCommand.Append("PhysicalAddress = @PhysicalAddress,");
+                            dbCmd.Parameters.AddWithValue("PhysicalAddress", equip.PhysicalAddress);
                         }
                         if (equip.Status != "")
                         {

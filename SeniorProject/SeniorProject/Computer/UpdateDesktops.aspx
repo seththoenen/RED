@@ -59,6 +59,15 @@
         {
             width: 192px;
         }
+        .style20
+        {
+            width: 150px;
+            height: 23px;
+        }
+        .style21
+        {
+            height: 23px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
@@ -377,15 +386,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="style6">
+                            <td class="style20">
                                 Size:</td>
-                            <td class="style6">
+                            <td class="style20">
                                 <asp:TextBox ID="txtBoxSize" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                             </td>
-                            <td class="style6">
-                                &nbsp;</td>
-                            <td>
-                                &nbsp;</td>
+                            <td class="style20">
+                                Physical Address:</td>
+                            <td class="style21">
+                                <asp:TextBox ID="txtBoxPhysicalAddress" runat="server" MaxLength="20" 
+                                    Width="136px"></asp:TextBox>
+                            </td>
                         </tr>
                     </table>
                     <h2>
