@@ -10,7 +10,7 @@
         <Panes>
         <asp:AccordionPane ID="AccordionPane112" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
-            <Header><a>Release 1.1.2 - (Release Date Here)</a></Header>
+            <Header><a>Release 1.1.2 - July 27, 2012</a></Header>
             <Content>
                 -Added a field for physical address to all inventory items<br />
                 -Fixed an issue where the pixel length was showing up as the value for a few fields in update equipment<br />
