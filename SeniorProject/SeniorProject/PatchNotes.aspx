@@ -15,6 +15,7 @@
                 -Added a field for physical address to all inventory items<br />
                 -Fixed an issue where the pixel length was showing up as the value for a few fields in update equipment<br />
                 -Re-enabled the global.asax error page<br />
+                -Update computers page now shows a message when updating<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane111" runat="server" ContentCssClass="" 

@@ -118,6 +118,7 @@ namespace SeniorProject
             }
             
             lblMessage.Text = ComputerDA.updateComputers(computers, connString);
+            lblMessage.Visible = true;
             btnClearMessage.Visible = true;
         }
 
