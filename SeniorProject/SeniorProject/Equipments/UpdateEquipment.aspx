@@ -107,7 +107,7 @@
                             <td class="style9">
                                 SMSU Tag:</td>
                             <td class="style9" style="margin-left: 40px">
-                                <asp:TextBox ID="txtBoxSMSUTag" runat="server" MaxLength="45">136px</asp:TextBox>
+                                <asp:TextBox ID="txtBoxSMSUTag" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                             </td>
                             <td class="style9">
                                 Type:</td>
@@ -150,7 +150,7 @@
                             <td class="style9">
                                 Model:</td>
                             <td class="style9">
-                                <asp:TextBox ID="txtBoxModel" runat="server" MaxLength="45">136px</asp:TextBox>
+                                <asp:TextBox ID="txtBoxModel" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
                             </td>
                             <td class="style9">
                                 &nbsp;</td>
