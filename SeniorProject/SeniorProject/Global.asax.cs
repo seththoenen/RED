@@ -25,14 +25,14 @@ namespace SeniorProject
         void Application_Error(object sender, EventArgs e)
         {
             //Code that runs when an unhandled error occurs
-            //try
-            //{
-            //    Exception ex = Server.GetLastError().InnerException;
-            //    Session["Exception"] = ex;
-            //}
-            //catch { }
+            try
+            {
+                Exception ex = Server.GetLastError().InnerException;
+                Session["Exception"] = ex;
+            }
+            catch { }
             
-            //Response.Redirect("~/Error.aspx");
+            Response.Redirect("~/Error.aspx");
         }
 
         void Session_Start(object sender, EventArgs e)
