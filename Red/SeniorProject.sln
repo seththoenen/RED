@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeniorProject", "SeniorProject\SeniorProject.csproj", "{C8D72058-E8D6-408A-9946-9B2696D374A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Red", "SeniorProject\Red.csproj", "{C8D72058-E8D6-408A-9946-9B2696D374A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeniorProjectClassLibrary", "..\SeniorProjectClassLibrary\SeniorProjectClassLibrary\SeniorProjectClassLibrary.csproj", "{85D417E9-1030-47DC-985F-0F24E77C4A74}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedLibrary", "..\SeniorProjectClassLibrary\SeniorProjectClassLibrary\RedLibrary.csproj", "{85D417E9-1030-47DC-985F-0F24E77C4A74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -420,7 +420,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\SeniorProjectClassLibrary\SeniorProjectClassLibrary\SeniorProjectClassLibrary.csproj">
+    <ProjectReference Include="..\..\SeniorProjectClassLibrary\SeniorProjectClassLibrary\RedLibrary.csproj">
       <Project>{85D417E9-1030-47DC-985F-0F24E77C4A74}</Project>
       <Name>SeniorProjectClassLibrary</Name>
     </ProjectReference>

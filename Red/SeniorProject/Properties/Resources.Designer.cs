@@ -59,5 +59,12 @@ namespace SeniorProject.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap banner_ideas2_01 {
+            get {
+                object obj = ResourceManager.GetObject("banner_ideas2_01", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
