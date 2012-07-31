@@ -127,7 +127,7 @@ namespace SeniorProject
                 comp.PO = PODA.getPO(ddlPONO.SelectedValue.ToString(), connString);
                 comp.Status = ddlStatus.Text;
                 comp.Groups = groupList;
-                comp.PhysicalAddress = txtBoxPhysicalAddress.Text;
+                comp.PhysicalAddress = txtBoxPhysicalAddress.Text.ToUpper();
 
                 for (int j = 0; j < lstBoxMonitors.Items.Count; j++)
                 { 

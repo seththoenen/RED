@@ -347,7 +347,7 @@ namespace SeniorProject
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn;
 
-            if (oEquip.SerialNo != equip.SerialNo && EquipmentDA.equipmentExist(dbCmd, equip.SerialNo))
+            if (oEquip.SerialNo.ToUpper() != equip.SerialNo.ToUpper() && EquipmentDA.equipmentExist(dbCmd, equip.SerialNo))
             {
                 message.Append("That serial number is already in use. Please try again.<bR>");
             }

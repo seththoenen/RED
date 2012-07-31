@@ -425,7 +425,7 @@ namespace SeniorProject
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn;
 
-            if (comp.SerialNo != oComp.SerialNo && computerExist(comp.SerialNo, connectionString))
+            if (comp.SerialNo.ToUpper() != oComp.SerialNo.ToUpper() && computerExist(comp.SerialNo, connectionString))
             {
                 message.Append("That Service tag is already in use. Please try again.<bR>");
             }

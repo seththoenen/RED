@@ -12,7 +12,7 @@
                 HeaderCssClass="">
             <Header><a>Release 1.1.3 - (Release Date Here)</a></Header>
             <Content>
-                -First Entry Here<br />
+                -All physical address and serial number fields will now convert all characters to upper case<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane112" runat="server" ContentCssClass="" 

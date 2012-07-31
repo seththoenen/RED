@@ -193,7 +193,7 @@ namespace SeniorProject
             
             Computer comp = new Computer();
             comp.InvID = Convert.ToInt32(compID);
-            comp.SerialNo = txtBoxServiceTag.Text;
+            comp.SerialNo = txtBoxServiceTag.Text.ToUpper();
             comp.SMSUtag = txtBoxSMSUTag.Text;
             comp.Manufacturer = ddlManufacturer.Text;
             comp.Model = txtBoxModel.Text;
@@ -214,7 +214,7 @@ namespace SeniorProject
             comp.Status = ddlStatus.Text;
             comp.Notes = txtBoxNotes.Text;
             comp.Type = ddlType.Text;
-            comp.PhysicalAddress = txtBoxPhysicalAddress.Text;
+            comp.PhysicalAddress = txtBoxPhysicalAddress.Text.ToUpper();
 
             if (ddlStatus.Enabled == false)
             {

@@ -200,7 +200,7 @@ namespace SeniorProject.Equipments
             }
             
             equip.Model = txtBoxModel.Text;
-            equip.SerialNo = txtBoxSerialNo.Text;
+            equip.SerialNo = txtBoxSerialNo.Text.ToUpper();
 
             equip.CurrentLocation.Building = ddlBuilding.Text;
             equip.CurrentLocation.Room = txtBoxRoomNumber.Text;
@@ -213,7 +213,7 @@ namespace SeniorProject.Equipments
             equip.Connectivity = txtBoxConnectivity.Text;
             equip.NetworkCapable = ddlNetworkCapable.Text;
             equip.Other = txtBoxOther.Text;
-            equip.PhysicalAddress = txtBoxPhysicalAddress.Text;
+            equip.PhysicalAddress = txtBoxPhysicalAddress.Text.ToUpper();
 
             equip.Notes = txtBoxNotes.Text;
 
