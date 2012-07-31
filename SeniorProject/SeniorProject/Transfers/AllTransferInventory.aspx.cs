@@ -50,7 +50,7 @@ namespace SeniorProject.Transfers
             int invID;
             invID = Convert.ToInt32(GridViewComputers.SelectedDataKey.Value);
             Session["CurrentComputer"] = invID;
-            Response.Redirect("~/Computer/ViewDesktop.aspx");
+            Response.Redirect("~/Computer/ViewComputer.aspx");
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)

@@ -31,10 +31,10 @@
             height: 30px;
             width: 144px;
         }
-        .style7
-        {
-            width: 191px;
-        }
+    .style7
+    {
+        width: 191px;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="RED - View Computer" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewDesktop.aspx.cs" Inherits="SeniorProject.ViewDesktop" %>
+﻿<%@ Page Title="RED - View Computer" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewComputer.aspx.cs" Inherits="SeniorProject.ViewComputer" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">

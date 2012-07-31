@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="RED - Add Computer" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true"
-    CodeBehind="AddDesktop.aspx.cs" Inherits="SeniorProject.About" %>
+    CodeBehind="AddComputer.aspx.cs" Inherits="SeniorProject.About" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 

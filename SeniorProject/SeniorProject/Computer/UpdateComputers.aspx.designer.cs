@@ -10,7 +10,7 @@
 namespace SeniorProject {
     
     
-    public partial class UpdateDesktops {
+    public partial class UpdateComputers {
         
         /// <summary>
         /// updatePanelSerialNo0 control.

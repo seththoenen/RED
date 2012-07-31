@@ -10,7 +10,7 @@
 namespace SeniorProject {
     
     
-    public partial class ViewDesktops {
+    public partial class ViewComputers {
         
         /// <summary>
         /// GridViewComputers control.

@@ -10,7 +10,7 @@ using System.Text;
 
 namespace SeniorProject
 {
-    public partial class UpdateDesktops : System.Web.UI.Page
+    public partial class UpdateComputers : System.Web.UI.Page
     {
         string connString = ConfigurationManager.ConnectionStrings["EquipmentConnectionString"].ConnectionString;
 

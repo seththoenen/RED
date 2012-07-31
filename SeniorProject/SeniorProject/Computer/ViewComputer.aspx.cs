@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace SeniorProject
 {
-    public partial class ViewDesktop : System.Web.UI.Page
+    public partial class ViewComputer : System.Web.UI.Page
     {
         string connString = ConfigurationManager.ConnectionStrings["EquipmentConnectionString"].ConnectionString;
         Computer oComp = new Computer();
@@ -20,7 +20,7 @@ namespace SeniorProject
             {
                 if (Session["CurrentComputer"] == null)
                 {
-                    Response.Redirect("~/Computer/ViewDesktops.aspx");
+                    Response.Redirect("~/Computer/ViewComputers.aspx");
                 }
                 string compID = Session["CurrentComputer"].ToString();
                 Computer comp = new Computer();

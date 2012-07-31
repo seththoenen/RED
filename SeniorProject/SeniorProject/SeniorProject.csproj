@@ -72,7 +72,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Computer\AddDesktop.aspx" />
+    <Content Include="Computer\AddComputer.aspx" />
     <Content Include="Equipments\AddEquipment.aspx" />
     <Content Include="Equipments\UpdateEquipment.aspx" />
     <Content Include="Equipments\ViewEquipment.aspx" />
@@ -103,9 +103,9 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
-    <Content Include="Computer\UpdateDesktops.aspx" />
-    <Content Include="Computer\ViewDesktop.aspx" />
-    <Content Include="Computer\ViewDesktops.aspx" />
+    <Content Include="Computer\UpdateComputers.aspx" />
+    <Content Include="Computer\ViewComputer.aspx" />
+    <Content Include="Computer\ViewComputers.aspx" />
     <Content Include="Transfers\AllTransferInventory.aspx" />
     <Content Include="Transfers\NewTransfer.aspx" />
     <Content Include="Transfers\ViewTransfer.aspx" />
@@ -154,12 +154,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BuildingDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Computer\AddDesktop.aspx.cs">
-      <DependentUpon>AddDesktop.aspx</DependentUpon>
+    <Compile Include="Computer\AddComputer.aspx.cs">
+      <DependentUpon>AddComputer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Computer\AddDesktop.aspx.designer.cs">
-      <DependentUpon>AddDesktop.aspx</DependentUpon>
+    <Compile Include="Computer\AddComputer.aspx.designer.cs">
+      <DependentUpon>AddComputer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -343,26 +343,26 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="Computer\UpdateDesktops.aspx.cs">
-      <DependentUpon>UpdateDesktops.aspx</DependentUpon>
+    <Compile Include="Computer\UpdateComputers.aspx.cs">
+      <DependentUpon>UpdateComputers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Computer\UpdateDesktops.aspx.designer.cs">
-      <DependentUpon>UpdateDesktops.aspx</DependentUpon>
+    <Compile Include="Computer\UpdateComputers.aspx.designer.cs">
+      <DependentUpon>UpdateComputers.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Computer\ViewDesktop.aspx.cs">
-      <DependentUpon>ViewDesktop.aspx</DependentUpon>
+    <Compile Include="Computer\ViewComputer.aspx.cs">
+      <DependentUpon>ViewComputer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Computer\ViewDesktop.aspx.designer.cs">
-      <DependentUpon>ViewDesktop.aspx</DependentUpon>
+    <Compile Include="Computer\ViewComputer.aspx.designer.cs">
+      <DependentUpon>ViewComputer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Computer\ViewDesktops.aspx.cs">
-      <DependentUpon>ViewDesktops.aspx</DependentUpon>
+    <Compile Include="Computer\ViewComputers.aspx.cs">
+      <DependentUpon>ViewComputers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Computer\ViewDesktops.aspx.designer.cs">
-      <DependentUpon>ViewDesktops.aspx</DependentUpon>
+    <Compile Include="Computer\ViewComputers.aspx.designer.cs">
+      <DependentUpon>ViewComputers.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transfers\AllTransferInventory.aspx.cs">
       <DependentUpon>AllTransferInventory.aspx</DependentUpon>

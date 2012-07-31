@@ -10,7 +10,7 @@
 namespace SeniorProject {
     
     
-    public partial class ViewDesktop {
+    public partial class ViewComputer {
         
         /// <summary>
         /// lblMessage2 control.

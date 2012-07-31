@@ -73,7 +73,7 @@ namespace SeniorProject
             int invID;
             invID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
             Session["CurrentComputer"] = invID;
-            Response.Redirect("~/Computer/ViewDesktop.aspx");
+            Response.Redirect("~/Computer/ViewComputer.aspx");
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)

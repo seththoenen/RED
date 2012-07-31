@@ -9,7 +9,7 @@ using System.Data;
 
 namespace SeniorProject
 {
-    public partial class ViewDesktops : System.Web.UI.Page
+    public partial class ViewComputers : System.Web.UI.Page
     {
         string serialNoArg = "";
         string typeArg = "";
@@ -275,7 +275,7 @@ namespace SeniorProject
                 int invID;
                 invID = Convert.ToInt32(GridViewComputers.SelectedDataKey.Value);
                 Session["CurrentComputer"] = invID;
-                Response.Redirect("~/Computer/ViewDesktop.aspx");
+                Response.Redirect("~/Computer/ViewComputer.aspx");
             }
             catch (Exception ex)
             {

@@ -28,7 +28,7 @@ namespace SeniorProject.PO
             string compID;
             compID = GridView1.SelectedDataKey.Value.ToString();
             Session["CurrentComputer"] = compID;
-            Response.Redirect("~/Computer/ViewDesktop.aspx");
+            Response.Redirect("~/Computer/ViewComputer.aspx");
         }
 
         protected void btnEditPurchaseOrder_Click(object sender, EventArgs e)

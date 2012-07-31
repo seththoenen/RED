@@ -101,7 +101,7 @@ namespace SeniorProject
             else if (results[1] == 1)
             {
                 Session["CurrentComputer"] = results[0];
-                Response.Redirect("~/Computer/ViewDesktop.aspx");
+                Response.Redirect("~/Computer/ViewComputer.aspx");
             }
             else if (results[1] == 2)
             {

@@ -41,7 +41,7 @@ namespace SeniorProject.Licenses
             string compID;
             compID = GridView1.SelectedDataKey.Value.ToString();
             Session["CurrentComputer"] = compID;
-            Response.Redirect("~/Computer/ViewDesktop.aspx");
+            Response.Redirect("~/Computer/ViewComputer.aspx");
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)

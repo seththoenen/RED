@@ -15,6 +15,7 @@
                 -All physical address and serial number fields will now convert all characters to upper case<br />
                 -Fixed a bug where adding inventory items to a group would not do anything<br />
                 -Added instant search to the home page<br />
+                -Renamed computer pages to have the word "Computer" instead of "Desktop"<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane112" runat="server" ContentCssClass="" 

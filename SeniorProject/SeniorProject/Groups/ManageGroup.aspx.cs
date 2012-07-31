@@ -54,7 +54,7 @@ namespace SeniorProject.Groups
             string compID;
             compID = GridView2.SelectedDataKey.Value.ToString();
             Session["CurrentComputer"] = compID;
-            Response.Redirect("~/Computer/ViewDesktop.aspx");
+            Response.Redirect("~/Computer/ViewComputer.aspx");
         }
 
         protected void btnUpdateGroup_Click(object sender, EventArgs e)

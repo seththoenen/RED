@@ -1,4 +1,4 @@
-﻿<%@ Page Title="RED - Update Computers" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateDesktops.aspx.cs" Inherits="SeniorProject.UpdateDesktops" %>
+﻿<%@ Page Title="RED - Update Computers" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateComputers.aspx.cs" Inherits="SeniorProject.UpdateComputers" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
