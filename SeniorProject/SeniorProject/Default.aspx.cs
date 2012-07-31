@@ -95,8 +95,8 @@ namespace SeniorProject
 
             if (results == null)
             {
-                lblMessage.Visible = true;
-                lblMessage.Text = "No results found";
+                lblMessageInstant.Visible = true;
+                lblMessageInstant.Text = "No results found";
             }
             else if (results[1] == 1)
             {
