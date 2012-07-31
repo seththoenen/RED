@@ -169,14 +169,14 @@ namespace SeniorProject.Groups
 
         protected void btnAddComputers_Click(object sender, EventArgs e)
         {
-            if (btnAddComputers.Text == "Add Computers to Group")
+            if (btnAddComputers.Text == "Add to Group")
             {
                 panelComputers.Visible = false;
                 panelAddComputers.Visible = true;
                 btnCalcelAddComputers.Visible = true;
-                btnAddComputers.Text = "Add Selected Computers";
+                btnAddComputers.Text = "Add Selected";
             }
-            else if (btnAddComputers.Text == "Add Selected Computers")
+            else if (btnAddComputers.Text == "Add Selected")
             {
                 ArrayList serialNos = new ArrayList();
                 for (int i=0; i<lstBoxSerialNos.Items.Count; i++)
@@ -190,7 +190,7 @@ namespace SeniorProject.Groups
                     panelComputers.Visible = true;
                     panelAddComputers.Visible = false;
                     btnCalcelAddComputers.Visible = false;
-                    btnAddComputers.Text = "Add Computers to Group";
+                    btnAddComputers.Text = "Add to Group";
                     GridView2.DataBind();
                     lstBoxSerialNos.Items.Clear();
                 }
@@ -234,7 +234,7 @@ namespace SeniorProject.Groups
             panelComputers.Visible = true;
             panelAddComputers.Visible = false;
             btnCalcelAddComputers.Visible = false;
-            btnAddComputers.Text = "Add Computers to Group";
+            btnAddComputers.Text = "Add to Group";
         }
 
         protected void handleGridView()

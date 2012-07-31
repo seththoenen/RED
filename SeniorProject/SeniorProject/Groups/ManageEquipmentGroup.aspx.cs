@@ -72,14 +72,14 @@ namespace SeniorProject.Groups
 
         protected void btnAddEquipment_Click(object sender, EventArgs e)
         {
-            if (btnAddEquipment.Text == "Add Equipment to Group")
+            if (btnAddEquipment.Text == "Add to Group")
             {
                 panelAddEquipment.Visible = true;
                 panelEquipment.Visible = false;
                 btnCancelAddEquipment.Visible = true;
-                btnAddEquipment.Text = "Add Selected Equipment";
+                btnAddEquipment.Text = "Add Selected";
             }
-            else if (btnAddEquipment.Text == "Add Selected Equipment")
+            else if (btnAddEquipment.Text == "Add Selected")
             {
                 ArrayList serialNos = new ArrayList();
                 for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
@@ -93,7 +93,7 @@ namespace SeniorProject.Groups
                     panelAddEquipment.Visible = false;
                     panelEquipment.Visible = true;
                     btnCancelAddEquipment.Visible = false;
-                    btnAddEquipment.Text = "Add Equipment to Group";
+                    btnAddEquipment.Text = "Add to Group";
                     GridView2.DataBind();
                     lstBoxSerialNos.Items.Clear();
                 }               
@@ -105,7 +105,7 @@ namespace SeniorProject.Groups
             panelAddEquipment.Visible = false;
             panelEquipment.Visible = true;
             btnCancelAddEquipment.Visible = false;
-            btnAddEquipment.Text = "Add Equipment to Group";
+            btnAddEquipment.Text = "Add to Group";
         }
 
         protected void GridViewEquipment_RowCreated(object sender, GridViewRowEventArgs e)
