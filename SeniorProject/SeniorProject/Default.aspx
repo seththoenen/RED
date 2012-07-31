@@ -31,6 +31,10 @@
             height: 30px;
             width: 144px;
         }
+        .style7
+        {
+            width: 191px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
@@ -86,6 +90,27 @@
                     </tr>
                 </table>
                 <asp:Label ID="lblMessage" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+                <asp:Panel ID="panelInstantSearch" runat="server" 
+                    DefaultButton="btnInstantSearch">
+                    <h3>
+                        Instant Search</h3>
+                    <table>
+                        <tr>
+                            <td class="style5">
+                                Serial No:
+                            </td>
+                            <td class="style7">
+                                <asp:TextBox ID="txtBoxSerialNoInstant" runat="server" MaxLength="45" 
+                                    Width="136px"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </table>
+                    <asp:Button ID="btnInstantSearch" runat="server" 
+                        onclick="btnInstantSearch_Click" Text="Search" Width="136px" />
+                    <br />
+                    <asp:Label ID="lblMessageInstant" runat="server" ForeColor="Red" 
+                        Visible="False"></asp:Label>
+                </asp:Panel>
                 <br />
             </ContentTemplate>
         </asp:UpdatePanel>

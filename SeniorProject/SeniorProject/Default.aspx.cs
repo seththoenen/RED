@@ -87,5 +87,27 @@ namespace SeniorProject
         {
             authenticate();
         }
+
+        protected void btnInstantSearch_Click(object sender, EventArgs e)
+        {
+            List<int> results = new List<int>();
+            results = InventoryDA.instantSearch(txtBoxSerialNoInstant.Text, connString);
+
+            if (results == null)
+            {
+                lblMessage.Visible = true;
+                lblMessage.Text = "No results found";
+            }
+            else if (results[1] == 1)
+            {
+                Session["CurrentComputer"] = results[0];
+                Response.Redirect("~/Computer/ViewDesktop.aspx");
+            }
+            else if (results[1] == 2)
+            {
+                Session["CurrentEquipment"] = results[0];
+                Response.Redirect("~/Equipments/ViewEquipment.aspx");
+            }
+        }
     }
 }

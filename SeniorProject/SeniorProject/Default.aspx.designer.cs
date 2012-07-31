@@ -85,6 +85,42 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
+        /// panelInstantSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelInstantSearch;
+        
+        /// <summary>
+        /// txtBoxSerialNoInstant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxSerialNoInstant;
+        
+        /// <summary>
+        /// btnInstantSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInstantSearch;
+        
+        /// <summary>
+        /// lblMessageInstant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessageInstant;
+        
+        /// <summary>
         /// updatePanelPage control.
         /// </summary>
         /// <remarks>

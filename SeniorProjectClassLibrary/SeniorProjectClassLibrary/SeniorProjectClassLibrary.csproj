@@ -54,6 +54,7 @@
     <Compile Include="DAL\ComputerDA.cs" />
     <Compile Include="DAL\EquipmentDA.cs" />
     <Compile Include="DAL\GroupDA.cs" />
+    <Compile Include="DAL\InventoryDA.cs" />
     <Compile Include="DAL\LicenseDA.cs" />
     <Compile Include="DAL\LogisticsDA.cs" />
     <Compile Include="DAL\MaintenanceDA.cs" />
