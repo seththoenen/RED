@@ -10,7 +10,7 @@
         <Panes>
         <asp:AccordionPane ID="AccordionPane113" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
-            <Header><a>Release 1.1.3 - (Release Date Here)</a></Header>
+            <Header><a>Release 1.1.3 - August 1, 2012</a></Header>
             <Content>
                 -All physical address and serial number fields will now convert all characters to upper case<br />
                 -Fixed a bug where adding inventory items to a group would not do anything<br />
