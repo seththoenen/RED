@@ -9,7 +9,7 @@ namespace SeniorProject
 {
     public class TransferDA
     {
-        public static string saveTransfer(Transfer transfer, string connectionString) 
+        public static string saveTransfer(Transfer transfer) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

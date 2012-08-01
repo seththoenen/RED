@@ -26,7 +26,7 @@ namespace SeniorProject.PO
             PO.PurchaseDate = txtBoxPurchaseDate.Text;
             PO.Title = txtBoxTitle.Text;
 
-            lblMessage.Text = PODA.savePO(PO, connString);
+            lblMessage.Text = PODA.savePO(PO);
             btnClear.Visible = true;
         }
 

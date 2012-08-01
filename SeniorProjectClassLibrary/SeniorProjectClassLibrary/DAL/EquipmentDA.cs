@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Collections;
+using System.Configuration;
 
 namespace SeniorProject
 {
     public class EquipmentDA
     {
-        public static string saveEquipment(ArrayList equipment, string connectionString)
+        public static string saveEquipment(ArrayList equipment)
         {
             StringBuilder message = new StringBuilder();
 
@@ -18,7 +19,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -116,7 +117,7 @@ namespace SeniorProject
             }
         }
 
-        public static Equipment getEquipment(int invID, string connectionString)
+        public static Equipment getEquipment(int invID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -124,7 +125,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -271,7 +272,7 @@ namespace SeniorProject
                 return false;
         }
 
-        public static Boolean equipmentExist(string serialNo, string connectionString)
+        public static Boolean equipmentExist(string serialNo)
         {
             SqlConnection dbConn;
             SqlCommand dbCmd;
@@ -279,7 +280,7 @@ namespace SeniorProject
             string sConnection;
             string sql;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
 
@@ -331,7 +332,7 @@ namespace SeniorProject
             return invId;
         }
 
-        public static string updateEquipment(Equipment oEquip, Equipment equip, string connectionString)
+        public static string updateEquipment(Equipment oEquip, Equipment equip)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -339,7 +340,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -430,7 +431,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string updateEquipment(ArrayList equipment, string connectionString)
+        public static string updateEquipment(ArrayList equipment)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -438,7 +439,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

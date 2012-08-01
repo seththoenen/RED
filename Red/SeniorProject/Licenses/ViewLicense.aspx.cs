@@ -25,7 +25,7 @@ namespace SeniorProject.Licenses
                     Response.Redirect("~/default.aspx");
                 }
                 License lic = new License();
-                lic = LicenseDA.getLicense(Convert.ToInt32(Session["CurrentLicense"]), connString);
+                lic = LicenseDA.getLicense(Convert.ToInt32(Session["CurrentLicense"]));
 
                 txtBoxExpirationDate.Text = lic.ExpirationDate;
                 txtBoxKey.Text = lic.Key;
@@ -91,7 +91,7 @@ namespace SeniorProject.Licenses
             lic.ExpirationDate = txtBoxExpirationDate.Text;
             lic.Key = txtBoxKey.Text;
 
-            LicenseDA.updateLicense(lic, connString);
+            LicenseDA.updateLicense(lic);
             panelUpdateLicense.Visible = false;
             DetailsView1.DataBind();
             DetailsView1.Visible = true;

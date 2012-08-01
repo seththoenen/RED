@@ -70,7 +70,7 @@ namespace SeniorProject
 
         protected void authenticate()
         {
-            if (SettingsDA.authenticatePassword(txtBoxPassword.Text, connString) == true)
+            if (SettingsDA.authenticatePassword(txtBoxPassword.Text) == true)
             {
                 Session["Authenticated"] = "True";
                 panelAuthenticated.Visible = true;
@@ -91,7 +91,7 @@ namespace SeniorProject
         protected void btnInstantSearch_Click(object sender, EventArgs e)
         {
             List<int> results = new List<int>();
-            results = InventoryDA.instantSearch(txtBoxSerialNoInstant.Text, connString);
+            results = InventoryDA.instantSearch(txtBoxSerialNoInstant.Text);
 
             if (results == null)
             {

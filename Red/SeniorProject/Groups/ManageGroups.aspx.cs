@@ -80,7 +80,7 @@ namespace SeniorProject.Groups
             group.Notes = txtBoxNotes.Text;
             group.Type = ddlType.Text;
 
-            lblMessage.Text = GroupDA.saveGroup(group, connString);
+            lblMessage.Text = GroupDA.saveGroup(group);
             lblMessage.Visible = true;
 
             if (lblMessage.Text == "Group created successfully<bR>")

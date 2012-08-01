@@ -9,7 +9,7 @@ namespace SeniorProject
 {
     public class PODA
     {
-        public static string savePO(PurchaseOrder PO, string connectionString)
+        public static string savePO(PurchaseOrder PO)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -60,7 +60,7 @@ namespace SeniorProject
             }
         }
 
-        public static string updatePO(PurchaseOrder newPO, int oldPOid, string connectionString) 
+        public static string updatePO(PurchaseOrder newPO, int oldPOid) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -68,7 +68,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -149,7 +149,7 @@ namespace SeniorProject
             return PO;
         }
 
-        public static PurchaseOrder getPO(string POID, string connectionString) 
+        public static PurchaseOrder getPO(string POID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -157,7 +157,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

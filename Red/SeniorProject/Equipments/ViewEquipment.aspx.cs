@@ -22,7 +22,7 @@ namespace SeniorProject.Equipments
                     Response.Redirect("~/Equipments/ViewEquipments.aspx");
                 }
                 Equipment equip = new Equipment();
-                equip = EquipmentDA.getEquipment(Convert.ToInt32(Session["CurrentEquipment"]), connString);
+                equip = EquipmentDA.getEquipment(Convert.ToInt32(Session["CurrentEquipment"]));
 
                 txtBoxSMSUTag.Text = equip.SMSUtag;
                 ddlType.Text = equip.EquipmentType;
@@ -95,7 +95,7 @@ namespace SeniorProject.Equipments
                 txtBoxMaintDate.Text = DateTime.Now.ToShortDateString();
 
                 ArrayList groups = new ArrayList();
-                groups = GroupDA.getAllEquipmentGroups(connString);
+                groups = GroupDA.getAllEquipmentGroups();
                 int nextGroup = 1;
 
                 //populates chkBoxList
@@ -184,7 +184,7 @@ namespace SeniorProject.Equipments
             Equipment equip = new Equipment();
             Equipment oEquip = new Equipment();
 
-            oEquip = EquipmentDA.getEquipment(Convert.ToInt32(Session["CurrentEquipment"]), connString);
+            oEquip = EquipmentDA.getEquipment(Convert.ToInt32(Session["CurrentEquipment"]));
 
             equip.InvID = Convert.ToInt32(Session["CurrentEquipment"]);
             equip.SMSUtag = txtBoxSMSUTag.Text;
@@ -217,7 +217,7 @@ namespace SeniorProject.Equipments
 
             equip.Notes = txtBoxNotes.Text;
 
-            lblMessage.Text = EquipmentDA.updateEquipment(oEquip, equip, connString);
+            lblMessage.Text = EquipmentDA.updateEquipment(oEquip, equip);
             lblMessage.Visible = true;
             btnClearMessage.Visible = true;
 
@@ -256,7 +256,7 @@ namespace SeniorProject.Equipments
             maint.Date = txtBoxMaintDate.Text;
             maint.Description = txtBoxMaintDescription.Text;
 
-            lblMaintenanceMessage.Text = MaintenanceDA.addMaintenance(maint, connString);
+            lblMaintenanceMessage.Text = MaintenanceDA.addMaintenance(maint);
 
             if (lblMaintenanceMessage.Text == "Maintenance added successfully<bR>")
             {
@@ -289,7 +289,7 @@ namespace SeniorProject.Equipments
         {
             int licenseID = Convert.ToInt32(lstBoxLicenses.SelectedValue);
             int invID = Convert.ToInt32(Session["CurrentEquipment"]);
-            lblLicenseMessage.Text = LicenseDA.removeLicense(licenseID, invID, connString);
+            lblLicenseMessage.Text = LicenseDA.removeLicense(licenseID, invID);
             lblLicenseMessage.Visible = true;
             lstBoxLicenses.DataBind();
             btnRemoveSelectedLicense.Enabled = false;
@@ -300,7 +300,7 @@ namespace SeniorProject.Equipments
             int licenseID;
             licenseID = Convert.ToInt32(GridView3.SelectedDataKey.Value);
             int invID = Convert.ToInt32(Session["CurrentEquipment"]);
-            lblLicenseMessage.Text = LicenseDA.addLicense(licenseID, invID, connString);
+            lblLicenseMessage.Text = LicenseDA.addLicense(licenseID, invID);
             lblLicenseMessage.Visible = true;
             lstBoxLicenses.DataBind();
         }
@@ -365,7 +365,7 @@ namespace SeniorProject.Equipments
             }
 
             lblGroupMessage.Visible = true;
-            lblGroupMessage.Text = GroupDA.updateGroups(currentGroups, invID, connString);
+            lblGroupMessage.Text = GroupDA.updateGroups(currentGroups, invID);
 
 
             lstBoxGroups.Visible = true;
@@ -391,7 +391,7 @@ namespace SeniorProject.Equipments
             war.EndDate = txtBoxWarrantyEndDate.Text;
             war.Notes = txtBoxWarrantyNotes.Text;
 
-            lblWarrantyMessage.Text = WarrantyDA.addWarranty(Convert.ToInt32(Session["CurrentEquipment"]), war, connString);
+            lblWarrantyMessage.Text = WarrantyDA.addWarranty(Convert.ToInt32(Session["CurrentEquipment"]), war);
             lblWarrantyMessage.Visible = true;
 
             if (lblWarrantyMessage.Text == "Warranty added successfully!")

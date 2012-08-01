@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Collections;
+using System.Configuration;
 
 namespace SeniorProject
 {
     public class InventoryDA
     {
-        public static List<int> instantSearch(string serialNo, string connectionString)
+        public static List<int> instantSearch(string serialNo)
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -17,7 +18,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

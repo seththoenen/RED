@@ -9,7 +9,7 @@ namespace SeniorProject
 {
     public class MonitorDA
     {
-        public static ArrayList getMonitors(string connectionString)
+        public static ArrayList getMonitors()
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -78,7 +78,7 @@ namespace SeniorProject
             return monitors;
         }
 
-        public static Monitor getMonitor(int monID, string connectionString)
+        public static Monitor getMonitor(int monID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -86,7 +86,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -131,7 +131,7 @@ namespace SeniorProject
 
         }
 
-        public static string saveMonitor(Monitor mon, string connectionString)
+        public static string saveMonitor(Monitor mon)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -139,7 +139,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -177,7 +177,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string updateMonitor(Monitor mon, string connectionString)
+        public static string updateMonitor(Monitor mon)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -185,7 +185,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -225,7 +225,7 @@ namespace SeniorProject
             }
         }
 
-        public static string deleteMonitor(int monID, int compID, string connectionString)
+        public static string deleteMonitor(int monID, int compID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -233,7 +233,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -282,14 +282,14 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string addMonitor(int monID, int compID, string connectionString)
+        public static string addMonitor(int monID, int compID)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -324,14 +324,14 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string deleteMonitors(ArrayList serialNos, string connectionString)
+        public static string deleteMonitors(ArrayList serialNos)
         { 
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -387,14 +387,14 @@ namespace SeniorProject
             cmd.Parameters.Clear();
         }
         
-        public static string removeSelectMonitor(ArrayList serialNos, int monID, string connectionString)
+        public static string removeSelectMonitor(ArrayList serialNos, int monID)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -437,14 +437,14 @@ namespace SeniorProject
             }
         }
 
-        public static string addMonitorsComputer(ArrayList serialNos, int monID, string connectionString)
+        public static string addMonitorsComputer(ArrayList serialNos, int monID)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

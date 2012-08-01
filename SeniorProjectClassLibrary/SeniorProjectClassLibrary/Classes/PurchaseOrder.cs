@@ -121,7 +121,7 @@ namespace SeniorProject
 
         public string savePO(string connString)
         {
-            return PODA.savePO(this, connString);
+            return PODA.savePO(this);
         }
 
     }

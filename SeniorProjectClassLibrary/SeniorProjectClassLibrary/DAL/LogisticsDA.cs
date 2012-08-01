@@ -67,7 +67,7 @@ namespace SeniorProject
 
         }
 
-        public static string massUpdateLogisticsComputer(ArrayList compSerialNos, Logistics logs, string connectionString) 
+        public static string massUpdateLogisticsComputer(ArrayList compSerialNos, Logistics logs) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -75,7 +75,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -165,7 +165,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string massUpdateLogisticsEquipment(ArrayList compSerialNos, Logistics logs, string connectionString) 
+        public static string massUpdateLogisticsEquipment(ArrayList compSerialNos, Logistics logs) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -173,7 +173,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

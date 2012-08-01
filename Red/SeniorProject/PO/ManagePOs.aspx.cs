@@ -71,7 +71,7 @@ namespace SeniorProject.PO
             PO.PurchaseDate = txtBoxPurchaseDate.Text;
             PO.Title = txtBoxTitle.Text;
 
-            lblMessage.Text = PODA.savePO(PO, connString);
+            lblMessage.Text = PODA.savePO(PO);
             lblMessage.Visible = true;
 
             if (lblMessage.Text == "Purchase Order created successfully<bR>")

@@ -9,7 +9,7 @@ namespace SeniorProject
 {
     public class MaintenanceDA
     {
-        public static string addMaintenance(Maintenance maint, string connectionString) 
+        public static string addMaintenance(Maintenance maint) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -50,7 +50,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string addMassMaintenanceComputer(ArrayList serialNos, Maintenance maint, string connectionString) 
+        public static string addMassMaintenanceComputer(ArrayList serialNos, Maintenance maint) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -58,7 +58,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -95,7 +95,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string addMassMaintenanceEquipment(ArrayList serialNos, Maintenance maint, string connectionString) 
+        public static string addMassMaintenanceEquipment(ArrayList serialNos, Maintenance maint) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -103,7 +103,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

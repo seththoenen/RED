@@ -4,20 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Collections;
+using System.Configuration;
 
 namespace SeniorProject
 {
     public class ComputerDA
     {
-        public static string saveComputers(ArrayList computers, string connectionString)
+        public static string saveComputers(ArrayList computers)
         {
+            
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -181,7 +183,7 @@ namespace SeniorProject
             return compID;
         }
 
-        public static Boolean computerExist(string serialNo, string connectionString)
+        public static Boolean computerExist(string serialNo)
         {
             SqlConnection dbConn;
             SqlCommand dbCmd;
@@ -189,7 +191,7 @@ namespace SeniorProject
             string sConnection;
             string sql;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
 
@@ -270,7 +272,7 @@ namespace SeniorProject
                 return true;
         }
 
-        public static Computer getComputer(string invID, string connectionString)
+        public static Computer getComputer(string invID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -278,7 +280,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -409,7 +411,7 @@ namespace SeniorProject
 
         }
 
-        public static string updateComputer(Computer oComp, Computer comp, string connectionString)
+        public static string updateComputer(Computer oComp, Computer comp)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -417,7 +419,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -425,7 +427,7 @@ namespace SeniorProject
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn;
 
-            if (comp.SerialNo.ToUpper() != oComp.SerialNo.ToUpper() && computerExist(comp.SerialNo, connectionString))
+            if (comp.SerialNo.ToUpper() != oComp.SerialNo.ToUpper() && computerExist(comp.SerialNo))
             {
                 message.Append("That Service tag is already in use. Please try again.<bR>");
             }
@@ -521,7 +523,7 @@ namespace SeniorProject
             cmd.Parameters.Clear();
         }
 
-        public static string updateComputers(ArrayList computers, string connectionString)
+        public static string updateComputers(ArrayList computers)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -529,7 +531,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -691,7 +693,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static bool computerTransferred(string serialNo, string connectionString)
+        public static bool computerTransferred(string serialNo)
         {
 
             SqlConnection dbConn;
@@ -700,7 +702,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

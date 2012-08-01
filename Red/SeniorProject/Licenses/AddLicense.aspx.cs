@@ -32,7 +32,7 @@ namespace SeniorProject.Licenses
             license.Notes = txtBoxNotes.Text;
             license.Type = ddlType.SelectedValue;
 
-            lblMessage.Text = LicenseDA.saveLicense(license, connString);
+            lblMessage.Text = LicenseDA.saveLicense(license);
             lblMessage.Visible = true;
             btnClear.Visible = true;
         }

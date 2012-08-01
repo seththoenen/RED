@@ -19,12 +19,12 @@ namespace SeniorProject
             {
                 Session["Warranties"] = new ArrayList();    
                 ArrayList monList = new ArrayList();
-                monList = MonitorDA.getMonitors(connString);
+                monList = MonitorDA.getMonitors();
                 ddlType.Text = "Please Select";
                 ddlPONO.SelectedValue = "28";
 
                 ArrayList groupList = new ArrayList();
-                groupList = GroupDA.getAllComputerGroups(connString);
+                groupList = GroupDA.getAllComputerGroups();
                 int nextGroup = 1;
 
                 for (int i = 0; i < groupList.Count; i++)
@@ -124,7 +124,7 @@ namespace SeniorProject
                 comp.Size = txtBoxSize.Text;
                 comp.Notes = txtBoxNotes.Text;
                 comp.Type = ddlType.Text;
-                comp.PO = PODA.getPO(ddlPONO.SelectedValue.ToString(), connString);
+                comp.PO = PODA.getPO(ddlPONO.SelectedValue.ToString());
                 comp.Status = ddlStatus.Text;
                 comp.Groups = groupList;
                 comp.PhysicalAddress = txtBoxPhysicalAddress.Text.ToUpper();
@@ -148,7 +148,7 @@ namespace SeniorProject
                 computers.Add(comp);
             }
 
-            lblMessage.Text = ComputerDA.saveComputers(computers, connString);
+            lblMessage.Text = ComputerDA.saveComputers(computers);
             if (lblMessage.Text == "Operation successfull!<bR>")
             {
                 lstBoxSerialNos.Items.Clear();
@@ -302,7 +302,7 @@ namespace SeniorProject
                     existLB = true;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text, connString) == true)
+            if (ComputerDA.computerExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
             }
@@ -366,7 +366,7 @@ namespace SeniorProject
                         existLB = true;
                     }
                 }
-                if (ComputerDA.computerExist(serialNo, connString) == true)
+                if (ComputerDA.computerExist(serialNo) == true)
                 {
                     existDB = true;
                 }

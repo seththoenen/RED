@@ -26,7 +26,7 @@ namespace SeniorProject
             cmd.Parameters.Clear();
         }
 
-        public static string addWarranty(int invID, Warranty warranty, string connectionString)
+        public static string addWarranty(int invID, Warranty warranty)
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -34,7 +34,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -71,7 +71,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string deleteWarrantyComputer(ArrayList serialNos,string connectionString)
+        public static string deleteWarrantyComputer(ArrayList serialNos)
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -79,7 +79,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -116,7 +116,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string deleteWarrantyEquipment(ArrayList serialNos, string connectionString) 
+        public static string deleteWarrantyEquipment(ArrayList serialNos) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -124,7 +124,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -161,7 +161,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string addWarrantysComputer(ArrayList serialNos, Warranty warranty, string connectionString) 
+        public static string addWarrantysComputer(ArrayList serialNos, Warranty warranty) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -169,7 +169,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -211,7 +211,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string addWarrantysEquipment(ArrayList serialNos, Warranty warranty, string connectionString) 
+        public static string addWarrantysEquipment(ArrayList serialNos, Warranty warranty) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -219,7 +219,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

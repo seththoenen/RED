@@ -9,15 +9,14 @@ namespace SeniorProject
 {
     public class LicenseDA
     {
-
-        public static string saveLicense(License license, string connectionString) 
+        public static string saveLicense(License license) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -96,14 +95,14 @@ namespace SeniorProject
             return license;
         }
 
-        public static License getLicense(int licenseID, string connectionString)
+        public static License getLicense(int licenseID)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -149,14 +148,14 @@ namespace SeniorProject
             }
         }
 
-        public static string addLicense(int licenseID, int invID, string connectionString) 
+        public static string addLicense(int licenseID, int invID) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -261,14 +260,14 @@ namespace SeniorProject
             }
         }
 
-        public static string removeLicense(int licenseID, int invID, string connectionString) 
+        public static string removeLicense(int licenseID, int invID) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -303,14 +302,14 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string removeAllLicensesComputer(ArrayList serialNos, string connectionString) 
+        public static string removeAllLicensesComputer(ArrayList serialNos) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -351,14 +350,14 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string removeAllLicensesEquipment(ArrayList serialNos, string connectionString) 
+        public static string removeAllLicensesEquipment(ArrayList serialNos) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -400,14 +399,14 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string removeSelectLicenseComputer(ArrayList serialNos, int licenseID, string connectionString) 
+        public static string removeSelectLicenseComputer(ArrayList serialNos, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -448,14 +447,14 @@ namespace SeniorProject
             }
         }
 
-        public static string removeSelectLicenseEquipment(ArrayList serialNos, int licenseID, string connectionString) 
+        public static string removeSelectLicenseEquipment(ArrayList serialNos, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -497,14 +496,14 @@ namespace SeniorProject
             }
         }
 
-        public static string addLicensesComputer(ArrayList serialNos, int licenseID, string connectionString) 
+        public static string addLicensesComputer(ArrayList serialNos, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -553,14 +552,14 @@ namespace SeniorProject
             }
         }
 
-        public static string addLicensesEquipment(ArrayList serialNos, int licenseID, string connectionString) 
+        public static string addLicensesEquipment(ArrayList serialNos, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -609,14 +608,14 @@ namespace SeniorProject
             }
         }
 
-        public static string updateLicense(License license, string connectionString)
+        public static string updateLicense(License license)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

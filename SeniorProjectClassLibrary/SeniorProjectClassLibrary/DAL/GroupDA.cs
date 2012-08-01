@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace SeniorProject
 {
     public class GroupDA
     {
-        public static string saveGroup(Group group, string connectionString)
+        public static string saveGroup(Group group)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,14 +18,14 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
             transaction = dbConn.BeginTransaction("Transaction");
             dbCmd.Transaction = transaction;
 
-            if (GroupDA.groupExist(group.Name, connectionString) == false)
+            if (GroupDA.groupExist(group.Name) == false)
             {
 
                 try
@@ -59,7 +60,7 @@ namespace SeniorProject
             }
         }
 
-        public static string updateGroup(Group newGroup, int oldGroupID, string connectionString)
+        public static string updateGroup(Group newGroup, int oldGroupID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -67,7 +68,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -114,7 +115,7 @@ namespace SeniorProject
             }
         }
 
-        public static bool groupExist(string GroupName, string connectionString) 
+        public static bool groupExist(string GroupName) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -123,7 +124,7 @@ namespace SeniorProject
             StringBuilder message = new StringBuilder();
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -191,7 +192,7 @@ namespace SeniorProject
             }
         }
 
-        public static Group getGroup(int GroupID, string connectionString) 
+        public static Group getGroup(int GroupID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -199,7 +200,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -278,7 +279,7 @@ namespace SeniorProject
             return group;
         }
 
-        public static Group getGroupComputers(string groupName, string connectionString)
+        public static Group getGroupComputers(string groupName)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -286,7 +287,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -327,7 +328,7 @@ namespace SeniorProject
             }
         }
 
-        public static Group getGroupEquipment(string groupName, string connectionString)
+        public static Group getGroupEquipment(string groupName)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -335,7 +336,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -403,7 +404,7 @@ namespace SeniorProject
             return groupList;
         }
 
-        public static ArrayList getAllComputerGroups(string connectionString) 
+        public static ArrayList getAllComputerGroups() 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -411,7 +412,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -437,7 +438,7 @@ namespace SeniorProject
             return groupList;
         }
 
-        public static ArrayList getAllEquipmentGroups(string connectionString) 
+        public static ArrayList getAllEquipmentGroups() 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -445,7 +446,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -471,7 +472,7 @@ namespace SeniorProject
             return groupList;
         }
 
-        public static ArrayList getAllGroups(string connectionString) 
+        public static ArrayList getAllGroups() 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -479,7 +480,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -517,7 +518,7 @@ namespace SeniorProject
 
         }
 
-        public static string updateGroups(ArrayList groupList, int invID, string connectionString) 
+        public static string updateGroups(ArrayList groupList, int invID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -525,7 +526,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -615,7 +616,7 @@ namespace SeniorProject
             return groupID;
         }
 
-        public static int getGroupID(string groupName, string connectionString) 
+        public static int getGroupID(string groupName) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -623,7 +624,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -660,7 +661,7 @@ namespace SeniorProject
             }
         }
 
-        public static bool invInGroup(string serialNo, int groupId, string connectionString)
+        public static bool invInGroup(string serialNo, int groupId)
         {
             bool isInGroup = false;
             SqlConnection dbConn;
@@ -669,7 +670,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -687,7 +688,6 @@ namespace SeniorProject
                 dbCmd.Parameters.AddWithValue("GroupID", groupId);
 
                 dbReader = dbCmd.ExecuteReader();
-                int groupID = 0;
 
                 while (dbReader.Read())
                 {
@@ -706,13 +706,14 @@ namespace SeniorProject
 
             catch (Exception ex)
             {
+                ex.ToString();
                 transaction.Rollback();
                 return true;
             }
             
         }
 
-        public static string addInvToGroup(ArrayList serialNos, int groupID, string connectionString)
+        public static string addInvToGroup(ArrayList serialNos, int groupID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -720,7 +721,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();

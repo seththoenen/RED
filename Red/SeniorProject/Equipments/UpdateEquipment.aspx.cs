@@ -37,7 +37,7 @@ namespace SeniorProject.Equipments
                 ddlManufacturer.SelectedIndex = 0;
 
                 ArrayList groupList = new ArrayList();
-                groupList = GroupDA.getAllEquipmentGroups(connString);
+                groupList = GroupDA.getAllEquipmentGroups();
 
                 for (int i = 0; i < groupList.Count; i++)
                 {
@@ -118,7 +118,7 @@ namespace SeniorProject.Equipments
             ArrayList tags = new ArrayList();
             tags = getTags();
 
-            lblLicenseMessage.Text = LicenseDA.removeAllLicensesEquipment(tags, connString);
+            lblLicenseMessage.Text = LicenseDA.removeAllLicensesEquipment(tags);
             lblLicenseMessage.Visible = true;
         }
 
@@ -129,7 +129,7 @@ namespace SeniorProject.Equipments
 
             int licenseID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = LicenseDA.removeSelectLicenseEquipment(tags, licenseID, connString);
+            lblLicenseMessage.Text = LicenseDA.removeSelectLicenseEquipment(tags, licenseID);
             lblLicenseMessage.Visible = true;
         }
 
@@ -140,7 +140,7 @@ namespace SeniorProject.Equipments
 
             int licenseID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = LicenseDA.addLicensesEquipment(tags, licenseID, connString);
+            lblLicenseMessage.Text = LicenseDA.addLicensesEquipment(tags, licenseID);
             lblLicenseMessage.Visible = true;
         }
 
@@ -168,7 +168,7 @@ namespace SeniorProject.Equipments
             maint.Description = txtBoxMaintenance.Text;
 
             lblMaintenanceMessage.Visible = true;
-            lblMaintenanceMessage.Text = MaintenanceDA.addMassMaintenanceEquipment(tags, maint, connString);
+            lblMaintenanceMessage.Text = MaintenanceDA.addMassMaintenanceEquipment(tags, maint);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -251,7 +251,7 @@ namespace SeniorProject.Equipments
 
                 equipment.Add(equip);
             }
-            lblMessage.Text = EquipmentDA.updateEquipment(equipment, connString);
+            lblMessage.Text = EquipmentDA.updateEquipment(equipment);
             lblMessage.Visible = true;
 
         }
@@ -267,7 +267,7 @@ namespace SeniorProject.Equipments
             logs.PrimaryUser = txtBoxPrimaryUser.Text;
             logs.Name = txtBoxName.Text;
 
-            lblLogisticsMessage.Text = LogisticsDA.massUpdateLogisticsEquipment(tags, logs, connString);
+            lblLogisticsMessage.Text = LogisticsDA.massUpdateLogisticsEquipment(tags, logs);
             lblLogisticsMessage.Visible = true;
             btnClearLogistics.Visible = true;
         }
@@ -277,7 +277,7 @@ namespace SeniorProject.Equipments
             foreach (int i in lstBoxGroups.GetSelectedIndices())
             {
                 Group selectedGroup = new Group();
-                selectedGroup = GroupDA.getGroupEquipment(lstBoxGroups.Items[i].Text, connString);
+                selectedGroup = GroupDA.getGroupEquipment(lstBoxGroups.Items[i].Text);
 
                 for (int j = 0; j < selectedGroup.Equipment.Count; j++)
                 {
@@ -328,7 +328,7 @@ namespace SeniorProject.Equipments
             ArrayList tags = new ArrayList();
             tags = getTags();
 
-            lblWarrantyMessage.Text = WarrantyDA.deleteWarrantyEquipment(tags, connString);
+            lblWarrantyMessage.Text = WarrantyDA.deleteWarrantyEquipment(tags);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -361,7 +361,7 @@ namespace SeniorProject.Equipments
             war.EndDate = txtBoxWarrantyEndDate.Text;
             war.Notes = txtBoxWarrantyNotes.Text;
 
-            lblWarrantyMessage.Text = WarrantyDA.addWarrantysEquipment(tags, war, connString);
+            lblWarrantyMessage.Text = WarrantyDA.addWarrantysEquipment(tags, war);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -423,10 +423,10 @@ namespace SeniorProject.Equipments
                     existLB = true;
                 }
             }
-            if (EquipmentDA.equipmentExist(txtBoxSerialNo.Text, connString) == true)
+            if (EquipmentDA.equipmentExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
-                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text, connString) == true)
+                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text) == true)
                 {
                     isTransferred = true;
                 }
@@ -791,7 +791,7 @@ namespace SeniorProject.Equipments
                         existLB = true;
                     }
                 }
-                if (EquipmentDA.equipmentExist(serialNo, connString) == true)
+                if (EquipmentDA.equipmentExist(serialNo) == true)
                 {
                     existDB = true;
                 }

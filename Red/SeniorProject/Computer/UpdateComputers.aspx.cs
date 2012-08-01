@@ -43,7 +43,7 @@ namespace SeniorProject
                 ddlUSBPorts.SelectedIndex = 0;
 
                 ArrayList groupList = new ArrayList();
-                groupList = GroupDA.getAllComputerGroups(connString);
+                groupList = GroupDA.getAllComputerGroups();
 
                 for (int i = 0; i < groupList.Count; i++)
                 {
@@ -117,7 +117,7 @@ namespace SeniorProject
                 computers.Add(comp);
             }
             
-            lblMessage.Text = ComputerDA.updateComputers(computers, connString);
+            lblMessage.Text = ComputerDA.updateComputers(computers);
             lblMessage.Visible = true;
             btnClearMessage.Visible = true;
         }
@@ -149,7 +149,7 @@ namespace SeniorProject
             foreach (int i in lstBoxGroups.GetSelectedIndices())
             {
                 Group selectedGroup = new Group();
-                selectedGroup = GroupDA.getGroupComputers(lstBoxGroups.Items[i].Text, connString);
+                selectedGroup = GroupDA.getGroupComputers(lstBoxGroups.Items[i].Text);
 
                 for (int j = 0; j < selectedGroup.Computers.Count; j++)
                 {
@@ -186,7 +186,7 @@ namespace SeniorProject
             maint.Description = txtBoxMaintenance.Text;
 
             lblMaintenanceMessage.Visible = true;
-            lblMaintenanceMessage.Text = MaintenanceDA.addMassMaintenanceComputer(tags, maint, connString);
+            lblMaintenanceMessage.Text = MaintenanceDA.addMassMaintenanceComputer(tags, maint);
 
         }
 
@@ -226,7 +226,7 @@ namespace SeniorProject
             logs.Name = txtBoxName.Text;
 
             lblLogisticsMessage.Visible = true;
-            lblLogisticsMessage.Text = LogisticsDA.massUpdateLogisticsComputer(tags, logs, connString);
+            lblLogisticsMessage.Text = LogisticsDA.massUpdateLogisticsComputer(tags, logs);
             btnClearLogistics.Visible = true;
         }
 
@@ -307,7 +307,7 @@ namespace SeniorProject
             ArrayList tags = new ArrayList();
             tags = getTags();
 
-            lblLicenseMessage.Text = LicenseDA.removeAllLicensesComputer(tags, connString);
+            lblLicenseMessage.Text = LicenseDA.removeAllLicensesComputer(tags);
             lblLicenseMessage.Visible = true;
         }
 
@@ -318,7 +318,7 @@ namespace SeniorProject
 
             int licenseID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = LicenseDA.removeSelectLicenseComputer(tags ,licenseID, connString);
+            lblLicenseMessage.Text = LicenseDA.removeSelectLicenseComputer(tags ,licenseID);
             lblLicenseMessage.Visible = true;
         }
 
@@ -329,7 +329,7 @@ namespace SeniorProject
 
             int licenseID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = LicenseDA.addLicensesComputer(tags, licenseID, connString);
+            lblLicenseMessage.Text = LicenseDA.addLicensesComputer(tags, licenseID);
             lblLicenseMessage.Visible = true;
         }
 
@@ -411,7 +411,7 @@ namespace SeniorProject
 
             int monId = Convert.ToInt32(GridView3.SelectedDataKey.Value);
 
-            lblMonitorMessage.Text = MonitorDA.removeSelectMonitor(tags, monId, connString);
+            lblMonitorMessage.Text = MonitorDA.removeSelectMonitor(tags, monId);
             lblMonitorMessage.Visible = true;
         }
 
@@ -420,7 +420,7 @@ namespace SeniorProject
             ArrayList tags = new ArrayList();
             tags = getTags();
 
-            lblMonitorMessage.Text = MonitorDA.deleteMonitors(tags, connString);
+            lblMonitorMessage.Text = MonitorDA.deleteMonitors(tags);
             lblMonitorMessage.Visible = true;
         }
 
@@ -431,7 +431,7 @@ namespace SeniorProject
 
             int monID = Convert.ToInt32(GridView4.SelectedDataKey.Value);
 
-            lblMonitorMessage.Text = MonitorDA.addMonitorsComputer(tags, monID, connString);
+            lblMonitorMessage.Text = MonitorDA.addMonitorsComputer(tags, monID);
             lblMonitorMessage.Visible = true;
         }
 
@@ -449,7 +449,7 @@ namespace SeniorProject
             war.EndDate = txtBoxWarrantyEndDate.Text;
             war.Notes = txtBoxWarrantyNotes.Text;
 
-            lblWarrantyMessage.Text = WarrantyDA.addWarrantysComputer(tags, war, connString);
+            lblWarrantyMessage.Text = WarrantyDA.addWarrantysComputer(tags, war);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -500,7 +500,7 @@ namespace SeniorProject
             ArrayList tags = new ArrayList();
             tags = getTags();
 
-            lblWarrantyMessage.Text = WarrantyDA.deleteWarrantyComputer(tags, connString);
+            lblWarrantyMessage.Text = WarrantyDA.deleteWarrantyComputer(tags);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -596,10 +596,10 @@ namespace SeniorProject
                     existLB = true;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text, connString) == true)
+            if (ComputerDA.computerExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
-                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text, connString) == true)
+                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text) == true)
                 {
                     isTransferred = true;
                 }
@@ -953,7 +953,7 @@ namespace SeniorProject
                         existLB = true;
                     }
                 }
-                if (ComputerDA.computerExist(serialNo, connString) == true)
+                if (ComputerDA.computerExist(serialNo) == true)
                 {
                     existDB = true;
                 }

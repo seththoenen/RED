@@ -20,7 +20,7 @@ namespace SeniorProject
                 Session["Warranties"] = new ArrayList();  
             
                 ArrayList groups = new ArrayList();
-                groups = GroupDA.getAllEquipmentGroups(connString);
+                groups = GroupDA.getAllEquipmentGroups();
 
                 int counter = 0;
                 for (int i = 0; i < groups.Count; i++)
@@ -155,7 +155,7 @@ namespace SeniorProject
 
             }
 
-            lblMessage.Text = EquipmentDA.saveEquipment(equipList, connString);
+            lblMessage.Text = EquipmentDA.saveEquipment(equipList);
             if (lblMessage.Text == "Operation successfull!<bR>")
             {
                 lstBoxSerialNos.Items.Clear();
@@ -283,7 +283,7 @@ namespace SeniorProject
                     existLB = true;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text, connString) == true)
+            if (ComputerDA.computerExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
             }
@@ -347,7 +347,7 @@ namespace SeniorProject
                         existLB = true;
                     }
                 }
-                if (EquipmentDA.equipmentExist(serialNo, connString) == true)
+                if (EquipmentDA.equipmentExist(serialNo) == true)
                 {
                     existDB = true;
                 }

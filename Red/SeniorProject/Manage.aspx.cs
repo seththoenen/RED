@@ -33,7 +33,7 @@ namespace SeniorProject
                 mon.Size = txtBoxResolution.Text;
 
                 
-                lblMessage.Text = MonitorDA.saveMonitor(mon, connString);
+                lblMessage.Text = MonitorDA.saveMonitor(mon);
 
                 refresh();
 
@@ -48,7 +48,7 @@ namespace SeniorProject
                 mon.Model = txtBoxModel.Text;
                 mon.Resolution = txtBoxResolution.Text;
                 mon.Size = txtBoxResolution.Text;
-                lblMessage.Text = MonitorDA.updateMonitor(mon, connString);
+                lblMessage.Text = MonitorDA.updateMonitor(mon);
 
                 btnAddMonitor.Text = "Add Monitor";
                 btnCancel.Visible = false;
@@ -72,7 +72,7 @@ namespace SeniorProject
             try
             {
                 Monitor mon = new Monitor();
-                mon = MonitorDA.getMonitor(Convert.ToInt32(lstBoxMonitor.SelectedValue), connString);
+                mon = MonitorDA.getMonitor(Convert.ToInt32(lstBoxMonitor.SelectedValue));
                 mon.ID = Convert.ToInt32(lstBoxMonitor.SelectedValue);
                 txtBoxSize.Text = mon.Size;
                 txtBoxBrand.Text = mon.Brand;
@@ -113,7 +113,7 @@ namespace SeniorProject
 
         protected void btnAddBuilding_Click(object sender, EventArgs e)
         {
-            lblBuildingMessage.Text = SettingsDA.saveSetting(txtBoxBuilding.Text, "Building", connString);
+            lblBuildingMessage.Text = SettingsDA.saveSetting(txtBoxBuilding.Text, "Building");
             lblBuildingMessage.Visible = true;
             lstBoxBuildings.DataBind();
         }
@@ -122,7 +122,7 @@ namespace SeniorProject
         {
             try
             {
-                SettingsDA.deleteSetting(Convert.ToInt32(lstBoxBuildings.SelectedValue), connString);
+                SettingsDA.deleteSetting(Convert.ToInt32(lstBoxBuildings.SelectedValue));
                 lstBoxBuildings.DataBind();
             }
             catch { }
@@ -130,7 +130,7 @@ namespace SeniorProject
 
         protected void btnAddManufacturer_Click(object sender, EventArgs e)
         {
-            lblManufacturerMessage.Text = SettingsDA.saveSetting(txtBoxManufacturer.Text, "Manufacturer", connString);
+            lblManufacturerMessage.Text = SettingsDA.saveSetting(txtBoxManufacturer.Text, "Manufacturer");
             lblManufacturerMessage.Visible = true;
             lstBoxManufcturers.DataBind();
         }
@@ -139,7 +139,7 @@ namespace SeniorProject
         {
             try
             {
-                SettingsDA.deleteSetting(Convert.ToInt32(lstBoxManufcturers.SelectedValue), connString);
+                SettingsDA.deleteSetting(Convert.ToInt32(lstBoxManufcturers.SelectedValue));
                 lstBoxManufcturers.DataBind();
             }
             catch { }
