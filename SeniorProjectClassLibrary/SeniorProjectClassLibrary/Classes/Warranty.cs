@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class Warranty
     {
@@ -87,5 +88,31 @@ namespace SeniorProject
                 notes = value;
             }
         }
+
+        public static string addWarranty(int invID, Warranty warranty)
+        {
+            return WarrantyDA.addWarranty(invID, warranty);
+        }
+
+        public static string deleteWarrantyComputer(ArrayList serialNos)
+        {
+            return WarrantyDA.deleteWarrantyComputer(serialNos);
+        }
+
+        public static string deleteWarrantyEquipment(ArrayList serialNos)
+        {
+            return WarrantyDA.deleteWarrantyEquipment(serialNos);
+        }
+
+        public static string addWarrantysComputer(ArrayList serialNos, Warranty warranty)
+        {
+            return WarrantyDA.addWarrantysComputer(serialNos, warranty);
+        }
+
+        public static string addWarrantysEquipment(ArrayList serialNos, Warranty warranty)
+        {
+            return WarrantyDA.addWarrantysEquipment(serialNos, warranty);
+        }
+
     }
 }

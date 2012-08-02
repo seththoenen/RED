@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class Inventory
     {
@@ -216,6 +217,11 @@ namespace SeniorProject
             {
                 physicalAddress = value;
             }
+        }
+
+        public static List<int> instantSearch(string serialNo)
+        {
+            return InventoryDA.instantSearch(serialNo);
         }
     }
 }

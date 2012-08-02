@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using System.Data.SqlClient;
+using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.DAL
 {
     public class LicenseDA
     {

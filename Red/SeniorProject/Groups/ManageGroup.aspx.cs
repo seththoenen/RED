@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Text;
 using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Groups
 {
@@ -37,7 +38,7 @@ namespace SeniorProject.Groups
                 groupID = Convert.ToInt16(Session["CurrentGroup"]);
 
                 Group group = new Group();
-                group = GroupDA.getGroup(groupID);
+                group = Group.getGroup(groupID);
                 txtBoxName.Text = group.Name;
                 txtBoxNotes.Text = group.Notes;
 
@@ -64,7 +65,7 @@ namespace SeniorProject.Groups
             group.Notes = txtBoxNotes.Text;
 
             lblMessage.Visible = true;
-            lblMessage.Text = GroupDA.updateGroup(group, Convert.ToInt32(Session["CurrentGroup"]));
+            lblMessage.Text = Group.updateGroup(group, Convert.ToInt32(Session["CurrentGroup"]));
 
             if (lblMessage.Text == "Group updated successfully<bR>")
             {
@@ -112,7 +113,7 @@ namespace SeniorProject.Groups
             bool isTransferred = false;
             bool isInGroup = false;
 
-            isInGroup = GroupDA.invInGroup(txtBoxSerialNo.Text, Convert.ToInt32(Session["CurrentGroup"]));
+            isInGroup = Group.invInGroup(txtBoxSerialNo.Text, Convert.ToInt32(Session["CurrentGroup"]));
 
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
@@ -121,10 +122,10 @@ namespace SeniorProject.Groups
                     existLB = true;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text) == true)
+            if (Computer.computerExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
-                if(ComputerDA.computerTransferred(txtBoxSerialNo.Text) == true)
+                if(Computer.computerTransferred(txtBoxSerialNo.Text) == true)
                 {
                     isTransferred = true;
                 }
@@ -184,7 +185,7 @@ namespace SeniorProject.Groups
                     serialNos.Add(lstBoxSerialNos.Items[i].Text);
                 }
                 lblMessage.Visible = true;
-                lblMessage.Text = GroupDA.addInvToGroup(serialNos, Convert.ToInt32(Session["CurrentGroup"]));
+                lblMessage.Text = Group.addInvToGroup(serialNos, Convert.ToInt32(Session["CurrentGroup"]));
                 if (lblMessage.Text == "Inventory added successfully!<bR>")
                 {
                     panelComputers.Visible = true;
@@ -505,7 +506,7 @@ namespace SeniorProject.Groups
                 bool isBlank = false;
                 bool isInGroup = false;
 
-                if (GroupDA.invInGroup(serialNo, Convert.ToInt32(Session["CurrentGroup"])) == true)
+                if (Group.invInGroup(serialNo, Convert.ToInt32(Session["CurrentGroup"])) == true)
                 {
                     isInGroup = true;
                 }
@@ -517,7 +518,7 @@ namespace SeniorProject.Groups
                         existLB = true;
                     }
                 }
-                if (ComputerDA.computerExist(serialNo) == true)
+                if (Computer.computerExist(serialNo) == true)
                 {
                     existDB = true;
                 }

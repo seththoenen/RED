@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.DAL
 {
     public class MonitorDA
     {

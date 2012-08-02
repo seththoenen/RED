@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class Maintenance
     {
@@ -58,6 +60,21 @@ namespace SeniorProject
             {
                 date = value;
             }
+        }
+
+        public static string addMaintenance(Maintenance maint)
+        {
+            return MaintenanceDA.addMaintenance(maint);
+        }
+
+        public static string addMassMaintenanceComputer(ArrayList serialNos, Maintenance maint)
+        {
+            return MaintenanceDA.addMassMaintenanceComputer(serialNos, maint);
+        }
+
+        public static string addMassMaintenanceEquipment(ArrayList serialNos, Maintenance maint)
+        {
+            return MaintenanceDA.addMassMaintenanceEquipment(serialNos, maint);
         }
 
     }

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Collections;
 using System.Configuration;
 using System.Text;
+using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Transfers
 {
@@ -41,7 +42,7 @@ namespace SeniorProject.Transfers
             if (!IsPostBack)
             {
                 ArrayList groupList = new ArrayList();
-                groupList = GroupDA.getAllGroups();
+                groupList = Group.getAllGroups();
 
                 for (int i = 0; i < groupList.Count; i++)
                 {
@@ -74,7 +75,7 @@ namespace SeniorProject.Transfers
                 transfer.Inventory.Add(lstBoxSerialNos.Items[i].Text);
             }
 
-            lblTransferMessage.Text = TransferDA.saveTransfer(transfer);
+            lblTransferMessage.Text = Transfer.saveTransfer(transfer);
             lblTransferMessage.Visible = true;
             btnClearMessage.Visible = true;
 
@@ -103,18 +104,18 @@ namespace SeniorProject.Transfers
                     existLB = true;
                 }
             }
-            if (EquipmentDA.equipmentExist(txtBoxSerialNo.Text) == true)
+            if (Equipment.equipmentExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
-                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text) == true)
+                if (Computer.computerTransferred(txtBoxSerialNo.Text) == true)
                 {
                     isTransferred = true;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text) == true)
+            if (Computer.computerExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
-                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text) == true)
+                if (Computer.computerTransferred(txtBoxSerialNo.Text) == true)
                 {
                     isTransferred = true;
                 }
@@ -257,9 +258,9 @@ namespace SeniorProject.Transfers
         protected void btnSelectGroup_Click(object sender, EventArgs e)
         {
             ArrayList computerGroups = new ArrayList();
-            computerGroups = GroupDA.getAllComputerGroups();
+            computerGroups = Group.getAllComputerGroups();
             ArrayList equipmentGroups = new ArrayList();
-            equipmentGroups = GroupDA.getAllEquipmentGroups();
+            equipmentGroups = Group.getAllEquipmentGroups();
             
             foreach (int i in lstBoxGroups.GetSelectedIndices())
             {
@@ -289,7 +290,7 @@ namespace SeniorProject.Transfers
                 if (isComputerGroup == true)
                 {
                     Group selectedGroup = new Group();
-                    selectedGroup = GroupDA.getGroupComputers(lstBoxGroups.Items[i].Text);
+                    selectedGroup = Group.getGroupComputers(lstBoxGroups.Items[i].Text);
 
                     for (int j = 0; j < selectedGroup.Computers.Count; j++)
                     {
@@ -315,7 +316,7 @@ namespace SeniorProject.Transfers
                 else if (isEquipmentGroup == true)
                 {
                     Group selectedGroup = new Group();
-                    selectedGroup = GroupDA.getGroupEquipment(lstBoxGroups.Items[i].Text);
+                    selectedGroup = Group.getGroupEquipment(lstBoxGroups.Items[i].Text);
 
                     for (int j = 0; j < selectedGroup.Equipment.Count; j++)
                     {

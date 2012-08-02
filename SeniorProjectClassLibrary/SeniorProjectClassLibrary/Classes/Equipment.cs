@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class Equipment : Inventory
     {
@@ -82,5 +83,31 @@ namespace SeniorProject
                 connectivity = value;
             }
         }
+
+        public static string saveEquipment(ArrayList equipment)
+        {
+            return EquipmentDA.saveEquipment(equipment);
+        }
+
+        public static Equipment getEquipment(int invID)
+        {
+            return EquipmentDA.getEquipment(invID);
+        }
+
+        public static Boolean equipmentExist(string serialNo)
+        {
+            return EquipmentDA.equipmentExist(serialNo);
+        }
+
+        public static string updateEquipment(Equipment oEquip, Equipment equip)
+        {
+            return EquipmentDA.updateEquipment(oEquip, equip);
+        }
+
+        public static string updateEquipment(ArrayList equipment)
+        {
+            return EquipmentDA.updateEquipment(equipment);
+        }
+
     }
 }

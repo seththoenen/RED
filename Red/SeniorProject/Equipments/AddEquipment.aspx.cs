@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
 {
@@ -20,7 +21,7 @@ namespace SeniorProject
                 Session["Warranties"] = new ArrayList();  
             
                 ArrayList groups = new ArrayList();
-                groups = GroupDA.getAllEquipmentGroups();
+                groups = Group.getAllEquipmentGroups();
 
                 int counter = 0;
                 for (int i = 0; i < groups.Count; i++)
@@ -155,7 +156,7 @@ namespace SeniorProject
 
             }
 
-            lblMessage.Text = EquipmentDA.saveEquipment(equipList);
+            lblMessage.Text = Equipment.saveEquipment(equipList);
             if (lblMessage.Text == "Operation successfull!<bR>")
             {
                 lstBoxSerialNos.Items.Clear();
@@ -283,7 +284,7 @@ namespace SeniorProject
                     existLB = true;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text) == true)
+            if (Computer.computerExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
             }
@@ -347,7 +348,7 @@ namespace SeniorProject
                         existLB = true;
                     }
                 }
-                if (EquipmentDA.equipmentExist(serialNo) == true)
+                if (Equipment.equipmentExist(serialNo) == true)
                 {
                     existDB = true;
                 }

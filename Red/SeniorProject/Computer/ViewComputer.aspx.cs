@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
 {
@@ -24,7 +25,7 @@ namespace SeniorProject
                 }
                 string compID = Session["CurrentComputer"].ToString();
                 Computer comp = new Computer();
-                comp = ComputerDA.getComputer(compID);
+                comp = Computer.getComputer(compID);
 
                 Session["CurrentComputerID"] = comp.CompID;
 
@@ -101,7 +102,7 @@ namespace SeniorProject
                 }
 
                 ArrayList groups = new ArrayList();
-                groups = GroupDA.getAllComputerGroups();
+                groups = Group.getAllComputerGroups();
                 int nextGroup = 1;
 
                 //populates chkBoxList
@@ -189,7 +190,7 @@ namespace SeniorProject
         {
             string compID = Session["CurrentComputer"].ToString();
             
-            oComp = ComputerDA.getComputer(compID);
+            oComp = Computer.getComputer(compID);
             
             Computer comp = new Computer();
             comp.InvID = Convert.ToInt32(compID);
@@ -236,7 +237,7 @@ namespace SeniorProject
                 comp.Monitors.Add(mon);
             }
             
-            lblMessage.Text = ComputerDA.updateComputer(oComp ,comp);
+            lblMessage.Text = Computer.updateComputer(oComp ,comp);
             btnClear.Visible = true;
 
             GridView2.DataBind();
@@ -296,7 +297,7 @@ namespace SeniorProject
             }
 
             lblMessage2.Visible = true;
-            lblMessage2.Text = GroupDA.updateGroups(currentGroups, invID);
+            lblMessage2.Text = Group.updateGroups(currentGroups, invID);
 
 
             lstBoxGroups.Visible = true;
@@ -316,7 +317,7 @@ namespace SeniorProject
         protected void btnGoToGroup_Click(object sender, EventArgs e)
         {
             string selectedGroup = lstBoxGroups.SelectedItem.ToString();
-            int groupID = GroupDA.getGroupID(selectedGroup);
+            int groupID = Group.getGroupID(selectedGroup);
 
             Session["CurrentGroup"] = groupID;
             Response.Redirect("~/Groups/ManageGroup.aspx");
@@ -344,7 +345,7 @@ namespace SeniorProject
             maint.Date = txtBoxDate.Text;
             maint.Description = txtBoxMaintenance.Text;
 
-            lblMaintenanceMessage.Text = MaintenanceDA.addMaintenance(maint);
+            lblMaintenanceMessage.Text = Maintenance.addMaintenance(maint);
 
             if (lblMaintenanceMessage.Text == "Maintenance added successfully<bR>")
             {
@@ -391,7 +392,7 @@ namespace SeniorProject
             int licenseID;
             licenseID = Convert.ToInt32(GridView3.SelectedDataKey.Value);
             int invID = Convert.ToInt32(Session["CurrentComputer"]);
-            lblLicenseMessage.Text = LicenseDA.addLicense(licenseID, invID);
+            lblLicenseMessage.Text = License.addLicense(licenseID, invID);
             lblLicenseMessage.Visible = true;
             lstBoxLicenses.DataBind();
         }
@@ -405,7 +406,7 @@ namespace SeniorProject
         {
             int licenseID = Convert.ToInt32(lstBoxLicenses.SelectedValue);
             int invID = Convert.ToInt32(Session["CurrentComputer"]);
-            lblLicenseMessage.Text = LicenseDA.removeLicense(licenseID, invID);
+            lblLicenseMessage.Text = License.removeLicense(licenseID, invID);
             lblLicenseMessage.Visible = true;
             lstBoxLicenses.DataBind();
             btnRemoveLicense.Enabled = false;
@@ -425,7 +426,7 @@ namespace SeniorProject
                 int monID = Convert.ToInt32(ddlMonitor.SelectedValue);
                 int compID = Convert.ToInt32(Session["CurrentComputerID"]);
                 lblMonitorMessage.Visible = true;
-                lblMonitorMessage.Text = MonitorDA.addMonitor(monID, compID);
+                lblMonitorMessage.Text = Monitor.addMonitor(monID, compID);
                 if (lblMonitorMessage.Text == "Monitor added successfully<bR>")
                 {
                     ddlMonitor.Visible = false;
@@ -445,7 +446,7 @@ namespace SeniorProject
             int monID = Convert.ToInt32(lstBoxMonitors.SelectedValue);
             int compID = Convert.ToInt32(Session["CurrentComputerID"]);
             lblMonitorMessage.Visible = true;
-            lblMonitorMessage.Text = MonitorDA.deleteMonitor(monID, compID);
+            lblMonitorMessage.Text = Monitor.deleteMonitor(monID, compID);
             btnRemoveMonitor.Enabled = false;
             lstBoxMonitors.DataBind();
         }
@@ -472,7 +473,7 @@ namespace SeniorProject
             war.EndDate = txtBoxWarrantyEndDate.Text;
             war.Notes = txtBoxWarrantyNotes.Text;
 
-            lblWarrantyMessage.Text = WarrantyDA.addWarranty(Convert.ToInt32(Session["CurrentComputer"]), war);
+            lblWarrantyMessage.Text = Warranty.addWarranty(Convert.ToInt32(Session["CurrentComputer"]), war);
             lblWarrantyMessage.Visible = true;
 
             if (lblWarrantyMessage.Text == "Warranty added successfully!")

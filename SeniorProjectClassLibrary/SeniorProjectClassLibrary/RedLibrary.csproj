@@ -51,6 +51,7 @@
     <Compile Include="Classes\Maintenance.cs" />
     <Compile Include="Classes\Monitor.cs" />
     <Compile Include="Classes\PurchaseOrder.cs" />
+    <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Transfer.cs" />
     <Compile Include="Classes\Warranty.cs" />
     <Compile Include="DAL\ComputerDA.cs" />

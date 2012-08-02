@@ -5,8 +5,9 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Collections;
 using System.Configuration;
+using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.DAL
 {
     public class InventoryDA
     {

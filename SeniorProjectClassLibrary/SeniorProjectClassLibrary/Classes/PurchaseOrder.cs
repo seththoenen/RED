@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class PurchaseOrder
     {
@@ -119,9 +120,19 @@ namespace SeniorProject
             }
         }
 
-        public string savePO(string connString)
+        public static string savePO(PurchaseOrder po)
         {
-            return PODA.savePO(this);
+            return PODA.savePO(po);
+        }
+
+        public static string updatePO(PurchaseOrder newPO, int oldPOid)
+        {
+            return PODA.updatePO(newPO, oldPOid);
+        }
+
+        public static PurchaseOrder getPO(string POID)
+        {
+            return PODA.getPO(POID);
         }
 
     }

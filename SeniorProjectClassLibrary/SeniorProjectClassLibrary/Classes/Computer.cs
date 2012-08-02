@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class Computer : Inventory
     {
@@ -177,6 +178,36 @@ namespace SeniorProject
             {
                 monitors = value;
             }
+        }
+
+        public static string saveComputers(ArrayList computers)
+        {
+            return ComputerDA.saveComputers(computers);
+        }
+
+        public static Boolean computerExist(string serialNo)
+        {
+            return ComputerDA.computerExist(serialNo);
+        }
+
+        public static Computer getComputer(string invID)
+        {
+            return ComputerDA.getComputer(invID);
+        }
+
+        public static string updateComputers(ArrayList computers)
+        {
+            return ComputerDA.updateComputers(computers);
+        }
+
+        public static bool computerTransferred(string serialNo)
+        {
+            return ComputerDA.computerTransferred(serialNo);
+        }
+
+        public static string updateComputer(Computer oComp, Computer comp)
+        {
+            return ComputerDA.updateComputer(oComp, comp);
         }
     }
 }

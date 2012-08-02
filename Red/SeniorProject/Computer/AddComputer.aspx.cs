@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
 {
@@ -19,12 +20,12 @@ namespace SeniorProject
             {
                 Session["Warranties"] = new ArrayList();    
                 ArrayList monList = new ArrayList();
-                monList = MonitorDA.getMonitors();
+                monList = Monitor.getMonitors();
                 ddlType.Text = "Please Select";
                 ddlPONO.SelectedValue = "28";
 
                 ArrayList groupList = new ArrayList();
-                groupList = GroupDA.getAllComputerGroups();
+                groupList = Group.getAllComputerGroups();
                 int nextGroup = 1;
 
                 for (int i = 0; i < groupList.Count; i++)
@@ -124,7 +125,7 @@ namespace SeniorProject
                 comp.Size = txtBoxSize.Text;
                 comp.Notes = txtBoxNotes.Text;
                 comp.Type = ddlType.Text;
-                comp.PO = PODA.getPO(ddlPONO.SelectedValue.ToString());
+                comp.PO = PurchaseOrder.getPO(ddlPONO.SelectedValue.ToString());
                 comp.Status = ddlStatus.Text;
                 comp.Groups = groupList;
                 comp.PhysicalAddress = txtBoxPhysicalAddress.Text.ToUpper();
@@ -148,7 +149,7 @@ namespace SeniorProject
                 computers.Add(comp);
             }
 
-            lblMessage.Text = ComputerDA.saveComputers(computers);
+            lblMessage.Text = Computer.saveComputers(computers);
             if (lblMessage.Text == "Operation successfull!<bR>")
             {
                 lstBoxSerialNos.Items.Clear();
@@ -302,7 +303,7 @@ namespace SeniorProject
                     existLB = true;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text) == true)
+            if (Computer.computerExist(txtBoxSerialNo.Text) == true)
             {
                 existDB = true;
             }
@@ -366,7 +367,7 @@ namespace SeniorProject
                         existLB = true;
                     }
                 }
-                if (ComputerDA.computerExist(serialNo) == true)
+                if (Computer.computerExist(serialNo) == true)
                 {
                     existDB = true;
                 }
