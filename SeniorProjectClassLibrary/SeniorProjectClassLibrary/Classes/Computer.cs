@@ -209,5 +209,10 @@ namespace SeniorProjectClassLibrary.Classes
         {
             return ComputerDA.updateComputer(oComp, comp);
         }
+
+        public static int? computerExistReturnID(string serialNo)
+        {
+            return ComputerDA.computerExistReturnID(serialNo);
+        }
     }
 }

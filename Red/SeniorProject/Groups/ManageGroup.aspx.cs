@@ -109,53 +109,35 @@ namespace SeniorProject.Groups
         protected void txtBoxSerialNo_TextChanged(object sender, EventArgs e)
         {
             bool existLB = false;
-            bool existDB = false;
-            bool isTransferred = false;
-            bool isInGroup = false;
-
-            isInGroup = Group.invInGroup(txtBoxSerialNo.Text, Convert.ToInt32(Session["CurrentGroup"]));
-
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
-                if (lstBoxSerialNos.Items[i].Text == txtBoxSerialNo.Text.ToUpper())
+                if (lstBoxSerialNos.Items[i].Text.ToUpper() == txtBoxSerialNo.Text.ToUpper())
                 {
                     existLB = true;
+                    lblSerialNos.Visible = true;
+                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
+                    break;
                 }
             }
-            if (Computer.computerExist(txtBoxSerialNo.Text) == true)
+            if (existLB == false)
             {
-                existDB = true;
-                if(Computer.computerTransferred(txtBoxSerialNo.Text) == true)
+                if (Group.invInGroup(txtBoxSerialNo.Text, Convert.ToInt32(Session["CurrentGroup"])) == true)
                 {
-                    isTransferred = true;
+                    lblSerialNos.Visible = true;
+                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in that group<br />";
                 }
-            }
-            if (existLB == false && existDB == true && isTransferred == false && isInGroup == false)
-            {
-                lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
-                lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
-            }
-            else if (existLB == true)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
-            }
-            else if (existDB == false)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is not in the database<br />";
-            }
-            else if (isTransferred == true)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is transferred<br />";
+                else if (Computer.computerExist(txtBoxSerialNo.Text) == true)
+                {
+                    lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
+                    lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
+                }
+                else
+                {
+                    lblSerialNos.Visible = true;
+                    lblSerialNos.Text += txtBoxSerialNo.Text + " is not in the database<br />";
+                }
             }
 
-            else if (isInGroup == true)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in this group<br />";
-            }
             txtBoxSerialNo.Text = "";
             txtBoxSerialNo.Focus();
         }
@@ -501,59 +483,40 @@ namespace SeniorProject.Groups
             foreach (string serialNo in serialNos)
             {
                 bool existLB = false;
-                bool existDB = false;
-                bool isTooLong = false;
-                bool isBlank = false;
-                bool isInGroup = false;
-
-                if (Group.invInGroup(serialNo, Convert.ToInt32(Session["CurrentGroup"])) == true)
-                {
-                    isInGroup = true;
-                }
 
                 for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
                 {
                     if (lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                     {
                         existLB = true;
+                        lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
+                        break;
                     }
                 }
-                if (Computer.computerExist(serialNo) == true)
+                if (existLB == false)
                 {
-                    existDB = true;
-                }
-                if (serialNo.Length > 45)
-                {
-                    isTooLong = true;
-                }
-                if (serialNo == "")
-                {
-                    isBlank = true;
-                }
-                if (existLB == false && existDB == true && isTooLong == false && isBlank == false && isInGroup == false)
-                {
-                    lstBoxSerialNos.Items.Add(serialNo.ToUpper());
-                    lstBoxSerialNos.Text = serialNo.ToUpper();
-                }
-                else if (existLB == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
-                }
-                else if (isBlank == true)
-                {
-                    lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
-                }
-                else if (existDB == false)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is not in the database<br />";
-                }
-                else if (isTooLong == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
-                }
-                else if (isInGroup == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is already in this group<br />";
+                    if (serialNo.Length > 45)
+                    {
+                        lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
+                    }
+                    else if (serialNo == "")
+                    {
+                        lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
+                    }
+                    else if (Group.invInGroup(serialNo, Convert.ToInt32(Session["CurrentGroup"])) == true)
+                    {
+                        lblAddTextBoxMessage.Visible = true;
+                        lblAddTextBoxMessage.Text += serialNo + " is already in that group<br />";
+                    }
+                    else if (Computer.computerExist(serialNo) == false)
+                    {
+                        lblAddTextBoxMessage.Text += serialNo + " is not in the database<br />";
+                    }
+                    else
+                    {
+                        lstBoxSerialNos.Items.Add(serialNo.ToUpper());
+                        lstBoxSerialNos.Text = serialNo.ToUpper();
+                    }
                 }
             }
         }

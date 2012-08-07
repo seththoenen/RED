@@ -276,33 +276,31 @@ namespace SeniorProject
         protected void txtBoxSerialNo_TextChanged(object sender, EventArgs e)
         {
             bool existLB = false;
-            bool existDB = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
-                if (lstBoxSerialNos.Items[i].Text == txtBoxSerialNo.Text.ToUpper())
+                if (lstBoxSerialNos.Items[i].Text.ToUpper() == txtBoxSerialNo.Text.ToUpper())
                 {
                     existLB = true;
+                    lblSerialNos.Visible = true;
+                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
+                    break;
                 }
             }
-            if (Computer.computerExist(txtBoxSerialNo.Text) == true)
+            if (existLB == false)
             {
-                existDB = true;
+                if (Equipment.equipmentExist(txtBoxSerialNo.Text) == true)
+                {
+                    //existDB = true;
+                    lblSerialNos.Visible = true;
+                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in the database<br />";
+                }
+                else
+                {
+                    lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
+                    lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
+                }
             }
-            if (existLB == false && existDB == false)
-            {
-                lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
-                lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
-            }
-            else if (existLB == true)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
-            }
-            else if (existDB == true)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in the database<bR />";
-            }
+
             txtBoxSerialNo.Text = "";
             txtBoxSerialNo.Focus();
         }
@@ -337,49 +335,35 @@ namespace SeniorProject
             foreach (string serialNo in serialNos)
             {
                 bool existLB = false;
-                bool existDB = false;
-                bool isTooLong = false;
-                bool isBlank = false;
 
                 for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
                 {
                     if (lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                     {
                         existLB = true;
+                        lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
+                        break;
                     }
                 }
-                if (Equipment.equipmentExist(serialNo) == true)
+                if (existLB == false)
                 {
-                    existDB = true;
-                }
-                if (serialNo.Length > 45)
-                {
-                    isTooLong = true;
-                }
-                if (serialNo == "")
-                {
-                    isBlank = true;
-                }
-                if (existLB == false && existDB == false && isTooLong == false && isBlank == false)
-                {
-                    lstBoxSerialNos.Items.Add(serialNo.ToUpper());
-                    lstBoxSerialNos.Text = serialNo.ToUpper();
-                }
-                else if (existLB == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
-                }
-                else if (existDB == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is already in the database<br />";
-                }
-                else if (isTooLong == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
-                }
-                else if (isBlank == true)
-                {
-                    lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
+                    if (serialNo.Length > 45)
+                    {
+                        lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
+                    }
+                    else if (serialNo == "")
+                    {
+                        lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
+                    }
+                    else if (Equipment.equipmentExist(serialNo) == true)
+                    {
+                        lblAddTextBoxMessage.Text += serialNo + " is already in the database<br />";
+                    }
+                    else
+                    {
+                        lstBoxSerialNos.Items.Add(serialNo.ToUpper());
+                        lstBoxSerialNos.Text = serialNo.ToUpper();
+                    }
                 }
             }
         }

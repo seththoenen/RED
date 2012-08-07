@@ -714,5 +714,56 @@ namespace SeniorProjectClassLibrary.DAL
             return ComputerDA.computerTransferred(dbCmd, serialNo);
 
         }
+
+        public static int? computerExistReturnID(string serialNo)
+        {
+            StringBuilder message = new StringBuilder();
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlTransaction transaction;
+            SqlDataReader dbReader;
+
+            sConnection = GlobalVars.ConnectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+            transaction = dbConn.BeginTransaction("Transaction");
+            dbCmd.Transaction = transaction;
+
+            try
+            {
+                string sql = "SELECT * FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
+
+                dbCmd = new SqlCommand();
+                dbCmd.CommandText = sql;
+                dbCmd.Parameters.AddWithValue("@SerialNo", serialNo);
+                dbCmd.Connection = dbConn;
+
+                dbReader = dbCmd.ExecuteReader();
+                ArrayList desktops = new ArrayList();
+
+                while (dbReader.Read())
+                {
+                    Computer comp = new Computer();
+                    comp.SerialNo = dbReader["SerialNo"].ToString();
+                    desktops.Add(comp);
+                }
+
+                if (desktops.Count > 0)
+                    return ComputerDA.getInvID(dbCmd, serialNo);
+                else
+                    return null;
+            }
+
+            catch (Exception ex)
+            {
+                ex.ToString();
+                transaction.Rollback();
+                return null;
+            }
+
+
+        }
     }
 }
