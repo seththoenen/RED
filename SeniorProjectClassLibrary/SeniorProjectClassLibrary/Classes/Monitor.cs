@@ -136,19 +136,19 @@ namespace SeniorProjectClassLibrary.Classes
             return MonitorDA.addMonitor(monID, compID);
         }
 
-        public static string deleteMonitors(ArrayList serialNos)
+        public static string deleteMonitors(List<int> ids)
         {
-            return MonitorDA.deleteMonitors(serialNos);
+            return MonitorDA.deleteMonitors(ids);
         }
 
-        public static string removeSelectMonitor(ArrayList serialNos, int monID)
+        public static string removeSelectMonitor(List<int> ids, int monID)
         {
-            return MonitorDA.removeSelectMonitor(serialNos, monID);
+            return MonitorDA.removeSelectMonitor(ids, monID);
         }
 
-        public static string addMonitorsComputer(ArrayList serialNos, int monID)
+        public static string addMonitorsComputer(List<int> ids, int monID)
         {
-            return MonitorDA.addMonitorsComputer(serialNos, monID);
+            return MonitorDA.addMonitorsComputer(ids, monID);
         }
 
     }

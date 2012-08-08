@@ -74,6 +74,7 @@ namespace SeniorProject
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
                 Computer comp = new Computer();
+                comp.InvID = Convert.ToInt32(lstBoxSerialNos.Items[i].Value);
                 comp.SerialNo = lstBoxSerialNos.Items[i].Text;
                 comp.SMSUtag = txtBoxSMSUTag.Text;
                 comp.Manufacturer = ddlManufacturer.Text;
@@ -177,8 +178,8 @@ namespace SeniorProject
 
         protected void btnInsertMaintenance_Click(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
             ArrayList newMaintenance = new ArrayList();
 
@@ -187,7 +188,7 @@ namespace SeniorProject
             maint.Description = txtBoxMaintenance.Text;
 
             lblMaintenanceMessage.Visible = true;
-            lblMaintenanceMessage.Text = Maintenance.addMassMaintenanceComputer(tags, maint);
+            lblMaintenanceMessage.Text = Maintenance.addMassMaintenanceComputer(ids, maint);
 
         }
 
@@ -217,8 +218,8 @@ namespace SeniorProject
 
         protected void btnApplyLogisticsUpdates_Click(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
             Logistics logs = new Logistics();
             logs.Building = ddlBuilding.Text;
@@ -227,7 +228,7 @@ namespace SeniorProject
             logs.Name = txtBoxName.Text;
 
             lblLogisticsMessage.Visible = true;
-            lblLogisticsMessage.Text = Logistics.massUpdateLogisticsComputer(tags, logs);
+            lblLogisticsMessage.Text = Logistics.massUpdateLogisticsComputer(ids, logs);
             btnClearLogistics.Visible = true;
         }
 
@@ -305,32 +306,32 @@ namespace SeniorProject
 
         protected void btnApplyRemoveAllLicenses_Click(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
-            lblLicenseMessage.Text = License.removeAllLicensesComputer(tags);
+            lblLicenseMessage.Text = License.removeAllLicensesComputer(ids);
             lblLicenseMessage.Visible = true;
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
             int licenseID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = License.removeSelectLicenseComputer(tags ,licenseID);
+            lblLicenseMessage.Text = License.removeSelectLicenseComputer(ids ,licenseID);
             lblLicenseMessage.Visible = true;
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
             int licenseID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = License.addLicensesComputer(tags, licenseID);
+            lblLicenseMessage.Text = License.addLicensesComputer(ids, licenseID);
             lblLicenseMessage.Visible = true;
         }
 
@@ -407,32 +408,32 @@ namespace SeniorProject
 
         protected void GridView3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
             int monId = Convert.ToInt32(GridView3.SelectedDataKey.Value);
 
-            lblMonitorMessage.Text = Monitor.removeSelectMonitor(tags, monId);
+            lblMonitorMessage.Text = Monitor.removeSelectMonitor(ids, monId);
             lblMonitorMessage.Visible = true;
         }
 
         protected void btnApplyRemoveAllMonitors_Click(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
-            lblMonitorMessage.Text = Monitor.deleteMonitors(tags);
+            lblMonitorMessage.Text = Monitor.deleteMonitors(ids);
             lblMonitorMessage.Visible = true;
         }
 
         protected void GridView4_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
             int monID = Convert.ToInt32(GridView4.SelectedDataKey.Value);
 
-            lblMonitorMessage.Text = Monitor.addMonitorsComputer(tags, monID);
+            lblMonitorMessage.Text = Monitor.addMonitorsComputer(ids, monID);
             lblMonitorMessage.Visible = true;
         }
 
@@ -440,8 +441,8 @@ namespace SeniorProject
         {
             Page.Validate("warranty");
 
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
             Warranty war = new Warranty();
             war.Company = ddlWarrantyCompany.SelectedItem.ToString();
@@ -450,7 +451,7 @@ namespace SeniorProject
             war.EndDate = txtBoxWarrantyEndDate.Text;
             war.Notes = txtBoxWarrantyNotes.Text;
 
-            lblWarrantyMessage.Text = Warranty.addWarrantysComputer(tags, war);
+            lblWarrantyMessage.Text = Warranty.addWarrantysComputer(ids, war);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -498,10 +499,10 @@ namespace SeniorProject
 
         protected void btnApplyRemoveAllWarranties_Click(object sender, EventArgs e)
         {
-            ArrayList tags = new ArrayList();
-            tags = getTags();
+            List<int> ids = new List<int>();
+            ids = getIDs();
 
-            lblWarrantyMessage.Text = Warranty.deleteWarrantyComputer(tags);
+            lblWarrantyMessage.Text = Warranty.deleteWarrantyComputer(ids);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -600,10 +601,12 @@ namespace SeniorProject
             }
             if (existLB == false)
             {
-                if (Computer.computerExist(txtBoxSerialNo.Text) == true)
+                int? invID = Computer.computerExistReturnID(txtBoxSerialNo.Text);
+                if (invID !=null)
                 {
-                    lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
-                    lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
+                    ListItem li = new ListItem(txtBoxSerialNo.Text.ToUpper(), invID.ToString());
+                    lstBoxSerialNos.Items.Add(li);
+                    lstBoxSerialNos.SelectedValue = invID.ToString();
                 }
                 else
                 {
@@ -624,14 +627,14 @@ namespace SeniorProject
             }
         }
 
-        protected ArrayList getTags()
+        protected List<int> getIDs()
         {
-            ArrayList tags = new ArrayList();
+            List<int> ids = new List<int>();
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
-                tags.Add(lstBoxSerialNos.Items[i].Text);
+                ids.Add(Convert.ToInt32(lstBoxSerialNos.Items[i].Value));
             }
-            return tags;
+            return ids;
         }
 
         protected void GridViewComputers_RowCreated(object sender, GridViewRowEventArgs e)
@@ -908,6 +911,7 @@ namespace SeniorProject
         protected void GridViewComputers_SelectedIndexChanged(object sender, EventArgs e)
         {
             string serialNo = GridViewComputers.SelectedDataKey["SerialNo"].ToString();
+            string invID = GridViewComputers.SelectedDataKey["InvID"].ToString();
 
             bool existLB = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
@@ -915,12 +919,14 @@ namespace SeniorProject
                 if (lstBoxSerialNos.Items[i].Text == serialNo || lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                 {
                     existLB = true;
+                    break;
                 }
             }
             if (existLB == false)
             {
-                lstBoxSerialNos.Items.Add(serialNo.ToUpper());
-                lstBoxSerialNos.Text = serialNo.ToUpper();
+                ListItem li = new ListItem(serialNo.ToUpper(), invID);
+                lstBoxSerialNos.Items.Add(li);
+                lstBoxSerialNos.SelectedValue = invID;
             }
         }
 
@@ -942,6 +948,7 @@ namespace SeniorProject
                 }
                 if (existLB == false)
                 {
+                    int? invID = Computer.computerExistReturnID(serialNo);
                     if (serialNo.Length > 45)
                     {
                         lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
@@ -950,14 +957,15 @@ namespace SeniorProject
                     {
                         lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
                     }
-                    else if (Computer.computerExist(serialNo) == false)
+                    else if (invID == null)
                     {
                         lblAddTextBoxMessage.Text += serialNo + " is not in the database<br />";
                     }
                     else
                     {
-                        lstBoxSerialNos.Items.Add(serialNo.ToUpper());
-                        lstBoxSerialNos.Text = serialNo.ToUpper();
+                        ListItem li = new ListItem(serialNo.ToUpper(), invID.ToString());
+                        lstBoxSerialNos.Items.Add(li);
+                        lstBoxSerialNos.SelectedValue = invID.ToString();
                     }
                 }
             }

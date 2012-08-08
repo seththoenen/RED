@@ -303,7 +303,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string removeAllLicensesComputer(ArrayList serialNos) 
+        public static string removeAllLicensesComputer(List<int> ids) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -321,16 +321,15 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID";
 
                     dbCmd.CommandText = sqlCommand;
 
-                    dbCmd.Parameters.AddWithValue("InvID", invId);
+                    dbCmd.Parameters.AddWithValue("InvID", invID);
 
                     dbCmd.ExecuteNonQuery();
                     dbCmd.Parameters.Clear();
@@ -351,7 +350,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string removeAllLicensesEquipment(ArrayList serialNos) 
+        public static string removeAllLicensesEquipment(List<int> ids) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -369,11 +368,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-
-                    int invId = EquipmentDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID";
 
@@ -400,7 +397,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string removeSelectLicenseComputer(ArrayList serialNos, int licenseID) 
+        public static string removeSelectLicenseComputer(List<int> ids, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -418,10 +415,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID AND LicID = @LicID";
 
@@ -448,7 +444,7 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string removeSelectLicenseEquipment(ArrayList serialNos, int licenseID) 
+        public static string removeSelectLicenseEquipment(List<int> ids, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -466,11 +462,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-                    
-                    int invID = EquipmentDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID AND LicID = @LicID";
 
@@ -497,7 +491,7 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string addLicensesComputer(ArrayList serialNos, int licenseID) 
+        public static string addLicensesComputer(List<int> ids, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -514,16 +508,16 @@ namespace SeniorProjectClassLibrary.DAL
             StringBuilder message = new StringBuilder();
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-
-                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
                     License lic = new License();
+                    Computer comp = new Computer();
+                    comp = ComputerDA.getComputer(dbCmd, invID);
                     lic = LicenseDA.getLicense(dbCmd, licenseID);
                     if (LicenseDA.licenseExist(dbCmd, lic, invID) == true)
                     {
-                        message.Append("Computer with Serial Number " + serialNos[i] + " already has that license<bR>");
+                        message.Append("Computer with Serial Number " + comp.SerialNo + " already has that license<bR>");
                     }
                     else
                     {
@@ -553,7 +547,7 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string addLicensesEquipment(ArrayList serialNos, int licenseID) 
+        public static string addLicensesEquipment(List<int> ids, int licenseID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -570,16 +564,16 @@ namespace SeniorProjectClassLibrary.DAL
             StringBuilder message = new StringBuilder();
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-                    
-                    int invID = EquipmentDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
                     License lic = new License();
+                    Computer comp = new Computer();
+                    comp = ComputerDA.getComputer(dbCmd, invID);
                     lic = LicenseDA.getLicense(dbCmd, licenseID);
                     if (LicenseDA.licenseExist(dbCmd, lic, invID) == true)
                     {
-                        message.Append("Equipment with Serial Number " + serialNos[i] + " already has that license<bR>");
+                        message.Append("Equipment with Serial Number " + comp.SerialNo + " already has that license<bR>");
                     }
                     else
                     {

@@ -132,6 +132,7 @@ namespace SeniorProject.Groups
         protected void GridViewEquipment_SelectedIndexChanged(object sender, EventArgs e)
         {
             string serialNo = GridViewEquipment.SelectedDataKey["SerialNo"].ToString();
+            string invID = GridViewEquipment.SelectedDataKey["InvID"].ToString();
 
             bool existLB = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
@@ -139,12 +140,14 @@ namespace SeniorProject.Groups
                 if (lstBoxSerialNos.Items[i].Text == serialNo || lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                 {
                     existLB = true;
+                    break;
                 }
             }
             if (existLB == false)
             {
-                lstBoxSerialNos.Items.Add(serialNo.ToUpper());
-                lstBoxSerialNos.Text = serialNo.ToUpper();
+                ListItem li = new ListItem(serialNo.ToUpper(), invID);
+                lstBoxSerialNos.Items.Add(li);
+                lstBoxSerialNos.SelectedValue = invID;
             }
         }
 
@@ -163,15 +166,17 @@ namespace SeniorProject.Groups
             }
             if (existLB == false)
             {
+                int? invID = Equipment.equipmentExistReturnID(txtBoxSerialNo.Text);
                 if (Group.invInGroup(txtBoxSerialNo.Text, Convert.ToInt32(Session["CurrentGroup"])) == true)
                 {
                     lblSerialNos.Visible = true;
                     lblSerialNos.Text += txtBoxSerialNo.Text + " is already in that group<br />";
                 }
-                else if (Equipment.equipmentExist(txtBoxSerialNo.Text) == true)
+                else if (invID != null)
                 {
-                    lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
-                    lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
+                    ListItem li = new ListItem(txtBoxSerialNo.Text.ToUpper(), invID.ToString());
+                    lstBoxSerialNos.Items.Add(li);
+                    lstBoxSerialNos.SelectedValue = invID.ToString();
                 }
                 else
                 {
@@ -445,6 +450,7 @@ namespace SeniorProject.Groups
                 }
                 if (existLB == false)
                 {
+                    int? invID = Equipment.equipmentExistReturnID(serialNo);
                     if (serialNo.Length > 45)
                     {
                         lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
@@ -458,14 +464,15 @@ namespace SeniorProject.Groups
                         lblAddTextBoxMessage.Visible = true;
                         lblAddTextBoxMessage.Text += serialNo + " is already in that group<br />";
                     }
-                    else if (Equipment.equipmentExist(serialNo) == false)
+                    else if (invID == null)
                     {
                         lblAddTextBoxMessage.Text += serialNo + " is not in the database<br />";
                     }
                     else
                     {
-                        lstBoxSerialNos.Items.Add(serialNo.ToUpper());
-                        lstBoxSerialNos.Text = serialNo.ToUpper();
+                        ListItem li = new ListItem(serialNo.ToUpper(), invID.ToString());
+                        lstBoxSerialNos.Items.Add(li);
+                        lstBoxSerialNos.SelectedValue = invID.ToString();
                     }
                 }
             }

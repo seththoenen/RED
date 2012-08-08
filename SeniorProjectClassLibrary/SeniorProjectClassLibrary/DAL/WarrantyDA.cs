@@ -72,7 +72,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string deleteWarrantyComputer(ArrayList serialNos)
+        public static string deleteWarrantyComputer(List<int> ids)
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -89,11 +89,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-
-                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
                         
                     string sqlCommand = "DELETE FROM Warranty WHERE InvID = @InvID";
 
@@ -117,7 +115,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string deleteWarrantyEquipment(ArrayList serialNos) 
+        public static string deleteWarrantyEquipment(List<int> ids) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -134,11 +132,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (string)serialNos[i];
-
-                    int invId = EquipmentDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
 
                     string sqlCommand = "DELETE FROM Warranty WHERE InvID = @InvID";
 
@@ -162,7 +158,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string addWarrantysComputer(ArrayList serialNos, Warranty warranty) 
+        public static string addWarrantysComputer(List<int> ids, Warranty warranty) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -179,11 +175,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    String serialNo = (String)serialNos[i];
-
-                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
 
                     string sqlCommand = "INSERT INTO Warranty (InvID, Company, StartDate, EndDate, WarrantyType, Notes) VALUES (@InvID, @Company, @StartDate, @EndDate, @WarrantyType, @Notes)";
 
@@ -212,7 +206,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string addWarrantysEquipment(ArrayList serialNos, Warranty warranty) 
+        public static string addWarrantysEquipment(List<int> ids, Warranty warranty) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -229,11 +223,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (string)serialNos[i];
-                    
-                    int invId = EquipmentDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
 
                     string sqlCommand = "INSERT INTO Warranty (InvID, Company, StartDate, EndDate, WarrantyType, Notes) VALUES (@InvID, @Company, @StartDate, @EndDate, @WarrantyType, @Notes)";
 

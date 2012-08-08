@@ -51,7 +51,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string addMassMaintenanceComputer(ArrayList serialNos, Maintenance maint) 
+        public static string addMassMaintenanceComputer(List<int> ids, Maintenance maint) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -67,10 +67,9 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (string)serialNos[i];
-                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
                     string sqlCommand = "INSERT INTO Maintenance (InvID, Date, Maintenance) " +
                         "VALUES (@InvID, @Date, @Maintenance)";
 
@@ -96,7 +95,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string addMassMaintenanceEquipment(ArrayList serialNos, Maintenance maint) 
+        public static string addMassMaintenanceEquipment(List<int> ids, Maintenance maint) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -112,11 +111,9 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (string)serialNos[i];
-
-                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
                     string sqlCommand = "INSERT INTO Maintenance (InvID, Date, Maintenance) " +
                         "VALUES (@InvID, @Date, @Maintenance)";
 

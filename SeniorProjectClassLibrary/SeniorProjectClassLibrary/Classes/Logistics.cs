@@ -128,14 +128,14 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public static string massUpdateLogisticsComputer(ArrayList compSerialNos, Logistics logs)
+        public static string massUpdateLogisticsComputer(List<int> ids, Logistics logs)
         {
-            return LogisticsDA.massUpdateLogisticsComputer(compSerialNos, logs);
+            return LogisticsDA.massUpdateLogisticsComputer(ids, logs);
         }
 
-        public static string massUpdateLogisticsEquipment(ArrayList compSerialNos, Logistics logs)
+        public static string massUpdateLogisticsEquipment(List<int> ids, Logistics logs)
         {
-            return LogisticsDA.massUpdateLogisticsEquipment(compSerialNos, logs);
+            return LogisticsDA.massUpdateLogisticsEquipment(ids, logs);
         }
 
     }

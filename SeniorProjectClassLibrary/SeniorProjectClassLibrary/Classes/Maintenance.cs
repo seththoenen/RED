@@ -67,14 +67,14 @@ namespace SeniorProjectClassLibrary.Classes
             return MaintenanceDA.addMaintenance(maint);
         }
 
-        public static string addMassMaintenanceComputer(ArrayList serialNos, Maintenance maint)
+        public static string addMassMaintenanceComputer(List<int> ids, Maintenance maint)
         {
-            return MaintenanceDA.addMassMaintenanceComputer(serialNos, maint);
+            return MaintenanceDA.addMassMaintenanceComputer(ids, maint);
         }
 
-        public static string addMassMaintenanceEquipment(ArrayList serialNos, Maintenance maint)
+        public static string addMassMaintenanceEquipment(List<int> ids, Maintenance maint)
         {
-            return MaintenanceDA.addMassMaintenanceEquipment(serialNos, maint);
+            return MaintenanceDA.addMassMaintenanceEquipment(ids, maint);
         }
 
     }

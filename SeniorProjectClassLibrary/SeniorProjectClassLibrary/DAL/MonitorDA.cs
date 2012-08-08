@@ -325,7 +325,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string deleteMonitors(ArrayList serialNos)
+        public static string deleteMonitors(List<int> ids)
         { 
             SqlConnection dbConn;
             string sConnection;
@@ -343,11 +343,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i=0; i<serialNos.Count; i++)
+                for (int i=0; i<ids.Count; i++)
                 {
-                    String serialNo = (String)serialNos[i];
-                    
-                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
                     int compId = ComputerDA.getCompID(dbCmd, invId);
 
                     string sql = "DELETE FROM MonitorComputer WHERE CompID = @CompID";
@@ -388,7 +386,7 @@ namespace SeniorProjectClassLibrary.DAL
             cmd.Parameters.Clear();
         }
         
-        public static string removeSelectMonitor(ArrayList serialNos, int monID)
+        public static string removeSelectMonitor(List<int> ids, int monID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -406,11 +404,9 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    String serialNo = (String)serialNos[i];
-
-                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
                     int compID = ComputerDA.getCompID(dbCmd, invID);
 
                     string sqlCommand = "DELETE FROM MonitorComputer WHERE CompID = @CompID AND MonID = @MonID";
@@ -438,7 +434,7 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string addMonitorsComputer(ArrayList serialNos, int monID)
+        public static string addMonitorsComputer(List<int> ids, int monID)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -455,11 +451,9 @@ namespace SeniorProjectClassLibrary.DAL
             StringBuilder message = new StringBuilder();
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    String serialNo = (String)serialNos[i];
-
-                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invID = ids[i];
                     int compID = ComputerDA.getCompID(dbCmd, invID);
 
                     string sqlCommand = "INSERT INTO MonitorComputer (CompID, MonID) VALUES (@CompID, @MonID)";

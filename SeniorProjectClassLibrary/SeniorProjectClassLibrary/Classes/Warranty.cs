@@ -94,24 +94,24 @@ namespace SeniorProjectClassLibrary.Classes
             return WarrantyDA.addWarranty(invID, warranty);
         }
 
-        public static string deleteWarrantyComputer(ArrayList serialNos)
+        public static string deleteWarrantyComputer(List<int> ids)
         {
-            return WarrantyDA.deleteWarrantyComputer(serialNos);
+            return WarrantyDA.deleteWarrantyComputer(ids);
         }
 
-        public static string deleteWarrantyEquipment(ArrayList serialNos)
+        public static string deleteWarrantyEquipment(List<int> ids)
         {
-            return WarrantyDA.deleteWarrantyEquipment(serialNos);
+            return WarrantyDA.deleteWarrantyEquipment(ids);
         }
 
-        public static string addWarrantysComputer(ArrayList serialNos, Warranty warranty)
+        public static string addWarrantysComputer(List<int> ids, Warranty warranty)
         {
-            return WarrantyDA.addWarrantysComputer(serialNos, warranty);
+            return WarrantyDA.addWarrantysComputer(ids, warranty);
         }
 
-        public static string addWarrantysEquipment(ArrayList serialNos, Warranty warranty)
+        public static string addWarrantysEquipment(List<int> ids, Warranty warranty)
         {
-            return WarrantyDA.addWarrantysEquipment(serialNos, warranty);
+            return WarrantyDA.addWarrantysEquipment(ids, warranty);
         }
 
     }

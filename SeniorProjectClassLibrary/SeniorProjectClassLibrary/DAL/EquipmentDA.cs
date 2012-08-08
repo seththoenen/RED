@@ -246,6 +246,58 @@ namespace SeniorProjectClassLibrary.DAL
 
         }
 
+        public static Equipment getEquipment(SqlCommand cmd, int InvID)
+        {
+
+            SqlDataReader dbReader;
+
+            string sql = "SELECT * FROM Inventory, Equipment, Logistics WHERE Inventory.InvID = Equipment.InvID AND "
+            + "Inventory.InvID = Logistics.InvID AND Inventory.InvID = @InvID AND Logistics.Status = @Status";
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("InvID", InvID);
+            cmd.Parameters.AddWithValue("Status", "Active");
+
+
+
+            dbReader = cmd.ExecuteReader();
+            Equipment equip = new Equipment();
+
+            while (dbReader.Read())
+            {
+                equip.InvID = InvID;
+                equip.SMSUtag = dbReader["SMSUtag"].ToString();
+                equip.SerialNo = dbReader["SerialNo"].ToString();
+                equip.Manufacturer = dbReader["Manufacturer"].ToString();
+                equip.Model = dbReader["Model"].ToString();
+                equip.PurchasePrice = Convert.ToDouble(dbReader["PurchasePrice"]);
+                equip.Notes = dbReader["Notes"].ToString();
+
+                equip.EquipmentType = dbReader["EquipmentType"].ToString();
+                equip.Connectivity = dbReader["Connectivity"].ToString();
+                equip.NetworkCapable = dbReader["NetworkCapable"].ToString();
+                equip.Other = dbReader["Other"].ToString();
+
+                equip.Status = dbReader["Status"].ToString();
+                equip.CurrentLocation.Building = dbReader["Building"].ToString();
+                equip.CurrentLocation.Room = dbReader["Room"].ToString();
+                equip.CurrentLocation.PrimaryUser = dbReader["PrimaryUser"].ToString();
+                equip.CurrentLocation.Name = dbReader["Name"].ToString();
+
+            }
+            dbReader.Close();
+            cmd.Parameters.Clear();
+
+            equip.PO = PODA.getPODetails(cmd, equip.InvID);
+            equip.Groups = GroupDA.getGroups(cmd, equip.InvID);
+
+            dbReader.Close();
+
+            return equip;
+
+        }
+
         public static bool equipmentExist(SqlCommand cmd, string serialNo)
         {
             SqlDataReader dbReader;
@@ -455,119 +507,112 @@ namespace SeniorProjectClassLibrary.DAL
                     Equipment equip = new Equipment();
                     equip = (Equipment)equipment[i];
 
+                    Equipment oEquip = EquipmentDA.getEquipment(dbCmd, equip.SerialNo);
 
-                    if (EquipmentDA.equipmentExist(dbCmd, equip.SerialNo) == true)
+                    StringBuilder sqlCommand = new StringBuilder();
+                    sqlCommand.Append("UPDATE Inventory SET ");
+                    if (equip.SMSUtag != "")
                     {
-                        Equipment oEquip = EquipmentDA.getEquipment(dbCmd, equip.SerialNo);
-
-                        StringBuilder sqlCommand = new StringBuilder();
-                        sqlCommand.Append("UPDATE Inventory SET ");
-                        if (equip.SMSUtag != "")
-                        {
-                            sqlCommand.Append("SMSUtag = @SMSUtag,");
-                            dbCmd.Parameters.AddWithValue("SMSUtag", equip.SMSUtag);
-                        }
-                        if (equip.Manufacturer != "")
-                        {
-                            sqlCommand.Append("Manufacturer = @Manufacturer,");
-                            dbCmd.Parameters.AddWithValue("Manufacturer", equip.Manufacturer);
-                        }
-                        if (equip.Model != "")
-                        {
-                            sqlCommand.Append("Model = @Model,");
-                            dbCmd.Parameters.AddWithValue("Model", equip.Model);
-                        }
-
-                        double? price = equip.PurchasePrice;
-                        if (price.HasValue)
-                        {
-                            sqlCommand.Append("PurchasePrice = @PurchasePrice,");
-                            dbCmd.Parameters.AddWithValue("PurchasePrice", equip.PurchasePrice);
-                        }
-                        if (equip.Notes != "")
-                        {
-                            sqlCommand.Append("Notes = @Notes,");
-                            dbCmd.Parameters.AddWithValue("Notes", equip.Notes);
-                        }
-                        if (equip.PhysicalAddress!= "")
-                        {
-                            sqlCommand.Append("PhysicalAddress = @PhysicalAddress,");
-                            dbCmd.Parameters.AddWithValue("PhysicalAddress", equip.PhysicalAddress);
-                        }
-                        if (equip.Status != "")
-                        {
-                            if (oEquip.Status != "Transferred")
-                            {
-                                sqlCommand.Append("Status = @Status,");
-                                dbCmd.Parameters.AddWithValue("Status", equip.Status);
-                            }
-                        }
-
-                        sqlCommand.Remove((sqlCommand.Length - 1), 1);
-                        sqlCommand.Append(" WHERE InvID = @InvID");
-                        dbCmd.Parameters.AddWithValue("InvID", oEquip.InvID);
-
-                        dbCmd.CommandText = sqlCommand.ToString();
-
-                        if (dbCmd.CommandText != "UPDATE Inventory SET WHERE InvID = @InvID")
-                        {
-                            dbCmd.ExecuteNonQuery();
-                        }
-
-                        dbCmd.Parameters.Clear();
-
-
-                        sqlCommand = new StringBuilder();
-                        sqlCommand.Append("UPDATE Equipment SET ");
-                        if (equip.EquipmentType != "")
-                        {
-                            sqlCommand.Append("EquipmentType = @EquipmentType,");
-                            dbCmd.Parameters.AddWithValue("EquipmentType", equip.EquipmentType);
-                        }
-                        if (equip.Connectivity != "")
-                        {
-                            sqlCommand.Append("Connectivity = @Connectivity,");
-                            dbCmd.Parameters.AddWithValue("Connectivity", equip.Connectivity);
-                        }
-                        if (equip.NetworkCapable != "")
-                        {
-                            sqlCommand.Append("NetworkCapable = @NetworkCapable,");
-                            dbCmd.Parameters.AddWithValue("NetworkCapable", equip.NetworkCapable);
-                        }
-                        if (equip.Other != "")
-                        {
-                            sqlCommand.Append("Other = @Other,");
-                            dbCmd.Parameters.AddWithValue("Other", equip.Other);
-                        }
-
-                        sqlCommand.Remove((sqlCommand.Length - 1), 1);
-                        sqlCommand.Append(" WHERE InvID = @InvID");
-                        dbCmd.Parameters.AddWithValue("InvID", oEquip.InvID);
-
-                        dbCmd.CommandText = sqlCommand.ToString();
-
-                        if (dbCmd.CommandText != "UPDATE Equipment SET WHERE InvID = @InvID")
-                        {
-                            dbCmd.ExecuteNonQuery();
-                        }
-
-                        dbCmd.Parameters.Clear();
-
-                        if (equip.PO.ID != null)
-                        {
-                            PODA.deleteLink(dbCmd, oEquip.InvID);
-                            PODA.addLink(dbCmd, oEquip.InvID, equip.PO.ID);
-                        }
-
-                        message.Append("Equipment with Service Tag " + equip.SerialNo + " updated successfully!<bR>");
+                        sqlCommand.Append("SMSUtag = @SMSUtag,");
+                        dbCmd.Parameters.AddWithValue("SMSUtag", equip.SMSUtag);
                     }
-                    else
+                    if (equip.Manufacturer != "")
                     {
-                        message.Append("Equipment with Service Tag " + equip.SerialNo + " does not exist.<bR>");
+                        sqlCommand.Append("Manufacturer = @Manufacturer,");
+                        dbCmd.Parameters.AddWithValue("Manufacturer", equip.Manufacturer);
                     }
+                    if (equip.Model != "")
+                    {
+                        sqlCommand.Append("Model = @Model,");
+                        dbCmd.Parameters.AddWithValue("Model", equip.Model);
+                    }
+
+                    double? price = equip.PurchasePrice;
+                    if (price.HasValue)
+                    {
+                        sqlCommand.Append("PurchasePrice = @PurchasePrice,");
+                        dbCmd.Parameters.AddWithValue("PurchasePrice", equip.PurchasePrice);
+                    }
+                    if (equip.Notes != "")
+                    {
+                        sqlCommand.Append("Notes = @Notes,");
+                        dbCmd.Parameters.AddWithValue("Notes", equip.Notes);
+                    }
+                    if (equip.PhysicalAddress!= "")
+                    {
+                        sqlCommand.Append("PhysicalAddress = @PhysicalAddress,");
+                        dbCmd.Parameters.AddWithValue("PhysicalAddress", equip.PhysicalAddress);
+                    }
+                    if (equip.Status != "")
+                    {
+                        if (oEquip.Status != "Transferred")
+                        {
+                            sqlCommand.Append("Status = @Status,");
+                            dbCmd.Parameters.AddWithValue("Status", equip.Status);
+                        }
+                    }
+
+                    sqlCommand.Remove((sqlCommand.Length - 1), 1);
+                    sqlCommand.Append(" WHERE InvID = @InvID");
+                    dbCmd.Parameters.AddWithValue("InvID", oEquip.InvID);
+
+                    dbCmd.CommandText = sqlCommand.ToString();
+
+                    if (dbCmd.CommandText != "UPDATE Inventory SET WHERE InvID = @InvID")
+                    {
+                        dbCmd.ExecuteNonQuery();
+                    }
+
+                    dbCmd.Parameters.Clear();
+
+
+                    sqlCommand = new StringBuilder();
+                    sqlCommand.Append("UPDATE Equipment SET ");
+                    if (equip.EquipmentType != "")
+                    {
+                        sqlCommand.Append("EquipmentType = @EquipmentType,");
+                        dbCmd.Parameters.AddWithValue("EquipmentType", equip.EquipmentType);
+                    }
+                    if (equip.Connectivity != "")
+                    {
+                        sqlCommand.Append("Connectivity = @Connectivity,");
+                        dbCmd.Parameters.AddWithValue("Connectivity", equip.Connectivity);
+                    }
+                    if (equip.NetworkCapable != "")
+                    {
+                        sqlCommand.Append("NetworkCapable = @NetworkCapable,");
+                        dbCmd.Parameters.AddWithValue("NetworkCapable", equip.NetworkCapable);
+                    }
+                    if (equip.Other != "")
+                    {
+                        sqlCommand.Append("Other = @Other,");
+                        dbCmd.Parameters.AddWithValue("Other", equip.Other);
+                    }
+
+                    sqlCommand.Remove((sqlCommand.Length - 1), 1);
+                    sqlCommand.Append(" WHERE InvID = @InvID");
+                    dbCmd.Parameters.AddWithValue("InvID", oEquip.InvID);
+
+                    dbCmd.CommandText = sqlCommand.ToString();
+
+                    if (dbCmd.CommandText != "UPDATE Equipment SET WHERE InvID = @InvID")
+                    {
+                        dbCmd.ExecuteNonQuery();
+                    }
+
+                    dbCmd.Parameters.Clear();
+
+                    if (equip.PO.ID != null)
+                    {
+                        PODA.deleteLink(dbCmd, oEquip.InvID);
+                        PODA.addLink(dbCmd, oEquip.InvID, equip.PO.ID);
+                    }
+
+                    message.Append("Equipment with Service Tag " + equip.SerialNo + " updated successfully!<bR>");
                 }
                 transaction.Commit();
                 dbConn.Close();
+
             }
             catch (Exception ex)
             {
@@ -578,5 +623,54 @@ namespace SeniorProjectClassLibrary.DAL
             }
             return message.ToString();
         }
+
+        public static int? equipmentExistReturnID(string serialNo)
+        {
+            StringBuilder message = new StringBuilder();
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlDataReader dbReader;
+
+            sConnection = GlobalVars.ConnectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+
+            try
+            {
+                string sql = "SELECT SerialNo FROM Inventory, Equipment Where Inventory.InvID = Equipment.InvID AND SerialNo = @SerialNo";
+
+                dbCmd = new SqlCommand();
+                dbCmd.CommandText = sql;
+                dbCmd.Parameters.AddWithValue("@SerialNo", serialNo);
+                dbCmd.Connection = dbConn;
+
+                dbReader = dbCmd.ExecuteReader();
+                ArrayList desktops = new ArrayList();
+
+                while (dbReader.Read())
+                {
+                    Computer comp = new Computer();
+                    comp.SerialNo = dbReader["SerialNo"].ToString();
+                    desktops.Add(comp);
+                }
+                dbReader.Close();
+                dbCmd.Parameters.Clear();
+
+                if (desktops.Count > 0)
+                    return EquipmentDA.getInvID(dbCmd, serialNo);
+                else
+                    return null;
+            }
+
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return null;
+            }
+
+        }
+
     }
 }

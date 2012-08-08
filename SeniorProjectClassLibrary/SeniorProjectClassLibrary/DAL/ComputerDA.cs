@@ -412,6 +412,59 @@ namespace SeniorProjectClassLibrary.DAL
 
         }
 
+        public static Computer getComputer(SqlCommand cmd, int invID)
+        {
+            SqlDataReader dbReader;
+
+            string sql = "SELECT * FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
+            + "Inventory.InvID = Logistics.InvID AND Inventory.InvID = @InvID AND Logistics.Status = @Status";
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("InvID", invID);
+            cmd.Parameters.AddWithValue("Status", "Active");
+
+            dbReader = cmd.ExecuteReader();
+            Computer comp = new Computer();
+
+            while (dbReader.Read())
+            {
+                comp.SerialNo = dbReader["SerialNo"].ToString();
+                comp.CompID = Convert.ToInt32(dbReader["CompID"]);
+                comp.SMSUtag = dbReader["SMSUtag"].ToString();
+                comp.SerialNo = dbReader["SerialNo"].ToString();
+                comp.Manufacturer = dbReader["Manufacturer"].ToString();
+                comp.Model = dbReader["Model"].ToString();
+                comp.PurchasePrice = Convert.ToDouble(dbReader["PurchasePrice"]);
+                comp.Notes = dbReader["Notes"].ToString();
+                comp.CPU = dbReader["CPU"].ToString();
+                comp.VideoCard = dbReader["VideoCard"].ToString();
+                comp.HardDrive = dbReader["HardDrive"].ToString();
+                comp.Memory = dbReader["Memory"].ToString();
+                comp.OpticalDrive = dbReader["OpticalDrive"].ToString();
+                comp.RemovableMedia = dbReader["RemovableMedia"].ToString();
+                comp.USBports = Convert.ToInt32(dbReader["USBports"]);
+                comp.OtherConnectivity = dbReader["OtherConnectivity"].ToString();
+                comp.Size = dbReader["FormFactor"].ToString();
+                comp.Type = dbReader["Type"].ToString();
+                comp.Status = dbReader["Status"].ToString();
+                comp.CurrentLocation.Building = dbReader["Building"].ToString();
+                comp.CurrentLocation.Room = dbReader["Room"].ToString();
+                comp.CurrentLocation.PrimaryUser = dbReader["PrimaryUser"].ToString();
+                comp.CurrentLocation.Name = dbReader["Name"].ToString();
+
+            }
+            dbReader.Close();
+
+
+            comp.Monitors = MonitorDA.getMonitor(cmd, comp.CompID);
+            comp.PO = PODA.getPODetails(cmd, comp.InvID);
+            comp.Groups = GroupDA.getGroups(cmd, comp.InvID);
+
+            return comp;
+
+        }
+
         public static string updateComputer(Computer oComp, Computer comp)
         {
             SqlConnection dbConn;
@@ -721,19 +774,16 @@ namespace SeniorProjectClassLibrary.DAL
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
-            SqlTransaction transaction;
             SqlDataReader dbReader;
 
             sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
-            transaction = dbConn.BeginTransaction("Transaction");
-            dbCmd.Transaction = transaction;
 
             try
             {
-                string sql = "SELECT * FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
+                string sql = "SELECT SerialNo FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
 
                 dbCmd = new SqlCommand();
                 dbCmd.CommandText = sql;
@@ -749,6 +799,8 @@ namespace SeniorProjectClassLibrary.DAL
                     comp.SerialNo = dbReader["SerialNo"].ToString();
                     desktops.Add(comp);
                 }
+                dbReader.Close();
+                dbCmd.Parameters.Clear();
 
                 if (desktops.Count > 0)
                     return ComputerDA.getInvID(dbCmd, serialNo);
@@ -759,10 +811,8 @@ namespace SeniorProjectClassLibrary.DAL
             catch (Exception ex)
             {
                 ex.ToString();
-                transaction.Rollback();
                 return null;
             }
-
 
         }
     }

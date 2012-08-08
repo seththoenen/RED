@@ -147,34 +147,34 @@ namespace SeniorProjectClassLibrary.Classes
             return LicenseDA.removeLicense(licenseID, invID);
         }
 
-        public static string removeAllLicensesComputer(ArrayList serialNos)
+        public static string removeAllLicensesComputer(List<int> ids)
         {
-            return LicenseDA.removeAllLicensesComputer(serialNos);
+            return LicenseDA.removeAllLicensesComputer(ids);
         }
 
-        public static string removeAllLicensesEquipment(ArrayList serialNos)
+        public static string removeAllLicensesEquipment(List<int> ids)
         {
-            return LicenseDA.removeAllLicensesEquipment(serialNos);
+            return LicenseDA.removeAllLicensesEquipment(ids);
         }
 
-        public static string removeSelectLicenseComputer(ArrayList serialNos, int licenseID)
+        public static string removeSelectLicenseComputer(List<int> ids, int licenseID)
         {
-            return LicenseDA.removeSelectLicenseComputer(serialNos, licenseID);
+            return LicenseDA.removeSelectLicenseComputer(ids, licenseID);
         }
 
-        public static string removeSelectLicenseEquipment(ArrayList serialNos, int licenseID)
+        public static string removeSelectLicenseEquipment(List<int> ids, int licenseID)
         {
-            return LicenseDA.removeSelectLicenseEquipment(serialNos, licenseID);
+            return LicenseDA.removeSelectLicenseEquipment(ids, licenseID);
         }
 
-        public static string addLicensesComputer(ArrayList serialNos, int licenseID)
+        public static string addLicensesComputer(List<int> ids, int licenseID)
         {
-            return LicenseDA.addLicensesComputer(serialNos, licenseID);
+            return LicenseDA.addLicensesComputer(ids, licenseID);
         }
 
-        public static string addLicensesEquipment(ArrayList serialNos, int licenseID)
+        public static string addLicensesEquipment(List<int> ids, int licenseID)
         {
-            return LicenseDA.addLicensesEquipment(serialNos, licenseID);
+            return LicenseDA.addLicensesEquipment(ids, licenseID);
         }
 
         public static string updateLicense(License license)

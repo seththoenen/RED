@@ -109,5 +109,10 @@ namespace SeniorProjectClassLibrary.Classes
             return EquipmentDA.updateEquipment(equipment);
         }
 
+        public static int? equipmentExistReturnID(string serialNo)
+        {
+            return EquipmentDA.equipmentExistReturnID(serialNo);
+        }
+
     }
 }
