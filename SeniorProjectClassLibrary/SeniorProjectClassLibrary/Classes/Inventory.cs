@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using SeniorProjectClassLibrary.DAL;
 
 namespace SeniorProjectClassLibrary.Classes
@@ -19,11 +18,11 @@ namespace SeniorProjectClassLibrary.Classes
         protected string notes;
         protected PurchaseOrder po;
         protected string status;
-        protected ArrayList groups;
-        protected ArrayList logistics;
+        protected List<Group> groups;
+        protected List<Logistics> logistics;
         protected Logistics currentLocation;
-        protected ArrayList licenses;
-        protected ArrayList warranties;
+        protected List<License> licenses;
+        protected List<Warranty> warranties;
         protected string physicalAddress;
 
         public int InvID
@@ -50,7 +49,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Groups
+        public List<Group> Groups
         {
             get
             {
@@ -62,7 +61,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Warranties
+        public List <Warranty> Warranties
         {
             get
             {
@@ -74,7 +73,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Logistics
+        public List<Logistics> Logistics
         {
             get
             {
@@ -86,7 +85,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Licenses
+        public List<License> Licenses
         {
             get
             {
@@ -222,6 +221,11 @@ namespace SeniorProjectClassLibrary.Classes
         public static List<int> instantSearch(string serialNo)
         {
             return InventoryDA.instantSearch(serialNo);
+        }
+
+        public static List<string> getInvStatus(string serialNo)
+        {
+            return InventoryDA.getInvStatus(serialNo);
         }
     }
 }

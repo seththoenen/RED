@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProjectClassLibrary.DAL
@@ -109,6 +108,8 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.CommandText = sqlCommand;
 
                 dbReader = dbCmd.ExecuteReader();
+                dbCmd.Parameters.Clear();
+
                 string dbPassword = "";
                 while (dbReader.Read())
                 {

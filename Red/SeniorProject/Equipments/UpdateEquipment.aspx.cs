@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
 using System.Text;
 using SeniorProjectClassLibrary.Classes;
 
@@ -37,7 +36,7 @@ namespace SeniorProject.Equipments
                 ddlManufacturer.Items.Insert(0, "");
                 ddlManufacturer.SelectedIndex = 0;
 
-                ArrayList groupList = new ArrayList();
+                List<Group> groupList = new List<Group>();
                 groupList = Group.getAllEquipmentGroups();
 
                 for (int i = 0; i < groupList.Count; i++)
@@ -162,7 +161,7 @@ namespace SeniorProject.Equipments
             List<int> ids = new List<int>();
             ids = getIDs();
 
-            ArrayList newMaintenance = new ArrayList();
+            List<Maintenance> newMaintenance = new List<Maintenance>();
 
             Maintenance maint = new Maintenance();
             maint.Date = txtboxDate.Text;
@@ -215,7 +214,7 @@ namespace SeniorProject.Equipments
 
         protected void btnUpdateEquipment_Click(object sender, EventArgs e)
         {
-            ArrayList equipment = new ArrayList();
+            List<Equipment> equipment = new List<Equipment>();
 
             for (int i = 0; i < lstBoxSerialNos.Items.Count  ; i++)
             {

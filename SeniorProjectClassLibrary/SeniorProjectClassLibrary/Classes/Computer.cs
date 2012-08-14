@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using SeniorProjectClassLibrary.DAL;
 
 
@@ -20,18 +19,18 @@ namespace SeniorProjectClassLibrary.Classes
         private int? usbPorts;
         private string otherConnectivity;
         private string size;
-        private ArrayList monitors;
+        private List<Monitor> monitors;
         private string type;
 
         public Computer()
         {
-            monitors = new ArrayList();
+            monitors = new List<Monitor>();
             po = new PurchaseOrder();
-            groups = new ArrayList();
-            logistics = new ArrayList();
+            groups = new List<Group>();
+            logistics = new List<Logistics>();
             currentLocation = new Logistics();
-            licenses = new ArrayList();
-            warranties = new ArrayList();
+            licenses = new List<License>();
+            warranties = new List<Warranty>();
         }
 
         public int CompID
@@ -168,7 +167,7 @@ namespace SeniorProjectClassLibrary.Classes
         }
 
 
-        public ArrayList Monitors
+        public List<Monitor> Monitors
         {
             get
             {
@@ -180,7 +179,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public static string saveComputers(ArrayList computers)
+        public static string saveComputers(List<Computer> computers)
         {
             return ComputerDA.saveComputers(computers);
         }
@@ -195,7 +194,7 @@ namespace SeniorProjectClassLibrary.Classes
             return ComputerDA.getComputer(invID);
         }
 
-        public static string updateComputers(ArrayList computers)
+        public static string updateComputers(List<Computer> computers)
         {
             return ComputerDA.updateComputers(computers);
         }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProjectClassLibrary.DAL
@@ -37,6 +36,7 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("Maintenance", maint.Description);
 
                 dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
                 transaction.Commit();
                 dbConn.Close();
                 message.Append("Maintenance added successfully<bR>");

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProjectClassLibrary.DAL
@@ -91,7 +90,7 @@ namespace SeniorProjectClassLibrary.DAL
                 Computer comp = new Computer();
                 comp = ComputerDA.getComputer(dbCmd, invID);
 
-                LogisticsDA.removeLogistics(dbCmd, comp.InvID);
+                LogisticsDA.removeLogistics(dbCmd, invID);
 
                 try
                 {
@@ -136,7 +135,7 @@ namespace SeniorProjectClassLibrary.DAL
                         dbCmd.Parameters.AddWithValue("Name", logs.Name);
                     }
 
-                    dbCmd.Parameters.AddWithValue("InvID", comp.InvID);
+                    dbCmd.Parameters.AddWithValue("InvID", invID);
                     dbCmd.Parameters.AddWithValue("StartDate", DateTime.Now.ToShortDateString());
                     dbCmd.Parameters.AddWithValue("Status", "Active");
 

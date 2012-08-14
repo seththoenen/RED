@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using SeniorProjectClassLibrary.DAL;
 
 namespace SeniorProjectClassLibrary.Classes
@@ -18,10 +17,10 @@ namespace SeniorProjectClassLibrary.Classes
         public Equipment()
         {
             currentLocation = new Logistics();
-            groups = new ArrayList();
+            groups = new List<Group>();
             po = new PurchaseOrder();
-            licenses = new ArrayList();
-            warranties = new ArrayList();
+            licenses = new List<License>();
+            warranties = new List<Warranty>();
         }
         
         public int EquipID
@@ -84,7 +83,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public static string saveEquipment(ArrayList equipment)
+        public static string saveEquipment(List<Equipment> equipment)
         {
             return EquipmentDA.saveEquipment(equipment);
         }
@@ -104,7 +103,7 @@ namespace SeniorProjectClassLibrary.Classes
             return EquipmentDA.updateEquipment(oEquip, equip);
         }
 
-        public static string updateEquipment(ArrayList equipment)
+        public static string updateEquipment(List<Equipment> equipment)
         {
             return EquipmentDA.updateEquipment(equipment);
         }

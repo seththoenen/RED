@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using SeniorProjectClassLibrary.DAL;
 
 namespace SeniorProjectClassLibrary.Classes
@@ -106,7 +105,7 @@ namespace SeniorProjectClassLibrary.Classes
             return brand + "  " + size + " " + model;
         }
 
-        public static ArrayList getMonitors()
+        public static List<Monitor> getMonitors()
         {
             return MonitorDA.getMonitors();
         }

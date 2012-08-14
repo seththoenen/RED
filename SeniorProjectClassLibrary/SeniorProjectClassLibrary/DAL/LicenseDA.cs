@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using System.Data.SqlClient;
 using SeniorProjectClassLibrary.Classes;
 
@@ -130,11 +129,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = cmd.ExecuteReader();
 
-            ArrayList licenseList = new ArrayList();
+            List<int> licenseList = new List<int>();
 
             while (dbReader.Read())
             {
-                licenseList.Add(dbReader["LicID"]);
+                licenseList.Add(Convert.ToInt32(dbReader["LicID"]));
             }
             dbReader.Close();
             cmd.Parameters.Clear();
@@ -242,11 +241,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = cmd.ExecuteReader();
 
-            ArrayList licenseList = new ArrayList();
+            List<int> licenseList = new List<int>();
 
             while (dbReader.Read())
             {
-                licenseList.Add(dbReader["LicID"]);
+                licenseList.Add(Convert.ToInt32(dbReader["LicID"]));
             }
             dbReader.Close();
             cmd.Parameters.Clear();
@@ -287,6 +286,7 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("InvID", invID);
 
                 dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();

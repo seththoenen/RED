@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Equipments
@@ -95,7 +94,7 @@ namespace SeniorProject.Equipments
 
                 txtBoxMaintDate.Text = DateTime.Now.ToShortDateString();
 
-                ArrayList groups = new ArrayList();
+                List<Group> groups = new List<Group>();
                 groups = Group.getAllEquipmentGroups();
                 int nextGroup = 1;
 
@@ -335,7 +334,7 @@ namespace SeniorProject.Equipments
         protected void btnUpdateGroups_Click(object sender, EventArgs e)
         {
             int invID = Convert.ToInt32(Session["CurrentEquipment"]);
-            ArrayList currentGroups = new ArrayList();
+            List<string> currentGroups = new List<string>();
             for (int i = 0; i < chkBoxLstGroups1.Items.Count; i++)
             {
                 if (chkBoxLstGroups1.Items[i].Selected == true)

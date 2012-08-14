@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
 using System.Configuration;
 using SeniorProjectClassLibrary.Classes;
 
@@ -11,7 +10,7 @@ namespace SeniorProjectClassLibrary.DAL
 {
     public class EquipmentDA
     {
-        public static string saveEquipment(ArrayList equipment)
+        public static string saveEquipment(List<Equipment> equipment)
         {
             StringBuilder message = new StringBuilder();
 
@@ -345,7 +344,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Connection = dbConn;
 
             dbReader = dbCmd.ExecuteReader();
-            ArrayList equipment = new ArrayList();
+            List<Equipment> equipment = new List<Equipment>();
 
             while (dbReader.Read())
             {
@@ -353,6 +352,8 @@ namespace SeniorProjectClassLibrary.DAL
                 equip.SerialNo = dbReader["SerialNo"].ToString();
                 equipment.Add(equip);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             if (equipment.Count > 0)
                 return true;
@@ -484,7 +485,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string updateEquipment(ArrayList equipment)
+        public static string updateEquipment(List<Equipment> equipment)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -647,7 +648,7 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Connection = dbConn;
 
                 dbReader = dbCmd.ExecuteReader();
-                ArrayList desktops = new ArrayList();
+                List<Computer> desktops = new List<Computer>();
 
                 while (dbReader.Read())
                 {

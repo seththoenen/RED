@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
 using System.Configuration;
 using SeniorProjectClassLibrary.Classes;
 
@@ -11,7 +10,7 @@ namespace SeniorProjectClassLibrary.DAL
 {
     public class ComputerDA
     {
-        public static string saveComputers(ArrayList computers)
+        public static string saveComputers(List<Computer> computers)
         {
             
             StringBuilder message = new StringBuilder();
@@ -204,7 +203,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Connection = dbConn;
 
             dbReader = dbCmd.ExecuteReader();
-            ArrayList desktops = new ArrayList();
+            List<Computer> desktops = new List<Computer>();
 
             while (dbReader.Read())
             {
@@ -212,6 +211,8 @@ namespace SeniorProjectClassLibrary.DAL
                 comp.SerialNo = dbReader["SerialNo"].ToString();
                 desktops.Add(comp);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             if (desktops.Count > 0)
                 return true;
@@ -334,6 +335,7 @@ namespace SeniorProjectClassLibrary.DAL
 
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
                 
 
                 comp.Monitors = MonitorDA.getMonitor(dbCmd,comp.CompID);
@@ -455,6 +457,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
 
             comp.Monitors = MonitorDA.getMonitor(cmd, comp.CompID);
@@ -577,7 +580,7 @@ namespace SeniorProjectClassLibrary.DAL
             cmd.Parameters.Clear();
         }
 
-        public static string updateComputers(ArrayList computers)
+        public static string updateComputers(List<Computer> computers)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -723,6 +726,7 @@ namespace SeniorProjectClassLibrary.DAL
                     if (dbCmd.CommandText != "UPDATE Computer SET WHERE InvID = @InvID")
                     {
                         dbCmd.ExecuteNonQuery();
+                        dbCmd.Parameters.Clear();
                     }
 
                     dbCmd.Parameters.Clear();
@@ -791,7 +795,7 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Connection = dbConn;
 
                 dbReader = dbCmd.ExecuteReader();
-                ArrayList desktops = new ArrayList();
+                List<Computer> desktops = new List<Computer>();
 
                 while (dbReader.Read())
                 {

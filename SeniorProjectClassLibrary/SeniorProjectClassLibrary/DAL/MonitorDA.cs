@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProjectClassLibrary.DAL
 {
     public class MonitorDA
     {
-        public static ArrayList getMonitors()
+        public static List<Monitor> getMonitors()
         {
             SqlConnection dbConn;
             string sConnection;
@@ -32,7 +31,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = dbCmd.ExecuteReader();
 
-            ArrayList monitorList = new ArrayList();
+            List<Monitor> monitorList = new List<Monitor>();
 
             while (dbReader.Read())
             {
@@ -45,11 +44,13 @@ namespace SeniorProjectClassLibrary.DAL
                 mon.Model = dbReader["Model"].ToString();
                 monitorList.Add(mon);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             return monitorList;
         }
 
-        public static ArrayList getMonitor(SqlCommand cmd, int compID)
+        public static List<Monitor> getMonitor(SqlCommand cmd, int compID)
         {
             SqlDataReader dbReader;
             string sql = "SELECT * FROM MonitorComputer, Monitor WHERE MonitorComputer.MonID = Monitor.MonID AND MonitorComputer.CompID = @CompID";
@@ -60,7 +61,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = cmd.ExecuteReader();
 
-            ArrayList monitors = new ArrayList();
+            List<Monitor> monitors = new List<Monitor>();
             while (dbReader.Read())
             {
                 Monitor mon = new Monitor();
@@ -118,6 +119,7 @@ namespace SeniorProjectClassLibrary.DAL
                     mon.DisplayText = dbReader["Display"].ToString();
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
                 transaction.Commit();
                 dbConn.Close();
 
@@ -210,6 +212,7 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("MonID", mon.ID);
 
                 dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -267,6 +270,7 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("id", id);
 
                 dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -309,6 +313,7 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("CompID", compID);
 
                 dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -354,7 +359,8 @@ namespace SeniorProjectClassLibrary.DAL
 
                     dbCmd.Parameters.AddWithValue("CompID", compId);
 
-                    dbCmd.ExecuteNonQuery();                        
+                    dbCmd.ExecuteNonQuery();
+                    dbCmd.Parameters.Clear();  
                 }
                 transaction.Commit();
                 dbConn.Close();

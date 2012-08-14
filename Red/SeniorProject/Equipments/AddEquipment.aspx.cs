@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
@@ -18,9 +17,9 @@ namespace SeniorProject
         {
             if (!IsPostBack)
             {
-                Session["Warranties"] = new ArrayList();  
-            
-                ArrayList groups = new ArrayList();
+                Session["Warranties"] = new List<Warranty>();
+
+                List<Group> groups = new List<Group>();
                 groups = Group.getAllEquipmentGroups();
 
                 int counter = 0;
@@ -69,8 +68,8 @@ namespace SeniorProject
 
         protected void btnAddEquipment_Click(object sender, EventArgs e)
         {
-            ArrayList equipList = new ArrayList();
-            ArrayList groupList = new ArrayList();
+            List<Equipment> equipList = new List<Equipment>();
+            List<Group> groupList = new List<Group>();
             for (int i = 0; i < chkBoxListGroups1.Items.Count; i++)
             {
                 if (chkBoxListGroups1.Items[i].Selected == true)
@@ -152,7 +151,7 @@ namespace SeniorProject
                     equip.Licenses.Add(lic);
                 }
 
-                equip.Warranties = (ArrayList)Session["Warranties"];
+                equip.Warranties = (List<Warranty>)Session["Warranties"];
 
             }
 
@@ -206,8 +205,8 @@ namespace SeniorProject
         {
             try
             {
-                ArrayList warranties = new ArrayList();
-                warranties = (ArrayList)Session["Warranties"];
+                List<Warranty> warranties = new List<Warranty>();
+                warranties = (List<Warranty>)Session["Warranties"];
                 warranties.RemoveAt(lstBoxWarranties.SelectedIndex);
 
                 lstBoxWarranties.Items.Clear();
@@ -225,7 +224,7 @@ namespace SeniorProject
         protected void btnAddWarranty_Click(object sender, EventArgs e)
         {
             Page.Validate("warranty");
-            ArrayList warranties = new ArrayList();
+            List<Warranty> warranties = new List<Warranty>();
             Warranty war = new Warranty();
             war.Company = ddlWarrantyCompany.SelectedItem.ToString();
             war.WarrantyType = txtBoxWarrantyType.Text;
@@ -239,7 +238,7 @@ namespace SeniorProject
             }
             else
             {
-                warranties = (ArrayList)Session["Warranties"];
+                warranties = (List<Warranty>)Session["Warranties"];
             }
             warranties.Add(war);
 

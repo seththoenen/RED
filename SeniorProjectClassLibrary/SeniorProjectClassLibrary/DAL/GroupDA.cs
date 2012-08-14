@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using System.Data.SqlClient;
 using System.Configuration;
 using SeniorProjectClassLibrary.Classes;
@@ -41,6 +40,7 @@ namespace SeniorProjectClassLibrary.DAL
                     dbCmd.Parameters.AddWithValue("Type", group.Type);
 
                     dbCmd.ExecuteNonQuery();
+                    dbCmd.Parameters.Clear();
                     transaction.Commit();
                     dbConn.Close();
                     message.Append("Group created successfully<bR>");
@@ -96,6 +96,7 @@ namespace SeniorProjectClassLibrary.DAL
                     dbCmd.Parameters.AddWithValue("OldName", oldGroup.Name);
 
                     dbCmd.ExecuteNonQuery();
+                    dbCmd.Parameters.Clear();
                     transaction.Commit();
                     dbConn.Close();
                     message.Append("Group updated successfully<bR>");
@@ -140,7 +141,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = dbCmd.ExecuteReader();
 
-            ArrayList groupList = new ArrayList();
+            List<Group> groupList = new List<Group>();
 
             while (dbReader.Read())
             {
@@ -149,6 +150,8 @@ namespace SeniorProjectClassLibrary.DAL
                 group.Notes = dbReader["Notes"].ToString();
                 groupList.Add(group);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             if (groupList.Count > 0)
             {
@@ -172,7 +175,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = cmd.ExecuteReader();
 
-            ArrayList groupList = new ArrayList();
+            List<Group> groupList = new List<Group>();
 
             while (dbReader.Read())
             {
@@ -182,6 +185,7 @@ namespace SeniorProjectClassLibrary.DAL
                 groupList.Add(group);
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             if (groupList.Count > 0)
             {
@@ -226,22 +230,7 @@ namespace SeniorProjectClassLibrary.DAL
                     group.Notes = dbReader["Notes"].ToString();
                 }
                 dbReader.Close();
-
-                //sql = "SELECT Inventory.InviD FROM , GroupComputer WHERE GroupComputer.CompID = Desktop.id AND GroupComputer.GroupID = " + GroupID;
-
-                //dbCmd = new SqlCommand();
-                //dbCmd.CommandText = sql;
-                //dbCmd.Connection = dbConn;
-
-                //dbReader = dbCmd.ExecuteReader();
-                //group.Computers = new ArrayList();
-
-                //while (dbReader.Read())
-                //{
-                //    Computer comp = new Computer();
-                //    comp = DesktopDA.getDesktop(dbReader["id"].ToString(), connectionString);
-                //    group.Computers.Add(comp);
-                //}
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 return group;
@@ -276,6 +265,7 @@ namespace SeniorProjectClassLibrary.DAL
                 group.Notes = dbReader["Notes"].ToString();
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             return group;
         }
@@ -315,6 +305,7 @@ namespace SeniorProjectClassLibrary.DAL
                     group.Computers.Add(comp);
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -364,6 +355,7 @@ namespace SeniorProjectClassLibrary.DAL
                     group.Equipment.Add(equip);
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -378,7 +370,7 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static ArrayList getGroups(SqlCommand cmd, int invID) 
+        public static List<Group> getGroups(SqlCommand cmd, int invID) 
         {
             SqlDataReader dbReader;
             string sql;
@@ -390,7 +382,7 @@ namespace SeniorProjectClassLibrary.DAL
             cmd.Parameters.AddWithValue("InvID", invID);
 
             dbReader = cmd.ExecuteReader();
-            ArrayList groupList = new ArrayList();
+            List<Group> groupList = new List<Group>();
 
             while (dbReader.Read())
             {
@@ -405,7 +397,7 @@ namespace SeniorProjectClassLibrary.DAL
             return groupList;
         }
 
-        public static ArrayList getAllComputerGroups() 
+        public static List<Group> getAllComputerGroups() 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -425,7 +417,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.CommandText = sql;
 
             dbReader = dbCmd.ExecuteReader();
-            ArrayList groupList = new ArrayList();
+            List<Group> groupList = new List<Group>();
 
             while (dbReader.Read())
             {
@@ -435,11 +427,13 @@ namespace SeniorProjectClassLibrary.DAL
                 group.Notes = dbReader["Notes"].ToString();
                 groupList.Add(group);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             return groupList;
         }
 
-        public static ArrayList getAllEquipmentGroups() 
+        public static List<Group> getAllEquipmentGroups() 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -459,7 +453,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.CommandText = sql;
 
             dbReader = dbCmd.ExecuteReader();
-            ArrayList groupList = new ArrayList();
+            List<Group> groupList = new List<Group>();
 
             while (dbReader.Read())
             {
@@ -469,11 +463,13 @@ namespace SeniorProjectClassLibrary.DAL
                 group.Notes = dbReader["Notes"].ToString();
                 groupList.Add(group);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             return groupList;
         }
 
-        public static ArrayList getAllGroups() 
+        public static List<Group> getAllGroups() 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -493,7 +489,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.CommandText = sql;
 
             dbReader = dbCmd.ExecuteReader();
-            ArrayList groupList = new ArrayList();
+            List<Group> groupList = new List<Group>();
 
             while (dbReader.Read())
             {
@@ -503,23 +499,27 @@ namespace SeniorProjectClassLibrary.DAL
                 group.Notes = dbReader["Notes"].ToString();
                 groupList.Add(group);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             return groupList;
         }
 
-        public static void updateGroups(SqlCommand cmd, ArrayList groupList, int invID) 
+        public static void updateGroups(SqlCommand cmd, List<Group> groupList, int invID) 
         {
             GroupDA.removeLinks(cmd, invID);
 
             for (int i = 0; i < groupList.Count; i++)
             {
-                int groupID = GroupDA.getGroupID(cmd, groupList[i].ToString());
+                Group group = new Group();
+                group = (Group)groupList[i];
+                int groupID = GroupDA.getGroupID(cmd, group.Name);
                 GroupDA.addLink(cmd, groupID, invID);
             }
 
         }
 
-        public static string updateGroups(ArrayList groupList, int invID) 
+        public static string updateGroups(List<string> groupList, int invID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -648,6 +648,7 @@ namespace SeniorProjectClassLibrary.DAL
                     groupID = Convert.ToInt32(dbReader["GroupID"]);
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -698,6 +699,7 @@ namespace SeniorProjectClassLibrary.DAL
                     }
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -714,7 +716,7 @@ namespace SeniorProjectClassLibrary.DAL
             
         }
 
-        public static string addInvToGroup(ArrayList serialNos, int groupID)
+        public static string addInvToGroup(List<string> serialNos, int groupID)
         {
             SqlConnection dbConn;
             string sConnection;

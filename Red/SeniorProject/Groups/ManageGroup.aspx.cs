@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Text;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Groups
@@ -163,7 +162,7 @@ namespace SeniorProject.Groups
             }
             else if (btnAddComputers.Text == "Add Selected")
             {
-                ArrayList serialNos = new ArrayList();
+                List<string> serialNos = new List<string>();
                 for (int i=0; i<lstBoxSerialNos.Items.Count; i++)
                 {
                     serialNos.Add(lstBoxSerialNos.Items[i].Text);

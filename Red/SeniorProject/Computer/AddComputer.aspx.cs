@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
@@ -18,13 +17,13 @@ namespace SeniorProject
         {
             if (!IsPostBack)
             {
-                Session["Warranties"] = new ArrayList();    
-                ArrayList monList = new ArrayList();
+                Session["Warranties"] = new List<Warranty>();
+                List<Monitor> monList = new List<Monitor>();
                 monList = Monitor.getMonitors();
                 ddlType.Text = "Please Select";
                 ddlPONO.SelectedValue = "28";
 
-                ArrayList groupList = new ArrayList();
+                List<Group> groupList = new List<Group>();
                 groupList = Group.getAllComputerGroups();
                 int nextGroup = 1;
 
@@ -65,35 +64,43 @@ namespace SeniorProject
         protected void btnAddDesktop_Click(object sender, EventArgs e)
         {
 
-            ArrayList groupList = new ArrayList();
-            ArrayList computers = new ArrayList();
+            List<Group> groupList = new List<Group>();
+            List<Computer> computers = new List<Computer>();
 
             for(int i=0; i < chkBoxListGroups1.Items.Count; i++)
             {
                 if (chkBoxListGroups1.Items[i].Selected == true)
                 {
-                    groupList.Add(chkBoxListGroups1.Items[i].ToString());
+                    Group group = new Group();
+                    group.Name = chkBoxListGroups1.Items[i].ToString();
+                    groupList.Add(group);
                 }
             }
             for (int i = 0; i < chkBoxListGroups2.Items.Count; i++)
             {
                 if (chkBoxListGroups2.Items[i].Selected == true)
                 {
-                    groupList.Add(chkBoxListGroups2.Items[i].ToString());
+                    Group group = new Group();
+                    group.Name = chkBoxListGroups1.Items[i].ToString();
+                    groupList.Add(group);
                 }
             }
             for (int i = 0; i < chkBoxListGroups3.Items.Count; i++)
             {
                 if (chkBoxListGroups3.Items[i].Selected == true)
                 {
-                    groupList.Add(chkBoxListGroups3.Items[i].ToString());
+                    Group group = new Group();
+                    group.Name = chkBoxListGroups1.Items[i].ToString();
+                    groupList.Add(group);
                 }
             }
             for (int i = 0; i < chkBoxListGroups4.Items.Count; i++)
             {
                 if (chkBoxListGroups4.Items[i].Selected == true)
                 {
-                    groupList.Add(chkBoxListGroups4.Items[i].ToString());
+                    Group group = new Group();
+                    group.Name = chkBoxListGroups1.Items[i].ToString();
+                    groupList.Add(group);
                 }
             }
 
@@ -144,7 +151,7 @@ namespace SeniorProject
                     comp.Licenses.Add(lic);
                 }
 
-                comp.Warranties = (ArrayList)Session["Warranties"];
+                comp.Warranties = (List<Warranty>)Session["Warranties"];
 
                 computers.Add(comp);
             }
@@ -223,7 +230,7 @@ namespace SeniorProject
         protected void btnAddWarranty_Click(object sender, EventArgs e)
         {
             Page.Validate("warranty");
-            ArrayList warranties = new ArrayList();
+            List<Warranty> warranties = new List<Warranty>();
             Warranty war = new Warranty();
             war.Company = ddlWarrantyCompany.SelectedItem.ToString();
             war.WarrantyType = txtBoxWarrantyType.Text;
@@ -236,8 +243,8 @@ namespace SeniorProject
                 warranties.Clear();
             }
             else
-            { 
-                warranties = (ArrayList)Session["Warranties"];
+            {
+                warranties = (List<Warranty>)Session["Warranties"];
                 
             }
             warranties.Add(war);
@@ -256,8 +263,8 @@ namespace SeniorProject
         {
             try
             {
-                ArrayList warranties = new ArrayList();
-                warranties = (ArrayList)Session["Warranties"];
+                List<Warranty> warranties = new List<Warranty>();
+                warranties = (List<Warranty>)Session["Warranties"];
                 warranties.RemoveAt(lstBoxWarranties.SelectedIndex);
 
                 lstBoxWarranties.Items.Clear();

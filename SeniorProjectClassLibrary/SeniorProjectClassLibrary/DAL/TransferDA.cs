@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using System.Data.SqlClient;
 using SeniorProjectClassLibrary.Classes;
 
@@ -32,7 +31,6 @@ namespace SeniorProjectClassLibrary.DAL
 
                 dbCmd.CommandText = sqlCommand;
 
-                //dbCmd.Parameters.AddWithValue("Name", transfer.Name);
                 dbCmd.Parameters.AddWithValue("Date", transfer.Date);
                 dbCmd.Parameters.AddWithValue("Whereto", transfer.Where);
                 dbCmd.Parameters.AddWithValue("Notes", transfer.Notes);
@@ -129,6 +127,7 @@ namespace SeniorProjectClassLibrary.DAL
                 transferID = Convert.ToInt32(dbReader["TransID"]);
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             if (transferID > 0)
             {

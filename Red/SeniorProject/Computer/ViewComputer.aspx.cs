@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
 using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
@@ -101,7 +100,7 @@ namespace SeniorProject
                     ddlStatus.Enabled = false;
                 }
 
-                ArrayList groups = new ArrayList();
+                List<Group> groups = new List<Group>();
                 groups = Group.getAllComputerGroups();
                 int nextGroup = 1;
 
@@ -266,7 +265,7 @@ namespace SeniorProject
         {
 
             int invID = Convert.ToInt32(Session["CurrentComputer"]);
-            ArrayList currentGroups = new ArrayList();
+            List<string> currentGroups = new List<string>();
             for (int i = 0; i < chkBoxLstGroups1.Items.Count; i++)
             {
                 if (chkBoxLstGroups1.Items[i].Selected == true)

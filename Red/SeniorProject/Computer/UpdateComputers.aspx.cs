@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
 using System.Text;
 using SeniorProjectClassLibrary.Classes;
 
@@ -43,7 +42,7 @@ namespace SeniorProject
                 ddlUSBPorts.Items.Insert(0, "");
                 ddlUSBPorts.SelectedIndex = 0;
 
-                ArrayList groupList = new ArrayList();
+                List<Group> groupList = new List<Group>();
                 groupList = Group.getAllComputerGroups();
 
                 for (int i = 0; i < groupList.Count; i++)
@@ -69,7 +68,7 @@ namespace SeniorProject
 
         protected void btnAddDesktop_Click(object sender, EventArgs e)
         {
-            ArrayList computers = new ArrayList();            
+            List<Computer> computers = new List<Computer>();            
 
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
@@ -181,7 +180,7 @@ namespace SeniorProject
             List<int> ids = new List<int>();
             ids = getIDs();
 
-            ArrayList newMaintenance = new ArrayList();
+            List<Maintenance> newMaintenance = new List<Maintenance>();
 
             Maintenance maint = new Maintenance();
             maint.Date = txtboxDate.Text;

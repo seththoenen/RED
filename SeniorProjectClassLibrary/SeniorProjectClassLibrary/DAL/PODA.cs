@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using System.Data.SqlClient;
 using SeniorProjectClassLibrary.Classes;
 
@@ -43,6 +42,7 @@ namespace SeniorProjectClassLibrary.DAL
 
                     dbCmd.ExecuteNonQuery();
                     transaction.Commit();
+                    dbCmd.Parameters.Clear();
                     dbConn.Close();
                     message.Append("Purchase Order created successfully<bR>");
 
@@ -101,6 +101,7 @@ namespace SeniorProjectClassLibrary.DAL
                     dbCmd.Parameters.AddWithValue("OldPONO", oldPO.PONumber);
 
                     dbCmd.ExecuteNonQuery();
+                    dbCmd.Parameters.Clear();
                     transaction.Commit();
                     dbConn.Close();
                     message.Append("Purchase Order created successfully<bR>");
@@ -187,6 +188,7 @@ namespace SeniorProjectClassLibrary.DAL
                     PO.Title = dbReader["Title"].ToString();
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -226,6 +228,7 @@ namespace SeniorProjectClassLibrary.DAL
                 PO.Title = dbReader["Title"].ToString();
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             return PO;
         }
@@ -249,6 +252,7 @@ namespace SeniorProjectClassLibrary.DAL
                 POID = Convert.ToInt32(dbReader["POID"]);
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             return POID;
         }
@@ -275,6 +279,7 @@ namespace SeniorProjectClassLibrary.DAL
                 poID = Convert.ToInt32(dbReader["POID"]);
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             if (poID > 0)
             {

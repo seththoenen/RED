@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using SeniorProjectClassLibrary.DAL;
 
 namespace SeniorProjectClassLibrary.Classes
@@ -10,8 +9,8 @@ namespace SeniorProjectClassLibrary.Classes
     public class PurchaseOrder
     {
         private int? id;
-        private ArrayList computers;
-        private ArrayList equipment;
+        private List<Computer> computers;
+        private List<Equipment> equipment;
         private string purchaseDate;
         private string poNumber;
         private string requisitionNo;
@@ -20,8 +19,8 @@ namespace SeniorProjectClassLibrary.Classes
 
         public PurchaseOrder()
         {
-            computers = new ArrayList();
-            equipment = new ArrayList();
+            computers = new List<Computer>();
+            equipment = new List<Equipment>();
         }
 
         public int? ID
@@ -36,7 +35,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Computers
+        public List<Computer> Computers
         {
             get
             {
@@ -48,7 +47,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Equipment 
+        public List<Equipment> Equipment 
         {
             get 
             {

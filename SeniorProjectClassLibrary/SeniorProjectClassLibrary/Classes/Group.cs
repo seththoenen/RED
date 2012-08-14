@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using SeniorProjectClassLibrary.DAL;
 
 namespace SeniorProjectClassLibrary.Classes
@@ -14,13 +13,13 @@ namespace SeniorProjectClassLibrary.Classes
         private string name;
         private string notes;
         private string type;
-        private ArrayList computers;
-        private ArrayList equipment;
+        private List<Computer> computers;
+        private List<Equipment> equipment;
 
         public Group()
         {
-            computers = new ArrayList();
-            equipment = new ArrayList();
+            computers = new List<Computer>();
+            equipment = new List<Equipment>();
         }
 
         public int ID
@@ -71,7 +70,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Computers
+        public List<Computer> Computers
         {
             get
             {
@@ -83,7 +82,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public ArrayList Equipment
+        public List<Equipment> Equipment
         {
             get
             {
@@ -95,7 +94,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public static ArrayList getAllComputerGroups()
+        public static List<Group> getAllComputerGroups()
         {
             return GroupDA.getAllComputerGroups();
         }
@@ -130,17 +129,17 @@ namespace SeniorProjectClassLibrary.Classes
             return GroupDA.getGroupEquipment(groupName);
         }
 
-        public static ArrayList getAllEquipmentGroups()
+        public static List<Group> getAllEquipmentGroups()
         {
             return GroupDA.getAllEquipmentGroups();
         }
 
-        public static ArrayList getAllGroups()
+        public static List<Group> getAllGroups()
         {
             return GroupDA.getAllGroups();
         }
 
-        public static string updateGroups(ArrayList groupList, int invID)
+        public static string updateGroups(List<string> groupList, int invID)
         {
             return GroupDA.updateGroups(groupList, invID);
         }
@@ -155,7 +154,7 @@ namespace SeniorProjectClassLibrary.Classes
             return GroupDA.invInGroup(serialNo, groupId);
         }
 
-        public static string addInvToGroup(ArrayList serialNos, int groupID)
+        public static string addInvToGroup(List<string> serialNos, int groupID)
         {
             return GroupDA.addInvToGroup(serialNos, groupID);
         }
