@@ -70,7 +70,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Licenses WHERE LicID = @LicID";
+            string sql = "SELECT Software, OS, LicenseKey, NumOfCopies, ExpirationDate, Notes FROM Licenses WHERE LicID = @LicID";
 
             cmd.CommandText = sql;
 
@@ -120,7 +120,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Licenses WHERE Software = @Software AND LicenseKey = @Key";
+            string sql = "SELECT LicID FROM Licenses WHERE Software = @Software AND LicenseKey = @Key";
 
             cmd.CommandText = sql;
 
@@ -231,7 +231,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Licenses, LicenseInventory WHERE Licenses.LicID = LicenseInventory.LicID AND Software = @Software AND LicenseKey = @Key AND InvID = @InvID";
+            string sql = "SELECT Licenses.LicID FROM Licenses, LicenseInventory WHERE Licenses.LicID = LicenseInventory.LicID AND Software = @Software AND LicenseKey = @Key AND InvID = @InvID";
 
             cmd.CommandText = sql;
 

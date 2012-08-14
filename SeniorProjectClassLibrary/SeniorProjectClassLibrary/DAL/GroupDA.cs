@@ -133,7 +133,7 @@ namespace SeniorProjectClassLibrary.DAL
             transaction = dbConn.BeginTransaction("Transaction");
             dbCmd.Transaction = transaction;
 
-            string sql = "SELECT * FROM Groups WHERE Name = @Name";
+            string sql = "SELECT GroupID, Notes FROM Groups WHERE Name = @Name";
 
             dbCmd.CommandText = sql;
 
@@ -167,7 +167,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
             
-            string sql = "SELECT * FROM Groups WHERE Name = @GroupName";
+            string sql = "SELECT GroupID, Notes FROM Groups WHERE Name = @GroupName";
 
             cmd.CommandText = sql;
 
@@ -214,7 +214,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                string sql = "SELECT * from Groups where GroupID = @GroupID";
+                string sql = "SELECT GroupID, Name, Notes from Groups where GroupID = @GroupID";
 
                 dbCmd.CommandText = sql;
 
@@ -249,7 +249,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
             
-            string sql = "SELECT * FROM Groups WHERE GroupID = @GroupID";
+            string sql = "SELECT GroupID, Name, Notes FROM Groups WHERE GroupID = @GroupID";
 
             cmd.CommandText = sql;
 
@@ -412,7 +412,7 @@ namespace SeniorProjectClassLibrary.DAL
             transaction = dbConn.BeginTransaction("Transaction");
             dbCmd.Transaction = transaction;
 
-            string sql = "SELECT * FROM Groups WHERE Type = 'Computer'";
+            string sql = "SELECT GroupID, Name, Notes FROM Groups WHERE Type = 'Computer'";
 
             dbCmd.CommandText = sql;
 
@@ -448,7 +448,7 @@ namespace SeniorProjectClassLibrary.DAL
             transaction = dbConn.BeginTransaction("Transaction");
             dbCmd.Transaction = transaction;
 
-            string sql = "SELECT * FROM Groups WHERE Type = 'Equipment'";
+            string sql = "SELECT GroupID, Name, Notes FROM Groups WHERE Type = 'Equipment'";
 
             dbCmd.CommandText = sql;
 
@@ -484,7 +484,7 @@ namespace SeniorProjectClassLibrary.DAL
             transaction = dbConn.BeginTransaction("Transaction");
             dbCmd.Transaction = transaction;
 
-            string sql = "SELECT * FROM Groups";
+            string sql = "SELECT GroupID, Name, Notes FROM Groups";
 
             dbCmd.CommandText = sql;
 

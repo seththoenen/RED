@@ -135,7 +135,8 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                string sql = "SELECT * FROM Inventory, Equipment, Logistics WHERE Inventory.InvID = Equipment.InvID AND "
+                string sql = "SELECT SMSUtag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, PhysicalAddress, EquipmentType, Connectivity, "+
+                    "NetworkCapable, Other, Inventory.Status, Building, Room, PrimaryUser, Name FROM Inventory, Equipment, Logistics WHERE Inventory.InvID = Equipment.InvID AND "
                 + "Inventory.InvID = Logistics.InvID AND Inventory.InvID = @InvID AND Logistics.Status = @Status";
 
                 dbCmd.CommandText = sql;
@@ -198,7 +199,8 @@ namespace SeniorProjectClassLibrary.DAL
 
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Inventory, Equipment, Logistics WHERE Inventory.InvID = Equipment.InvID AND "
+            string sql = "SELECT Inventory.InvID, SMSUtag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, EquipmentType, "+
+                "Connectivity, NetworkCapable, Other, Inventory.Status, Building, Room, PrimaryUser, Name FROM Inventory, Equipment, Logistics WHERE Inventory.InvID = Equipment.InvID AND "
             + "Inventory.InvID = Logistics.InvID AND Inventory.SerialNo = @SerialNo AND Logistics.Status = @Status";
 
             cmd.CommandText = sql;
@@ -250,7 +252,8 @@ namespace SeniorProjectClassLibrary.DAL
 
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Inventory, Equipment, Logistics WHERE Inventory.InvID = Equipment.InvID AND "
+            string sql = "SELECT SMSUtag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, EquipmentType, Connectivity, NetworkCapable, "+
+                "Other, Inventory.Status, Building, Room, PrimaryUser, Name FROM Inventory, Equipment, Logistics WHERE Inventory.InvID = Equipment.InvID AND "
             + "Inventory.InvID = Logistics.InvID AND Inventory.InvID = @InvID AND Logistics.Status = @Status";
 
             cmd.CommandText = sql;
@@ -336,7 +339,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
 
-            sql = "SELECT * FROM Inventory, Equipment Where Inventory.InvID = Equipment.InvID AND SerialNo = @SerialNo";
+            sql = "SELECT SerialNo FROM Inventory, Equipment Where Inventory.InvID = Equipment.InvID AND SerialNo = @SerialNo";
 
             dbCmd = new SqlCommand();
             dbCmd.CommandText = sql;

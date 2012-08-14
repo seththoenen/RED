@@ -112,7 +112,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             string sql;
 
-            sql = "SELECT * FROM Transfers WHERE Name = @TransferName";
+            sql = "SELECT TransID FROM Transfers WHERE Name = @TransferName";
 
             cmd.CommandText = sql;
 

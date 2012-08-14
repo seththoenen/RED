@@ -195,7 +195,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
 
-            sql = "SELECT * FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
+            sql = "SELECT SerialNo FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
 
             dbCmd = new SqlCommand();
             dbCmd.CommandText = sql;
@@ -363,7 +363,9 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
+            string sql = "SELECT Inventory.InvID, CompID, SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, CPU, VideoCard, HardDrive, "+
+                "Memory, OpticalDrive, RemovableMedia, USBPorts, OtherConnectivity, FormFactor, Type, Inventory.Status, Building, Room, PrimaryUser, Name "+
+                "FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
             + "Inventory.InvID = Logistics.InvID AND Inventory.SerialNo = @SerialNo AND Logistics.Status = @Status";
 
             cmd.CommandText = sql;
@@ -404,6 +406,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
 
             comp.Monitors = MonitorDA.getMonitor(cmd, comp.CompID);
@@ -418,7 +421,9 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
+            string sql = "SELECT SerialNo, CompID, SMSUTag, Manufacturer, Model, PurchasePrice, Notes, CPU, VideoCard, "+
+                "HardDrive, Memory, OpticalDrive, RemovableMedia, USBPorts, OtherConnectivity, FormFactor, Type, Inventory.Status, Building, Room, PrimaryUser, Name "+
+                "FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
             + "Inventory.InvID = Logistics.InvID AND Inventory.InvID = @InvID AND Logistics.Status = @Status";
 
             cmd.CommandText = sql;
@@ -431,7 +436,6 @@ namespace SeniorProjectClassLibrary.DAL
 
             while (dbReader.Read())
             {
-                comp.SerialNo = dbReader["SerialNo"].ToString();
                 comp.CompID = Convert.ToInt32(dbReader["CompID"]);
                 comp.SMSUtag = dbReader["SMSUtag"].ToString();
                 comp.SerialNo = dbReader["SerialNo"].ToString();

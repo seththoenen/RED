@@ -25,7 +25,7 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn; ;
 
-            string sql = "SELECT * FROM Monitor";
+            string sql = "SELECT MonID, Size, Brand, Resolution, Connectors, Model FROM Monitor";
 
             dbCmd.CommandText = sql;
 
@@ -53,7 +53,7 @@ namespace SeniorProjectClassLibrary.DAL
         public static List<Monitor> getMonitor(SqlCommand cmd, int compID)
         {
             SqlDataReader dbReader;
-            string sql = "SELECT * FROM MonitorComputer, Monitor WHERE MonitorComputer.MonID = Monitor.MonID AND MonitorComputer.CompID = @CompID";
+            string sql = "SELECT Monitor.MonID, Size, Brand, Resolution, Connectors, Model, Display FROM MonitorComputer, Monitor WHERE MonitorComputer.MonID = Monitor.MonID AND MonitorComputer.CompID = @CompID";
 
             cmd.CommandText = sql;
 
@@ -98,7 +98,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                string sql = "SELECT * FROM Monitor WHERE MonID = @MonID";
+                string sql = "SELECT MonID, Size, Brand, Resolution, Connectors, Model, Display FROM Monitor WHERE MonID = @MonID";
 
                 dbCmd.CommandText = sql;
 

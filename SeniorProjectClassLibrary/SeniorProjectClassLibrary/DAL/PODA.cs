@@ -127,7 +127,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlDataReader dbReader;
             string sql;
 
-            sql = "SELECT * FROM PO, POInventory WHERE PO.POID = POInventory.POID and POInventory.InvID = @InvID";
+            sql = "SELECT PO.POID, POno, DeliveryDate, RequisitionNo, PurchaseDate, Title FROM PO, POInventory WHERE PO.POID = POInventory.POID and POInventory.InvID = @InvID";
 
             cmd.CommandText = sql;
 
@@ -169,7 +169,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                string sql = "SELECT * FROM PO WHERE POID = @POID";
+                string sql = "SELECT POID, POno, DeliveryDate, REquisitionNo, PurchaseDate, Title FROM PO WHERE POID = @POID";
 
                 dbCmd.CommandText = sql;
 
@@ -209,7 +209,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
             
-            string sql = "SELECT * FROM PO WHERE POID = @POID";
+            string sql = "SELECT POID, POno, DeliveryDate, RequisitionNo, PurchaseDate, Title FROM PO WHERE POID = @POID";
 
             cmd.CommandText = sql;
 
@@ -237,7 +237,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM PO WHERE POno = @POno";
+            string sql = "SELECT POID FROM PO WHERE POno = @POno";
 
             cmd.CommandText = sql;
 
@@ -264,7 +264,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             string sql;
 
-            sql = "SELECT * FROM PO WHERE poNO = @PONum";
+            sql = "SELECT POID FROM PO WHERE poNO = @PONum";
 
             cmd.CommandText = sql;
 
