@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
 {
@@ -34,7 +33,7 @@ namespace SeniorProject
                 mon.Size = txtBoxResolution.Text;
 
                 
-                lblMessage.Text = Monitor.saveMonitor(mon);
+                lblMessage.Text = MonitorDA.saveMonitor(mon, connString);
 
                 refresh();
 
@@ -49,7 +48,7 @@ namespace SeniorProject
                 mon.Model = txtBoxModel.Text;
                 mon.Resolution = txtBoxResolution.Text;
                 mon.Size = txtBoxResolution.Text;
-                lblMessage.Text = Monitor.updateMonitor(mon);
+                lblMessage.Text = MonitorDA.updateMonitor(mon, connString);
 
                 btnAddMonitor.Text = "Add Monitor";
                 btnCancel.Visible = false;
@@ -73,7 +72,7 @@ namespace SeniorProject
             try
             {
                 Monitor mon = new Monitor();
-                mon = Monitor.getMonitor(Convert.ToInt32(lstBoxMonitor.SelectedValue));
+                mon = MonitorDA.getMonitor(Convert.ToInt32(lstBoxMonitor.SelectedValue), connString);
                 mon.ID = Convert.ToInt32(lstBoxMonitor.SelectedValue);
                 txtBoxSize.Text = mon.Size;
                 txtBoxBrand.Text = mon.Brand;
@@ -114,7 +113,7 @@ namespace SeniorProject
 
         protected void btnAddBuilding_Click(object sender, EventArgs e)
         {
-            lblBuildingMessage.Text = Settings.saveSetting(txtBoxBuilding.Text, "Building");
+            lblBuildingMessage.Text = SettingsDA.saveSetting(txtBoxBuilding.Text, "Building", connString);
             lblBuildingMessage.Visible = true;
             lstBoxBuildings.DataBind();
         }
@@ -123,7 +122,7 @@ namespace SeniorProject
         {
             try
             {
-                Settings.deleteSetting(Convert.ToInt32(lstBoxBuildings.SelectedValue));
+                SettingsDA.deleteSetting(Convert.ToInt32(lstBoxBuildings.SelectedValue), connString);
                 lstBoxBuildings.DataBind();
             }
             catch { }
@@ -131,7 +130,7 @@ namespace SeniorProject
 
         protected void btnAddManufacturer_Click(object sender, EventArgs e)
         {
-            lblManufacturerMessage.Text = Settings.saveSetting(txtBoxManufacturer.Text, "Manufacturer");
+            lblManufacturerMessage.Text = SettingsDA.saveSetting(txtBoxManufacturer.Text, "Manufacturer", connString);
             lblManufacturerMessage.Visible = true;
             lstBoxManufcturers.DataBind();
         }
@@ -140,7 +139,7 @@ namespace SeniorProject
         {
             try
             {
-                Settings.deleteSetting(Convert.ToInt32(lstBoxManufcturers.SelectedValue));
+                SettingsDA.deleteSetting(Convert.ToInt32(lstBoxManufcturers.SelectedValue), connString);
                 lstBoxManufcturers.DataBind();
             }
             catch { }

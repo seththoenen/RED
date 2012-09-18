@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using SeniorProjectClassLibrary.Classes;
+using System.Collections;
 
-namespace SeniorProjectClassLibrary.DAL
+namespace SeniorProject
 {
     public class LogisticsDA
     {
@@ -67,7 +67,7 @@ namespace SeniorProjectClassLibrary.DAL
 
         }
 
-        public static string massUpdateLogisticsComputer(List<int> ids, Logistics logs) 
+        public static string massUpdateLogisticsComputer(ArrayList compSerialNos, Logistics logs, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -75,7 +75,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -83,73 +83,81 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn;
 
-            for (int i = 0; i < ids.Count; i++)
+            for (int i = 0; i < compSerialNos.Count; i++)
             { 
-                int invID = ids[i];
+                string compSerialNo = compSerialNos[i].ToString();
 
-                Computer comp = new Computer();
-                comp = ComputerDA.getComputer(dbCmd, invID);
-
-                LogisticsDA.removeLogistics(dbCmd, invID);
-
-                try
+                if (ComputerDA.computerExist(dbCmd, compSerialNo) == false)
                 {
-                    string sqlCommand = "INSERT INTO Logistics (InvID, Building, Room, PrimaryUser, Name, StartDate, Status) VALUES " + 
-                        "(@InvID, @Building, @Room, @PrimaryUser, @Name, @StartDate, @Status)";
-
-                    dbCmd.CommandText = sqlCommand;
-
-                    if (logs.Building == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("Building", comp.CurrentLocation.Building);
-                    }
-                    else
-                    {
-                        dbCmd.Parameters.AddWithValue("Building", logs.Building);
-                    }
-
-                    if (logs.Room == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("Room", comp.CurrentLocation.Room);
-                    }
-                    else
-                    {
-                        dbCmd.Parameters.AddWithValue("Room", logs.Room);
-                    }
-
-                    if (logs.PrimaryUser == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("PrimaryUser", comp.CurrentLocation.PrimaryUser);
-                    }
-                    else
-                    {
-                        dbCmd.Parameters.AddWithValue("PrimaryUser", logs.PrimaryUser);
-                    }
-
-                    if (logs.Name == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("Name", comp.CurrentLocation.Name);
-                    }
-                    else 
-                    {
-                        dbCmd.Parameters.AddWithValue("Name", logs.Name);
-                    }
-
-                    dbCmd.Parameters.AddWithValue("InvID", invID);
-                    dbCmd.Parameters.AddWithValue("StartDate", DateTime.Now.ToShortDateString());
-                    dbCmd.Parameters.AddWithValue("Status", "Active");
-
-                    dbCmd.ExecuteNonQuery();
-                    dbCmd.Parameters.Clear();
-                        
-                    message.Append("Logistics uppdated successfully for computer with serial number " + comp.SerialNo + "!<bR>");
-
+                    message.Append("Computer with Serial Number " + compSerialNo + " does not exist.<bR>");
                 }
-                catch (Exception ex)
+                else 
                 {
-                    Console.WriteLine(ex.ToString());
-                    message.Append(ex.ToString());
-                    transaction.Rollback();
+                    int compID = ComputerDA.getInvID(dbCmd, compSerialNo);
+                    Computer comp = new Computer();
+                    comp = ComputerDA.getComputer(dbCmd, compSerialNo);
+
+                    LogisticsDA.removeLogistics(dbCmd, compID);
+
+                    try
+                    {
+                        string sqlCommand = "INSERT INTO Logistics (InvID, Building, Room, PrimaryUser, Name, StartDate, Status) VALUES " + 
+                            "(@InvID, @Building, @Room, @PrimaryUser, @Name, @StartDate, @Status)";
+
+                        dbCmd.CommandText = sqlCommand;
+
+                        if (logs.Building == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("Building", comp.CurrentLocation.Building);
+                        }
+                        else
+                        {
+                            dbCmd.Parameters.AddWithValue("Building", logs.Building);
+                        }
+
+                        if (logs.Room == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("Room", comp.CurrentLocation.Room);
+                        }
+                        else
+                        {
+                            dbCmd.Parameters.AddWithValue("Room", logs.Room);
+                        }
+
+                        if (logs.PrimaryUser == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("PrimaryUser", comp.CurrentLocation.PrimaryUser);
+                        }
+                        else
+                        {
+                            dbCmd.Parameters.AddWithValue("PrimaryUser", logs.PrimaryUser);
+                        }
+
+                        if (logs.Name == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("Name", comp.CurrentLocation.Name);
+                        }
+                        else 
+                        {
+                            dbCmd.Parameters.AddWithValue("Name", logs.Name);
+                        }
+
+                        dbCmd.Parameters.AddWithValue("InvID", compID);
+                        dbCmd.Parameters.AddWithValue("StartDate", DateTime.Now.ToShortDateString());
+                        dbCmd.Parameters.AddWithValue("Status", "Active");
+
+                        dbCmd.ExecuteNonQuery();
+                        dbCmd.Parameters.Clear();
+                        
+                        message.Append("Logistics uppdated successfully for computer with serial number " + compSerialNo + "!<bR>");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                        message.Append(ex.ToString());
+                        transaction.Rollback();
+                    }
                 }
             }
             transaction.Commit();
@@ -157,7 +165,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string massUpdateLogisticsEquipment(List<int> ids, Logistics logs) 
+        public static string massUpdateLogisticsEquipment(ArrayList compSerialNos, Logistics logs, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -165,7 +173,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -173,72 +181,81 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn;
 
-            for (int i = 0; i < ids.Count; i++)
+            for (int i = 0; i < compSerialNos.Count; i++)
             {
-                int invID = ids[i];
-                Equipment equip = new Equipment();
-                equip = EquipmentDA.getEquipment(dbCmd, invID);
+                string equipSerialNo = compSerialNos[i].ToString();
 
-                LogisticsDA.removeLogistics(dbCmd, invID);
-
-                try
+                if (EquipmentDA.equipmentExist(dbCmd, equipSerialNo) == false)
                 {
-                    string sqlCommand = "INSERT INTO Logistics (InvID, Building, Room, PrimaryUser, Name, StartDate, Status) VALUES " +
-                        "(@InvID, @Building, @Room, @PrimaryUser, @Name, @StartDate, @Status)";
-
-                    dbCmd.CommandText = sqlCommand;
-
-                    if (logs.Building == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("Building", equip.CurrentLocation.Building);
-                    }
-                    else
-                    {
-                        dbCmd.Parameters.AddWithValue("Building", logs.Building);
-                    }
-
-                    if (logs.Room == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("Room", equip.CurrentLocation.Room);
-                    }
-                    else
-                    {
-                        dbCmd.Parameters.AddWithValue("Room", logs.Room);
-                    }
-
-                    if (logs.PrimaryUser == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("PrimaryUser", equip.CurrentLocation.PrimaryUser);
-                    }
-                    else
-                    {
-                        dbCmd.Parameters.AddWithValue("PrimaryUser", logs.PrimaryUser);
-                    }
-
-                    if (logs.Name == "")
-                    {
-                        dbCmd.Parameters.AddWithValue("Name", equip.CurrentLocation.Name);
-                    }
-                    else
-                    {
-                        dbCmd.Parameters.AddWithValue("Name", logs.Name);
-                    }
-
-                    dbCmd.Parameters.AddWithValue("InvID", invID);
-                    dbCmd.Parameters.AddWithValue("StartDate", DateTime.Now.ToShortDateString());
-                    dbCmd.Parameters.AddWithValue("Status", "Active");
-
-                    dbCmd.ExecuteNonQuery();
-                    dbCmd.Parameters.Clear();
-
-                    message.Append("Logistics uppdated successfully for computer with serial number " + equip.SerialNo + "!<bR>");
-
+                    message.Append("Equipment with Serial Number " + equipSerialNo + " does not exist.<bR>");
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine(ex.ToString());
-                    message.Append(ex.ToString());
-                    transaction.Rollback();
+                    int equipID = EquipmentDA.getInvID(dbCmd, equipSerialNo);
+                    Equipment equip = new Equipment();
+                    equip = EquipmentDA.getEquipment(dbCmd, equipSerialNo);
+
+                    LogisticsDA.removeLogistics(dbCmd, equipID);
+
+                    try
+                    {
+                        string sqlCommand = "INSERT INTO Logistics (InvID, Building, Room, PrimaryUser, Name, StartDate, Status) VALUES " +
+                            "(@InvID, @Building, @Room, @PrimaryUser, @Name, @StartDate, @Status)";
+
+                        dbCmd.CommandText = sqlCommand;
+
+                        if (logs.Building == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("Building", equip.CurrentLocation.Building);
+                        }
+                        else
+                        {
+                            dbCmd.Parameters.AddWithValue("Building", logs.Building);
+                        }
+
+                        if (logs.Room == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("Room", equip.CurrentLocation.Room);
+                        }
+                        else
+                        {
+                            dbCmd.Parameters.AddWithValue("Room", logs.Room);
+                        }
+
+                        if (logs.PrimaryUser == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("PrimaryUser", equip.CurrentLocation.PrimaryUser);
+                        }
+                        else
+                        {
+                            dbCmd.Parameters.AddWithValue("PrimaryUser", logs.PrimaryUser);
+                        }
+
+                        if (logs.Name == "")
+                        {
+                            dbCmd.Parameters.AddWithValue("Name", equip.CurrentLocation.Name);
+                        }
+                        else
+                        {
+                            dbCmd.Parameters.AddWithValue("Name", logs.Name);
+                        }
+
+                        dbCmd.Parameters.AddWithValue("InvID", equipID);
+                        dbCmd.Parameters.AddWithValue("StartDate", DateTime.Now.ToShortDateString());
+                        dbCmd.Parameters.AddWithValue("Status", "Active");
+
+                        dbCmd.ExecuteNonQuery();
+                        dbCmd.Parameters.Clear();
+
+                        message.Append("Logistics uppdated successfully for computer with serial number " + equipSerialNo + "!<bR>");
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                        message.Append(ex.ToString());
+                        transaction.Rollback();
+                    }
                 }
             }
             transaction.Commit();

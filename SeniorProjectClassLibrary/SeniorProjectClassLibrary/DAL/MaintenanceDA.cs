@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using SeniorProjectClassLibrary.Classes;
+using System.Collections;
 
-namespace SeniorProjectClassLibrary.DAL
+namespace SeniorProject
 {
     public class MaintenanceDA
     {
-        public static string addMaintenance(Maintenance maint) 
+        public static string addMaintenance(Maintenance maint, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -36,7 +36,6 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("Maintenance", maint.Description);
 
                 dbCmd.ExecuteNonQuery();
-                dbCmd.Parameters.Clear();
                 transaction.Commit();
                 dbConn.Close();
                 message.Append("Maintenance added successfully<bR>");
@@ -51,7 +50,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string addMassMaintenanceComputer(List<int> ids, Maintenance maint) 
+        public static string addMassMaintenanceComputer(ArrayList serialNos, Maintenance maint, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -59,7 +58,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -67,9 +66,10 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    string serialNo = (string)serialNos[i];
+                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
                     string sqlCommand = "INSERT INTO Maintenance (InvID, Date, Maintenance) " +
                         "VALUES (@InvID, @Date, @Maintenance)";
 
@@ -95,7 +95,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string addMassMaintenanceEquipment(List<int> ids, Maintenance maint) 
+        public static string addMassMaintenanceEquipment(ArrayList serialNos, Maintenance maint, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -103,7 +103,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -111,9 +111,11 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    string serialNo = (string)serialNos[i];
+
+                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
                     string sqlCommand = "INSERT INTO Maintenance (InvID, Date, Maintenance) " +
                         "VALUES (@InvID, @Date, @Maintenance)";
 

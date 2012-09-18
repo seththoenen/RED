@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.Collections;
 using System.Text;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Equipments
 {
@@ -36,8 +36,8 @@ namespace SeniorProject.Equipments
                 ddlManufacturer.Items.Insert(0, "");
                 ddlManufacturer.SelectedIndex = 0;
 
-                List<Group> groupList = new List<Group>();
-                groupList = Group.getAllEquipmentGroups();
+                ArrayList groupList = new ArrayList();
+                groupList = GroupDA.getAllEquipmentGroups(connString);
 
                 for (int i = 0; i < groupList.Count; i++)
                 {
@@ -115,32 +115,32 @@ namespace SeniorProject.Equipments
 
         protected void btnApplyRemoveAllLicenses_Click(object sender, EventArgs e)
         {
-            List<int> ids = new List<int>();
-            ids = getIDs();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
-            lblLicenseMessage.Text = License.removeAllLicensesEquipment(ids);
+            lblLicenseMessage.Text = LicenseDA.removeAllLicensesEquipment(tags, connString);
             lblLicenseMessage.Visible = true;
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<int> ids = new List<int>();
-            ids = getIDs();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
             int licenseID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = License.removeSelectLicenseEquipment(ids, licenseID);
+            lblLicenseMessage.Text = LicenseDA.removeSelectLicenseEquipment(tags, licenseID, connString);
             lblLicenseMessage.Visible = true;
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<int> ids = new List<int>();
-            ids = getIDs();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
             int licenseID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
 
-            lblLicenseMessage.Text = License.addLicensesEquipment(ids, licenseID);
+            lblLicenseMessage.Text = LicenseDA.addLicensesEquipment(tags, licenseID, connString);
             lblLicenseMessage.Visible = true;
         }
 
@@ -158,17 +158,17 @@ namespace SeniorProject.Equipments
 
         protected void btnInsertMaintenance_Click(object sender, EventArgs e)
         {
-            List<int> ids = new List<int>();
-            ids = getIDs();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
-            List<Maintenance> newMaintenance = new List<Maintenance>();
+            ArrayList newMaintenance = new ArrayList();
 
             Maintenance maint = new Maintenance();
             maint.Date = txtboxDate.Text;
             maint.Description = txtBoxMaintenance.Text;
 
             lblMaintenanceMessage.Visible = true;
-            lblMaintenanceMessage.Text = Maintenance.addMassMaintenanceEquipment(ids, maint);
+            lblMaintenanceMessage.Text = MaintenanceDA.addMassMaintenanceEquipment(tags, maint, connString);
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -214,13 +214,15 @@ namespace SeniorProject.Equipments
 
         protected void btnUpdateEquipment_Click(object sender, EventArgs e)
         {
-            List<Equipment> equipment = new List<Equipment>();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
-            for (int i = 0; i < lstBoxSerialNos.Items.Count  ; i++)
+            ArrayList equipment = new ArrayList();
+
+            for (int i = 0; i < tags.Count  ; i++)
             {
                 Equipment equip = new Equipment();
-                equip.InvID = Convert.ToInt32(lstBoxSerialNos.Items[i].Value);
-                equip.SerialNo = lstBoxSerialNos.Items[i].Text;
+                equip.SerialNo = (string)tags[i];
                 equip.SMSUtag = txtBoxSMSUTag.Text;
                 equip.Manufacturer = ddlManufacturer.Text;
                 equip.Model = txtBoxModel.Text;
@@ -249,15 +251,15 @@ namespace SeniorProject.Equipments
 
                 equipment.Add(equip);
             }
-            lblMessage.Text = Equipment.updateEquipment(equipment);
+            lblMessage.Text = EquipmentDA.updateEquipment(equipment, connString);
             lblMessage.Visible = true;
 
         }
 
         protected void btnApplyLogisticsUpdates_Click(object sender, EventArgs e)
         {
-            List<int> ids = new List<int>();
-            ids = getIDs();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
             Logistics logs = new Logistics();
             logs.Building = ddlBuilding.Text;
@@ -265,7 +267,7 @@ namespace SeniorProject.Equipments
             logs.PrimaryUser = txtBoxPrimaryUser.Text;
             logs.Name = txtBoxName.Text;
 
-            lblLogisticsMessage.Text = Logistics.massUpdateLogisticsEquipment(ids, logs);
+            lblLogisticsMessage.Text = LogisticsDA.massUpdateLogisticsEquipment(tags, logs, connString);
             lblLogisticsMessage.Visible = true;
             btnClearLogistics.Visible = true;
         }
@@ -275,7 +277,7 @@ namespace SeniorProject.Equipments
             foreach (int i in lstBoxGroups.GetSelectedIndices())
             {
                 Group selectedGroup = new Group();
-                selectedGroup = Group.getGroupEquipment(lstBoxGroups.Items[i].Text);
+                selectedGroup = GroupDA.getGroupEquipment(lstBoxGroups.Items[i].Text, connString);
 
                 for (int j = 0; j < selectedGroup.Equipment.Count; j++)
                 {
@@ -323,10 +325,10 @@ namespace SeniorProject.Equipments
 
         protected void btnApplyRemoveAllWarranties_Click(object sender, EventArgs e)
         {
-            List<int> ids = new List<int>();
-            ids = getIDs();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
-            lblWarrantyMessage.Text = Warranty.deleteWarrantyEquipment(ids);
+            lblWarrantyMessage.Text = WarrantyDA.deleteWarrantyEquipment(tags, connString);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -349,8 +351,8 @@ namespace SeniorProject.Equipments
         {
             Page.Validate("warranty");
 
-            List<int> ids = new List<int>();
-            ids = getIDs();
+            ArrayList tags = new ArrayList();
+            tags = getTags();
 
             Warranty war = new Warranty();
             war.Company = ddlWarrantyCompany.SelectedItem.ToString();
@@ -359,7 +361,7 @@ namespace SeniorProject.Equipments
             war.EndDate = txtBoxWarrantyEndDate.Text;
             war.Notes = txtBoxWarrantyNotes.Text;
 
-            lblWarrantyMessage.Text = Warranty.addWarrantysEquipment(ids, war);
+            lblWarrantyMessage.Text = WarrantyDA.addWarrantysEquipment(tags, war, connString);
             lblWarrantyMessage.Visible = true;
         }
 
@@ -412,32 +414,43 @@ namespace SeniorProject.Equipments
         protected void txtBoxSerialNo_TextChanged(object sender, EventArgs e)
         {
             bool existLB = false;
+            bool existDB = false;
+            bool isTransferred = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
-                if (lstBoxSerialNos.Items[i].Text.ToUpper() == txtBoxSerialNo.Text.ToUpper())
+                if (lstBoxSerialNos.Items[i].Text == txtBoxSerialNo.Text.ToUpper())
                 {
                     existLB = true;
-                    lblSerialNos.Visible = true;
-                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
-                    break;
                 }
             }
-            if (existLB == false)
+            if (EquipmentDA.equipmentExist(txtBoxSerialNo.Text, connString) == true)
             {
-                int? invID = Equipment.equipmentExistReturnID(txtBoxSerialNo.Text);
-                if (invID != null)
+                existDB = true;
+                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text, connString) == true)
                 {
-                    ListItem li = new ListItem(txtBoxSerialNo.Text.ToUpper(), invID.ToString());
-                    lstBoxSerialNos.Items.Add(li);
-                    lstBoxSerialNos.SelectedValue = invID.ToString();
-                }
-                else
-                {
-                    lblSerialNos.Visible = true;
-                    lblSerialNos.Text += txtBoxSerialNo.Text + " is not in the database<br />";
+                    isTransferred = true;
                 }
             }
-
+            if (existLB == false && existDB == true && isTransferred == false)
+            {
+                lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
+                lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
+            }
+            else if (existLB == true)
+            {
+                lblSerialNos.Visible = true;
+                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
+            }
+            else if (existDB == false)
+            {
+                lblSerialNos.Visible = true;
+                lblSerialNos.Text += txtBoxSerialNo.Text + " is not in the database<br />";
+            }
+            else if (isTransferred == true)
+            {
+                lblSerialNos.Visible = true;
+                lblSerialNos.Text += txtBoxSerialNo.Text + " is transferred<br />";
+            }
             txtBoxSerialNo.Text = "";
             txtBoxSerialNo.Focus();
         }
@@ -450,14 +463,14 @@ namespace SeniorProject.Equipments
             }
         }
 
-        protected List<int> getIDs()
+        protected ArrayList getTags()
         {
-            List<int> ids = new List<int>();
+            ArrayList tags = new ArrayList();
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
-                ids.Add(Convert.ToInt32(lstBoxSerialNos.Items[i].Value));
+                tags.Add(lstBoxSerialNos.Items[i].Text);
             }
-            return ids;
+            return tags;
         }
 
         protected void lstBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
@@ -488,7 +501,6 @@ namespace SeniorProject.Equipments
         protected void GridViewEquipment_SelectedIndexChanged(object sender, EventArgs e)
         {
             string serialNo = GridViewEquipment.SelectedDataKey["SerialNo"].ToString();
-            string invID = GridViewEquipment.SelectedDataKey["InvID"].ToString();
 
             bool existLB = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
@@ -496,14 +508,12 @@ namespace SeniorProject.Equipments
                 if (lstBoxSerialNos.Items[i].Text == serialNo || lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                 {
                     existLB = true;
-                    break;
                 }
             }
             if (existLB == false)
             {
-                ListItem li = new ListItem(serialNo.ToUpper(), invID);
-                lstBoxSerialNos.Items.Add(li);
-                lstBoxSerialNos.SelectedValue = invID;
+                lstBoxSerialNos.Items.Add(serialNo.ToUpper());
+                lstBoxSerialNos.Text = serialNo.ToUpper();
             }
         }
 
@@ -770,37 +780,49 @@ namespace SeniorProject.Equipments
             foreach (string serialNo in serialNos)
             {
                 bool existLB = false;
+                bool existDB = false;
+                bool isTooLong = false;
+                bool isBlank = false;
 
                 for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
                 {
                     if (lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                     {
                         existLB = true;
-                        lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
-                        break;
                     }
                 }
-                if (existLB == false)
+                if (EquipmentDA.equipmentExist(serialNo, connString) == true)
                 {
-                    int? invID = Equipment.equipmentExistReturnID(serialNo);
-                    if (serialNo.Length > 45)
-                    {
-                        lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
-                    }
-                    else if (serialNo == "")
-                    {
-                        lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
-                    }
-                    else if (invID == null)
-                    {
-                        lblAddTextBoxMessage.Text += serialNo + " is not in the database<br />";
-                    }
-                    else
-                    {
-                        ListItem li = new ListItem(serialNo.ToUpper(), invID.ToString());
-                        lstBoxSerialNos.Items.Add(li);
-                        lstBoxSerialNos.SelectedValue = invID.ToString();
-                    }
+                    existDB = true;
+                }
+                if (serialNo.Length > 45)
+                {
+                    isTooLong = true;
+                }
+                if (serialNo == "")
+                {
+                    isBlank = true;
+                }
+                if (existLB == false && existDB == true && isTooLong == false && isBlank == false)
+                {
+                    lstBoxSerialNos.Items.Add(serialNo.ToUpper());
+                    lstBoxSerialNos.Text = serialNo.ToUpper();
+                }
+                else if (existLB == true)
+                {
+                    lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
+                }
+                else if (isBlank == true)
+                {
+                    lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
+                }
+                else if (existDB == false)
+                {
+                    lblAddTextBoxMessage.Text += serialNo + " is not in the database<br />";
+                }
+                else if (isTooLong == true)
+                {
+                    lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
                 }
             }
         }

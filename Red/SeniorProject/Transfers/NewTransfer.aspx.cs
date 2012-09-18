@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Collections;
 using System.Configuration;
 using System.Text;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Transfers
 {
@@ -40,8 +40,8 @@ namespace SeniorProject.Transfers
         {
             if (!IsPostBack)
             {
-                List<Group> groupList = new List<Group>();
-                groupList = Group.getAllGroups();
+                ArrayList groupList = new ArrayList();
+                groupList = GroupDA.getAllGroups(connString);
 
                 for (int i = 0; i < groupList.Count; i++)
                 {
@@ -64,6 +64,7 @@ namespace SeniorProject.Transfers
         protected void btnCreateTransfer_Click(object sender, EventArgs e)
         {
             Transfer transfer = new Transfer();
+            //transfer.Name = txtBoxTransferName.Text;
             transfer.Date = txtBoxDate.Text;
             transfer.Notes = txtBoxNotes.Text;
             transfer.Where = txtBoxWhere.Text;
@@ -73,7 +74,7 @@ namespace SeniorProject.Transfers
                 transfer.Inventory.Add(lstBoxSerialNos.Items[i].Text);
             }
 
-            lblTransferMessage.Text = Transfer.saveTransfer(transfer);
+            lblTransferMessage.Text = TransferDA.saveTransfer(transfer, connString);
             lblTransferMessage.Visible = true;
             btnClearMessage.Visible = true;
 
@@ -93,35 +94,50 @@ namespace SeniorProject.Transfers
         protected void txtBoxSerialNo_TextChanged(object sender, EventArgs e)
         {
             bool existLB = false;
+            bool existDB = false;
+            bool isTransferred = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
                 if (lstBoxSerialNos.Items[i].Text == txtBoxSerialNo.Text.ToUpper())
                 {
                     existLB = true;
-                    lblSerialNos.Visible = true;
-                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
-                    break;
                 }
             }
-            if (existLB == false)
+            if (EquipmentDA.equipmentExist(txtBoxSerialNo.Text, connString) == true)
             {
-                List<string> results = new List<string>();
-                results = Inventory.getInvStatus(txtBoxSerialNo.Text);
-                if (results == null)
+                existDB = true;
+                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text, connString) == true)
                 {
-                    lblSerialNos.Visible = true;
-                    lblSerialNos.Text += txtBoxSerialNo.Text + " does not exist<bR />";
+                    isTransferred = true;
                 }
-                else if (results[1] == "Transferred")
+            }
+            if (ComputerDA.computerExist(txtBoxSerialNo.Text, connString) == true)
+            {
+                existDB = true;
+                if (ComputerDA.computerTransferred(txtBoxSerialNo.Text, connString) == true)
                 {
-                    lblSerialNos.Visible = true;
-                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already transferred<bR />";
+                    isTransferred = true;
                 }
-                else
-                {
-                    ListItem li = new ListItem(txtBoxSerialNo.Text.ToUpper(), results[2]);
-                    lstBoxSerialNos.Items.Add(li);
-                }
+            }
+            if (existLB == false && existDB == true && isTransferred == false)
+            {
+                lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
+                lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
+            }
+            else if (existLB == true)
+            {
+                lblSerialNos.Visible = true;
+                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
+            }
+            else if (existDB == false)
+            {
+                lblSerialNos.Visible = true;
+                lblSerialNos.Text += txtBoxSerialNo.Text + " is not in the database<br />";
+            }
+            else if (isTransferred == true)
+            {
+                lblSerialNos.Visible = true;
+                lblSerialNos.Text += txtBoxSerialNo.Text + " is transferred<br />";
             }
             txtBoxSerialNo.Text = "";
             txtBoxSerialNo.Focus();
@@ -151,7 +167,6 @@ namespace SeniorProject.Transfers
         protected void GridViewComputers_SelectedIndexChanged(object sender, EventArgs e)
         {
             string serialNo = GridViewComputers.SelectedDataKey["SerialNo"].ToString();
-            string invID = GridViewComputers.SelectedDataKey["InvID"].ToString();
 
             bool existLB = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
@@ -159,13 +174,12 @@ namespace SeniorProject.Transfers
                 if (lstBoxSerialNos.Items[i].Text == serialNo || lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                 {
                     existLB = true;
-                    break;
                 }
             }
             if (existLB == false)
             {
-                ListItem li = new ListItem(serialNo.ToUpper(), invID);
-                lstBoxSerialNos.Items.Add(li);
+                lstBoxSerialNos.Items.Add(serialNo.ToUpper());
+                lstBoxSerialNos.Text = serialNo.ToUpper();
             }
         }
 
@@ -185,7 +199,6 @@ namespace SeniorProject.Transfers
         protected void GridViewEquipment_SelectedIndexChanged(object sender, EventArgs e)
         {
             string serialNo = GridViewEquipment.SelectedDataKey["SerialNo"].ToString();
-            string invID = GridViewEquipment.SelectedDataKey["InvID"].ToString();
 
             bool existLB = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
@@ -193,13 +206,12 @@ namespace SeniorProject.Transfers
                 if (lstBoxSerialNos.Items[i].Text == serialNo || lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                 {
                     existLB = true;
-                    break;
                 }
             }
             if (existLB == false)
             {
-                ListItem li = new ListItem(serialNo.ToUpper(), invID);
-                lstBoxSerialNos.Items.Add(li);
+                lstBoxSerialNos.Items.Add(serialNo.ToUpper());
+                lstBoxSerialNos.Text = serialNo.ToUpper();
             }
         }
 
@@ -244,10 +256,10 @@ namespace SeniorProject.Transfers
 
         protected void btnSelectGroup_Click(object sender, EventArgs e)
         {
-            List<Group> computerGroups = new List<Group>();
-            computerGroups = Group.getAllComputerGroups();
-            List<Group> equipmentGroups = new List<Group>();
-            equipmentGroups = Group.getAllEquipmentGroups();
+            ArrayList computerGroups = new ArrayList();
+            computerGroups = GroupDA.getAllComputerGroups(connString);
+            ArrayList equipmentGroups = new ArrayList();
+            equipmentGroups = GroupDA.getAllEquipmentGroups(connString);
             
             foreach (int i in lstBoxGroups.GetSelectedIndices())
             {
@@ -277,7 +289,7 @@ namespace SeniorProject.Transfers
                 if (isComputerGroup == true)
                 {
                     Group selectedGroup = new Group();
-                    selectedGroup = Group.getGroupComputers(lstBoxGroups.Items[i].Text);
+                    selectedGroup = GroupDA.getGroupComputers(lstBoxGroups.Items[i].Text, connString);
 
                     for (int j = 0; j < selectedGroup.Computers.Count; j++)
                     {
@@ -303,7 +315,7 @@ namespace SeniorProject.Transfers
                 else if (isEquipmentGroup == true)
                 {
                     Group selectedGroup = new Group();
-                    selectedGroup = Group.getGroupEquipment(lstBoxGroups.Items[i].Text);
+                    selectedGroup = GroupDA.getGroupEquipment(lstBoxGroups.Items[i].Text, connString);
 
                     for (int j = 0; j < selectedGroup.Equipment.Count; j++)
                     {

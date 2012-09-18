@@ -6,7 +6,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Reflection;
 using System.Configuration;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
 {
@@ -71,7 +70,7 @@ namespace SeniorProject
 
         protected void authenticate()
         {
-            if (Settings.authenticatePassword(txtBoxPassword.Text) == true)
+            if (SettingsDA.authenticatePassword(txtBoxPassword.Text, connString) == true)
             {
                 Session["Authenticated"] = "True";
                 panelAuthenticated.Visible = true;
@@ -92,7 +91,7 @@ namespace SeniorProject
         protected void btnInstantSearch_Click(object sender, EventArgs e)
         {
             List<int> results = new List<int>();
-            results = Inventory.instantSearch(txtBoxSerialNoInstant.Text);
+            results = InventoryDA.instantSearch(txtBoxSerialNoInstant.Text, connString);
 
             if (results == null)
             {

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Groups
 {
@@ -81,7 +80,7 @@ namespace SeniorProject.Groups
             group.Notes = txtBoxNotes.Text;
             group.Type = ddlType.Text;
 
-            lblMessage.Text = Group.saveGroup(group);
+            lblMessage.Text = GroupDA.saveGroup(group, connString);
             lblMessage.Visible = true;
 
             if (lblMessage.Text == "Group created successfully<bR>")

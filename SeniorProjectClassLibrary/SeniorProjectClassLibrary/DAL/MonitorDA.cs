@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using SeniorProjectClassLibrary.Classes;
+using System.Collections;
 
-namespace SeniorProjectClassLibrary.DAL
+namespace SeniorProject
 {
     public class MonitorDA
     {
-        public static List<Monitor> getMonitors()
+        public static ArrayList getMonitors(string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -25,13 +25,13 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn; ;
 
-            string sql = "SELECT MonID, Size, Brand, Resolution, Connectors, Model FROM Monitor";
+            string sql = "SELECT * FROM Monitor";
 
             dbCmd.CommandText = sql;
 
             dbReader = dbCmd.ExecuteReader();
 
-            List<Monitor> monitorList = new List<Monitor>();
+            ArrayList monitorList = new ArrayList();
 
             while (dbReader.Read())
             {
@@ -44,16 +44,14 @@ namespace SeniorProjectClassLibrary.DAL
                 mon.Model = dbReader["Model"].ToString();
                 monitorList.Add(mon);
             }
-            dbReader.Close();
-            dbCmd.Parameters.Clear();
 
             return monitorList;
         }
 
-        public static List<Monitor> getMonitor(SqlCommand cmd, int compID)
+        public static ArrayList getMonitor(SqlCommand cmd, int compID)
         {
             SqlDataReader dbReader;
-            string sql = "SELECT Monitor.MonID, Size, Brand, Resolution, Connectors, Model, Display FROM MonitorComputer, Monitor WHERE MonitorComputer.MonID = Monitor.MonID AND MonitorComputer.CompID = @CompID";
+            string sql = "SELECT * FROM MonitorComputer, Monitor WHERE MonitorComputer.MonID = Monitor.MonID AND MonitorComputer.CompID = @CompID";
 
             cmd.CommandText = sql;
 
@@ -61,7 +59,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = cmd.ExecuteReader();
 
-            List<Monitor> monitors = new List<Monitor>();
+            ArrayList monitors = new ArrayList();
             while (dbReader.Read())
             {
                 Monitor mon = new Monitor();
@@ -80,7 +78,7 @@ namespace SeniorProjectClassLibrary.DAL
             return monitors;
         }
 
-        public static Monitor getMonitor(int monID)
+        public static Monitor getMonitor(int monID, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -88,7 +86,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -98,7 +96,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                string sql = "SELECT MonID, Size, Brand, Resolution, Connectors, Model, Display FROM Monitor WHERE MonID = @MonID";
+                string sql = "SELECT * FROM Monitor WHERE MonID = @MonID";
 
                 dbCmd.CommandText = sql;
 
@@ -119,7 +117,6 @@ namespace SeniorProjectClassLibrary.DAL
                     mon.DisplayText = dbReader["Display"].ToString();
                 }
                 dbReader.Close();
-                dbCmd.Parameters.Clear();
                 transaction.Commit();
                 dbConn.Close();
 
@@ -134,7 +131,7 @@ namespace SeniorProjectClassLibrary.DAL
 
         }
 
-        public static string saveMonitor(Monitor mon)
+        public static string saveMonitor(Monitor mon, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -142,7 +139,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -180,7 +177,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string updateMonitor(Monitor mon)
+        public static string updateMonitor(Monitor mon, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -188,7 +185,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -212,7 +209,6 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("MonID", mon.ID);
 
                 dbCmd.ExecuteNonQuery();
-                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -229,7 +225,7 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string deleteMonitor(int monID, int compID)
+        public static string deleteMonitor(int monID, int compID, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -237,7 +233,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -270,7 +266,6 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("id", id);
 
                 dbCmd.ExecuteNonQuery();
-                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -287,14 +282,14 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string addMonitor(int monID, int compID)
+        public static string addMonitor(int monID, int compID, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -313,7 +308,6 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("CompID", compID);
 
                 dbCmd.ExecuteNonQuery();
-                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -330,14 +324,14 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string deleteMonitors(List<int> ids)
+        public static string deleteMonitors(ArrayList serialNos, string connectionString)
         { 
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -348,9 +342,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i=0; i<ids.Count; i++)
+                for (int i=0; i<serialNos.Count; i++)
                 {
-                    int invId = ids[i];
+                    String serialNo = (String)serialNos[i];
+                    
+                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
                     int compId = ComputerDA.getCompID(dbCmd, invId);
 
                     string sql = "DELETE FROM MonitorComputer WHERE CompID = @CompID";
@@ -359,8 +355,7 @@ namespace SeniorProjectClassLibrary.DAL
 
                     dbCmd.Parameters.AddWithValue("CompID", compId);
 
-                    dbCmd.ExecuteNonQuery();
-                    dbCmd.Parameters.Clear();  
+                    dbCmd.ExecuteNonQuery();                        
                 }
                 transaction.Commit();
                 dbConn.Close();
@@ -392,14 +387,14 @@ namespace SeniorProjectClassLibrary.DAL
             cmd.Parameters.Clear();
         }
         
-        public static string removeSelectMonitor(List<int> ids, int monID)
+        public static string removeSelectMonitor(ArrayList serialNos, int monID, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -410,9 +405,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    String serialNo = (String)serialNos[i];
+
+                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
                     int compID = ComputerDA.getCompID(dbCmd, invID);
 
                     string sqlCommand = "DELETE FROM MonitorComputer WHERE CompID = @CompID AND MonID = @MonID";
@@ -440,14 +437,14 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string addMonitorsComputer(List<int> ids, int monID)
+        public static string addMonitorsComputer(ArrayList serialNos, int monID, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -457,9 +454,11 @@ namespace SeniorProjectClassLibrary.DAL
             StringBuilder message = new StringBuilder();
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    String serialNo = (String)serialNos[i];
+
+                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
                     int compID = ComputerDA.getCompID(dbCmd, invID);
 
                     string sqlCommand = "INSERT INTO MonitorComputer (CompID, MonID) VALUES (@CompID, @MonID)";

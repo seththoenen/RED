@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Licenses
 {
@@ -89,7 +88,7 @@ namespace SeniorProject.Licenses
             license.Notes = txtBoxNotes.Text;
             license.Type = ddlType.SelectedValue;
 
-            lblMessage.Text = License.saveLicense(license);
+            lblMessage.Text = LicenseDA.saveLicense(license, connString);
             lblMessage.Visible = true;
 
             if (lblMessage.Text == "License created successfully!<bR>")

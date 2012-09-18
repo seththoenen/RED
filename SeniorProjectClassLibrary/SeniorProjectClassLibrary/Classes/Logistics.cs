@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProjectClassLibrary.Classes
+namespace SeniorProject
 {
     public class Logistics
     {
@@ -125,16 +124,6 @@ namespace SeniorProjectClassLibrary.Classes
             {
                 status = value;
             }
-        }
-
-        public static string massUpdateLogisticsComputer(List<int> ids, Logistics logs)
-        {
-            return LogisticsDA.massUpdateLogisticsComputer(ids, logs);
-        }
-
-        public static string massUpdateLogisticsEquipment(List<int> ids, Logistics logs)
-        {
-            return LogisticsDA.massUpdateLogisticsEquipment(ids, logs);
         }
 
     }

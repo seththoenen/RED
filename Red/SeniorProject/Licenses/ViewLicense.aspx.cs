@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.Licenses
 {
@@ -26,7 +25,7 @@ namespace SeniorProject.Licenses
                     Response.Redirect("~/default.aspx");
                 }
                 License lic = new License();
-                lic = License.getLicense(Convert.ToInt32(Session["CurrentLicense"]));
+                lic = LicenseDA.getLicense(Convert.ToInt32(Session["CurrentLicense"]), connString);
 
                 txtBoxExpirationDate.Text = lic.ExpirationDate;
                 txtBoxKey.Text = lic.Key;
@@ -92,7 +91,7 @@ namespace SeniorProject.Licenses
             lic.ExpirationDate = txtBoxExpirationDate.Text;
             lic.Key = txtBoxKey.Text;
 
-            License.updateLicense(lic);
+            LicenseDA.updateLicense(lic, connString);
             panelUpdateLicense.Visible = false;
             DetailsView1.DataBind();
             DetailsView1.Visible = true;

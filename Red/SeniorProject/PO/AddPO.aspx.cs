@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.PO
 {
@@ -27,7 +26,7 @@ namespace SeniorProject.PO
             PO.PurchaseDate = txtBoxPurchaseDate.Text;
             PO.Title = txtBoxTitle.Text;
 
-            lblMessage.Text = PurchaseOrder.savePO(PO);
+            lblMessage.Text = PODA.savePO(PO, connString);
             btnClear.Visible = true;
         }
 

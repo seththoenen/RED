@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SeniorProjectClassLibrary.DAL;
+using System.Collections;
 
-namespace SeniorProjectClassLibrary.Classes
+namespace SeniorProject
 {
     public class Equipment : Inventory
     {
@@ -17,10 +17,10 @@ namespace SeniorProjectClassLibrary.Classes
         public Equipment()
         {
             currentLocation = new Logistics();
-            groups = new List<Group>();
+            groups = new ArrayList();
             po = new PurchaseOrder();
-            licenses = new List<License>();
-            warranties = new List<Warranty>();
+            licenses = new ArrayList();
+            warranties = new ArrayList();
         }
         
         public int EquipID
@@ -82,36 +82,5 @@ namespace SeniorProjectClassLibrary.Classes
                 connectivity = value;
             }
         }
-
-        public static string saveEquipment(List<Equipment> equipment)
-        {
-            return EquipmentDA.saveEquipment(equipment);
-        }
-
-        public static Equipment getEquipment(int invID)
-        {
-            return EquipmentDA.getEquipment(invID);
-        }
-
-        public static Boolean equipmentExist(string serialNo)
-        {
-            return EquipmentDA.equipmentExist(serialNo);
-        }
-
-        public static string updateEquipment(Equipment oEquip, Equipment equip)
-        {
-            return EquipmentDA.updateEquipment(oEquip, equip);
-        }
-
-        public static string updateEquipment(List<Equipment> equipment)
-        {
-            return EquipmentDA.updateEquipment(equipment);
-        }
-
-        public static int? equipmentExistReturnID(string serialNo)
-        {
-            return EquipmentDA.equipmentExistReturnID(serialNo);
-        }
-
     }
 }

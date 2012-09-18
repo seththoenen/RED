@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SeniorProjectClassLibrary.DAL;
+using System.Collections;
 
 
-namespace SeniorProjectClassLibrary.Classes
+namespace SeniorProject
 {
     public class Computer : Inventory
     {
@@ -19,18 +19,18 @@ namespace SeniorProjectClassLibrary.Classes
         private int? usbPorts;
         private string otherConnectivity;
         private string size;
-        private List<Monitor> monitors;
+        private ArrayList monitors;
         private string type;
 
         public Computer()
         {
-            monitors = new List<Monitor>();
+            monitors = new ArrayList();
             po = new PurchaseOrder();
-            groups = new List<Group>();
-            logistics = new List<Logistics>();
+            groups = new ArrayList();
+            logistics = new ArrayList();
             currentLocation = new Logistics();
-            licenses = new List<License>();
-            warranties = new List<Warranty>();
+            licenses = new ArrayList();
+            warranties = new ArrayList();
         }
 
         public int CompID
@@ -167,7 +167,7 @@ namespace SeniorProjectClassLibrary.Classes
         }
 
 
-        public List<Monitor> Monitors
+        public ArrayList Monitors
         {
             get
             {
@@ -177,41 +177,6 @@ namespace SeniorProjectClassLibrary.Classes
             {
                 monitors = value;
             }
-        }
-
-        public static string saveComputers(List<Computer> computers)
-        {
-            return ComputerDA.saveComputers(computers);
-        }
-
-        public static Boolean computerExist(string serialNo)
-        {
-            return ComputerDA.computerExist(serialNo);
-        }
-
-        public static Computer getComputer(string invID)
-        {
-            return ComputerDA.getComputer(invID);
-        }
-
-        public static string updateComputers(List<Computer> computers)
-        {
-            return ComputerDA.updateComputers(computers);
-        }
-
-        public static bool computerTransferred(string serialNo)
-        {
-            return ComputerDA.computerTransferred(serialNo);
-        }
-
-        public static string updateComputer(Computer oComp, Computer comp)
-        {
-            return ComputerDA.updateComputer(oComp, comp);
-        }
-
-        public static int? computerExistReturnID(string serialNo)
-        {
-            return ComputerDA.computerExistReturnID(serialNo);
         }
     }
 }

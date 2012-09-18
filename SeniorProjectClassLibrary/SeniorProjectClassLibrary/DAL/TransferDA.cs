@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 using System.Data.SqlClient;
-using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProjectClassLibrary.DAL
+namespace SeniorProject
 {
     public class TransferDA
     {
-        public static string saveTransfer(Transfer transfer) 
+        public static string saveTransfer(Transfer transfer, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProjectClassLibrary.DAL
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -31,6 +31,7 @@ namespace SeniorProjectClassLibrary.DAL
 
                 dbCmd.CommandText = sqlCommand;
 
+                //dbCmd.Parameters.AddWithValue("Name", transfer.Name);
                 dbCmd.Parameters.AddWithValue("Date", transfer.Date);
                 dbCmd.Parameters.AddWithValue("Whereto", transfer.Where);
                 dbCmd.Parameters.AddWithValue("Notes", transfer.Notes);
@@ -112,7 +113,7 @@ namespace SeniorProjectClassLibrary.DAL
 
             string sql;
 
-            sql = "SELECT TransID FROM Transfers WHERE Name = @TransferName";
+            sql = "SELECT * FROM Transfers WHERE Name = @TransferName";
 
             cmd.CommandText = sql;
 
@@ -127,7 +128,6 @@ namespace SeniorProjectClassLibrary.DAL
                 transferID = Convert.ToInt32(dbReader["TransID"]);
             }
             dbReader.Close();
-            cmd.Parameters.Clear();
 
             if (transferID > 0)
             {

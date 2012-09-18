@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SeniorProjectClassLibrary.DAL;
+using System.Collections;
 
-namespace SeniorProjectClassLibrary.Classes
+namespace SeniorProject
 {
     public class Inventory
     {
@@ -18,11 +18,11 @@ namespace SeniorProjectClassLibrary.Classes
         protected string notes;
         protected PurchaseOrder po;
         protected string status;
-        protected List<Group> groups;
-        protected List<Logistics> logistics;
+        protected ArrayList groups;
+        protected ArrayList logistics;
         protected Logistics currentLocation;
-        protected List<License> licenses;
-        protected List<Warranty> warranties;
+        protected ArrayList licenses;
+        protected ArrayList warranties;
         protected string physicalAddress;
 
         public int InvID
@@ -49,7 +49,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public List<Group> Groups
+        public ArrayList Groups
         {
             get
             {
@@ -61,7 +61,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public List <Warranty> Warranties
+        public ArrayList Warranties
         {
             get
             {
@@ -73,7 +73,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public List<Logistics> Logistics
+        public ArrayList Logistics
         {
             get
             {
@@ -85,7 +85,7 @@ namespace SeniorProjectClassLibrary.Classes
             }
         }
 
-        public List<License> Licenses
+        public ArrayList Licenses
         {
             get
             {
@@ -216,16 +216,6 @@ namespace SeniorProjectClassLibrary.Classes
             {
                 physicalAddress = value;
             }
-        }
-
-        public static List<int> instantSearch(string serialNo)
-        {
-            return InventoryDA.instantSearch(serialNo);
-        }
-
-        public static List<string> getInvStatus(string serialNo)
-        {
-            return InventoryDA.getInvStatus(serialNo);
         }
     }
 }

@@ -2,21 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 using System.Data.SqlClient;
-using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProjectClassLibrary.DAL
+namespace SeniorProject
 {
     public class LicenseDA
     {
-        public static string saveLicense(License license) 
+
+        public static string saveLicense(License license, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -70,7 +71,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT Software, OS, LicenseKey, NumOfCopies, ExpirationDate, Notes FROM Licenses WHERE LicID = @LicID";
+            string sql = "SELECT * FROM Licenses WHERE LicID = @LicID";
 
             cmd.CommandText = sql;
 
@@ -95,14 +96,14 @@ namespace SeniorProjectClassLibrary.DAL
             return license;
         }
 
-        public static License getLicense(int licenseID)
+        public static License getLicense(int licenseID, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -120,7 +121,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT LicID FROM Licenses WHERE Software = @Software AND LicenseKey = @Key";
+            string sql = "SELECT * FROM Licenses WHERE Software = @Software AND LicenseKey = @Key";
 
             cmd.CommandText = sql;
 
@@ -129,11 +130,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = cmd.ExecuteReader();
 
-            List<int> licenseList = new List<int>();
+            ArrayList licenseList = new ArrayList();
 
             while (dbReader.Read())
             {
-                licenseList.Add(Convert.ToInt32(dbReader["LicID"]));
+                licenseList.Add(dbReader["LicID"]);
             }
             dbReader.Close();
             cmd.Parameters.Clear();
@@ -148,14 +149,14 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string addLicense(int licenseID, int invID) 
+        public static string addLicense(int licenseID, int invID, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -231,7 +232,7 @@ namespace SeniorProjectClassLibrary.DAL
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT Licenses.LicID FROM Licenses, LicenseInventory WHERE Licenses.LicID = LicenseInventory.LicID AND Software = @Software AND LicenseKey = @Key AND InvID = @InvID";
+            string sql = "SELECT * FROM Licenses, LicenseInventory WHERE Licenses.LicID = LicenseInventory.LicID AND Software = @Software AND LicenseKey = @Key AND InvID = @InvID";
 
             cmd.CommandText = sql;
 
@@ -241,11 +242,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             dbReader = cmd.ExecuteReader();
 
-            List<int> licenseList = new List<int>();
+            ArrayList licenseList = new ArrayList();
 
             while (dbReader.Read())
             {
-                licenseList.Add(Convert.ToInt32(dbReader["LicID"]));
+                licenseList.Add(dbReader["LicID"]);
             }
             dbReader.Close();
             cmd.Parameters.Clear();
@@ -260,14 +261,14 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string removeLicense(int licenseID, int invID) 
+        public static string removeLicense(int licenseID, int invID, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -286,7 +287,6 @@ namespace SeniorProjectClassLibrary.DAL
                 dbCmd.Parameters.AddWithValue("InvID", invID);
 
                 dbCmd.ExecuteNonQuery();
-                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -303,14 +303,14 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string removeAllLicensesComputer(List<int> ids) 
+        public static string removeAllLicensesComputer(ArrayList serialNos, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -321,15 +321,16 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    string serialNo = (String)serialNos[i];
+                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID";
 
                     dbCmd.CommandText = sqlCommand;
 
-                    dbCmd.Parameters.AddWithValue("InvID", invID);
+                    dbCmd.Parameters.AddWithValue("InvID", invId);
 
                     dbCmd.ExecuteNonQuery();
                     dbCmd.Parameters.Clear();
@@ -350,14 +351,14 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string removeAllLicensesEquipment(List<int> ids) 
+        public static string removeAllLicensesEquipment(ArrayList serialNos, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -368,9 +369,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invId = ids[i];
+                    string serialNo = (String)serialNos[i];
+
+                    int invId = EquipmentDA.getInvID(dbCmd, serialNo);
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID";
 
@@ -397,14 +400,14 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static string removeSelectLicenseComputer(List<int> ids, int licenseID) 
+        public static string removeSelectLicenseComputer(ArrayList serialNos, int licenseID, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -415,9 +418,10 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    string serialNo = (String)serialNos[i];
+                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID AND LicID = @LicID";
 
@@ -444,14 +448,14 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string removeSelectLicenseEquipment(List<int> ids, int licenseID) 
+        public static string removeSelectLicenseEquipment(ArrayList serialNos, int licenseID, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -462,9 +466,11 @@ namespace SeniorProjectClassLibrary.DAL
 
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    string serialNo = (String)serialNos[i];
+                    
+                    int invID = EquipmentDA.getInvID(dbCmd, serialNo);
 
                     string sqlCommand = "DELETE FROM LicenseInventory WHERE InvID = @InvID AND LicID = @LicID";
 
@@ -491,14 +497,14 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string addLicensesComputer(List<int> ids, int licenseID) 
+        public static string addLicensesComputer(ArrayList serialNos, int licenseID, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -508,16 +514,16 @@ namespace SeniorProjectClassLibrary.DAL
             StringBuilder message = new StringBuilder();
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    string serialNo = (String)serialNos[i];
+
+                    int invID = ComputerDA.getInvID(dbCmd, serialNo);
                     License lic = new License();
-                    Computer comp = new Computer();
-                    comp = ComputerDA.getComputer(dbCmd, invID);
                     lic = LicenseDA.getLicense(dbCmd, licenseID);
                     if (LicenseDA.licenseExist(dbCmd, lic, invID) == true)
                     {
-                        message.Append("Computer with Serial Number " + comp.SerialNo + " already has that license<bR>");
+                        message.Append("Computer with Serial Number " + serialNos[i] + " already has that license<bR>");
                     }
                     else
                     {
@@ -547,14 +553,14 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string addLicensesEquipment(List<int> ids, int licenseID) 
+        public static string addLicensesEquipment(ArrayList serialNos, int licenseID, string connectionString) 
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -564,16 +570,16 @@ namespace SeniorProjectClassLibrary.DAL
             StringBuilder message = new StringBuilder();
             try
             {
-                for (int i = 0; i < ids.Count; i++)
+                for (int i = 0; i < serialNos.Count; i++)
                 {
-                    int invID = ids[i];
+                    string serialNo = (String)serialNos[i];
+                    
+                    int invID = EquipmentDA.getInvID(dbCmd, serialNo);
                     License lic = new License();
-                    Computer comp = new Computer();
-                    comp = ComputerDA.getComputer(dbCmd, invID);
                     lic = LicenseDA.getLicense(dbCmd, licenseID);
                     if (LicenseDA.licenseExist(dbCmd, lic, invID) == true)
                     {
-                        message.Append("Equipment with Serial Number " + comp.SerialNo + " already has that license<bR>");
+                        message.Append("Equipment with Serial Number " + serialNos[i] + " already has that license<bR>");
                     }
                     else
                     {
@@ -603,14 +609,14 @@ namespace SeniorProjectClassLibrary.DAL
             }
         }
 
-        public static string updateLicense(License license)
+        public static string updateLicense(License license, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = GlobalVars.ConnectionString;
+            sConnection = connectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
