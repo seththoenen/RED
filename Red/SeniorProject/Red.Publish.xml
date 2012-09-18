@@ -1,26 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="C:\Users\Administrator\Desktop\project" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="Default.aspx" publishTime="08/01/2012 09:19:59" />
+    <file relUrl="Default.aspx" publishTime="09/18/2012 09:56:51" />
+    <file relUrl="Licenses/ViewLicenses.aspx" publishTime="09/18/2012 09:48:04" />
+    <file relUrl="Computer/ViewComputers.aspx" publishTime="07/31/2012 12:29:59" />
     <file relUrl="Groups/AddGroup.aspx" publishTime="05/09/2012 10:02:05" />
     <file relUrl="bin/ru/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="Account/Web.config" publishTime="12/13/2011 11:21:05" />
     <file relUrl="Search.aspx" publishTime="05/24/2012 11:46:53" />
-    <file relUrl="bin/he/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="App_Themes/Theme1/RED.skin" publishTime="07/12/2012 09:26:54" />
-    <file relUrl="Styles/Site.css" publishTime="07/13/2012 08:48:59" />
-    <file relUrl="Equipments/AddEquipment.aspx" publishTime="07/27/2012 10:41:03" />
-    <file relUrl="Reports/BuildingReport.aspx" publishTime="05/04/2012 14:14:15" />
-    <file relUrl="Web.config" publishTime="08/01/2012 09:20:10" />
-    <file relUrl="bin/it/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
+    <file relUrl="bin/ar/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="Groups/ManageGroups.aspx" publishTime="07/13/2012 08:35:22" />
+    <file relUrl="Styles/Site.css" publishTime="09/18/2012 09:48:04" />
+    <file relUrl="Equipments/AddEquipment.aspx" publishTime="07/27/2012 10:41:03" />
+    <file relUrl="Web.config" publishTime="09/18/2012 09:57:11" />
+    <file relUrl="bin/it/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
+    <file relUrl="Equipments/ViewEquipment.aspx" publishTime="07/27/2012 10:41:03" />
+    <file relUrl="Manage.aspx" publishTime="07/13/2012 09:11:22" />
     <file relUrl="PO/ManagePOs.aspx" publishTime="07/13/2012 08:37:10" />
-    <file relUrl="bin/es/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="bin/pt/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="bin/SeniorProject.dll" publishTime="08/01/2012 08:59:51" />
+    <file relUrl="bin/he/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="bin/AjaxControlToolkit.pdb" publishTime="07/11/2012 13:47:47" />
+    <file relUrl="Reports/BuildingReport.aspx" publishTime="05/04/2012 14:14:15" />
+    <file relUrl="bin/SeniorProjectClassLibrary.pdb" publishTime="09/18/2012 09:48:57" />
     <file relUrl="bin/ja/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="Licenses/ViewLicenses.aspx" publishTime="07/13/2012 08:36:32" />
     <file relUrl="bin/fr/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="Account/Register.aspx" publishTime="12/13/2011 11:21:05" />
     <file relUrl="bin/ko/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
@@ -29,46 +31,44 @@
     <file relUrl="Transfers/NewTransfer.aspx" publishTime="07/18/2012 11:11:53" />
     <file relUrl="Transfers/AllTransferInventory.aspx" publishTime="07/18/2012 12:42:21" />
     <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="12/13/2011 11:21:05" />
+    <file relUrl="Equipments/ViewEquipments.aspx" publishTime="06/07/2012 12:04:38" />
     <file relUrl="Reports/InventoryTypeReport.aspx" publishTime="05/24/2012 13:31:05" />
     <file relUrl="bin/tr-TR/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="12/13/2011 11:21:05" />
+    <file relUrl="PatchNotes.aspx" publishTime="09/18/2012 09:56:35" />
     <file relUrl="bin/zh-CHT/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="Equipments/ViewEquipment.aspx" publishTime="07/27/2012 10:41:03" />
-    <file relUrl="Manage.aspx" publishTime="07/13/2012 09:11:22" />
-    <file relUrl="PatchNotes.aspx" publishTime="08/01/2012 09:19:33" />
+    <file relUrl="Groups/ManageGroup.aspx" publishTime="07/13/2012 08:34:54" />
+    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="12/13/2011 11:21:05" />
+    <file relUrl="PO/AddPO.aspx" publishTime="05/09/2012 10:04:55" />
+    <file relUrl="bin/hi/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="12/13/2011 11:21:05" />
     <file relUrl="packages.config" publishTime="07/11/2012 13:47:48" />
     <file relUrl="Equipments/UpdateEquipment.aspx" publishTime="07/27/2012 10:41:03" />
-    <file relUrl="Site.Master" publishTime="07/31/2012 12:29:59" />
-    <file relUrl="PO/AddPO.aspx" publishTime="05/09/2012 10:04:55" />
+    <file relUrl="bin/es/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="bin/HtmlAgilityPack.dll" publishTime="07/11/2012 13:47:47" />
+    <file relUrl="Error.aspx" publishTime="05/04/2012 14:20:19" />
     <file relUrl="bin/nl/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="PO/ManagePO.aspx" publishTime="07/13/2012 08:37:33" />
     <file relUrl="Licenses/AddLicense.aspx" publishTime="05/09/2012 10:03:54" />
-    <file relUrl="Computer/ViewComputers.aspx" publishTime="07/31/2012 12:29:59" />
-    <file relUrl="Computer/ViewComputer.aspx" publishTime="07/31/2012 12:29:59" />
-    <file relUrl="Error.aspx" publishTime="05/04/2012 14:20:19" />
-    <file relUrl="Account/ChangePassword.aspx" publishTime="12/13/2011 11:21:05" />
-    <file relUrl="bin/de/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="Licenses/ManageEquipmentLicense.aspx" publishTime="07/13/2012 08:35:43" />
     <file relUrl="Transfers/ViewTransfer.aspx" publishTime="07/31/2012 10:20:49" />
+    <file relUrl="Computer/ViewComputer.aspx" publishTime="07/31/2012 12:29:59" />
+    <file relUrl="Account/ChangePassword.aspx" publishTime="12/13/2011 11:21:05" />
+    <file relUrl="Site.Master" publishTime="07/31/2012 12:29:59" />
+    <file relUrl="bin/de/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
+    <file relUrl="App_Themes/Theme1/RED.skin" publishTime="07/12/2012 09:26:54" />
+    <file relUrl="Licenses/ManageEquipmentLicense.aspx" publishTime="07/13/2012 08:35:43" />
     <file relUrl="bin/SanitizerProviders.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="bin/zh-CHS/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="Help.aspx" publishTime="05/10/2012 09:33:28" />
-    <file relUrl="bin/ar/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
-    <file relUrl="Groups/ManageGroup.aspx" publishTime="07/13/2012 08:34:54" />
-    <file relUrl="bin/SeniorProject.pdb" publishTime="08/01/2012 08:59:51" />
+    <file relUrl="bin/SeniorProject.dll" publishTime="09/18/2012 09:57:10" />
+    <file relUrl="Global.asax" publishTime="12/13/2011 11:21:05" />
+    <file relUrl="bin/SeniorProject.pdb" publishTime="09/18/2012 09:57:10" />
     <file relUrl="bin/cs/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
     <file relUrl="Account/Login.aspx" publishTime="05/02/2012 15:19:40" />
     <file relUrl="Groups/ManageEquipmentGroup.aspx" publishTime="07/13/2012 08:34:05" />
-    <file relUrl="bin/SeniorProjectClassLibrary.dll" publishTime="08/01/2012 08:59:50" />
+    <file relUrl="bin/SeniorProjectClassLibrary.dll" publishTime="09/18/2012 09:48:57" />
     <file relUrl="Account/ChangePasswordSuccess.aspx" publishTime="12/13/2011 11:21:05" />
     <file relUrl="Computer/UpdateComputers.aspx" publishTime="07/31/2012 12:29:59" />
     <file relUrl="Transfers/ViewTransfers.aspx" publishTime="06/13/2012 10:54:51" />
-    <file relUrl="Computer/AddComputer.aspx" publishTime="07/31/2012 12:26:47" />
-    <file relUrl="Equipments/ViewEquipments.aspx" publishTime="06/07/2012 12:04:38" />
-    <file relUrl="Global.asax" publishTime="12/13/2011 11:21:05" />
-    <file relUrl="bin/SeniorProjectClassLibrary.pdb" publishTime="08/01/2012 08:59:50" />
-    <file relUrl="bin/hi/AjaxControlToolkit.resources.dll" publishTime="07/11/2012 13:47:47" />
+    <file relUrl="Computer/AddComputer.aspx" publishTime="09/18/2012 09:37:32" />
+    <file relUrl="Help.aspx" publishTime="05/10/2012 09:33:28" />
   </publishProfile>
 </publishData>
