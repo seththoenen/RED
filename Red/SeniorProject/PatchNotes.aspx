@@ -5,19 +5,16 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
     Patch Notes</h2>
-    <asp:Accordion ID="Accordion115" runat="server" Height="637px" Width="1227px" 
+    <asp:Accordion ID="Accordion1" runat="server" Height="637px" Width="1227px" 
         HeaderCssClass="accordionHeader" ContentCssClass="accordionContent">
         <Panes>
-            <asp:AccordionPane ID="AccordionPane1" runat="server" ContentCssClass="" 
+        <asp:AccordionPane ID="AccordionPane115" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
-            <Header><a>Release 1.1.5 - (Release Date Here)</a></Header>
+            <Header><a>Release 1.1.5 - Release Date Here</a></Header>
             <Content>
-                -Created "Page Not Found" page
+                -Created "Page Not Found" Page
             </Content>
         </asp:AccordionPane>
-    <asp:Accordion ID="Accordion114" runat="server" Height="637px" Width="1227px" 
-        HeaderCssClass="accordionHeader" ContentCssClass="accordionContent">
-        <Panes>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
             <Header><a>Release 1.1.4 - September 18, 2012</a></Header>

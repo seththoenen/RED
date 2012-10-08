@@ -13,31 +13,22 @@ namespace SeniorProject {
     public partial class PatchNotes {
         
         /// <summary>
-        /// Accordion115 control.
+        /// Accordion1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.Accordion Accordion115;
+        protected global::AjaxControlToolkit.Accordion Accordion1;
         
         /// <summary>
-        /// AccordionPane1 control.
+        /// AccordionPane115 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.AccordionPane AccordionPane1;
-        
-        /// <summary>
-        /// Accordion114 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.Accordion Accordion114;
+        protected global::AjaxControlToolkit.AccordionPane AccordionPane115;
         
         /// <summary>
         /// AccordionPane114 control.
