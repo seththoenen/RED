@@ -5,7 +5,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <h2>
     Patch Notes</h2>
-    <asp:Accordion ID="Accordion1" runat="server" Height="637px" Width="1227px" 
+    <asp:Accordion ID="Accordion115" runat="server" Height="637px" Width="1227px" 
+        HeaderCssClass="accordionHeader" ContentCssClass="accordionContent">
+        <Panes>
+            <asp:AccordionPane ID="AccordionPane1" runat="server" ContentCssClass="" 
+                HeaderCssClass="">
+            <Header><a>Release 1.1.5 - (Release Date Here)</a></Header>
+            <Content>
+                -First Entry Here
+            </Content>
+        </asp:AccordionPane>
+    <asp:Accordion ID="Accordion114" runat="server" Height="637px" Width="1227px" 
         HeaderCssClass="accordionHeader" ContentCssClass="accordionContent">
         <Panes>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 
