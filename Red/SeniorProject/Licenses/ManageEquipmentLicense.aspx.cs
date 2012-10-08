@@ -40,8 +40,7 @@ namespace SeniorProject.Licenses
         {
             int invID;
             invID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
-            Session["CurrentEquipment"] = invID;
-            Response.Redirect("~/Equipments/ViewEquipment.aspx");
+            Response.Redirect("~/Equipments/ViewEquipment.aspx?id=" + invID);
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)

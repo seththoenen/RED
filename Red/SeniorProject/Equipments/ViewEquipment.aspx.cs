@@ -17,12 +17,25 @@ namespace SeniorProject.Equipments
         {
             if (!IsPostBack)
             {
-                if (Session["CurrentEquipment"] == null)
+                int invID = 0;
+                string invIDstr = Request.QueryString["id"];
+                try
                 {
-                    Response.Redirect("~/Equipments/ViewEquipments.aspx");
+                    invID = Convert.ToInt32(invIDstr);
                 }
+                catch (System.FormatException ex)
+                {
+                    Session["Exception"] = "Input is in improper format.<bR><bR>" + ex.ToString();
+                    Response.Redirect("~/Error.aspx");
+                }
+                catch (Exception ex)
+                {
+                    Session["Exception"] = ex.ToString();
+                    Response.Redirect("~/Error.aspx");
+                }
+                
                 Equipment equip = new Equipment();
-                equip = EquipmentDA.getEquipment(Convert.ToInt32(Session["CurrentEquipment"]), connString);
+                equip = EquipmentDA.getEquipment(invID, connString);
 
                 txtBoxSMSUTag.Text = equip.SMSUtag;
                 ddlType.Text = equip.EquipmentType;

@@ -88,6 +88,7 @@
     <Content Include="Licenses\ViewLicense.aspx" />
     <Content Include="Licenses\ViewLicenses.aspx" />
     <Content Include="Manage.aspx" />
+    <Content Include="PageNotFound.aspx" />
     <Content Include="PatchNotes.aspx" />
     <Content Include="PO\AddPO.aspx" />
     <Content Include="PO\ManagePO.aspx" />
@@ -276,6 +277,13 @@
     <Compile Include="Manage.aspx.designer.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PageNotFound.aspx.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PageNotFound.aspx.designer.cs">
+      <DependentUpon>PageNotFound.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PatchNotes.aspx.cs">
       <DependentUpon>PatchNotes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -442,7 +450,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>58891</DevelopmentServerPort>
+          <DevelopmentServerPort>34909</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

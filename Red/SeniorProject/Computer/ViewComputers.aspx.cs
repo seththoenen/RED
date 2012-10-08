@@ -274,8 +274,7 @@ namespace SeniorProject
             {
                 int invID;
                 invID = Convert.ToInt32(GridViewComputers.SelectedDataKey.Value);
-                Session["CurrentComputer"] = invID;
-                Response.Redirect("~/Computer/ViewComputer.aspx");
+                Response.Redirect("~/Computer/ViewComputer.aspx?id="+invID);
             }
             catch (Exception ex)
             {

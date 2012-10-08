@@ -44,10 +44,9 @@ namespace SeniorProject.Groups
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int equipID;
-            equipID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
-            Session["CurrentEquipment"] = equipID;
-            Response.Redirect("~/Equipments/ViewEquipment.aspx");
+            int invID;
+            invID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
+            Response.Redirect("~/Equipments/ViewEquipment.aspx?id=" + invID);
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)

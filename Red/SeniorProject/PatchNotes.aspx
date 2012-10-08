@@ -13,6 +13,7 @@
             <Header><a>Release 1.1.5 - Release Date Here</a></Header>
             <Content>
                 -Created "Page Not Found" Page
+                -Fixed a bug where errors would occur when working with grid views.
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 

@@ -72,16 +72,14 @@ namespace SeniorProject
         {
             int invID;
             invID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
-            Session["CurrentComputer"] = invID;
-            Response.Redirect("~/Computer/ViewComputer.aspx");
+            Response.Redirect("~/Computer/ViewComputer.aspx?id="+invID);
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
             int invID;
             invID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
-            Session["CurrentEquipment"] = invID;
-            Response.Redirect("~/Equipments/ViewEquipment.aspx");
+            Response.Redirect("~/Equipments/ViewEquipment.aspx?id="+invID);
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)

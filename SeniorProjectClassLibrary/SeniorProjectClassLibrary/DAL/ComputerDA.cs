@@ -270,7 +270,7 @@ namespace SeniorProject
                 return true;
         }
 
-        public static Computer getComputer(string invID, string connectionString)
+        public static Computer getComputer(int invID, string connectionString)
         {
             SqlConnection dbConn;
             string sConnection;

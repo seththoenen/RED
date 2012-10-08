@@ -51,10 +51,9 @@ namespace SeniorProject.Groups
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string compID;
-            compID = GridView2.SelectedDataKey.Value.ToString();
-            Session["CurrentComputer"] = compID;
-            Response.Redirect("~/Computer/ViewComputer.aspx");
+            string invID;
+            invID = GridView2.SelectedDataKey.Value.ToString();
+            Response.Redirect("~/Computer/ViewComputer.aspx?id=" + invID);
         }
 
         protected void btnUpdateGroup_Click(object sender, EventArgs e)

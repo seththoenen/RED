@@ -38,10 +38,9 @@ namespace SeniorProject.Licenses
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string compID;
-            compID = GridView1.SelectedDataKey.Value.ToString();
-            Session["CurrentComputer"] = compID;
-            Response.Redirect("~/Computer/ViewComputer.aspx");
+            string invID;
+            invID = GridView1.SelectedDataKey.Value.ToString();
+            Response.Redirect("~/Computer/ViewComputer.aspx?id=" + invID);
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)

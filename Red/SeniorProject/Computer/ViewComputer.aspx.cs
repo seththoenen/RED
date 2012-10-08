@@ -18,13 +18,30 @@ namespace SeniorProject
         {
             if (!IsPostBack)
             {
-                if (Session["CurrentComputer"] == null)
+                int invID = 0;
+                string invIDstr = Request.QueryString["id"];
+                try
                 {
-                    Response.Redirect("~/Computer/ViewComputers.aspx");
+                    invID = Convert.ToInt32(invIDstr);
                 }
-                string compID = Session["CurrentComputer"].ToString();
+                catch (System.FormatException ex)
+                {
+                    Session["Exception"] = "Input is in improper format.<bR><bR>" + ex.ToString();
+                    Response.Redirect("~/Error.aspx");
+                }
+                catch (Exception ex)
+                {
+                    Session["Exception"] = ex.ToString();
+                    Response.Redirect("~/Error.aspx");
+                }
+
                 Computer comp = new Computer();
-                comp = ComputerDA.getComputer(compID, connString);
+                comp = ComputerDA.getComputer(invID, connString);
+
+                if (comp.InvID == 0 || comp.InvID == null)
+                {
+                    Response.Redirect("~/PageNotFound.aspx");
+                }
 
                 Session["CurrentComputerID"] = comp.CompID;
 
@@ -181,13 +198,13 @@ namespace SeniorProject
                 if (Session["Authenticated"].ToString() != "True")
                 {
                     panelLicenses.Visible = false;
-                }
+                }              
             }
         }
 
         protected void btnUpdateDesktop_Click(object sender, EventArgs e)
         {
-            string compID = Session["CurrentComputer"].ToString();
+            int compID = Convert.ToInt32(Session["CurrentComputer"]);
             
             oComp = ComputerDA.getComputer(compID, connString);
             

@@ -49,8 +49,7 @@ namespace SeniorProject.Transfers
         {
             int invID;
             invID = Convert.ToInt32(GridViewComputers.SelectedDataKey.Value);
-            Session["CurrentComputer"] = invID;
-            Response.Redirect("~/Computer/ViewComputer.aspx");
+            Response.Redirect("~/Computer/ViewComputer.aspx?id=" + invID);
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
@@ -77,8 +76,7 @@ namespace SeniorProject.Transfers
         {
             int invID;
             invID = Convert.ToInt32(GridViewComputers.SelectedDataKey.Value);
-            Session["CurrentEquipment"] = invID;
-            Response.Redirect("~/Equipments/ViewEquipment.aspx");
+            Response.Redirect("~/Equipments/ViewEquipment.aspx?id=" + invID);
         }
 
         protected void GridView2_RowCreated(object sender, GridViewRowEventArgs e)

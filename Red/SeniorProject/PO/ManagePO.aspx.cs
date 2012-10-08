@@ -25,10 +25,9 @@ namespace SeniorProject.PO
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string compID;
-            compID = GridView1.SelectedDataKey.Value.ToString();
-            Session["CurrentComputer"] = compID;
-            Response.Redirect("~/Computer/ViewComputer.aspx");
+            string invID;
+            invID = GridView1.SelectedDataKey.Value.ToString();
+            Response.Redirect("~/Computer/ViewComputer.aspx?id=" + invID);
         }
 
         protected void btnEditPurchaseOrder_Click(object sender, EventArgs e)
@@ -75,8 +74,7 @@ namespace SeniorProject.PO
         {
             int invID;
             invID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
-            Session["CurrentEquipment"] = invID;
-            Response.Redirect("~/Equipments/ViewEquipment.aspx");
+            Response.Redirect("~/Equipments/ViewEquipment.aspx?id=" + invID);
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)

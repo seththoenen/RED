@@ -22,18 +22,16 @@ namespace SeniorProject.Transfers
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int invId;
-            invId = Convert.ToInt32(GridView1.SelectedDataKey.Value);
-            Session["CurrentComputer"] = invId;
-            Response.Redirect("~/Computer/ViewComputer.aspx");
+            int invID;
+            invID = Convert.ToInt32(GridView1.SelectedDataKey.Value);
+            Response.Redirect("~/Computer/ViewComputer.aspx?id=" + invID);
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int invId;
-            invId = Convert.ToInt32(GridView2.SelectedDataKey.Value);
-            Session["CurrentEquipment"] = invId;
-            Response.Redirect("~/Equipments/ViewEquipment.aspx");
+            int invID;
+            invID = Convert.ToInt32(GridView2.SelectedDataKey.Value);
+            Response.Redirect("~/Equipments/ViewEquipment.aspx?id=" + invID);
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
