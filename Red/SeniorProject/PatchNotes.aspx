@@ -12,7 +12,7 @@
                 HeaderCssClass="">
             <Header><a>Release 1.1.5 - (Release Date Here)</a></Header>
             <Content>
-                -First Entry Here
+                -Created "Page Not Found" page
             </Content>
         </asp:AccordionPane>
     <asp:Accordion ID="Accordion114" runat="server" Height="637px" Width="1227px" 
