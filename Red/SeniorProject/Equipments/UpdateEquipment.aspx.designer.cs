@@ -742,6 +742,15 @@ namespace SeniorProject.Equipments {
         protected global::System.Web.UI.WebControls.TextBox txtboxDate;
         
         /// <summary>
+        /// txtboxDate_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtboxDate_CalendarExtender;
+        
+        /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>

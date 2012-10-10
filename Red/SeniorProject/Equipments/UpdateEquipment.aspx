@@ -520,6 +520,9 @@
                                             Date:</td>
                                         <td>
                                             <asp:TextBox ID="txtboxDate" runat="server" MaxLength="45" Width="136px"></asp:TextBox>
+                                            <asp:CalendarExtender ID="txtboxDate_CalendarExtender" runat="server" 
+                                                Enabled="True" TargetControlID="txtboxDate">
+                                            </asp:CalendarExtender>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                                                 ControlToValidate="txtBoxDate" ErrorMessage="Date is required" ForeColor="Red"></asp:RequiredFieldValidator>
                                         </td>

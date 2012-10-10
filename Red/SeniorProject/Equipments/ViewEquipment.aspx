@@ -716,6 +716,9 @@
                                 Date:</td>
                             <td>
                                 <asp:TextBox ID="txtBoxMaintDate" runat="server" Width="136px" MaxLength="45"></asp:TextBox>
+                                <asp:CalendarExtender ID="txtBoxMaintDate_CalendarExtender" runat="server" 
+                                    Enabled="True" TargetControlID="txtBoxMaintDate">
+                                </asp:CalendarExtender>
                             </td>
                         </tr>
                         <tr>
