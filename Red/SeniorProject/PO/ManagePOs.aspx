@@ -115,7 +115,8 @@
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
                 
-                SelectCommand="SELECT PO.POID, PO.POno, PO.DeliveryDate, PO.RequisitionNo, PO.PurchaseDate, PO.Title, COUNT(PO.POno) AS Count FROM PO INNER JOIN POInventory ON PO.POID = POInventory.POID GROUP BY PO.POID, PO.POno, PO.DeliveryDate, PO.RequisitionNo, PO.PurchaseDate, PO.Title ORDER BY PO.POno"></asp:SqlDataSource>
+                
+                SelectCommand="SELECT PO.POID, PO.POno, PO.DeliveryDate, PO.RequisitionNo, PO.PurchaseDate, PO.Title, COUNT(POInventory.POID) AS Count FROM PO LEFT OUTER JOIN POInventory ON PO.POID = POInventory.POID GROUP BY PO.POID, PO.POno, PO.DeliveryDate, PO.RequisitionNo, PO.PurchaseDate, PO.Title ORDER BY PO.POno"></asp:SqlDataSource>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
