@@ -152,7 +152,8 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
             ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
             
-            SelectCommand="SELECT Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate, COUNT(Licenses.Software) AS InstalledCount FROM Licenses INNER JOIN LicenseInventory ON Licenses.LicID = LicenseInventory.LicID WHERE (Licenses.Type = 'Computer') GROUP BY Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate ORDER BY Licenses.Software">
+            
+            SelectCommand="SELECT Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate, COUNT(LicenseInventory.LicID) AS InstalledCount FROM Licenses LEFT OUTER JOIN LicenseInventory ON Licenses.LicID = LicenseInventory.LicID WHERE (Licenses.Type = 'Computer') GROUP BY Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate ORDER BY Licenses.Software">
         </asp:SqlDataSource>
         <h3>
             Equipment Licenses</h3>
@@ -190,7 +191,8 @@
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" 
             ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
             
-            SelectCommand="SELECT Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate, COUNT(Licenses.Software) AS InstalledCount FROM Licenses INNER JOIN LicenseInventory ON Licenses.LicID = LicenseInventory.LicID WHERE (Licenses.Type = 'Equipment') GROUP BY Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate ORDER BY Licenses.Software">
+            
+            SelectCommand="SELECT Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate, COUNT(LicenseInventory.LicID) AS InstalledCount FROM Licenses LEFT OUTER JOIN LicenseInventory ON Licenses.LicID = LicenseInventory.LicID WHERE (Licenses.Type = 'Equipment') GROUP BY Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate ORDER BY Licenses.Software">
         </asp:SqlDataSource>
     </ContentTemplate>
 </asp:UpdatePanel>

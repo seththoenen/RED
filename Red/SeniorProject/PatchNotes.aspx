@@ -15,6 +15,7 @@
                 -Created "Page Not Found" Page<br />
                 -Fixed a bug where errors would occur when working with grid views<br />
                 -Fixed a bug where POs would not show up in view POs if there were no inventory items assigned to it<br />
+                -Fixed a bug where licenses would not show up in view licenses if there were no inventory items assigned to it<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 
