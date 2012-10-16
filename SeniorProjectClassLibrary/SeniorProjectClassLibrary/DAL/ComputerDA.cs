@@ -274,11 +274,7 @@ namespace SeniorProjectClassLibrary.DAL
                 return true;
         }
 
-<<<<<<< HEAD
-        public static Computer getComputer(int invID, string connectionString)
-=======
-        public static Computer getComputer(string invID)
->>>>>>> parent of 2a12043... Replaced Array Lists with Lists
+        public static Computer getComputer(int invID)
         {
             SqlConnection dbConn;
             string sConnection;

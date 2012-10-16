@@ -22,6 +22,7 @@ namespace SeniorProject.Equipments
                 try
                 {
                     invID = Convert.ToInt32(invIDstr);
+                    Session["CurrentEquipment"] = invID;
                 }
                 catch (System.FormatException ex)
                 {
@@ -35,7 +36,7 @@ namespace SeniorProject.Equipments
                 }
                 
                 Equipment equip = new Equipment();
-                equip = EquipmentDA.getEquipment(invID, connString);
+                equip = Equipment.getEquipment(invID);
 
 
                 txtBoxSMSUTag.Text = equip.SMSUtag;

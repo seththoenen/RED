@@ -189,7 +189,7 @@ namespace SeniorProjectClassLibrary.Classes
             return ComputerDA.computerExist(serialNo);
         }
 
-        public static Computer getComputer(string invID)
+        public static Computer getComputer(int invID)
         {
             return ComputerDA.getComputer(invID);
         }

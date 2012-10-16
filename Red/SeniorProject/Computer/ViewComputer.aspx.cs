@@ -23,6 +23,7 @@ namespace SeniorProject
                 try
                 {
                     invID = Convert.ToInt32(invIDstr);
+                    Session["CurrentComputer"] = invID;
                 }
                 catch (System.FormatException ex)
                 {
@@ -36,7 +37,7 @@ namespace SeniorProject
                 }
 
                 Computer comp = new Computer();
-                comp = ComputerDA.getComputer(invID, connString);
+                comp = Computer.getComputer(invID);
 
                 if (comp.InvID == 0 || comp.InvID == null)
                 {
