@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class PurchaseOrder
     {
         private int? id;
-        private ArrayList computers;
-        private ArrayList equipment;
+        private List<Computer> computers;
+        private List<Equipment> equipment;
         private string purchaseDate;
         private string poNumber;
         private string requisitionNo;
@@ -19,8 +19,8 @@ namespace SeniorProject
 
         public PurchaseOrder()
         {
-            computers = new ArrayList();
-            equipment = new ArrayList();
+            computers = new List<Computer>();
+            equipment = new List<Equipment>();
         }
 
         public int? ID
@@ -35,7 +35,7 @@ namespace SeniorProject
             }
         }
 
-        public ArrayList Computers
+        public List<Computer> Computers
         {
             get
             {
@@ -47,7 +47,7 @@ namespace SeniorProject
             }
         }
 
-        public ArrayList Equipment 
+        public List<Equipment> Equipment 
         {
             get 
             {
@@ -119,9 +119,19 @@ namespace SeniorProject
             }
         }
 
-        public string savePO(string connString)
+        public static string savePO(PurchaseOrder po)
         {
-            return PODA.savePO(this, connString);
+            return PODA.savePO(po);
+        }
+
+        public static string updatePO(PurchaseOrder newPO, int oldPOid)
+        {
+            return PODA.updatePO(newPO, oldPOid);
+        }
+
+        public static PurchaseOrder getPO(string POID)
+        {
+            return PODA.getPO(POID);
         }
 
     }

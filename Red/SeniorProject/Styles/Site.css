@@ -326,7 +326,8 @@ input
 
 input[type="submit"]
 {
-    min-height: 26px;        
+    min-height: 26px;
+    height: 26px;
 }
 
 input[type="button"]

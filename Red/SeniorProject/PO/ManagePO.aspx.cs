@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject.PO
 { 
@@ -37,7 +38,7 @@ namespace SeniorProject.PO
             btnEditPurchaseOrder.Visible = false;
 
             PurchaseOrder PO = new PurchaseOrder();
-            PO = PODA.getPO(Session["CurrentPurchaseOrder"].ToString(), connString);
+            PO = PurchaseOrder.getPO(Session["CurrentPurchaseOrder"].ToString());
 
             txtBoxDeliveryDate.Text = PO.DeliveryDate;
             txtBoxPONumber.Text = PO.PONumber;
@@ -55,7 +56,7 @@ namespace SeniorProject.PO
             newPO.PurchaseDate = txtBoxPurchaseDate.Text;
             newPO.RequisitionNumber = txtBoxRequisitionNumber.Text;
 
-            lblMessage.Text = PODA.updatePO(newPO, Convert.ToInt32(Session["CurrentPurchaseOrder"]), connString);
+            lblMessage.Text = PurchaseOrder.updatePO(newPO, Convert.ToInt32(Session["CurrentPurchaseOrder"]));
 
             if (lblMessage.Text == "Purchase Order created successfully<bR>")
             {

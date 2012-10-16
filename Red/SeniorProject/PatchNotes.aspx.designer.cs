@@ -22,12 +22,17 @@ namespace SeniorProject {
         protected global::AjaxControlToolkit.Accordion Accordion1;
         
         /// <summary>
+<<<<<<< HEAD
         /// AccordionPane115 control.
+=======
+        /// AccordionPaneNext control.
+>>>>>>> parent of 2a12043... Replaced Array Lists with Lists
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+<<<<<<< HEAD
         protected global::AjaxControlToolkit.AccordionPane AccordionPane115;
         
         /// <summary>
@@ -38,6 +43,9 @@ namespace SeniorProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AccordionPane AccordionPane114;
+=======
+        protected global::AjaxControlToolkit.AccordionPane AccordionPaneNext;
+>>>>>>> parent of 2a12043... Replaced Array Lists with Lists
         
         /// <summary>
         /// AccordionPane113 control.

@@ -192,7 +192,11 @@
             ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
             
             
+<<<<<<< HEAD
             SelectCommand="SELECT Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate, COUNT(LicenseInventory.LicID) AS InstalledCount FROM Licenses LEFT OUTER JOIN LicenseInventory ON Licenses.LicID = LicenseInventory.LicID WHERE (Licenses.Type = 'Equipment') GROUP BY Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate ORDER BY Licenses.Software">
+=======
+            SelectCommand="SELECT Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate, COUNT(LicenseInventory.InvID) AS InstalledCount FROM Licenses LEFT OUTER JOIN LicenseInventory ON Licenses.LicID = LicenseInventory.LicID WHERE (Licenses.Type = 'Equipment') GROUP BY Licenses.LicID, Licenses.Software, Licenses.OS, Licenses.LicenseKey, Licenses.NumOfCopies, Licenses.ExpirationDate ORDER BY Licenses.Software">
+>>>>>>> parent of 2a12043... Replaced Array Lists with Lists
         </asp:SqlDataSource>
     </ContentTemplate>
 </asp:UpdatePanel>

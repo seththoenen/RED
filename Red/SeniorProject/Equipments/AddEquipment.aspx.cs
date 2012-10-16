@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
 namespace SeniorProject
 {
@@ -17,10 +17,10 @@ namespace SeniorProject
         {
             if (!IsPostBack)
             {
-                Session["Warranties"] = new ArrayList();  
-            
-                ArrayList groups = new ArrayList();
-                groups = GroupDA.getAllEquipmentGroups(connString);
+                Session["Warranties"] = new List<Warranty>();
+
+                List<Group> groups = new List<Group>();
+                groups = Group.getAllEquipmentGroups();
 
                 int counter = 0;
                 for (int i = 0; i < groups.Count; i++)
@@ -68,8 +68,8 @@ namespace SeniorProject
 
         protected void btnAddEquipment_Click(object sender, EventArgs e)
         {
-            ArrayList equipList = new ArrayList();
-            ArrayList groupList = new ArrayList();
+            List<Equipment> equipList = new List<Equipment>();
+            List<Group> groupList = new List<Group>();
             for (int i = 0; i < chkBoxListGroups1.Items.Count; i++)
             {
                 if (chkBoxListGroups1.Items[i].Selected == true)
@@ -151,11 +151,11 @@ namespace SeniorProject
                     equip.Licenses.Add(lic);
                 }
 
-                equip.Warranties = (ArrayList)Session["Warranties"];
+                equip.Warranties = (List<Warranty>)Session["Warranties"];
 
             }
 
-            lblMessage.Text = EquipmentDA.saveEquipment(equipList, connString);
+            lblMessage.Text = Equipment.saveEquipment(equipList);
             if (lblMessage.Text == "Operation successfull!<bR>")
             {
                 lstBoxSerialNos.Items.Clear();
@@ -205,8 +205,8 @@ namespace SeniorProject
         {
             try
             {
-                ArrayList warranties = new ArrayList();
-                warranties = (ArrayList)Session["Warranties"];
+                List<Warranty> warranties = new List<Warranty>();
+                warranties = (List<Warranty>)Session["Warranties"];
                 warranties.RemoveAt(lstBoxWarranties.SelectedIndex);
 
                 lstBoxWarranties.Items.Clear();
@@ -224,7 +224,7 @@ namespace SeniorProject
         protected void btnAddWarranty_Click(object sender, EventArgs e)
         {
             Page.Validate("warranty");
-            ArrayList warranties = new ArrayList();
+            List<Warranty> warranties = new List<Warranty>();
             Warranty war = new Warranty();
             war.Company = ddlWarrantyCompany.SelectedItem.ToString();
             war.WarrantyType = txtBoxWarrantyType.Text;
@@ -238,7 +238,7 @@ namespace SeniorProject
             }
             else
             {
-                warranties = (ArrayList)Session["Warranties"];
+                warranties = (List<Warranty>)Session["Warranties"];
             }
             warranties.Add(war);
 
@@ -275,33 +275,31 @@ namespace SeniorProject
         protected void txtBoxSerialNo_TextChanged(object sender, EventArgs e)
         {
             bool existLB = false;
-            bool existDB = false;
             for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
             {
-                if (lstBoxSerialNos.Items[i].Text == txtBoxSerialNo.Text.ToUpper())
+                if (lstBoxSerialNos.Items[i].Text.ToUpper() == txtBoxSerialNo.Text.ToUpper())
                 {
                     existLB = true;
+                    lblSerialNos.Visible = true;
+                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
+                    break;
                 }
             }
-            if (ComputerDA.computerExist(txtBoxSerialNo.Text, connString) == true)
+            if (existLB == false)
             {
-                existDB = true;
+                if (Equipment.equipmentExist(txtBoxSerialNo.Text) == true)
+                {
+                    //existDB = true;
+                    lblSerialNos.Visible = true;
+                    lblSerialNos.Text += txtBoxSerialNo.Text + " is already in the database<br />";
+                }
+                else
+                {
+                    lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
+                    lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
+                }
             }
-            if (existLB == false && existDB == false)
-            {
-                lstBoxSerialNos.Items.Add(txtBoxSerialNo.Text.ToUpper());
-                lstBoxSerialNos.Text = txtBoxSerialNo.Text.ToUpper();
-            }
-            else if (existLB == true)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in queue<bR />";
-            }
-            else if (existDB == true)
-            {
-                lblSerialNos.Visible = true;
-                lblSerialNos.Text += txtBoxSerialNo.Text + " is already in the database<bR />";
-            }
+
             txtBoxSerialNo.Text = "";
             txtBoxSerialNo.Focus();
         }
@@ -336,49 +334,35 @@ namespace SeniorProject
             foreach (string serialNo in serialNos)
             {
                 bool existLB = false;
-                bool existDB = false;
-                bool isTooLong = false;
-                bool isBlank = false;
 
                 for (int i = 0; i < lstBoxSerialNos.Items.Count; i++)
                 {
                     if (lstBoxSerialNos.Items[i].Text == serialNo.ToUpper())
                     {
                         existLB = true;
+                        lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
+                        break;
                     }
                 }
-                if (EquipmentDA.equipmentExist(serialNo, connString) == true)
+                if (existLB == false)
                 {
-                    existDB = true;
-                }
-                if (serialNo.Length > 45)
-                {
-                    isTooLong = true;
-                }
-                if (serialNo == "")
-                {
-                    isBlank = true;
-                }
-                if (existLB == false && existDB == false && isTooLong == false && isBlank == false)
-                {
-                    lstBoxSerialNos.Items.Add(serialNo.ToUpper());
-                    lstBoxSerialNos.Text = serialNo.ToUpper();
-                }
-                else if (existLB == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is already in queue<bR />";
-                }
-                else if (existDB == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is already in the database<br />";
-                }
-                else if (isTooLong == true)
-                {
-                    lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
-                }
-                else if (isBlank == true)
-                {
-                    lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
+                    if (serialNo.Length > 45)
+                    {
+                        lblAddTextBoxMessage.Text += serialNo + " is too long<br />";
+                    }
+                    else if (serialNo == "")
+                    {
+                        lblAddTextBoxMessage.Text += "A blank entry was found and was ignored, you should be more careful in the future<br />";
+                    }
+                    else if (Equipment.equipmentExist(serialNo) == true)
+                    {
+                        lblAddTextBoxMessage.Text += serialNo + " is already in the database<br />";
+                    }
+                    else
+                    {
+                        lstBoxSerialNos.Items.Add(serialNo.ToUpper());
+                        lstBoxSerialNos.Text = serialNo.ToUpper();
+                    }
                 }
             }
         }

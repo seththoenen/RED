@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.DAL
 {
     public class WarrantyDA
     {
@@ -26,7 +26,7 @@ namespace SeniorProject
             cmd.Parameters.Clear();
         }
 
-        public static string addWarranty(int invID, Warranty warranty, string connectionString)
+        public static string addWarranty(int invID, Warranty warranty)
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -34,7 +34,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -71,7 +71,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string deleteWarrantyComputer(ArrayList serialNos,string connectionString)
+        public static string deleteWarrantyComputer(List<int> ids)
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -79,7 +79,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -88,11 +88,9 @@ namespace SeniorProject
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (String)serialNos[i];
-
-                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
                         
                     string sqlCommand = "DELETE FROM Warranty WHERE InvID = @InvID";
 
@@ -116,7 +114,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string deleteWarrantyEquipment(ArrayList serialNos, string connectionString) 
+        public static string deleteWarrantyEquipment(List<int> ids) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -124,7 +122,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -133,11 +131,9 @@ namespace SeniorProject
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (string)serialNos[i];
-
-                    int invId = EquipmentDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
 
                     string sqlCommand = "DELETE FROM Warranty WHERE InvID = @InvID";
 
@@ -161,7 +157,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string addWarrantysComputer(ArrayList serialNos, Warranty warranty, string connectionString) 
+        public static string addWarrantysComputer(List<int> ids, Warranty warranty) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -169,7 +165,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -178,11 +174,9 @@ namespace SeniorProject
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    String serialNo = (String)serialNos[i];
-
-                    int invId = ComputerDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
 
                     string sqlCommand = "INSERT INTO Warranty (InvID, Company, StartDate, EndDate, WarrantyType, Notes) VALUES (@InvID, @Company, @StartDate, @EndDate, @WarrantyType, @Notes)";
 
@@ -211,7 +205,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string addWarrantysEquipment(ArrayList serialNos, Warranty warranty, string connectionString) 
+        public static string addWarrantysEquipment(List<int> ids, Warranty warranty) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -219,7 +213,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -228,11 +222,9 @@ namespace SeniorProject
 
             try
             {
-                for (int i = 0; i < serialNos.Count; i++)
+                for (int i = 0; i < ids.Count; i++)
                 {
-                    string serialNo = (string)serialNos[i];
-                    
-                    int invId = EquipmentDA.getInvID(dbCmd, serialNo);
+                    int invId = ids[i];
 
                     string sqlCommand = "INSERT INTO Warranty (InvID, Company, StartDate, EndDate, WarrantyType, Notes) VALUES (@InvID, @Company, @StartDate, @EndDate, @WarrantyType, @Notes)";
 

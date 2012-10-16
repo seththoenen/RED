@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class Transfer
     {
@@ -91,5 +92,11 @@ namespace SeniorProject
                 inventory = value;
             }
         }
+
+        public static string saveTransfer(Transfer transfer)
+        {
+            return TransferDA.saveTransfer(transfer);
+        }
+
     }
 }

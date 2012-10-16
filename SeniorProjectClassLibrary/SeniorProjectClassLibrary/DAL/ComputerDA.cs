@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
+using System.Configuration;
+using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.DAL
 {
     public class ComputerDA
     {
-        public static string saveComputers(ArrayList computers, string connectionString)
+        public static string saveComputers(List<Computer> computers)
         {
+            
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
             string sConnection;
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -181,7 +183,7 @@ namespace SeniorProject
             return compID;
         }
 
-        public static Boolean computerExist(string serialNo, string connectionString)
+        public static Boolean computerExist(string serialNo)
         {
             SqlConnection dbConn;
             SqlCommand dbCmd;
@@ -189,11 +191,11 @@ namespace SeniorProject
             string sConnection;
             string sql;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
 
-            sql = "SELECT * FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
+            sql = "SELECT SerialNo FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
 
             dbCmd = new SqlCommand();
             dbCmd.CommandText = sql;
@@ -201,7 +203,7 @@ namespace SeniorProject
             dbCmd.Connection = dbConn;
 
             dbReader = dbCmd.ExecuteReader();
-            ArrayList desktops = new ArrayList();
+            List<Computer> desktops = new List<Computer>();
 
             while (dbReader.Read())
             {
@@ -209,6 +211,8 @@ namespace SeniorProject
                 comp.SerialNo = dbReader["SerialNo"].ToString();
                 desktops.Add(comp);
             }
+            dbReader.Close();
+            dbCmd.Parameters.Clear();
 
             if (desktops.Count > 0)
                 return true;
@@ -270,7 +274,11 @@ namespace SeniorProject
                 return true;
         }
 
+<<<<<<< HEAD
         public static Computer getComputer(int invID, string connectionString)
+=======
+        public static Computer getComputer(string invID)
+>>>>>>> parent of 2a12043... Replaced Array Lists with Lists
         {
             SqlConnection dbConn;
             string sConnection;
@@ -278,7 +286,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -331,6 +339,7 @@ namespace SeniorProject
 
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
                 
 
                 comp.Monitors = MonitorDA.getMonitor(dbCmd,comp.CompID);
@@ -358,7 +367,9 @@ namespace SeniorProject
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
+            string sql = "SELECT Inventory.InvID, CompID, SMSUTag, SerialNo, Manufacturer, Model, PurchasePrice, Notes, CPU, VideoCard, HardDrive, "+
+                "Memory, OpticalDrive, RemovableMedia, USBPorts, OtherConnectivity, FormFactor, Type, Inventory.Status, Building, Room, PrimaryUser, Name "+
+                "FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
             + "Inventory.InvID = Logistics.InvID AND Inventory.SerialNo = @SerialNo AND Logistics.Status = @Status";
 
             cmd.CommandText = sql;
@@ -399,6 +410,7 @@ namespace SeniorProject
 
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
 
             comp.Monitors = MonitorDA.getMonitor(cmd, comp.CompID);
@@ -409,7 +421,62 @@ namespace SeniorProject
 
         }
 
-        public static string updateComputer(Computer oComp, Computer comp, string connectionString)
+        public static Computer getComputer(SqlCommand cmd, int invID)
+        {
+            SqlDataReader dbReader;
+
+            string sql = "SELECT SerialNo, CompID, SMSUTag, Manufacturer, Model, PurchasePrice, Notes, CPU, VideoCard, "+
+                "HardDrive, Memory, OpticalDrive, RemovableMedia, USBPorts, OtherConnectivity, FormFactor, Type, Inventory.Status, Building, Room, PrimaryUser, Name "+
+                "FROM Inventory, Computer, Logistics WHERE Inventory.InvID = Computer.InvID AND "
+            + "Inventory.InvID = Logistics.InvID AND Inventory.InvID = @InvID AND Logistics.Status = @Status";
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("InvID", invID);
+            cmd.Parameters.AddWithValue("Status", "Active");
+
+            dbReader = cmd.ExecuteReader();
+            Computer comp = new Computer();
+
+            while (dbReader.Read())
+            {
+                comp.CompID = Convert.ToInt32(dbReader["CompID"]);
+                comp.SMSUtag = dbReader["SMSUtag"].ToString();
+                comp.SerialNo = dbReader["SerialNo"].ToString();
+                comp.Manufacturer = dbReader["Manufacturer"].ToString();
+                comp.Model = dbReader["Model"].ToString();
+                comp.PurchasePrice = Convert.ToDouble(dbReader["PurchasePrice"]);
+                comp.Notes = dbReader["Notes"].ToString();
+                comp.CPU = dbReader["CPU"].ToString();
+                comp.VideoCard = dbReader["VideoCard"].ToString();
+                comp.HardDrive = dbReader["HardDrive"].ToString();
+                comp.Memory = dbReader["Memory"].ToString();
+                comp.OpticalDrive = dbReader["OpticalDrive"].ToString();
+                comp.RemovableMedia = dbReader["RemovableMedia"].ToString();
+                comp.USBports = Convert.ToInt32(dbReader["USBports"]);
+                comp.OtherConnectivity = dbReader["OtherConnectivity"].ToString();
+                comp.Size = dbReader["FormFactor"].ToString();
+                comp.Type = dbReader["Type"].ToString();
+                comp.Status = dbReader["Status"].ToString();
+                comp.CurrentLocation.Building = dbReader["Building"].ToString();
+                comp.CurrentLocation.Room = dbReader["Room"].ToString();
+                comp.CurrentLocation.PrimaryUser = dbReader["PrimaryUser"].ToString();
+                comp.CurrentLocation.Name = dbReader["Name"].ToString();
+
+            }
+            dbReader.Close();
+            cmd.Parameters.Clear();
+
+
+            comp.Monitors = MonitorDA.getMonitor(cmd, comp.CompID);
+            comp.PO = PODA.getPODetails(cmd, comp.InvID);
+            comp.Groups = GroupDA.getGroups(cmd, comp.InvID);
+
+            return comp;
+
+        }
+
+        public static string updateComputer(Computer oComp, Computer comp)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -417,7 +484,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -425,7 +492,7 @@ namespace SeniorProject
             dbCmd.Transaction = transaction;
             dbCmd.Connection = dbConn;
 
-            if (comp.SerialNo.ToUpper() != oComp.SerialNo.ToUpper() && computerExist(comp.SerialNo, connectionString))
+            if (comp.SerialNo.ToUpper() != oComp.SerialNo.ToUpper() && computerExist(comp.SerialNo))
             {
                 message.Append("That Service tag is already in use. Please try again.<bR>");
             }
@@ -521,7 +588,7 @@ namespace SeniorProject
             cmd.Parameters.Clear();
         }
 
-        public static string updateComputers(ArrayList computers, string connectionString)
+        public static string updateComputers(List<Computer> computers)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -529,7 +596,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -667,6 +734,7 @@ namespace SeniorProject
                     if (dbCmd.CommandText != "UPDATE Computer SET WHERE InvID = @InvID")
                     {
                         dbCmd.ExecuteNonQuery();
+                        dbCmd.Parameters.Clear();
                     }
 
                     dbCmd.Parameters.Clear();
@@ -691,7 +759,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static bool computerTransferred(string serialNo, string connectionString)
+        public static bool computerTransferred(string serialNo)
         {
 
             SqlConnection dbConn;
@@ -700,7 +768,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -709,6 +777,54 @@ namespace SeniorProject
             dbCmd.Connection = dbConn;
 
             return ComputerDA.computerTransferred(dbCmd, serialNo);
+
+        }
+
+        public static int? computerExistReturnID(string serialNo)
+        {
+            StringBuilder message = new StringBuilder();
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlDataReader dbReader;
+
+            sConnection = GlobalVars.ConnectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+
+            try
+            {
+                string sql = "SELECT SerialNo FROM Inventory, Computer Where Inventory.InvID = Computer.InvID AND SerialNo = @SerialNo";
+
+                dbCmd = new SqlCommand();
+                dbCmd.CommandText = sql;
+                dbCmd.Parameters.AddWithValue("@SerialNo", serialNo);
+                dbCmd.Connection = dbConn;
+
+                dbReader = dbCmd.ExecuteReader();
+                List<Computer> desktops = new List<Computer>();
+
+                while (dbReader.Read())
+                {
+                    Computer comp = new Computer();
+                    comp.SerialNo = dbReader["SerialNo"].ToString();
+                    desktops.Add(comp);
+                }
+                dbReader.Close();
+                dbCmd.Parameters.Clear();
+
+                if (desktops.Count > 0)
+                    return ComputerDA.getInvID(dbCmd, serialNo);
+                else
+                    return null;
+            }
+
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return null;
+            }
 
         }
     }

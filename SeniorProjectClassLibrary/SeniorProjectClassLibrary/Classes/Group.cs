@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class Group
     {
@@ -13,13 +13,13 @@ namespace SeniorProject
         private string name;
         private string notes;
         private string type;
-        private ArrayList computers;
-        private ArrayList equipment;
+        private List<Computer> computers;
+        private List<Equipment> equipment;
 
         public Group()
         {
-            computers = new ArrayList();
-            equipment = new ArrayList();
+            computers = new List<Computer>();
+            equipment = new List<Equipment>();
         }
 
         public int ID
@@ -70,7 +70,7 @@ namespace SeniorProject
             }
         }
 
-        public ArrayList Computers
+        public List<Computer> Computers
         {
             get
             {
@@ -82,7 +82,7 @@ namespace SeniorProject
             }
         }
 
-        public ArrayList Equipment
+        public List<Equipment> Equipment
         {
             get
             {
@@ -92,6 +92,71 @@ namespace SeniorProject
             {
                 equipment = value;
             }
+        }
+
+        public static List<Group> getAllComputerGroups()
+        {
+            return GroupDA.getAllComputerGroups();
+        }
+
+        public static string saveGroup(Group group)
+        {
+            return GroupDA.saveGroup(group);
+        }
+
+        public static string updateGroup(Group newGroup, int oldGroupID)
+        {
+            return GroupDA.updateGroup(newGroup, oldGroupID);
+        }
+
+        public static bool groupExist(string GroupName)
+        {
+            return GroupDA.groupExist(GroupName);
+        }
+
+        public static Group getGroup(int GroupID)
+        {
+            return GroupDA.getGroup(GroupID);
+        }
+
+        public static Group getGroupComputers(string groupName)
+        {
+            return GroupDA.getGroupComputers(groupName);
+        }
+
+        public static Group getGroupEquipment(string groupName)
+        {
+            return GroupDA.getGroupEquipment(groupName);
+        }
+
+        public static List<Group> getAllEquipmentGroups()
+        {
+            return GroupDA.getAllEquipmentGroups();
+        }
+
+        public static List<Group> getAllGroups()
+        {
+            return GroupDA.getAllGroups();
+        }
+
+        public static string updateGroups(List<string> groupList, int invID)
+        {
+            return GroupDA.updateGroups(groupList, invID);
+        }
+
+        public static int getGroupID(string groupName)
+        {
+            return GroupDA.getGroupID(groupName);
+        }
+
+        public static bool invInGroup(string serialNo, int groupId)
+        {
+            return GroupDA.invInGroup(serialNo, groupId);
+        }
+
+        public static string addInvToGroup(List<string> serialNos, int groupID)
+        {
+            return GroupDA.addInvToGroup(serialNos, groupID);
         }
 
     }

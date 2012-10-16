@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SeniorProjectClassLibrary.DAL;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.Classes
 {
     public class License
     {
@@ -124,5 +125,61 @@ namespace SeniorProject
                 notes = value;
             }
         }
+
+        public static string saveLicense(License license)
+        {
+            return LicenseDA.saveLicense(license);
+        }
+
+        public static License getLicense(int licenseID)
+        {
+            return LicenseDA.getLicense(licenseID);
+        }
+
+        public static string addLicense(int licenseID, int invID)
+        {
+            return LicenseDA.addLicense(licenseID, invID);
+        }
+
+        public static string removeLicense(int licenseID, int invID)
+        {
+            return LicenseDA.removeLicense(licenseID, invID);
+        }
+
+        public static string removeAllLicensesComputer(List<int> ids)
+        {
+            return LicenseDA.removeAllLicensesComputer(ids);
+        }
+
+        public static string removeAllLicensesEquipment(List<int> ids)
+        {
+            return LicenseDA.removeAllLicensesEquipment(ids);
+        }
+
+        public static string removeSelectLicenseComputer(List<int> ids, int licenseID)
+        {
+            return LicenseDA.removeSelectLicenseComputer(ids, licenseID);
+        }
+
+        public static string removeSelectLicenseEquipment(List<int> ids, int licenseID)
+        {
+            return LicenseDA.removeSelectLicenseEquipment(ids, licenseID);
+        }
+
+        public static string addLicensesComputer(List<int> ids, int licenseID)
+        {
+            return LicenseDA.addLicensesComputer(ids, licenseID);
+        }
+
+        public static string addLicensesEquipment(List<int> ids, int licenseID)
+        {
+            return LicenseDA.addLicensesEquipment(ids, licenseID);
+        }
+
+        public static string updateLicense(License license)
+        {
+            return LicenseDA.updateLicense(license);
+        }
+
     }
 }

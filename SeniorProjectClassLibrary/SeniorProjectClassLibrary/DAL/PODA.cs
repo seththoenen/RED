@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections;
 using System.Data.SqlClient;
+using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.DAL
 {
     public class PODA
     {
-        public static string savePO(PurchaseOrder PO, string connectionString)
+        public static string savePO(PurchaseOrder PO)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -17,7 +17,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -42,6 +42,7 @@ namespace SeniorProject
 
                     dbCmd.ExecuteNonQuery();
                     transaction.Commit();
+                    dbCmd.Parameters.Clear();
                     dbConn.Close();
                     message.Append("Purchase Order created successfully<bR>");
 
@@ -60,7 +61,7 @@ namespace SeniorProject
             }
         }
 
-        public static string updatePO(PurchaseOrder newPO, int oldPOid, string connectionString) 
+        public static string updatePO(PurchaseOrder newPO, int oldPOid) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -68,7 +69,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             StringBuilder message = new StringBuilder();
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -100,6 +101,7 @@ namespace SeniorProject
                     dbCmd.Parameters.AddWithValue("OldPONO", oldPO.PONumber);
 
                     dbCmd.ExecuteNonQuery();
+                    dbCmd.Parameters.Clear();
                     transaction.Commit();
                     dbConn.Close();
                     message.Append("Purchase Order created successfully<bR>");
@@ -125,7 +127,7 @@ namespace SeniorProject
             SqlDataReader dbReader;
             string sql;
 
-            sql = "SELECT * FROM PO, POInventory WHERE PO.POID = POInventory.POID and POInventory.InvID = @InvID";
+            sql = "SELECT PO.POID, POno, DeliveryDate, RequisitionNo, PurchaseDate, Title FROM PO, POInventory WHERE PO.POID = POInventory.POID and POInventory.InvID = @InvID";
 
             cmd.CommandText = sql;
 
@@ -149,7 +151,7 @@ namespace SeniorProject
             return PO;
         }
 
-        public static PurchaseOrder getPO(string POID, string connectionString) 
+        public static PurchaseOrder getPO(string POID) 
         {
             SqlConnection dbConn;
             string sConnection;
@@ -157,7 +159,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -167,7 +169,7 @@ namespace SeniorProject
 
             try
             {
-                string sql = "SELECT * FROM PO WHERE POID = @POID";
+                string sql = "SELECT POID, POno, DeliveryDate, REquisitionNo, PurchaseDate, Title FROM PO WHERE POID = @POID";
 
                 dbCmd.CommandText = sql;
 
@@ -186,6 +188,7 @@ namespace SeniorProject
                     PO.Title = dbReader["Title"].ToString();
                 }
                 dbReader.Close();
+                dbCmd.Parameters.Clear();
 
                 transaction.Commit();
                 dbConn.Close();
@@ -206,7 +209,7 @@ namespace SeniorProject
         {
             SqlDataReader dbReader;
             
-            string sql = "SELECT * FROM PO WHERE POID = @POID";
+            string sql = "SELECT POID, POno, DeliveryDate, RequisitionNo, PurchaseDate, Title FROM PO WHERE POID = @POID";
 
             cmd.CommandText = sql;
 
@@ -225,6 +228,7 @@ namespace SeniorProject
                 PO.Title = dbReader["Title"].ToString();
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             return PO;
         }
@@ -233,7 +237,7 @@ namespace SeniorProject
         {
             SqlDataReader dbReader;
 
-            string sql = "SELECT * FROM PO WHERE POno = @POno";
+            string sql = "SELECT POID FROM PO WHERE POno = @POno";
 
             cmd.CommandText = sql;
 
@@ -248,6 +252,7 @@ namespace SeniorProject
                 POID = Convert.ToInt32(dbReader["POID"]);
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             return POID;
         }
@@ -259,7 +264,7 @@ namespace SeniorProject
 
             string sql;
 
-            sql = "SELECT * FROM PO WHERE poNO = @PONum";
+            sql = "SELECT POID FROM PO WHERE poNO = @PONum";
 
             cmd.CommandText = sql;
 
@@ -274,6 +279,7 @@ namespace SeniorProject
                 poID = Convert.ToInt32(dbReader["POID"]);
             }
             dbReader.Close();
+            cmd.Parameters.Clear();
 
             if (poID > 0)
             {

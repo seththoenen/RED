@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
-using System.Collections;
+using SeniorProjectClassLibrary.Classes;
 
-namespace SeniorProject
+namespace SeniorProjectClassLibrary.DAL
 {
     public class SettingsDA
     {
-        public static string saveSetting(string value, string type, string connectionString) 
+        public static string saveSetting(string value, string type) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -17,7 +17,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -49,7 +49,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static string deleteSetting(int id, string connectionString) 
+        public static string deleteSetting(int id) 
         {
             StringBuilder message = new StringBuilder();
             SqlConnection dbConn;
@@ -57,7 +57,7 @@ namespace SeniorProject
             SqlCommand dbCmd;
             SqlTransaction transaction;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -87,7 +87,7 @@ namespace SeniorProject
             return message.ToString();
         }
 
-        public static bool authenticatePassword(string password, string connectionString)
+        public static bool authenticatePassword(string password)
         {
             SqlConnection dbConn;
             string sConnection;
@@ -95,7 +95,7 @@ namespace SeniorProject
             SqlTransaction transaction;
             SqlDataReader dbReader;
 
-            sConnection = connectionString;
+            sConnection = GlobalVars.ConnectionString;
             dbConn = new SqlConnection(sConnection);
             dbConn.Open();
             dbCmd = dbConn.CreateCommand();
@@ -108,6 +108,8 @@ namespace SeniorProject
                 dbCmd.CommandText = sqlCommand;
 
                 dbReader = dbCmd.ExecuteReader();
+                dbCmd.Parameters.Clear();
+
                 string dbPassword = "";
                 while (dbReader.Read())
                 {
