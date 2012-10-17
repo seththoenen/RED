@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="RED - Manage Computer License" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ViewLicense.aspx.cs" Inherits="SeniorProject.Licenses.ViewLicense" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .style1
@@ -100,9 +101,9 @@
                             Expiration Date:</td>
                         <td>
                             <asp:TextBox ID="txtBoxExpirationDate" runat="server" Width="136px"></asp:TextBox>
-                            <ajaxToolkit:CalendarExtender ID="txtBoxExpirationDate_CalendarExtender" 
-                                runat="server" Enabled="True" TargetControlID="txtBoxExpirationDate">
-                            </ajaxToolkit:CalendarExtender>
+                            <asp:CalendarExtender ID="txtBoxExpirationDate_CalendarExtender" runat="server" 
+                                Enabled="True" TargetControlID="txtBoxExpirationDate">
+                            </asp:CalendarExtender>
                         </td>
                     </tr>
                     <tr>
