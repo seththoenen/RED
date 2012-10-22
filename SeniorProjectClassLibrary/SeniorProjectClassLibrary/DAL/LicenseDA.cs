@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using SeniorProjectClassLibrary.Classes;
+using System.IO;
 
 namespace SeniorProjectClassLibrary.DAL
 {
@@ -649,6 +650,96 @@ namespace SeniorProjectClassLibrary.DAL
                 transaction.Rollback();
             }
             return message.ToString();
+        }
+
+        public static string saveFile(int LicID, string fileName, string description, string fullPath)
+        {
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlTransaction transaction;
+
+            sConnection = GlobalVars.ConnectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+            transaction = dbConn.BeginTransaction("Transaction");
+            dbCmd.Transaction = transaction;
+            dbCmd.Connection = dbConn;
+            StringBuilder message = new StringBuilder();
+
+            try
+            {
+                if (File.Exists(fullPath) == true)
+                {
+                    message.Append("This license already has that file.");
+                }
+                else
+                {
+                    string sqlCommand = "INSERT INTO LicenseFiles (LicID, description, filename) " +
+                        "VALUES (@LicID, @description, @filename)";
+
+                    dbCmd.CommandText = sqlCommand;
+
+                    dbCmd.Parameters.AddWithValue("LicID", LicID);
+                    dbCmd.Parameters.AddWithValue("filename", fileName);
+                    dbCmd.Parameters.AddWithValue("description", description);
+
+                    dbCmd.ExecuteNonQuery();
+                    dbCmd.Parameters.Clear();
+
+                    transaction.Commit();
+                    dbConn.Close();
+                    message.Append("File added successfully");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                message.Append(ex.ToString() + "<bR>");
+                transaction.Rollback();
+                File.Delete(fullPath);                
+            }
+            return message.ToString();
+
+        }
+
+        public static void deleteFile(int fileID)
+        {
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlTransaction transaction;
+
+            sConnection = GlobalVars.ConnectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+            transaction = dbConn.BeginTransaction("Transaction");
+            dbCmd.Transaction = transaction;
+            dbCmd.Connection = dbConn;
+            StringBuilder message = new StringBuilder();
+
+            try
+            {
+                string sqlCommand = "DELETE FROM LicenseFiles WHERE FileID= @FileID";
+
+                dbCmd.CommandText = sqlCommand;
+
+                dbCmd.Parameters.AddWithValue("FileID", fileID);
+
+                dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
+
+                transaction.Commit();
+                dbConn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                transaction.Rollback();
+            }
+
         }
     }
 }

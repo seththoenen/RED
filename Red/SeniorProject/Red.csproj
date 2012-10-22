@@ -404,6 +404,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="DataSets\" />
+    <Folder Include="Licenses\Files\Release\" />
+    <Folder Include="Licenses\Files\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -450,7 +452,6 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>34909</DevelopmentServerPort>
           <DevelopmentServerPort>56906</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>

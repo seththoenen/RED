@@ -181,5 +181,14 @@ namespace SeniorProjectClassLibrary.Classes
             return LicenseDA.updateLicense(license);
         }
 
+        public static string saveFile(int LicID, string fileName, string description, string fullPath)
+        {
+            return LicenseDA.saveFile(LicID, fileName, description, fullPath);
+        }
+
+        public static void deleteFile(int fileID)
+        {
+            LicenseDA.deleteFile(fileID);
+        }
     }
 }

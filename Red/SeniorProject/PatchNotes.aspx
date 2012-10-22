@@ -18,6 +18,7 @@
                 -Fixed a bug where licenses would not show up in view licenses if there were no inventory items assigned to it<br />
                 -Added calendar extenders to date fields that didn't have calendar extenders<br />
                 -Fixed an issue where release 1.1.4 actually didn't do anything (because of Git for Windows)<br />
+                -Added file upload/download/deletion for licenses<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 

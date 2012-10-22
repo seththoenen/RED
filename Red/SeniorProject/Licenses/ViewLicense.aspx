@@ -121,8 +121,85 @@
             </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <h1>
+        Files</h1>
+            <p>
+        <asp:GridView ID="gvFiles" runat="server" CellPadding="4" ForeColor="#333333" 
+            GridLines="None" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" 
+            DataKeyNames="FileID" DataSourceID="sqldsLicenseFiles" Width="900px">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:BoundField DataField="LicID" HeaderText="LicID" InsertVisible="False" 
+                    ReadOnly="True" SortExpression="LicID" Visible="False" />
+                <asp:BoundField DataField="FileID" HeaderText="FileID" InsertVisible="False" 
+                    ReadOnly="True" SortExpression="FileID" Visible="False" />
+                <asp:TemplateField HeaderText="Filename" SortExpression="filename">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("filename") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblFileName" runat="server" Text='<%# Bind("filename") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="description" HeaderText="Description" 
+                    SortExpression="description" />
+                <asp:TemplateField HeaderText="Download">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkBtnDownload" runat="server" CommandName="Select" 
+                            onclick="lnkBtnDownload_Click" CommandArgument='<%# Container.DataItemIndex %>'>Download</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delete">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkButtonDelete" runat="server" 
+                            onclick="lnkButtonDelete_Click" CommandName="Select" CommandArgument='<%# Container.DataItemIndex %>'>Delete</asp:LinkButton>
+                        <asp:ConfirmButtonExtender ID="lnkButtonDelete_ConfirmButtonExtender" 
+                            runat="server" TargetControlID="lnkButtonDelete" ConfirmText="Are you sure you want to delete this file?" ConfirmOnFormSubmit="True">
+                        </asp:ConfirmButtonExtender>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="sqldsLicenseFiles" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
+            
+                    SelectCommand="SELECT Licenses.LicID, LicenseFiles.FileID, LicenseFiles.filename, LicenseFiles.description FROM Licenses INNER JOIN LicenseFiles ON Licenses.LicID = LicenseFiles.LicID WHERE (Licenses.LicID = @LicID)">
+            <SelectParameters>
+                <asp:SessionParameter Name="LicID" SessionField="CurrentLicense" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </p>
     <p>
-        &nbsp;</p>
+        Add New File</p>
+
+    <table>
+        <tr>
+            <td>File:</td> 
+            <td><asp:AsyncFileUpload ID="AsyncFileUpload" runat="server" Width="250px" /></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><asp:TextBox ID="txtboxDescription" runat="server" MaxLength="499" 
+                    Width="250px" Height="50px" TextMode="MultiLine"></asp:TextBox></td>
+        </tr>
+    </table>
+    <asp:Button ID="btnUpload" runat="server" onclick="btnUpload_Click" 
+        Text="Upload" Width="136px" />
+    &nbsp;&nbsp;<br />
+    <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>
+    <br />
+    
+
     <h1>
         Computers with this license</h1>
     <p>
