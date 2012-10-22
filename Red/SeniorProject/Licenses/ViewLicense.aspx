@@ -146,13 +146,15 @@
                 <asp:TemplateField HeaderText="Download">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkBtnDownload" runat="server" CommandName="Select" 
-                            onclick="lnkBtnDownload_Click" CommandArgument='<%# Container.DataItemIndex %>'>Download</asp:LinkButton>
+                            onclick="lnkBtnDownload_Click" 
+                            CommandArgument='<%# Container.DataItemIndex %>' SkinID="Blue">Download</asp:LinkButton>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Delete">
                     <ItemTemplate>
                         <asp:LinkButton ID="lnkButtonDelete" runat="server" 
-                            onclick="lnkButtonDelete_Click" CommandName="Select" CommandArgument='<%# Container.DataItemIndex %>'>Delete</asp:LinkButton>
+                            onclick="lnkButtonDelete_Click" CommandName="Select" 
+                            CommandArgument='<%# Container.DataItemIndex %>' SkinID="Blue">Delete</asp:LinkButton>
                         <asp:ConfirmButtonExtender ID="lnkButtonDelete_ConfirmButtonExtender" 
                             runat="server" TargetControlID="lnkButtonDelete" ConfirmText="Are you sure you want to delete this file?" ConfirmOnFormSubmit="True">
                         </asp:ConfirmButtonExtender>

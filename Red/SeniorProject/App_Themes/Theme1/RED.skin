@@ -29,7 +29,9 @@ Default skin template. The following skins are provided as examples only.
     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
 </asp:GridView>
 
-<%-- <asp:LinkButton runat="server" ForeColor="White" /> --%>
+<asp:LinkButton runat="server" ForeColor="White" />
+
+<asp:LinkButton runat="server" SkinID="Blule" ForeColor="White" />
 
 <asp:button runat="server" BackColor="#E0E0E0 " BorderStyle="Groove"/>
 
