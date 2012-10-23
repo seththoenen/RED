@@ -508,22 +508,22 @@ namespace SeniorProject {
         protected global::System.Web.UI.UpdatePanel updatePanelMaintDetail;
         
         /// <summary>
-        /// GridView1 control.
+        /// GridView4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView GridView4;
         
         /// <summary>
-        /// SqlDataSource6 control.
+        /// SqlDataSource20 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource6;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource20;
         
         /// <summary>
         /// ddlBuilding control.

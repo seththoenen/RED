@@ -344,14 +344,14 @@ namespace SeniorProject
         {
             btnAddMaintenance.Visible = false;
             Panel1.Visible = true;
-            GridView1.Visible = false;
+            GridView4.Visible = false;
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             Panel1.Visible = false;
             btnAddMaintenance.Visible = true;
-            GridView1.Visible = true;
+            GridView4.Visible = true;
             txtBoxMaintenance.Text = "";
         }
 
@@ -368,8 +368,8 @@ namespace SeniorProject
             {
                 Panel1.Visible = false;
                 btnAddMaintenance.Visible = true;
-                GridView1.Visible = true;
-                GridView1.DataBind();
+                GridView4.Visible = true;
+                GridView4.DataBind();
             }
         }
 
@@ -582,7 +582,7 @@ namespace SeniorProject
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 //registers click event to entire grid view row
-                e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView1, "Select$" + e.Row.RowIndex);
+                e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView4, "Select$" + e.Row.RowIndex);
 
                 //handles on hover events
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");

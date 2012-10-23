@@ -296,7 +296,7 @@
                 <asp:Button ID="btnAddWarranty" runat="server" onclick="btnAddWarranty_Click1" 
                     Text="Add a Warranty" Width="136px" />
                 <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" 
-                    CellPadding="4" DataKeyNames="WarID,InvID" DataSourceID="SqlDataSource15" 
+                    CellPadding="4" DataKeyNames="WarID" DataSourceID="SqlDataSource15" 
                     ForeColor="#333333" GridLines="None" Width="680px">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
@@ -329,9 +329,6 @@
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox3" runat="server" MaxLength="49" 
                                     Text='<%# Bind("EndDate") %>' Width="75px"></asp:TextBox>
-                                <asp:CalendarExtender ID="TextBox3_CalendarExtender" runat="server" 
-                                    Enabled="True" TargetControlID="TextBox3">
-                                </asp:CalendarExtender>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
@@ -355,7 +352,7 @@
                                 <asp:Label ID="Label5" runat="server" Text='<%# Bind("Notes") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Update" ShowHeader="False">
+                        <asp:TemplateField ShowHeader="False">
                             <EditItemTemplate>
                                 <asp:LinkButton ID="lnkBtnUpdate" runat="server" CausesValidation="True" 
                                     CommandName="Update" SkinID="Blue" Text="Update"></asp:LinkButton>
@@ -367,13 +364,10 @@
                                     CommandName="Edit" SkinID="Blue" Text="Edit"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Delete" ShowHeader="False">
+                        <asp:TemplateField ShowHeader="False">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lnkBtnDelete" runat="server" CausesValidation="False" 
-                                    CommandName="Delete" SkinID="Blue" Text="Delete"></asp:LinkButton>
-                                <asp:ConfirmButtonExtender ID="lnkBtnDelete_ConfirmButtonExtender" 
-                                    runat="server" ConfirmText="Are you sure you want to delete this warranty?" Enabled="True" TargetControlID="lnkBtnDelete">
-                                </asp:ConfirmButtonExtender>
+                                    CommandName="Delete" Text="Delete"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -526,7 +520,10 @@
     
     
         <h2>
-        Purchase Info              <td class="style14">
+        Purchase Info</h2>
+                   <table class="style7">
+          <tr>
+              <td class="style14">
                    Purchase Price</td>
               <td>
               <asp:TextBox ID="txtBoxPurchasePrice" runat="server" MaxLength="15" Width="136px"></asp:TextBox>
@@ -711,12 +708,54 @@
                 <asp:GridView ID="GridView2" runat="server" AllowPaging="True" 
                     AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource7" 
                     ForeColor="#333333" GridLines="None" onrowcreated="GridView2_RowCreated" 
-                    Width="528px">
+                    Width="528px" DataKeyNames="MaintID">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" />
-                        <asp:BoundField DataField="Maintenance" HeaderText="Maintenance" 
-                            SortExpression="Maintenance" />
+                        <asp:BoundField DataField="MaintID" HeaderText="MaintID" 
+                            SortExpression="MaintID" InsertVisible="False" ReadOnly="True" 
+                            Visible="False" />
+                        <asp:TemplateField HeaderText="Date" SortExpression="Date">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("Date") %>' Width="75px"></asp:TextBox>
+                                <asp:CalendarExtender ID="TextBox1_CalendarExtender" runat="server" 
+                                    Enabled="True" TargetControlID="TextBox1">
+                                </asp:CalendarExtender>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Date") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Maintenance" SortExpression="Maintenance">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" MaxLength="1000" 
+                                    Text='<%# Bind("Maintenance") %>' Width="200px"></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Maintenance") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ShowHeader="False">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="lnkBtnUpdate" runat="server" CausesValidation="True" 
+                                    CommandName="Update" SkinID="Blue" Text="Update"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="lnkBtnCancel" runat="server" CausesValidation="False" 
+                                    CommandName="Cancel" SkinID="Blue" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkBtnEdit" runat="server" CausesValidation="False" 
+                                    CommandName="Edit" SkinID="Blue" Text="Edit"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ShowHeader="False">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkBtnDelete" runat="server" CausesValidation="False" 
+                                    CommandName="Delete" SkinID="Blue" Text="Delete"></asp:LinkButton>
+                                <asp:ConfirmButtonExtender ID="lnkBtnDelete_ConfirmButtonExtender" 
+                                    runat="server" ConfirmText="Are you sure you want to delete this maintenance record?" Enabled="True" TargetControlID="lnkBtnDelete">
+                                </asp:ConfirmButtonExtender>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -731,11 +770,27 @@
                 </asp:GridView>
                 <asp:SqlDataSource ID="SqlDataSource7" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
-                    SelectCommand="SELECT [Date], [Maintenance] FROM [Maintenance] WHERE ([InvID] = @InvID) ORDER BY [MaintID] DESC">
+                    
+                    SelectCommand="SELECT [MaintID], [Date], [Maintenance] FROM [Maintenance] WHERE ([InvID] = @InvID) ORDER BY [MaintID] DESC" 
+                    DeleteCommand="DELETE FROM [Maintenance] WHERE [MaintID] = @MaintID" 
+                    InsertCommand="INSERT INTO [Maintenance] ([Date], [Maintenance]) VALUES (@Date, @Maintenance)" 
+                    UpdateCommand="UPDATE [Maintenance] SET [Date] = @Date, [Maintenance] = @Maintenance WHERE [MaintID] = @MaintID">
+                    <DeleteParameters>
+                        <asp:Parameter Name="MaintID" Type="Int32" />
+                    </DeleteParameters>
+                    <InsertParameters>
+                        <asp:Parameter Name="Date" Type="String" />
+                        <asp:Parameter Name="Maintenance" Type="String" />
+                    </InsertParameters>
                     <SelectParameters>
                         <asp:SessionParameter Name="InvID" SessionField="CurrentEquipment" 
                             Type="Int32" />
                     </SelectParameters>
+                    <UpdateParameters>
+                        <asp:Parameter Name="Date" Type="String" />
+                        <asp:Parameter Name="Maintenance" Type="String" />
+                        <asp:Parameter Name="MaintID" Type="Int32" />
+                    </UpdateParameters>
                 </asp:SqlDataSource>
             <br />
                 <asp:Panel ID="panelAddMaintenance" runat="server" Visible="False" 
