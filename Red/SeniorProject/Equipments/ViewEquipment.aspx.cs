@@ -512,5 +512,10 @@ namespace SeniorProject.Equipments
                 }
             }
         }
+
+        protected void lnkButtonEdit_Click(object sender, EventArgs e)
+        {
+            GridView4.EditIndex = -1;
+        }
     }
 }

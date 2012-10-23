@@ -113,5 +113,10 @@ namespace SeniorProjectClassLibrary.Classes
             return WarrantyDA.addWarrantysEquipment(ids, warranty);
         }
 
+        public static void deleteInstance(int warID)
+        {
+            WarrantyDA.deleteInstance(warID);
+        }
+
     }
 }

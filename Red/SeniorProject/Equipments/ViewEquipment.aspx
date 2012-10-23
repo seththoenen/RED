@@ -295,11 +295,9 @@
             <ContentTemplate>
                 <asp:Button ID="btnAddWarranty" runat="server" onclick="btnAddWarranty_Click1" 
                     Text="Add a Warranty" Width="136px" />
-            <br />
                 <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" 
                     CellPadding="4" DataKeyNames="WarID,InvID" DataSourceID="SqlDataSource15" 
-                    ForeColor="#333333" GridLines="None" onrowcreated="GridView4_RowCreated" 
-                    Width="680px">
+                    ForeColor="#333333" GridLines="None" Width="680px">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="WarID" HeaderText="WarID" InsertVisible="False" 
@@ -308,8 +306,8 @@
                             Visible="False" />
                         <asp:TemplateField HeaderText="Company" SortExpression="Company">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Company") %>' 
-                                    Width="100px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox1" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("Company") %>' Width="65px"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Company") %>'></asp:Label>
@@ -317,8 +315,11 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="StartDate" SortExpression="StartDate">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("StartDate") %>' 
-                                    Width="75px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox2" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("StartDate") %>' Width="75px"></asp:TextBox>
+                                <asp:CalendarExtender ID="TextBox2_CalendarExtender" runat="server" 
+                                    Enabled="True" TargetControlID="TextBox2">
+                                </asp:CalendarExtender>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
@@ -326,8 +327,11 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="EndDate" SortExpression="EndDate">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("EndDate") %>' 
-                                    Width="75px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox3" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("EndDate") %>' Width="75px"></asp:TextBox>
+                                <asp:CalendarExtender ID="TextBox3_CalendarExtender" runat="server" 
+                                    Enabled="True" TargetControlID="TextBox3">
+                                </asp:CalendarExtender>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
@@ -335,16 +339,43 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="WarrantyType" SortExpression="WarrantyType">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("WarrantyType") %>' 
-                                    Width="100px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox4" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("WarrantyType") %>' Width="100px"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label4" runat="server" Text='<%# Bind("WarrantyType") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="Notes" HeaderText="Notes" SortExpression="Notes" />
-                        <asp:CommandField ShowEditButton="True" />
-                        <asp:CommandField ShowDeleteButton="True" />
+                        <asp:TemplateField HeaderText="Notes" SortExpression="Notes">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox5" runat="server" MaxLength="1000" 
+                                    Text='<%# Bind("Notes") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label5" runat="server" Text='<%# Bind("Notes") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Update" ShowHeader="False">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="lnkBtnUpdate" runat="server" CausesValidation="True" 
+                                    CommandName="Update" SkinID="Blue" Text="Update"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="lnkBtnCancel" runat="server" CausesValidation="False" 
+                                    CommandName="Cancel" SkinID="Blue" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkBtnEdit" runat="server" CausesValidation="False" 
+                                    CommandName="Edit" SkinID="Blue" Text="Edit"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Delete" ShowHeader="False">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkBtnDelete" runat="server" CausesValidation="False" 
+                                    CommandName="Delete" SkinID="Blue" Text="Delete"></asp:LinkButton>
+                                <asp:ConfirmButtonExtender ID="lnkBtnDelete_ConfirmButtonExtender" 
+                                    runat="server" ConfirmText="Are you sure you want to delete this warranty?" Enabled="True" TargetControlID="lnkBtnDelete">
+                                </asp:ConfirmButtonExtender>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -357,6 +388,7 @@
                     <SortedDescendingCellStyle BackColor="#FFFDF8" />
                     <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                 </asp:GridView>
+            <br />
                 <asp:SqlDataSource ID="SqlDataSource15" runat="server" 
                     ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
                     DeleteCommand="DELETE FROM [Warranty] WHERE [WarID] = @WarID" 
@@ -494,13 +526,11 @@
     
     
         <h2>
-            Purchase Info</h2>
-        <table class="style7">
-            <tr>
-                <td class="style14">
-                    Purchase Price</td>
-                <td>
-                <asp:TextBox ID="txtBoxPurchasePrice" runat="server" MaxLength="15" Width="136px"></asp:TextBox>
+        Purchase Info              <td class="style14">
+                   Purchase Price</td>
+              <td>
+              <asp:TextBox ID="txtBoxPurchasePrice" runat="server" MaxLength="15" Width="136px"></asp:TextBox>
+
                 <asp:CompareValidator ID="CompareValidator1" runat="server" 
                         ControlToValidate="txtBoxPurchasePrice" ErrorMessage="Invalid" ForeColor="Red" 
                         Operator="GreaterThanEqual" Type="Double" ValueToCompare="0"></asp:CompareValidator>

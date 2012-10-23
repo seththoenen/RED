@@ -194,7 +194,7 @@ namespace SeniorProject
                     btnAddMaintenance.Enabled = false;
                     btnAddWarranty.Enabled = false;
                     btnUpdateDesktop.Enabled = false;
-                    GridView4.Enabled = false;
+                    gvWarranties.Enabled = false;
                 }
                 if (Session["Authenticated"].ToString() != "True")
                 {
@@ -497,8 +497,8 @@ namespace SeniorProject
             {
                 panelWarranty.Visible = false;
                 btnAddWarranty.Visible = true;
-                GridView4.Visible = true;
-                GridView4.DataBind();
+                gvWarranties.Visible = true;
+                gvWarranties.DataBind();
             }
 
         }
@@ -507,14 +507,14 @@ namespace SeniorProject
         {
             panelWarranty.Visible = true;
             btnAddWarranty.Visible = false;
-            GridView4.Visible = false;
+            gvWarranties.Visible = false;
         }
 
         protected void brnCancelWarranty_Click(object sender, EventArgs e)
         {
             panelWarranty.Visible = false;
             btnAddWarranty.Visible = true;
-            GridView4.Visible = true;
+            gvWarranties.Visible = true;
         }
 
         protected void GridView2_RowCreated(object sender, GridViewRowEventArgs e)

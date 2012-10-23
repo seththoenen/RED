@@ -747,7 +747,7 @@
                 <asp:Button ID="btnAddWarranty" runat="server" onclick="btnAddWarranty_Click1" 
                     Text="Add a Warranty" Width="136px" />
             <br />
-                <asp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" 
+                <asp:GridView ID="gvWarranties" runat="server" AutoGenerateColumns="False" 
                     CellPadding="4" DataKeyNames="WarID,InvID" DataSourceID="SqlDataSource15" 
                     ForeColor="#333333" GridLines="None" onrowcreated="GridView4_RowCreated" 
                     Width="680px">
@@ -759,41 +759,41 @@
                             Visible="False" />
                         <asp:TemplateField HeaderText="Company" SortExpression="Company">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Company") %>' 
-                                    Width="100px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox1" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("Company") %>' Width="65px"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("Company") %>'></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Company") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="StartDate" SortExpression="StartDate">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("StartDate") %>' 
-                                    Width="75px"></asp:TextBox>
-                                <asp:CalendarExtender ID="TextBox1_CalendarExtender" runat="server" 
-                                    Enabled="True" TargetControlID="TextBox1">
-                                </asp:CalendarExtender>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="EndDate" SortExpression="EndDate">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("EndDate") %>' 
-                                    Width="75px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox2" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("StartDate") %>' Width="75px"></asp:TextBox>
                                 <asp:CalendarExtender ID="TextBox2_CalendarExtender" runat="server" 
                                     Enabled="True" TargetControlID="TextBox2">
                                 </asp:CalendarExtender>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="EndDate" SortExpression="EndDate">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox3" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("EndDate") %>' Width="75px"></asp:TextBox>
+                                <asp:CalendarExtender ID="TextBox3_CalendarExtender" runat="server" 
+                                    Enabled="True" TargetControlID="TextBox3">
+                                </asp:CalendarExtender>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="WarrantyType" SortExpression="WarrantyType">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("WarrantyType") %>' 
-                                    Width="100px"></asp:TextBox>
+                                <asp:TextBox ID="TextBox4" runat="server" MaxLength="49" 
+                                    Text='<%# Bind("WarrantyType") %>' Width="100px"></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label4" runat="server" Text='<%# Bind("WarrantyType") %>'></asp:Label>
@@ -801,14 +801,35 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Notes" SortExpression="Notes">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Notes") %>'></asp:TextBox>
+                                <asp:TextBox ID="TextBox5" runat="server" MaxLength="1000" 
+                                    Text='<%# Bind("Notes") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label5" runat="server" Text='<%# Bind("Notes") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:CommandField ShowEditButton="True" />
-                        <asp:CommandField ShowDeleteButton="True" />
+                        <asp:TemplateField HeaderText="Update" ShowHeader="False">
+                            <EditItemTemplate>
+                                <asp:LinkButton ID="lnkButtonUpdate" runat="server" CausesValidation="True" 
+                                    CommandName="Update" SkinID="Blue" Text="Update"></asp:LinkButton>
+                                &nbsp;<asp:LinkButton ID="lnkButtonCancel" runat="server" CausesValidation="False" 
+                                    CommandName="Cancel" SkinID="Blue" Text="Cancel"></asp:LinkButton>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkButtonEdit" runat="server" CausesValidation="False" 
+                                    CommandName="Edit" SkinID="Blue" Text="Edit"></asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField ShowHeader="False" HeaderText="Delete">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="lnkButtonDelete" runat="server" CausesValidation="False" 
+                                    CommandName="Delete" Text="Delete" SkinID="Blue"></asp:LinkButton>
+                                <asp:ConfirmButtonExtender ID="lnkButtonDelete_ConfirmButtonExtender" 
+                                    runat="server" Enabled="True" TargetControlID="lnkButtonDelete" 
+                                    ConfirmText="Are you sure you want to delete this warranty?">
+                                </asp:ConfirmButtonExtender>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EditRowStyle BackColor="#999999" />
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

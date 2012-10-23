@@ -252,5 +252,40 @@ namespace SeniorProjectClassLibrary.DAL
 
             return message.ToString();
         }
+
+        public static void deleteInstance(int warID)
+        {
+            SqlConnection dbConn;
+            string sConnection;
+            SqlCommand dbCmd;
+            SqlTransaction transaction;
+
+            sConnection = GlobalVars.ConnectionString;
+            dbConn = new SqlConnection(sConnection);
+            dbConn.Open();
+            dbCmd = dbConn.CreateCommand();
+            transaction = dbConn.BeginTransaction("Transaction");
+            dbCmd.Transaction = transaction;
+
+            try
+            {
+
+                string sqlCommand = "DELETE FROM Warranty Where WarID = @WarID";
+
+                dbCmd.CommandText = sqlCommand;
+                dbCmd.Parameters.AddWithValue("WarID", warID);
+
+                dbCmd.ExecuteNonQuery();
+                dbCmd.Parameters.Clear();
+
+                transaction.Commit();
+                dbConn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                transaction.Rollback();
+            }
+        }
     }
 }
