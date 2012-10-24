@@ -21,6 +21,7 @@
                 -Added file upload/download/deletion for licenses<br />
                 -Updated update/delete functionalitites for warranties on inventory pages<br />
                 -Updated update/delete functionalitites for maintenance on inventory pages<br />
+                -Fixed an issue with inserting inventory IDs on insert and update pages that wouldn't fous on the serial no text box<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 
