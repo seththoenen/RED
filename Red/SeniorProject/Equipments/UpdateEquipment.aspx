@@ -52,8 +52,6 @@
     <h1>Mass Update Equipment</h1>
     <div id = "sidebar">
         <span class="page">Serial No.(s):<br />
-        <asp:UpdatePanel ID="updatePanelSerialNo" runat="server">
-            <ContentTemplate>
                 <span class="page">
                 <asp:TextBox ID="txtBoxSerialNo" runat="server" AutoPostBack="True" 
                     MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" Width="159px" 
@@ -62,20 +60,22 @@
 <br />
                 <asp:Label ID="lblSerialNos" runat="server" Visible="False"></asp:Label>
 <br />
+        </span>
+        <asp:UpdatePanel ID="updatePanelGroups" runat="server">
+            <ContentTemplate>
+                <span class="page">
                 <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" 
                     SelectionMode="Multiple" Width="164px"></asp:ListBox>
                 <br />
                 <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                    onclick="btnRemoveSelected_Click" Text="Remove Selected" 
-                    Width="136px" />
-<br />
+                    onclick="btnRemoveSelected_Click" Text="Remove Selected" Width="136px" />
+                <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo0" runat="server" 
                     ControlToValidate="lstBoxSerialNos" 
                     ErrorMessage="You must enter at least 1 service tag" ForeColor="Red"></asp:RequiredFieldValidator>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        </span>All Groups:<asp:UpdatePanel ID="updatePanelGroups" runat="server">
-            <ContentTemplate>
+                </span>
+                <br />
+        All Groups:
                 <asp:ListBox ID="lstBoxGroups" runat="server" AutoPostBack="True" 
                     Height="300px" onselectedindexchanged="lstBoxGroups_SelectedIndexChanged" 
                     Width="165px" SelectionMode="Multiple"></asp:ListBox>

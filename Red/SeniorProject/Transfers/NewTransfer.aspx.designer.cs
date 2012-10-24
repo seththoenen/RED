@@ -13,15 +13,6 @@ namespace SeniorProject.Transfers {
     public partial class NewTransfer {
         
         /// <summary>
-        /// updatePanelSerialNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updatePanelSerialNo;
-        
-        /// <summary>
         /// txtBoxSerialNo control.
         /// </summary>
         /// <remarks>
@@ -38,6 +29,15 @@ namespace SeniorProject.Transfers {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSerialNos;
+        
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
         /// lstBoxSerialNos control.

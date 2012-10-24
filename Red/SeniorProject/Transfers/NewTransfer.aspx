@@ -20,37 +20,39 @@
     <div id="sidebar">
     
     <span class="page">Service Tag(s)/Serial No.(s):<br />
-        <asp:UpdatePanel ID="updatePanelSerialNo" runat="server">
-            <ContentTemplate>
                 <asp:TextBox ID="txtBoxSerialNo" runat="server" AutoPostBack="True" 
                     MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" Width="152px"></asp:TextBox>
 <br />
                 <asp:Label ID="lblSerialNos" runat="server" Visible="False"></asp:Label>
-<br />
+        <br />
+        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
+                <span class="page">
                 <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" 
                     SelectionMode="Multiple" Width="162px"></asp:ListBox>
                 <br />
                 <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                    onclick="btnRemoveSelected_Click" Text="Remove Selected" 
-                    Width="136px" />
+                    onclick="btnRemoveSelected_Click" Text="Remove Selected" Width="136px" />
 <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo0" runat="server" 
                     ControlToValidate="lstBoxSerialNos" 
                     ErrorMessage="You must enter at least 1 service tag" ForeColor="Red"></asp:RequiredFieldValidator>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-        </span>All Groups:<br />
-        <asp:UpdatePanel ID="updatePanelGroups" runat="server">
-            <ContentTemplate>
-                <asp:ListBox ID="lstBoxGroups" runat="server" AutoPostBack="True" 
-                    Height="300px" onselectedindexchanged="lstBoxGroups_SelectedIndexChanged" 
-                    Width="156px" SelectionMode="Multiple"></asp:ListBox>
+                </span>All Groups:<br />
+                <asp:UpdatePanel ID="updatePanelGroups" runat="server">
+                    <ContentTemplate>
+                        <asp:ListBox ID="lstBoxGroups" runat="server" AutoPostBack="True" 
+                            Height="300px" onselectedindexchanged="lstBoxGroups_SelectedIndexChanged" 
+                            SelectionMode="Multiple" Width="156px"></asp:ListBox>
                 <br />
-                <asp:Button ID="btnSelectGroup" runat="server" CausesValidation="False" 
-                    Enabled="False" onclick="btnSelectGroup_Click" Text="Select Group(s)" 
-                    Width="136px" />
+                        <asp:Button ID="btnSelectGroup" runat="server" CausesValidation="False" 
+                            Enabled="False" onclick="btnSelectGroup_Click" Text="Select Group(s)" 
+                            Width="136px" />
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </ContentTemplate>
         </asp:UpdatePanel>
+<br />
+        </span>
     </div>
 <div id="maincontent">
     <asp:UpdatePanel ID="updatePanelPage" runat="server">

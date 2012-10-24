@@ -47,29 +47,24 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <div id = "sidebar">
-    <span class="page">Service Tag/Serial No.:<br />
-        <asp:UpdatePanel ID="updatePanelSerialNo" runat="server">
-            <ContentTemplate>
+        &nbsp;<span class="page">Service Tag/Serial No.:<br />
                 <asp:TextBox ID="txtBoxSerialNo" runat="server" AutoPostBack="True" 
-                    MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" Width="165px"></asp:TextBox>
-<br />
-                <asp:Label ID="lblSerialNos" runat="server" Visible="False"></asp:Label>
-<br />
-                <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" Width="165px" 
-                    SelectionMode="Multiple">
-                </asp:ListBox>
-                <br />
-                <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                    onclick="btnRemoveSelected_Click" Text="Remove Selected" 
-                    Width="136px" />
-<br />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo" runat="server" 
-                    ControlToValidate="lstBoxSerialNos" 
-                    ErrorMessage="You must enter at least 1 service tag" ForeColor="Red"></asp:RequiredFieldValidator>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+                    MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" 
+            Width="165px"></asp:TextBox>
         <br />
+                        <asp:Label ID="lblSerialNos" runat="server" Visible="False"></asp:Label>
         <br />
+                        <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" 
+                            SelectionMode="Multiple" Width="165px"></asp:ListBox>
+                <br __designer:mapid="32d7" />
+                        <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
+                            onclick="btnRemoveSelected_Click" Text="Remove Selected" 
+            Width="136px" />
+<br __designer:mapid="32d9" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo" runat="server" 
+                            ControlToValidate="lstBoxSerialNos" 
+                            ErrorMessage="You must enter at least 1 service tag" 
+            ForeColor="Red"></asp:RequiredFieldValidator>
         </span><br />
     </div>
 

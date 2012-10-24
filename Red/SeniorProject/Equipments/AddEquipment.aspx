@@ -60,29 +60,25 @@
     </asp:UpdatePanel>
     <div id="sidebar">
     
-        <asp:UpdatePanel ID="updatePanelSerialNo" runat="server">
-            <ContentTemplate>
-                Serial No:<br />
+                Serial No:<br __designer:mapid="3416" />
                 <asp:TextBox ID="txtBoxSerialNo" runat="server" AutoPostBack="True" 
                     MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" Width="164px" 
                     Height="19px"></asp:TextBox>
-<br />
+<br __designer:mapid="3418" />
                 <asp:Label ID="lblSerialNos" runat="server" Visible="False"></asp:Label>
-<br />
+<br __designer:mapid="341a" />
                 <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" 
                     SelectionMode="Multiple" Width="165px"></asp:ListBox>
-                <br />
-                <span class="page">
+                <br __designer:mapid="341c" />
+                <span class="page" __designer:mapid="341d">
                 <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
                     onclick="btnRemoveSelected_Click" Text="Remove Selected" 
                     Width="136px" />
                 </span>
-<br />
+<br __designer:mapid="341f" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo" runat="server" 
                     ControlToValidate="lstBoxSerialNos" 
                     ErrorMessage="You must enter at least 1 serial no" ForeColor="Red"></asp:RequiredFieldValidator>
-            </ContentTemplate>
-        </asp:UpdatePanel>
         <br />
     
     </div>
