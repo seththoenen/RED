@@ -19,9 +19,7 @@
                 -Added calendar extenders to date fields that didn't have calendar extenders<br />
                 -Fixed an issue where release 1.1.4 actually didn't do anything (because of Git for Windows)<br />
                 -Added file upload/download/deletion for licenses<br />
-                -Updated update/delete functionalitites for warranties on inventory pages<br />
-                -Updated update/delete functionalitites for maintenance on inventory pages<br />
-                -Fixed an issue with inserting inventory IDs on insert and update pages that wouldn't fous on the serial no text box<br />
+                -Updated update/delete functionalitites for warranties, maintenance, and logistics on inventory pages<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 

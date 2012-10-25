@@ -521,9 +521,6 @@ namespace SeniorProject
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //registers click event to entire grid view row
-                e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView2, "Select$" + e.Row.RowIndex);
-
                 //handles on hover events
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");
                 if (e.Row.RowState == DataControlRowState.Normal)
@@ -561,9 +558,6 @@ namespace SeniorProject
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //registers click event to entire grid view row
-                //e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView4, "Select$" + e.Row.RowIndex);
-
                 //handles on hover events
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");
                 if (e.Row.RowState == DataControlRowState.Normal)
@@ -584,6 +578,23 @@ namespace SeniorProject
                 //registers click event to entire grid view row
                 e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView4, "Select$" + e.Row.RowIndex);
 
+                //handles on hover events
+                e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");
+                if (e.Row.RowState == DataControlRowState.Normal)
+                {
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor = '#F7F6F3';");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor = 'White';");
+                }
+            }
+        }
+
+        protected void GridView4_RowCreated1(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
                 //handles on hover events
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");
                 if (e.Row.RowState == DataControlRowState.Normal)

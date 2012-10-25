@@ -450,7 +450,7 @@
                 <asp:GridView ID="GridView4" runat="server" AllowPaging="True" 
                     AutoGenerateColumns="False" CellPadding="4" DataKeyNames="MaintID" 
                     DataSourceID="SqlDataSource20" ForeColor="#333333" GridLines="None" 
-                    Width="507px">
+                    Width="507px" onrowcreated="GridView4_RowCreated1">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="MaintID" HeaderText="MaintID" InsertVisible="False" 
@@ -476,7 +476,7 @@
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("Maintenance") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False">
+                        <asp:TemplateField ShowHeader="False" HeaderText="Update">
                             <EditItemTemplate>
                                 <asp:LinkButton ID="lnkBtnUpdate" runat="server" CausesValidation="True" 
                                     CommandName="Update" SkinID="Blue" Text="Update"></asp:LinkButton>
@@ -488,7 +488,7 @@
                                     CommandName="Edit" SkinID="Blue" Text="Edit"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:TemplateField ShowHeader="False">
+                        <asp:TemplateField ShowHeader="False" HeaderText="Delete">
                             <ItemTemplate>
                                 <asp:LinkButton ID="lnkBtnDelete" runat="server" CausesValidation="False" 
                                     CommandName="Delete" SkinID="Blue" Text="Delete"></asp:LinkButton>
@@ -586,19 +586,93 @@
             <asp:GridView ID="GridView2" runat="server" AllowPaging="True" 
                 AutoGenerateColumns="False" CellPadding="4" DataSourceID="SqlDataSource7" 
                 ForeColor="#333333" GridLines="None" Visible="False" Width="680px" 
-                onrowcreated="GridView2_RowCreated">
+                onrowcreated="GridView2_RowCreated" DataKeyNames="LogID">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="Building" HeaderText="Building" 
-                        SortExpression="Building" />
-                    <asp:BoundField DataField="Room" HeaderText="Room" SortExpression="Room" />
-                    <asp:BoundField DataField="PrimaryUser" HeaderText="PrimaryUser" 
-                        SortExpression="PrimaryUser" />
-                    <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                    <asp:BoundField DataField="StartDate" HeaderText="StartDate" 
-                        SortExpression="StartDate" />
-                    <asp:BoundField DataField="EndDate" HeaderText="EndDate" 
-                        SortExpression="EndDate" />
+                    <asp:BoundField DataField="LogID" HeaderText="LogID" 
+                        SortExpression="LogID" InsertVisible="False" ReadOnly="True" 
+                        Visible="False" />
+                    <asp:TemplateField HeaderText="Building" SortExpression="Building">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox1" runat="server" MaxLength="49" 
+                                Text='<%# Bind("Building") %>' Width="75px"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Building") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Room" SortExpression="Room">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox2" runat="server" MaxLength="49" 
+                                Text='<%# Bind("Room") %>' Width="75px"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Room") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="PrimaryUser" SortExpression="PrimaryUser">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox3" runat="server" MaxLength="49" 
+                                Text='<%# Bind("PrimaryUser") %>' Width="75px"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("PrimaryUser") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Name" SortExpression="Name">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox4" runat="server" MaxLength="49" 
+                                Text='<%# Bind("Name") %>' Width="75px"></asp:TextBox>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="StartDate" SortExpression="StartDate">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox5" runat="server" MaxLength="49" 
+                                Text='<%# Bind("StartDate") %>' Width="65px"></asp:TextBox>
+                            <asp:CalendarExtender ID="TextBox5_CalendarExtender" runat="server" 
+                                Enabled="True" TargetControlID="TextBox5">
+                            </asp:CalendarExtender>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("StartDate") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="EndDate" SortExpression="EndDate">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="TextBox6" runat="server" MaxLength="49" 
+                                Text='<%# Bind("EndDate") %>' Width="65px"></asp:TextBox>
+                            <asp:CalendarExtender ID="TextBox6_CalendarExtender" runat="server" 
+                                Enabled="True" TargetControlID="TextBox6">
+                            </asp:CalendarExtender>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("EndDate") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Update" ShowHeader="False">
+                        <EditItemTemplate>
+                            <asp:LinkButton ID="lnkBtnUpdate" runat="server" CausesValidation="True" 
+                                CommandName="Update" SkinID="Blue" Text="Update"></asp:LinkButton>
+                            &nbsp;<asp:LinkButton ID="lnkBtnCancel" runat="server" CausesValidation="False" 
+                                CommandName="Cancel" SkinID="Blue" Text="Cancel"></asp:LinkButton>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkBtnEdit" runat="server" CausesValidation="False" 
+                                CommandName="Edit" SkinID="Blue" Text="Edit"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Delete" ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnkBtnDelete" runat="server" CausesValidation="False" 
+                                CommandName="Delete" SkinID="Blue" Text="Delete"></asp:LinkButton>
+                            <asp:ConfirmButtonExtender ID="lnkBtnDelete_ConfirmButtonExtender" 
+                                runat="server" ConfirmText="Are you sure you want to delete this logistics record?" Enabled="True" TargetControlID="lnkBtnDelete">
+                            </asp:ConfirmButtonExtender>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -613,10 +687,36 @@
             </asp:GridView>
             <asp:SqlDataSource ID="SqlDataSource7" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
-                SelectCommand="SELECT [Building], [Room], [PrimaryUser], [Name], [StartDate], [EndDate] FROM [Logistics] WHERE (([Status] = 'Inactive') AND ([InvID] = @InvID)) ORDER BY [LogID] DESC">
+                
+                SelectCommand="SELECT [LogID], [Building], [Room], [PrimaryUser], [Name], [StartDate], [EndDate] FROM [Logistics] WHERE (([InvID] = @InvID) AND ([Status] = @Status)) ORDER BY [LogID] DESC" 
+                DeleteCommand="DELETE FROM [Logistics] WHERE [LogID] = @LogID" 
+                InsertCommand="INSERT INTO [Logistics] ([Building], [Room], [PrimaryUser], [Name], [StartDate], [EndDate]) VALUES (@Building, @Room, @PrimaryUser, @Name, @StartDate, @EndDate)" 
+                UpdateCommand="UPDATE [Logistics] SET [Building] = @Building, [Room] = @Room, [PrimaryUser] = @PrimaryUser, [Name] = @Name, [StartDate] = @StartDate, [EndDate] = @EndDate WHERE [LogID] = @LogID">
+                <DeleteParameters>
+                    <asp:Parameter Name="LogID" Type="Int32" />
+                </DeleteParameters>
+                <InsertParameters>
+                    <asp:Parameter Name="Building" Type="String" />
+                    <asp:Parameter Name="Room" Type="String" />
+                    <asp:Parameter Name="PrimaryUser" Type="String" />
+                    <asp:Parameter Name="Name" Type="String" />
+                    <asp:Parameter Name="StartDate" Type="String" />
+                    <asp:Parameter Name="EndDate" Type="String" />
+                </InsertParameters>
                 <SelectParameters>
-                    <asp:SessionParameter Name="InvID" SessionField="CurrentComputer" />
+                    <asp:SessionParameter Name="InvID" SessionField="CurrentComputer" 
+                        Type="Int32" />
+                    <asp:Parameter DefaultValue="Inactive" Name="Status" Type="String" />
                 </SelectParameters>
+                <UpdateParameters>
+                    <asp:Parameter Name="Building" Type="String" />
+                    <asp:Parameter Name="Room" Type="String" />
+                    <asp:Parameter Name="PrimaryUser" Type="String" />
+                    <asp:Parameter Name="Name" Type="String" />
+                    <asp:Parameter Name="StartDate" Type="String" />
+                    <asp:Parameter Name="EndDate" Type="String" />
+                    <asp:Parameter Name="LogID" Type="Int32" />
+                </UpdateParameters>
             </asp:SqlDataSource>
             <br />
             <h2>
@@ -769,14 +869,14 @@
                 </td>
             </tr>
         </table>
-        <h2>
-            Warranties</h2>
+        <h2>Warranties</h2>
         <asp:UpdatePanel ID="updatePanelWarranty" runat="server">
             <ContentTemplate>
                 <asp:Button ID="btnAddWarranty" runat="server" onclick="btnAddWarranty_Click1" 
                     Text="Add a Warranty" Width="136px" />
             <br />
                 <asp:GridView ID="gvWarranties" runat="server" AutoGenerateColumns="False" 
+ 
                     CellPadding="4" DataKeyNames="WarID,InvID" DataSourceID="SqlDataSource15" 
                     ForeColor="#333333" GridLines="None" onrowcreated="GridView4_RowCreated" 
                     Width="680px" AllowPaging="True">

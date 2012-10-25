@@ -437,9 +437,6 @@ namespace SeniorProject.Equipments
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //registers click event to entire grid view row
-                e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView1, "Select$" + e.Row.RowIndex);
-
                 //handles on hover events
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");
                 if (e.Row.RowState == DataControlRowState.Normal)
@@ -477,9 +474,6 @@ namespace SeniorProject.Equipments
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //registers click event to entire grid view row
-                e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView4, "Select$" + e.Row.RowIndex);
-
                 //handles on hover events
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");
                 if (e.Row.RowState == DataControlRowState.Normal)
@@ -497,9 +491,6 @@ namespace SeniorProject.Equipments
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                //registers click event to entire grid view row
-                //e.Row.Attributes["OnClick"] = ClientScript.GetPostBackEventReference(this.GridView2, "Select$" + e.Row.RowIndex);
-
                 //handles on hover events
                 e.Row.Attributes.Add("onmouseover", "this.style.backgroundColor = '#B0B0B0';");
                 if (e.Row.RowState == DataControlRowState.Normal)
