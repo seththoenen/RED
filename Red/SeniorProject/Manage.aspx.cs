@@ -18,6 +18,30 @@ namespace SeniorProject
             if (!IsPostBack)
             {
                 lstBoxMonitor.SelectedIndex = 0;
+                if (Session["Authenticated"].ToString() == "True")
+                {
+                    updatePanelSiteMode.Visible = true;
+                }
+            }
+
+            try
+            {
+                System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+                lblSiteMode.Text = siteMode.Value.ToString();
+
+                if (siteMode.Value.ToString() == "Release")
+                {
+                    lblChangeSiteMode.Text = "DEBUG";
+                }
+                else if (siteMode.Value.ToString() == "Debug")
+                {
+                    lblChangeSiteMode.Text = "RELEASE";
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
             }
         }
 
@@ -144,6 +168,45 @@ namespace SeniorProject
                 lstBoxManufcturers.DataBind();
             }
             catch { }
+        }
+
+        protected void btnExecuteChangeSiteMode_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtBoxChange.Text.ToUpper() == "CHANGE")
+                {
+                    System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                    System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+                    ConnectionStringsSection section = webConfig.GetSection("connectionStrings") as ConnectionStringsSection;
+                    lblSiteMode.Text = siteMode.Value.ToString();
+
+                    if (siteMode.Value.ToString() == "Release")
+                    {
+                        webConfig.AppSettings.Settings["siteMode"].Value = "Debug";
+                        section.ConnectionStrings["EquipmentConnectionString"].ConnectionString = "Data Source=RLSRESNET\\SQLEXPRESS2012;Initial Catalog=EquipmentTest;User ID=thoenen;Password=Sisemen1";
+                        webConfig.Save();
+                    }
+                    else if (siteMode.Value.ToString() == "Debug")
+                    {
+                        webConfig.AppSettings.Settings["siteMode"].Value = "Release";
+                        section.ConnectionStrings["EquipmentConnectionString"].ConnectionString = "Data Source=RLSRESNET\\SQLEXPRESS2012;Initial Catalog=Equipment;User ID=thoenen;Password=Sisemen1";
+                        webConfig.Save();
+                    }
+
+                    Response.Redirect("~/Manage.aspx");
+                }
+                else
+                {
+                    lblChangeMessage.Visible = true;
+                    lblChangeMessage.Text = "That doesn't say \"Change\".";
+                    this.btnChangeSiteMode_ModalPopupExtender.Show();                                       
+                }
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
         }
     }
 }

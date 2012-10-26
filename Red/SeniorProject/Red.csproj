@@ -98,6 +98,7 @@
     <Content Include="packages.config" />
     <None Include="Resources\header.png" />
     <Content Include="Search.aspx" />
+    <Content Include="Styles\Manage.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />

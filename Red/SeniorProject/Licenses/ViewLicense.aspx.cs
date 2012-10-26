@@ -110,9 +110,27 @@ namespace SeniorProject.Licenses
                 }
                 else if (AsyncFileUpload.HasFile == true)
                 {
+                    //Get site mode from web.config to determine where to save files on the filesystem
+                    System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                    System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+                    
+                    string folder = "";
+                    if (siteMode.Value.ToString() == "Release")
+                    {
+                        folder = "Release";
+                    }
+                    else if (siteMode.Value.ToString() == "Debug")
+                    {
+                        folder = "Test";
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Default.aspx");
+                    }
+                    
                     string licID = Session["CurrentLicense"].ToString();
                     string root = Server.MapPath("");
-                    string fullPath = root + "/Files/Test/" + Session["CurrentLicense"].ToString() + "-" + AsyncFileUpload.FileName.ToString();
+                    string fullPath = root + "/Files/" + folder+ "/" + Session["CurrentLicense"].ToString() + "-" + AsyncFileUpload.FileName.ToString();
 
                     lblMessage.Text = License.saveFile(Convert.ToInt32(Session["CurrentLicense"]), AsyncFileUpload.FileName, txtboxDescription.Text, fullPath);
 
@@ -135,6 +153,24 @@ namespace SeniorProject.Licenses
         {
             try
             {
+                //Get site mode from web.config to determine where to save files on the filesystem
+                System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+
+                string folder = "";
+                if (siteMode.Value.ToString() == "Release")
+                {
+                    folder = "Release";
+                }
+                else if (siteMode.Value.ToString() == "Debug")
+                {
+                    folder = "Test";
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+                
                 //get the name of the file from the grid view gvFiles
                 LinkButton lnkButtonSender = (LinkButton)sender;
                 int rowIndex = Convert.ToInt32(lnkButtonSender.CommandArgument);
@@ -144,7 +180,7 @@ namespace SeniorProject.Licenses
 
                 //begin process of file download
                 string root = Server.MapPath("");
-                string path = root + "\\Files\\Test\\";
+                string path = root + "\\Files\\" + folder + "\\";
                 string downloadName = Session["CurrentLicense"].ToString() + "-" + fileName;
                 string fullPath = path + downloadName;
 
@@ -175,6 +211,24 @@ namespace SeniorProject.Licenses
         {
             try
             {
+                //Get site mode from web.config to determine where to save files on the filesystem
+                System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+
+                string folder = "";
+                if (siteMode.Value.ToString() == "Release")
+                {
+                    folder = "Release";
+                }
+                else if (siteMode.Value.ToString() == "Debug")
+                {
+                    folder = "Test";
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+
                 LinkButton lnkButtonSender = (LinkButton)sender;
                 int rowIndex = Convert.ToInt32(lnkButtonSender.CommandArgument);
                 gvFiles.SelectedIndex = rowIndex;
@@ -184,7 +238,7 @@ namespace SeniorProject.Licenses
                 int fileID = Convert.ToInt32(gvFiles.SelectedDataKey.Value);
 
                 string root = Server.MapPath("");
-                string path = root + "\\Files\\Test\\";
+                string path = root + "\\Files\\" + folder + "\\";
                 string downloadName = Session["CurrentLicense"].ToString() + "-" + fileName;
                 string fullPath = path + downloadName;
 

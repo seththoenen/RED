@@ -20,6 +20,7 @@
                 -Fixed an issue where release 1.1.4 actually didn't do anything (because of Git for Windows)<br />
                 -Added file upload/download/deletion for licenses<br />
                 -Updated update/delete functionalitites for warranties, maintenance, and logistics on inventory pages<br />
+                -Added the ability to switch databases on the fly<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 

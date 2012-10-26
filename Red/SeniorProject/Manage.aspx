@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="RED - Manage" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Manage.aspx.cs" Inherits="SeniorProject.Manage" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .style1
@@ -56,9 +57,27 @@
             width: 250px;
         }
     </style>
+    <link rel="Stylesheet" href="Styles/Manage.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <h2>
+
+<asp:UpdatePanel ID="updatePanelSiteMode" runat="server" Visible="False">
+    <ContentTemplate>
+            <h2>
+        Site Mode</h2>
+        Current Site Mode:
+        <asp:Label ID="lblSiteMode" runat="server"></asp:Label>
+        <br />
+        <asp:Button ID="btnChangeSiteMode" runat="server" Text="Change Site Mode" 
+            Width="136px" />
+        <asp:ModalPopupExtender ID="btnChangeSiteMode_ModalPopupExtender" 
+            runat="server" DynamicServicePath="" Enabled="True" 
+            TargetControlID="btnChangeSiteMode" PopupControlID="panelChangeSiteMode" OkControlID="btnExecuteChangeSiteMode" 
+            CancelControlID="btnCancelExecuteChangeSiteMode" BackgroundCssClass="popuppanel">
+        </asp:ModalPopupExtender>
+    </ContentTemplate>
+</asp:UpdatePanel>
+<h2>
         Monitors    </h2>
     <asp:UpdatePanel ID="updatePanelMonitors" runat="server">
         <ContentTemplate>
@@ -241,8 +260,38 @@
             </table>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <p>
-        &nbsp;</p>
-    
+        <asp:Panel ID="panelChangeSiteMode" runat="server" CssClass="popup">
+        <h2>
+            Change Site Mode</h2>
+            <p class="red">
+                WARNING: Changing the site mode may cause data integrity issues.
+                <br />
+                Only switch the site mode if nobody is currently using RED. This
+                <br />
+                message will disappear once Seth has revamped the entire application
+                <br />
+                to solve the data integrity issues. Once the site mode has been
+                <br />
+                changed, users may start using RED again.<br />
+                <br />
+                Proceed with caution.</p>
+            <p>
+                Type &quot;CHANGE&quot; below to put RED into
+                <asp:Label ID="lblChangeSiteMode" runat="server"></asp:Label>
+                &nbsp;mode.</p>
+        <p>
+            <asp:TextBox ID="txtBoxChange" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Button ID="btnExecuteChangeSiteMode" runat="server" 
+                Text="Change Site Mode" Width="136px" 
+                onclick="btnExecuteChangeSiteMode_Click" UseSubmitBehavior="false"/>
+            &nbsp;<asp:Button ID="btnCancelExecuteChangeSiteMode" runat="server" Text="Cancel" 
+                Width="136px" />
+        </p>
+        <p>
+            <asp:Label ID="lblChangeMessage" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+        </p>
+    </asp:Panel>    
     <br />
 </asp:Content>

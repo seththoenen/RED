@@ -13,6 +13,42 @@ namespace SeniorProject {
     public partial class Manage {
         
         /// <summary>
+        /// updatePanelSiteMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanelSiteMode;
+        
+        /// <summary>
+        /// lblSiteMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSiteMode;
+        
+        /// <summary>
+        /// btnChangeSiteMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChangeSiteMode;
+        
+        /// <summary>
+        /// btnChangeSiteMode_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender btnChangeSiteMode_ModalPopupExtender;
+        
+        /// <summary>
         /// updatePanelMonitors control.
         /// </summary>
         /// <remarks>
@@ -290,5 +326,59 @@ namespace SeniorProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblManufacturerMessage;
+        
+        /// <summary>
+        /// panelChangeSiteMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panelChangeSiteMode;
+        
+        /// <summary>
+        /// lblChangeSiteMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChangeSiteMode;
+        
+        /// <summary>
+        /// txtBoxChange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxChange;
+        
+        /// <summary>
+        /// btnExecuteChangeSiteMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExecuteChangeSiteMode;
+        
+        /// <summary>
+        /// btnCancelExecuteChangeSiteMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelExecuteChangeSiteMode;
+        
+        /// <summary>
+        /// lblChangeMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChangeMessage;
     }
 }
