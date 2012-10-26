@@ -61,7 +61,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<asp:UpdatePanel ID="updatePanelSiteMode" runat="server" Visible="False">
+    <asp:UpdatePanel ID="updatePanelSiteMode" runat="server" Visible="False">
     <ContentTemplate>
             <h2>
         Site Mode</h2>
@@ -273,6 +273,10 @@
                 to solve the data integrity issues. Once the site mode has been
                 <br />
                 changed, users may start using RED again.<br />
+                <br />
+                Once the site mode has been changed you will be redirected to the
+                <br />
+                Home page and you will no longer be authenticated.<br />
                 <br />
                 Proceed with caution.</p>
             <p>

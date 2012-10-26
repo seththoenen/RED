@@ -194,7 +194,8 @@ namespace SeniorProject
                         webConfig.Save();
                     }
 
-                    Response.Redirect("~/Manage.aspx");
+                    Response.Redirect("~/Default.aspx");
+
                 }
                 else
                 {
