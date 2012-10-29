@@ -264,21 +264,14 @@
         <h2>
             Change Site Mode</h2>
             <p class="red">
-                WARNING: Changing the site mode may cause data integrity issues.
+                WARNING: Changing the site mode may hinder current
                 <br />
-                Only switch the site mode if nobody is currently using RED. This
-                <br />
-                message will disappear once Seth has revamped the entire application
-                <br />
-                to solve the data integrity issues. Once the site mode has been
-                <br />
-                changed, users may start using RED again.<br />
+                users from saving changes. Make sure nobody<br /> is doing anything important.<br />
                 <br />
                 Once the site mode has been changed you will be redirected to the
                 <br />
                 Home page and you will no longer be authenticated.<br />
-                <br />
-                Proceed with caution.</p>
+                </p>
             <p>
                 Type &quot;CHANGE&quot; below to put RED into
                 <asp:Label ID="lblChangeSiteMode" runat="server"></asp:Label>
