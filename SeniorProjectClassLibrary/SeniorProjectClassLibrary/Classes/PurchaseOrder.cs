@@ -134,5 +134,15 @@ namespace SeniorProjectClassLibrary.Classes
             return PODA.getPO(POID);
         }
 
+        public static string saveFile(int LicID, string fileName, string description, string fullPath)
+        {
+            return PODA.saveFile(LicID, fileName, description, fullPath);
+        }
+
+        public static void deleteFile(int fileID)
+        {
+            PODA.deleteFile(fileID);
+        }
+
     }
 }

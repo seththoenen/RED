@@ -407,6 +407,8 @@
     <Folder Include="DataSets\" />
     <Folder Include="Licenses\Files\Release\" />
     <Folder Include="Licenses\Files\Test\" />
+    <Folder Include="PO\Files\Release\" />
+    <Folder Include="PO\Files\Test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />

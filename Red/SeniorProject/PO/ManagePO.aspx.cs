@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
 using SeniorProjectClassLibrary.Classes;
+using System.IO;
+using System.Text;
 
 namespace SeniorProject.PO
 { 
@@ -115,6 +117,162 @@ namespace SeniorProject.PO
                 {
                     e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor = 'White';");
                 }
+            }
+        }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtboxDescription.Text.Length > 499)
+                {
+                    lblMessage.Text = "Description has a limit of 500 characters. please shorten your description.";
+                    lblMessage.Visible = true;
+                }
+                else if (AsyncFileUpload.HasFile == true)
+                {
+                    //Get site mode from web.config to determine where to save files on the filesystem
+                    System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                    System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+
+                    string folder = "";
+                    if (siteMode.Value.ToString() == "Release")
+                    {
+                        folder = "Release";
+                    }
+                    else if (siteMode.Value.ToString() == "Debug")
+                    {
+                        folder = "Test";
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Default.aspx");
+                    }
+
+                    string licID = Session["CurrentPurchaseOrder"].ToString();
+                    string root = Server.MapPath("");
+                    string fullPath = root + "/Files/" + folder + "/" + Session["CurrentPurchaseOrder"].ToString() + "-" + AsyncFileUpload.FileName.ToString();
+
+                    lblFileMessage.Text = PurchaseOrder.saveFile(Convert.ToInt32(Session["CurrentPurchaseOrder"]), AsyncFileUpload.FileName, txtboxDescription.Text, fullPath);
+
+                    if (lblFileMessage.Text == "File added successfully")
+                    {
+                        AsyncFileUpload.SaveAs(fullPath);
+                    }
+                    lblFileMessage.Visible = true;
+                    gvFiles.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMessage.Visible = true;
+                lblMessage.Text = ex.ToString();
+            }
+        }
+
+        protected void lnkBtnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Get site mode from web.config to determine where to save files on the filesystem
+                System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+
+                string folder = "";
+                if (siteMode.Value.ToString() == "Release")
+                {
+                    folder = "Release";
+                }
+                else if (siteMode.Value.ToString() == "Debug")
+                {
+                    folder = "Test";
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+
+                //get the name of the file from the grid view gvFiles
+                LinkButton lnkButtonSender = (LinkButton)sender;
+                int rowIndex = Convert.ToInt32(lnkButtonSender.CommandArgument);
+                GridViewRow row = gvFiles.Rows[rowIndex];
+                Label lbl = (Label)row.FindControl("lblFileName");
+                string fileName = lbl.Text;
+
+                //begin process of file download
+                string root = Server.MapPath("");
+                string path = root + "\\Files\\" + folder + "\\";
+                string downloadName = Session["CurrentPurchaseOrder"].ToString() + "-" + fileName;
+                string fullPath = path + downloadName;
+
+                FileInfo info = new FileInfo(fullPath);
+                Response.Clear();
+                Response.AddHeader("Content-Disposition", "attachment; filename=" + fileName);
+                Response.ContentType = "application/octet-stream";
+                Response.TransmitFile(info.FullName);
+                //Response.WriteFile(info.FullName);
+                HttpContext.Current.ApplicationInstance.CompleteRequest();
+                Response.Flush();
+
+            }
+            catch (FileNotFoundException ex)
+            {
+                ex.ToString();
+                Response.Write("<SCRIPT LANGUAGE='JavaScript'>alert('File Not Found!')</SCRIPT>");
+            }
+            catch (Exception ex)
+            {
+                Session["Exception"] = ex;
+                Response.Redirect("~/Error.aspx");
+            }
+            Response.End();
+        }
+
+        protected void lnkButtonDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Get site mode from web.config to determine where to save files on the filesystem
+                System.Configuration.Configuration webConfig = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+                System.Configuration.KeyValueConfigurationElement siteMode = webConfig.AppSettings.Settings["siteMode"];
+
+                string folder = "";
+                if (siteMode.Value.ToString() == "Release")
+                {
+                    folder = "Release";
+                }
+                else if (siteMode.Value.ToString() == "Debug")
+                {
+                    folder = "Test";
+                }
+                else
+                {
+                    Response.Redirect("~/Default.aspx");
+                }
+
+                LinkButton lnkButtonSender = (LinkButton)sender;
+                int rowIndex = Convert.ToInt32(lnkButtonSender.CommandArgument);
+                gvFiles.SelectedIndex = rowIndex;
+                GridViewRow row = gvFiles.Rows[rowIndex];
+                Label lbl = (Label)row.FindControl("lblFileName");
+                string fileName = lbl.Text;
+                int fileID = Convert.ToInt32(gvFiles.SelectedDataKey.Value);
+
+                string root = Server.MapPath("");
+                string path = root + "\\Files\\" + folder + "\\";
+                string downloadName = Session["CurrentPurchaseOrder"].ToString() + "-" + fileName;
+                string fullPath = path + downloadName;
+
+                File.Delete(fullPath);
+                PurchaseOrder.deleteFile(fileID);
+
+                gvFiles.DataBind();
+                gvFiles.SelectedIndex = -1;
+
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
             }
         }
     }

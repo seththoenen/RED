@@ -21,6 +21,7 @@
                 -Added file upload/download/deletion for licenses<br />
                 -Updated update/delete functionalitites for warranties, maintenance, and logistics on inventory pages<br />
                 -Added the ability to switch databases on the fly<br />
+                -Added file upload/download/deletion for POs<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 

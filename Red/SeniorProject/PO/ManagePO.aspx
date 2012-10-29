@@ -106,6 +106,87 @@
         <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>
     </asp:Panel>
     <h1>
+        Files</h1>
+            <p>
+        <asp:GridView ID="gvFiles" runat="server" CellPadding="4" ForeColor="#333333" 
+            GridLines="None" ShowHeaderWhenEmpty="True" AutoGenerateColumns="False" 
+            DataKeyNames="FileID" DataSourceID="sqldsPOFiles" Width="900px">
+            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+            <Columns>
+                <asp:BoundField DataField="LicID" HeaderText="LicID" InsertVisible="False" 
+                    ReadOnly="True" SortExpression="LicID" Visible="False" />
+                <asp:BoundField DataField="FileID" HeaderText="FileID" InsertVisible="False" 
+                    ReadOnly="True" SortExpression="FileID" Visible="False" />
+                <asp:TemplateField HeaderText="Filename" SortExpression="filename">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("filename") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="lblFileName" runat="server" Text='<%# Bind("filename") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="description" HeaderText="Description" 
+                    SortExpression="description" />
+                <asp:TemplateField HeaderText="Download">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkBtnDownload" runat="server" CommandName="Select" 
+                            onclick="lnkBtnDownload_Click" 
+                            CommandArgument='<%# Container.DataItemIndex %>' SkinID="Blue">Download</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delete">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkButtonDelete" runat="server" 
+                            onclick="lnkButtonDelete_Click" CommandName="Select" 
+                            CommandArgument='<%# Container.DataItemIndex %>' SkinID="Blue">Delete</asp:LinkButton>
+                        <asp:ConfirmButtonExtender ID="lnkButtonDelete_ConfirmButtonExtender" 
+                            runat="server" TargetControlID="lnkButtonDelete" ConfirmText="Are you sure you want to delete this file?" ConfirmOnFormSubmit="True">
+                        </asp:ConfirmButtonExtender>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+            <EditRowStyle BackColor="#999999" />
+            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+        </asp:GridView>
+        <asp:SqlDataSource ID="sqldsPOFiles" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
+            
+                    
+                    SelectCommand="SELECT PO.POID, POFiles.FileID, POFiles.filename, POFiles.description FROM PO INNER JOIN POFiles ON PO.POID = POFiles.POID WHERE (PO.POID = @POID)">
+            <SelectParameters>
+                <asp:SessionParameter Name="POID" SessionField="CurrentPurchaseOrder" />
+            </SelectParameters>
+        </asp:SqlDataSource>
+    </p>
+    <p>
+        Add New File</p>
+
+    <table>
+        <tr>
+            <td>File:</td> 
+            <td><asp:AsyncFileUpload ID="AsyncFileUpload" runat="server" Width="250px" /></td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><asp:TextBox ID="txtboxDescription" runat="server" MaxLength="499" 
+                    Width="250px" Height="50px" TextMode="MultiLine"></asp:TextBox></td>
+        </tr>
+    </table>
+    <asp:Button ID="btnUpload" runat="server" onclick="btnUpload_Click" 
+        Text="Upload" Width="136px" />
+    &nbsp;&nbsp;<br />
+    <asp:Label ID="lblFileMessage" runat="server" Visible="False"></asp:Label>
+    <h1>
+        &nbsp;</h1>
+    <h1>
         Computers in this Purchase Order</h1>
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
         CellPadding="4" DataKeyNames="InvID" DataSourceID="SqlDataSource1" 
