@@ -260,7 +260,8 @@
             </table>
         </ContentTemplate>
     </asp:UpdatePanel>
-        <asp:Panel ID="panelChangeSiteMode" runat="server" CssClass="popup">
+        <asp:Panel ID="panelChangeSiteMode" runat="server" CssClass="popup" 
+        Visible="False">
         <h2>
             Change Site Mode</h2>
             <p class="red">

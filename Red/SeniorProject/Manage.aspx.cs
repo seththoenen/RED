@@ -21,6 +21,7 @@ namespace SeniorProject
                 if (Session["Authenticated"].ToString() == "True")
                 {
                     updatePanelSiteMode.Visible = true;
+                    panelChangeSiteMode.Visible = true;
                 }
             }
 
