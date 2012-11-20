@@ -48,6 +48,7 @@
                             <asp:MenuItem NavigateUrl="~/Reports/InventoryTypeReport.aspx" Text = "Inventory Type Report" />
                         </asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/Manage.aspx" Text="Manage"/>
+                        <asp:MenuItem NavigateUrl="http://rlsresnet/issues/red/" Text="Issue Tracker"/>
                         <asp:MenuItem NavigateUrl="~/Help.aspx" Text="Help"/>
                         <asp:MenuItem NavigateUrl="~/PatchNotes.aspx" Text="Patch Notes"/>
                     </Items>

@@ -22,6 +22,7 @@
                 -Updated update/delete functionalitites for warranties, maintenance, and logistics on inventory pages<br />
                 -Added the ability to switch databases on the fly<br />
                 -Added file upload/download/deletion for POs<br />
+                -Created an issue tracker but didn't implement because of an in house issue tracker<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane114" runat="server" ContentCssClass="" 

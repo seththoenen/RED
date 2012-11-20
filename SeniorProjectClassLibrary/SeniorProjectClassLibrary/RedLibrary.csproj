@@ -46,6 +46,7 @@
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\Group.cs" />
     <Compile Include="Classes\Inventory.cs" />
+    <Compile Include="Classes\Issue.cs" />
     <Compile Include="Classes\License.cs" />
     <Compile Include="Classes\Logistics.cs" />
     <Compile Include="Classes\Maintenance.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="DAL\EquipmentDA.cs" />
     <Compile Include="DAL\GroupDA.cs" />
     <Compile Include="DAL\InventoryDA.cs" />
+    <Compile Include="DAL\IssueDA.cs" />
     <Compile Include="DAL\LicenseDA.cs" />
     <Compile Include="DAL\LogisticsDA.cs" />
     <Compile Include="DAL\MaintenanceDA.cs" />

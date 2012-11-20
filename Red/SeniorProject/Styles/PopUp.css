@@ -1,0 +1,13 @@
+﻿.PopUp
+{
+    border: 3px solid #680000;
+    padding: 10px;
+    background: white;
+    text-align:center;   
+}
+
+.PopUpBackground
+{
+    background: gray;
+    opacity: .4;  
+}
