@@ -8,9 +8,9 @@
     <asp:Accordion ID="Accordion1" runat="server" Height="637px" Width="1227px" 
         HeaderCssClass="accordionHeader" ContentCssClass="accordionContent">
         <Panes>
-        <asp:AccordionPane ID="AccordionPane115" runat="server" ContentCssClass="" 
+        <asp:AccordionPane ID="AccordionPane120" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
-            <Header><a>Release 1.1.5 - Release Date Here</a></Header>
+            <Header><a>Release 1.2.0 - November 20, 2012</a></Header>
             <Content>
                 -Created "Page Not Found" Page<br />
                 -Fixed a bug where errors would occur when working with grid views<br />

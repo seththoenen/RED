@@ -120,7 +120,7 @@
         Welcome to the ResNet Equipment Database! (RED)</h2>
     <p>
         
-        Version: 1.1.4</p>
+        Version: 1.2.0</p>
         <asp:UpdatePanel ID="updatePanelPage" runat="server">
             <ContentTemplate>
                 <asp:Panel ID="panelAuthenticated" runat="server" Visible="False">
