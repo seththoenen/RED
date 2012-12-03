@@ -22,6 +22,7 @@ namespace SeniorProject
                 {
                     updatePanelSiteMode.Visible = true;
                     panelChangeSiteMode.Visible = true;
+                    panelPowerUsers.Visible = true;
                 }
             }
 
@@ -209,6 +210,23 @@ namespace SeniorProject
             {
                 ex.ToString();
             }
+        }
+
+        protected void btnAddPowerUser_Click(object sender, EventArgs e)
+        {
+            lblPowerUserMessage.Text = Settings.saveSetting(txtBoxPowerUser.Text, "AuthUser");
+            lblPowerUserMessage.Visible = true;
+            lstBoxPowerUsers.DataBind();
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Settings.deleteSetting(Convert.ToInt32(lstBoxPowerUsers.SelectedValue));
+                lstBoxPowerUsers.DataBind();
+            }
+            catch { }
         }
     }
 }

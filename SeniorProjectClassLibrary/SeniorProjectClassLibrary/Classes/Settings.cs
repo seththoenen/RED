@@ -18,10 +18,9 @@ namespace SeniorProjectClassLibrary.Classes
             return SettingsDA.deleteSetting(id);
         }
 
-        public static bool authenticatePassword(string password)
+        public static List<string> getAuthUsers()
         {
-            return SettingsDA.authenticatePassword(password);
+            return SettingsDA.getAuthUsers();
         }
-
     }
 }

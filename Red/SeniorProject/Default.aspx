@@ -121,24 +121,6 @@
     <p>
         
         Version: 1.2.1</p>
-        <asp:UpdatePanel ID="updatePanelPage" runat="server">
-            <ContentTemplate>
-                <asp:Panel ID="panelAuthenticated" runat="server" Visible="False">
-                    You are currently authenticated.
-                    <br />
-                    <asp:Button ID="btnLogOut" runat="server" Text="Log Out" 
-                        onclick="btnLogOut_Click" Width="136px" />
-                </asp:Panel>
-                <asp:Panel ID="panelNotAuthenticated" runat="server" Visible="False">
-                    You are currently not authenticated.<br /> Password:
-                    <asp:TextBox ID="txtBoxPassword" runat="server" AutoPostBack="True" 
-                        ontextchanged="txtBoxPassword_TextChanged" TextMode="Password" 
-                        Width="136px"></asp:TextBox>
-                    <br />
-                    <asp:Label ID="lblAuthMessage" runat="server" ForeColor="Red" Visible="False"></asp:Label>
-                </asp:Panel>
-             </ContentTemplate>
-        </asp:UpdatePanel>
     <p>
         Written by Seth Thoenen.</p>
         <p>

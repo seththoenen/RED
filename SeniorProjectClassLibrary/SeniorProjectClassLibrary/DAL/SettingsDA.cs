@@ -87,7 +87,7 @@ namespace SeniorProjectClassLibrary.DAL
             return message.ToString();
         }
 
-        public static bool authenticatePassword(string password)
+        public static List<string> getAuthUsers()
         {
             SqlConnection dbConn;
             string sConnection;
@@ -103,35 +103,28 @@ namespace SeniorProjectClassLibrary.DAL
             dbCmd.Transaction = transaction;
             try
             {
-                string sqlCommand = "SELECT value FROM Settings WHERE Type = 'Password'";
+                string sqlCommand = "SELECT value FROM Settings WHERE Type = 'AuthUser'";
 
                 dbCmd.CommandText = sqlCommand;
 
                 dbReader = dbCmd.ExecuteReader();
                 dbCmd.Parameters.Clear();
 
-                string dbPassword = "";
+                List<string> authUsers = new List<string>();
                 while (dbReader.Read())
                 {
-                    dbPassword = dbReader["value"].ToString();
+                    authUsers.Add(dbReader["value"].ToString());
                 }
                 dbConn.Close();
-                if (dbPassword == password)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-                
+
+                return authUsers;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
                 //message.Append("Database Error: " + ex.ToString() + "<bR>");
                 transaction.Rollback();
-                return false;
+                return null;
             }
         }
     }

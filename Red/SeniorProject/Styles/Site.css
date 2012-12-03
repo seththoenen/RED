@@ -121,6 +121,13 @@ first child of the left and right table columns */
     min-height: 420px;
 }
 
+.user
+{
+    padding: 20px;
+    color: White;
+    float: right;   
+}
+
 #sidebar
 {
       float: left;
@@ -352,7 +359,7 @@ div.accountInfo
     display: block;
     float: left;
     text-align: left;
-    width: auto;
+    width: 1280px;
     height: 75px
 }
 

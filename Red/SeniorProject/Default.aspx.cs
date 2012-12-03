@@ -16,25 +16,7 @@ namespace SeniorProject
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                try
-                {
-                    if (Session["Authenticated"].ToString() == "True")
-                    {
-                        panelAuthenticated.Visible = true;
-                    }
-                    else
-                    {
-                        panelNotAuthenticated.Visible = true;
-                    }
-                }
-                catch 
-                {
-                    Session["Authenticated"] = "False";
-                    panelNotAuthenticated.Visible = true;
-                }
-            }
+
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -60,33 +42,6 @@ namespace SeniorProject
                 Session["SearchArgs"] = args;
                 Response.Redirect("~/Search.aspx");
             }
-        }
-
-        protected void btnLogOut_Click(object sender, EventArgs e)
-        {
-            Session["Authenticated"] = "False";
-            panelNotAuthenticated.Visible = true;
-            panelAuthenticated.Visible = false;
-        }
-
-        protected void authenticate()
-        {
-            if (Settings.authenticatePassword(txtBoxPassword.Text) == true)
-            {
-                Session["Authenticated"] = "True";
-                panelAuthenticated.Visible = true;
-                panelNotAuthenticated.Visible = false;
-            }
-            else
-            {
-                lblAuthMessage.Visible = true;
-                lblAuthMessage.Text = "Incorrect Password";
-            }
-        }
-
-        protected void txtBoxPassword_TextChanged(object sender, EventArgs e)
-        {
-            authenticate();
         }
 
         protected void btnInstantSearch_Click(object sender, EventArgs e)

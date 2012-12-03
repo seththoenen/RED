@@ -12,7 +12,7 @@
                 HeaderCssClass="">
             <Header><a>Release 1.2.1 - (Release Date Here)</a></Header>
             <Content>
-                -Next Item Here<br />
+                -Changed Authentication to read the active directory<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane120" runat="server" ContentCssClass="" 

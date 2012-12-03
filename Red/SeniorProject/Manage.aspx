@@ -260,6 +260,46 @@
             </table>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <asp:Panel ID="panelPowerUsers" runat="server" Visible="False">
+    <h2>Power Users</h2>
+    <asp:UpdatePanel ID="updatePanelPowerUsers" runat="server">
+        <ContentTemplate>
+            <table class="style10">
+                <tr>
+                    <td class="style13">
+                        <asp:ListBox ID="lstBoxPowerUsers" runat="server" 
+                            DataSourceID="sqldsPowerUsers" DataTextField="value" DataValueField="id" 
+                            Height="200px" Width="200px"></asp:ListBox>
+                        <asp:SqlDataSource ID="sqldsPowerUsers" runat="server" 
+                            ConnectionString="<%$ ConnectionStrings:EquipmentConnectionString %>" 
+                            
+                            SelectCommand="SELECT [id], [value] FROM [Settings] WHERE ([type] = @type) ORDER BY [value]">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="AuthUser" Name="type" Type="String" />
+                            </SelectParameters>
+                        </asp:SqlDataSource>
+                        <asp:Button ID="Button1" runat="server" Text="Remove Selected" 
+                            Width="136px" onclick="Button1_Click" />
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtBoxPowerUser" runat="server" Width="136px" 
+                            MaxLength="45"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                            ControlToValidate="txtBoxPowerUser" ErrorMessage="User name is required" 
+                            ForeColor="Red" ValidationGroup="PowerUsers"></asp:RequiredFieldValidator>
+                        <br />
+                        <asp:Button ID="btnAddPowerUser" runat="server" Text="Add Power User" 
+                            ValidationGroup="PowerUsers" Width="136px" 
+                            onclick="btnAddPowerUser_Click" />
+                        <br />
+                        <asp:Label ID="lblPowerUserMessage" runat="server" Visible="False"></asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    </asp:Panel>
+
         <asp:Panel ID="panelChangeSiteMode" runat="server" CssClass="popup" 
         Visible="False">
         <h2>

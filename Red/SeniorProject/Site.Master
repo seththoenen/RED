@@ -13,6 +13,9 @@
     <div class="page">
         <div class="header">
             <div class="title">
+                <div class="user">
+                    <asp:Label ID="lblADUser" runat="server" Text="Label"></asp:Label>
+                </div>                
             </div>
             <div class="clear hideSkiplink">
                             <asp:ScriptManager ID="ScriptManager1" runat="server" 
