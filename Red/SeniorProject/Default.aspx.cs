@@ -56,13 +56,11 @@ namespace SeniorProject
             }
             else if (results[1] == 1)
             {
-                Session["CurrentComputer"] = results[0];
-                Response.Redirect("~/Computer/ViewComputer.aspx");
+                Response.Redirect("~/Computer/ViewComputer.aspx?id="+results[0].ToString());
             }
             else if (results[1] == 2)
             {
-                Session["CurrentEquipment"] = results[0];
-                Response.Redirect("~/Equipments/ViewEquipment.aspx");
+                Response.Redirect("~/Equipments/ViewEquipment.aspx?id="+results[0].ToString());
             }
         }
     }

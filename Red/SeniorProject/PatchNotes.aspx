@@ -13,6 +13,7 @@
             <Header><a>Release 1.2.1 - (Release Date Here)</a></Header>
             <Content>
                 -Changed Authentication to read the active directory<br />
+                -Fixed an issue where instant search wasn't working<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane120" runat="server" ContentCssClass="" 
