@@ -29,6 +29,10 @@ namespace SeniorProject
                             break;
                         }
                     }
+                    if (Session["Authenticated"] == null)
+                    {
+                        Session["Authenticated"] = "False";
+                    }
                 }
                 else
                 {
@@ -40,6 +44,10 @@ namespace SeniorProject
                             Session["Authenticated"] = "True";
                             break;
                         }
+                    }
+                    if (Session["Authenticated"] == null)
+                    {
+                        Session["Authenticated"] = "False";
                     }
                 }
             }

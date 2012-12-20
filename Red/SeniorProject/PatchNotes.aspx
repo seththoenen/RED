@@ -14,6 +14,7 @@
             <Content>
                 -Changed Authentication to read the active directory<br />
                 -Fixed an issue where instant search wasn't working<br />
+                -Fixed an issue where adding inventory via group disallowed updates<br />
             </Content>
         </asp:AccordionPane>
         <asp:AccordionPane ID="AccordionPane120" runat="server" ContentCssClass="" 

@@ -293,8 +293,9 @@ namespace SeniorProject.Equipments
                     }
                     if (existsLB == false)
                     {
-                        lstBoxSerialNos.Items.Add(equip.SerialNo.ToUpper());
-                        lstBoxSerialNos.Text = equip.SerialNo.ToUpper();
+                        ListItem li = new ListItem(equip.SerialNo.ToUpper(), equip.InvID.ToString());
+                        lstBoxSerialNos.Items.Add(li);
+                        lstBoxSerialNos.SelectedValue = li.Value;
                     }
                 }
             }

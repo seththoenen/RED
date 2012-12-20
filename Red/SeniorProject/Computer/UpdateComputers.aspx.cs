@@ -168,8 +168,9 @@ namespace SeniorProject
                     }
                     if (existsLB == false)
                     {
-                        lstBoxSerialNos.Items.Add(comp.SerialNo.ToUpper());
-                        lstBoxSerialNos.Text = comp.SerialNo.ToUpper();
+                        ListItem li = new ListItem(comp.SerialNo.ToUpper(), comp.InvID.ToString());
+                        lstBoxSerialNos.Items.Add(li);
+                        lstBoxSerialNos.SelectedValue = li.Value;
                     }
                 }
             }

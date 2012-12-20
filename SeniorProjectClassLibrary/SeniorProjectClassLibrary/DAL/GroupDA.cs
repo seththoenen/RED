@@ -289,7 +289,7 @@ namespace SeniorProjectClassLibrary.DAL
             {
                 int groupID = GroupDA.getGroupID(dbCmd, groupName);
                 
-                string sql = "SELECT SerialNo FROM Inventory, GroupInventory WHERE GroupInventory.InvID = Inventory.InvID AND GroupInventory.GroupID = @GroupID";
+                string sql = "SELECT SerialNo, Inventory.InvID FROM Inventory, GroupInventory WHERE GroupInventory.InvID = Inventory.InvID AND GroupInventory.GroupID = @GroupID";
 
                 dbCmd.CommandText = sql;
 
@@ -302,6 +302,7 @@ namespace SeniorProjectClassLibrary.DAL
                 {
                     Computer comp = new Computer();
                     comp.SerialNo = dbReader["SerialNo"].ToString();
+                    comp.InvID = Convert.ToInt32(dbReader["InvID"]);
                     group.Computers.Add(comp);
                 }
                 dbReader.Close();
@@ -316,6 +317,7 @@ namespace SeniorProjectClassLibrary.DAL
             {
                 Console.WriteLine(ex.ToString());
                 transaction.Rollback();
+                dbConn.Close();
                 return null;
             }
         }
@@ -339,7 +341,7 @@ namespace SeniorProjectClassLibrary.DAL
             {
                 int groupID = GroupDA.getGroupID(dbCmd, groupName);
 
-                string sql = "SELECT SerialNo FROM Inventory, GroupInventory WHERE GroupInventory.InvID = Inventory.InvID AND GroupInventory.GroupID = @GroupID";
+                string sql = "SELECT SerialNo, Inventory.InvID FROM Inventory, GroupInventory WHERE GroupInventory.InvID = Inventory.InvID AND GroupInventory.GroupID = @GroupID";
 
                 dbCmd.CommandText = sql;
 
@@ -352,6 +354,7 @@ namespace SeniorProjectClassLibrary.DAL
                 {
                     Equipment equip = new Equipment();
                     equip.SerialNo = dbReader["SerialNo"].ToString();
+                    equip.InvID = Convert.ToInt32(dbReader["InvID"]);
                     group.Equipment.Add(equip);
                 }
                 dbReader.Close();
