@@ -10,7 +10,7 @@
         <Panes>
             <asp:AccordionPane ID="AccordionPane121" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
-            <Header><a>Release 1.2.1 - (Release Date Here)</a></Header>
+            <Header><a>Release 1.2.1 - December, 20 2012</a></Header>
             <Content>
                 -Changed Authentication to read the active directory<br />
                 -Fixed an issue where instant search wasn't working<br />

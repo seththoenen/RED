@@ -20,6 +20,15 @@ namespace SeniorProject
                 if (Session["AuthUsers"] == null)
                 {
                     Session["AuthUsers"] = Settings.getAuthUsers();
+                    List<string> authUsers = (List<string>)(Session["AuthUsers"]);
+                    for (int i = 0; i < authUsers.Count; i++)
+                    {
+                        if (user == authUsers[i])
+                        {
+                            Session["Authenticated"] = "True";
+                            break;
+                        }
+                    }
                 }
                 else
                 {
