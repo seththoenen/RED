@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="RED - Add Equipment" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddEquipment.aspx.cs" Inherits="SeniorProject.AddEquipment" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-
+    <link  href="../Styles/PopUp.css" rel="Stylesheet" type="text/css" />
     <style type="text/css">
 
         .style1
@@ -60,26 +60,34 @@
     </asp:UpdatePanel>
     <div id="sidebar">
     
-                Serial No:<br __designer:mapid="3416" />
+                <asp:UpdatePanel ID="updatePanelSerialNos" runat="server">
+                    <ContentTemplate>
+                                        Serial No:<br />
                 <asp:TextBox ID="txtBoxSerialNo" runat="server" AutoPostBack="True" 
                     MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" Width="164px" 
                     Height="19px"></asp:TextBox>
-<br __designer:mapid="3418" />
+<br />
                 <asp:Label ID="lblSerialNos" runat="server" Visible="False"></asp:Label>
-<br __designer:mapid="341a" />
+<br />
                 <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" 
                     SelectionMode="Multiple" Width="165px"></asp:ListBox>
-                <br __designer:mapid="341c" />
-                <span class="page" __designer:mapid="341d">
+                <br />
+                <span class="page">
                 <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
                     onclick="btnRemoveSelected_Click" Text="Remove Selected" 
                     Width="136px" />
                 </span>
-<br __designer:mapid="341f" />
+<br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo" runat="server" 
                     ControlToValidate="lstBoxSerialNos" 
                     ErrorMessage="You must enter at least 1 serial no" ForeColor="Red"></asp:RequiredFieldValidator>
         <br />
+
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <br />
+    
+
     
     </div>
 
@@ -451,17 +459,32 @@
                     <asp:TextBox ID="txtBoxNotes" runat="server" Height="100px" MaxLength="1000" 
                         TextMode="MultiLine" Width="760px"></asp:TextBox>
                     <br />
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <asp:UpdatePanel ID="updatePanel" runat="server">
                         <ContentTemplate>
                             <asp:Button ID="btnAddEquipment" runat="server" onclick="btnAddEquipment_Click" 
                                 Text="Add" Width="136px" />
+
+                            <br />
+
+                        <asp:Button ID="btnPopUpExtender" runat="server" Text="btnPopUpExtender" CssClass="hidden" 
+                            />
+
+                            <asp:ModalPopupExtender ID="btnPopUpExtender_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" 
+                                TargetControlID="btnPopUpExtender"
+                                PopupControlID="pnlModalOperation"
+                                BackgroundCssClass="PopUpBackground"
+                                CancelControlID="btnClearMessage"
+                                >
+
+                            </asp:ModalPopupExtender>
+
                             <br />
                             <br />
-                            <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>
-                            <br />
-                            <br />
-                            <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" 
-                                Text="Clear" Visible="False" Width="136px" />
+                            <asp:Panel ID="pnlModalOperation" runat="server" CssClass="PopUp">
+                                <asp:Label ID="lblMessage" runat="server"></asp:Label>
+                                <br />
+                                <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" Text="Clear" Width="136px" />
+                            </asp:Panel>
                             <br />
                         </ContentTemplate>
                     </asp:UpdatePanel>

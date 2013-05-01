@@ -162,6 +162,9 @@ namespace SeniorProject
             }
             lblMessage.Visible = true;
             btnClearMessage.Visible = true;
+
+            btnPopUpExtender_ModalPopupExtender.Show();
+            
         }
 
         protected void btnClearMessage_Click(object sender, EventArgs e)

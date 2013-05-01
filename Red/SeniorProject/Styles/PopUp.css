@@ -11,3 +11,8 @@
     background: gray;
     opacity: .4;  
 }
+
+.hidden 
+{
+    display:none;
+}

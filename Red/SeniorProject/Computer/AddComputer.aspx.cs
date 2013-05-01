@@ -162,12 +162,16 @@ namespace SeniorProject
                 lstBoxSerialNos.Items.Clear();
             }
             btnClearMessage.Visible = true;
+
+            btnPopUpExtender_ModalPopupExtender.Show();
+            
         }
 
         protected void btnClearMessage_Click(object sender, EventArgs e)
         {
             lblMessage.Text = "";
             btnClearMessage.Visible = false;
+            pnlModalOperation.Visible = false;
         }
 
         protected void btnAddMonitor_Click(object sender, EventArgs e)

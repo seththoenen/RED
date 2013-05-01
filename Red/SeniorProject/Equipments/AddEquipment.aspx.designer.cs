@@ -31,6 +31,15 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Button btnAddWithTextBoxToggle;
         
         /// <summary>
+        /// updatePanelSerialNos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updatePanelSerialNos;
+        
+        /// <summary>
         /// txtBoxSerialNo control.
         /// </summary>
         /// <remarks>
@@ -526,13 +535,13 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.TextBox txtBoxNotes;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// updatePanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.UpdatePanel updatePanel;
         
         /// <summary>
         /// btnAddEquipment control.
@@ -542,6 +551,33 @@ namespace SeniorProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddEquipment;
+        
+        /// <summary>
+        /// btnPopUpExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPopUpExtender;
+        
+        /// <summary>
+        /// btnPopUpExtender_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender btnPopUpExtender_ModalPopupExtender;
+        
+        /// <summary>
+        /// pnlModalOperation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlModalOperation;
         
         /// <summary>
         /// lblMessage control.
