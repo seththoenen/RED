@@ -4,6 +4,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
+    <link  href="../Styles/PopUp.css" rel="Stylesheet" type="text/css" />
     <style type="text/css">
         .style1
         {
@@ -47,24 +48,24 @@
         </ContentTemplate>
     </asp:UpdatePanel>
     <div id = "sidebar">
-        &nbsp;<span class="page">Service Tag/Serial No.:<br />
-                <asp:TextBox ID="txtBoxSerialNo" runat="server" AutoPostBack="True" 
-                    MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" 
-            Width="165px"></asp:TextBox>
+
+        &nbsp;<asp:UpdatePanel ID="UpdatePanel2" runat="server">
+            <ContentTemplate>
+                <span class="page">Service Tag/Serial No.:<br />
+                <asp:TextBox ID="txtBoxSerialNo" runat="server" AutoPostBack="True" MaxLength="45" ontextchanged="txtBoxSerialNo_TextChanged" Width="165px"></asp:TextBox>
         <br />
                         <asp:Label ID="lblSerialNos" runat="server" Visible="False"></asp:Label>
         <br />
-                        <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" 
-                            SelectionMode="Multiple" Width="165px"></asp:ListBox>
-                <br __designer:mapid="32d7" />
-                        <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" 
-                            onclick="btnRemoveSelected_Click" Text="Remove Selected" 
-            Width="136px" />
-<br __designer:mapid="32d9" />
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo" runat="server" 
-                            ControlToValidate="lstBoxSerialNos" 
-                            ErrorMessage="You must enter at least 1 service tag" 
-            ForeColor="Red"></asp:RequiredFieldValidator>
+                        <asp:ListBox ID="lstBoxSerialNos" runat="server" Height="400px" SelectionMode="Multiple" Width="165px"></asp:ListBox>
+                <br />
+                        <asp:Button ID="btnRemoveSelected" runat="server" CausesValidation="False" onclick="btnRemoveSelected_Click" Text="Remove Selected" Width="136px" />
+<br />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorSerialNo" runat="server" ControlToValidate="lstBoxSerialNos" ErrorMessage="You must enter at least 1 service tag" ForeColor="Red"></asp:RequiredFieldValidator>
+                </span>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <span class="page">
+        <br />
         </span><br />
     </div>
 
@@ -571,12 +572,25 @@
                         <asp:Button ID="btnAddDesktop" runat="server" onclick="btnAddDesktop_Click" 
                             Text="Add" Width="136px" />
                     </p>
+                    <p>
+                        <asp:Button ID="btnPopUpExtender" runat="server" Text="btnPopUpExtender" CssClass="hidden" />
+                        <asp:ModalPopupExtender ID="btnPopUpExtender_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" 
+                            TargetControlID="btnPopUpExtender"
+                            PopupControlID="pnlModalOperation"
+                            BackgroundCssClass="PopUpBackground"
+                            CancelControlID="btnClearMessage"
+
+                            >
+                        </asp:ModalPopupExtender>
+                    </p>
+                    <asp:Panel ID="pnlModalOperation" runat="server" CssClass="PopUp">
+                        <asp:Label ID="lblMessage" runat="server">label message</asp:Label>
+                        <br />
+                        <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" Text="Clear" Width="136px" />
+                    </asp:Panel>
                     <asp:UpdatePanel ID="updatePanelMessage" runat="server">
                         <ContentTemplate>
-                            <asp:Label ID="lblMessage" runat="server"></asp:Label>
                             <br />
-                            <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" 
-                                Text="Clear" Visible="False" Width="136px" />
                         </ContentTemplate>
                         <Triggers>
                             <asp:AsyncPostBackTrigger ControlID="btnAddDesktop" />
