@@ -12,6 +12,7 @@ namespace SeniorProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //checks to see who is logged into the system based upon the active directory to manage permissions to the site
             if (!IsPostBack)
             {
                 string user = HttpContext.Current.Request.ServerVariables["AUTH_USER"].ToString().Substring(4);
@@ -50,6 +51,8 @@ namespace SeniorProject
                         Session["Authenticated"] = "False";
                     }
                 }
+                //uncomment the following line to disable authentication for development purposes
+                //Session["Authenticated"] = "True";
             }
         }
     }
