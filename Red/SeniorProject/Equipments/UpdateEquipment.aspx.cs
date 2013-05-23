@@ -252,6 +252,7 @@ namespace SeniorProject.Equipments
             lblMessage.Text = Equipment.updateEquipment(equipment);
             lblMessage.Visible = true;
 
+            btnPopUpExtender_ModalPopupExtender.Show();
         }
 
         protected void btnApplyLogisticsUpdates_Click(object sender, EventArgs e)

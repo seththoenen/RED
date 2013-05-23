@@ -586,7 +586,7 @@
                     <asp:Panel ID="pnlModalOperation" runat="server" CssClass="PopUp">
                         <asp:Label ID="lblMessage" runat="server">label message</asp:Label>
                         <br />
-                        <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" Text="Clear" Width="136px" />
+                        <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" Text="OK" Width="136px" />
                     </asp:Panel>
                     <asp:UpdatePanel ID="updatePanelMessage" runat="server">
                         <ContentTemplate>

@@ -994,6 +994,33 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Button btnUpdateDesktop;
         
         /// <summary>
+        /// btnPopUpExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPopUpExtender;
+        
+        /// <summary>
+        /// btnPopUpExtender_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender btnPopUpExtender_ModalPopupExtender;
+        
+        /// <summary>
+        /// pnlModalOperation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlModalOperation;
+        
+        /// <summary>
         /// lblMessage control.
         /// </summary>
         /// <remarks>

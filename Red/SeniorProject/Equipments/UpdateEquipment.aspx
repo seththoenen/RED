@@ -1,8 +1,9 @@
 ﻿<%@ Page Title="RED - Update Equipment" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UpdateEquipment.aspx.cs" Inherits="SeniorProject.Equipments.UpdateEquipment" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <link  href="../Styles/PopUp.css" rel="Stylesheet" type="text/css" />
     <style type="text/css">
-
+        
 
         .style1
         {
@@ -560,11 +561,20 @@
                         <ContentTemplate>
                             <asp:Button ID="btnUpdateEquipment" runat="server" 
                                 onclick="btnUpdateEquipment_Click" Text="Update" Width="136px" />
+                            <asp:Button ID="btnPopUpExtender" runat="server" Text="btnPopUpExtender" CssClass="hidden" />
+                            <asp:ModalPopupExtender ID="btnPopUpExtender_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" 
+                                TargetControlID="btnPopUpExtender"
+                                PopupControlID="pnlModalOperation"
+                                BackgroundCssClass="PopUpBackground"
+                                CancelControlID="btnClearMessage">
+                            </asp:ModalPopupExtender>
                             <br />
-                            <asp:Label ID="lblMessage" runat="server"></asp:Label>
-                            <br />
-                            <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" 
-                                Text="Clear" Visible="False" Width="136px" />
+                            <asp:Panel ID="pnlModalOperation" runat="server" CssClass="PopUp">
+                                <asp:Label ID="lblMessage" runat="server"></asp:Label>
+                                <br />
+                                <asp:Button ID="btnClearMessage" runat="server" onclick="btnClearMessage_Click" 
+                                    Text="OK" Width="136px" />
+                            </asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
                     <br />
