@@ -191,6 +191,7 @@ namespace SeniorProject
             lblMaintenanceMessage.Visible = true;
             lblMaintenanceMessage.Text = Maintenance.addMassMaintenanceComputer(ids, maint);
 
+            btnMaintenanceMessage_ModalPopupExtender.Show();
         }
 
         protected void btnAddMaintenance_Click(object sender, EventArgs e)
@@ -312,6 +313,8 @@ namespace SeniorProject
 
             lblLicenseMessage.Text = License.removeAllLicensesComputer(ids);
             lblLicenseMessage.Visible = true;
+
+            btnLicenseMessage_ModalPopupExtender.Show();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -323,6 +326,8 @@ namespace SeniorProject
 
             lblLicenseMessage.Text = License.removeSelectLicenseComputer(ids ,licenseID);
             lblLicenseMessage.Visible = true;
+
+            btnLicenseMessage_ModalPopupExtender.Show();
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
@@ -334,6 +339,8 @@ namespace SeniorProject
 
             lblLicenseMessage.Text = License.addLicensesComputer(ids, licenseID);
             lblLicenseMessage.Visible = true;
+
+            btnLicenseMessage_ModalPopupExtender.Show();
         }
 
         protected void lstBoxGroups_SelectedIndexChanged(object sender, EventArgs e)
@@ -416,6 +423,8 @@ namespace SeniorProject
 
             lblMonitorMessage.Text = Monitor.removeSelectMonitor(ids, monId);
             lblMonitorMessage.Visible = true;
+
+            btnMonitorMessage_ModalPopupExtender.Show();
         }
 
         protected void btnApplyRemoveAllMonitors_Click(object sender, EventArgs e)
@@ -425,6 +434,8 @@ namespace SeniorProject
 
             lblMonitorMessage.Text = Monitor.deleteMonitors(ids);
             lblMonitorMessage.Visible = true;
+
+            btnMonitorMessage_ModalPopupExtender.Show();
         }
 
         protected void GridView4_SelectedIndexChanged(object sender, EventArgs e)
@@ -436,6 +447,8 @@ namespace SeniorProject
 
             lblMonitorMessage.Text = Monitor.addMonitorsComputer(ids, monID);
             lblMonitorMessage.Visible = true;
+
+            btnMonitorMessage_ModalPopupExtender.Show();
         }
 
         protected void btnAddWarranty_Click(object sender, EventArgs e)
@@ -454,6 +467,8 @@ namespace SeniorProject
 
             lblWarrantyMessage.Text = Warranty.addWarrantysComputer(ids, war);
             lblWarrantyMessage.Visible = true;
+
+            btnWarrantyMessage_ModalPopupExtender.Show();
         }
 
         protected void brnCancelWarranty_Click(object sender, EventArgs e)
@@ -505,6 +520,8 @@ namespace SeniorProject
 
             lblWarrantyMessage.Text = Warranty.deleteWarrantyComputer(ids);
             lblWarrantyMessage.Visible = true;
+
+            btnWarrantyMessage_ModalPopupExtender.Show();
         }
 
         protected void GridView3_RowCreated(object sender, GridViewRowEventArgs e)

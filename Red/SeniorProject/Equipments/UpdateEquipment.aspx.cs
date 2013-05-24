@@ -120,6 +120,8 @@ namespace SeniorProject.Equipments
 
             lblLicenseMessage.Text = License.removeAllLicensesEquipment(ids);
             lblLicenseMessage.Visible = true;
+
+            btnLicenseMessage_ModalPopupExtender.Show();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,6 +133,8 @@ namespace SeniorProject.Equipments
 
             lblLicenseMessage.Text = License.removeSelectLicenseEquipment(ids, licenseID);
             lblLicenseMessage.Visible = true;
+
+            btnLicenseMessage_ModalPopupExtender.Show();
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
@@ -142,6 +146,8 @@ namespace SeniorProject.Equipments
 
             lblLicenseMessage.Text = License.addLicensesEquipment(ids, licenseID);
             lblLicenseMessage.Visible = true;
+
+            btnLicenseMessage_ModalPopupExtender.Show();
         }
 
         protected void btnCancelLicensing_Click(object sender, EventArgs e)
@@ -169,6 +175,8 @@ namespace SeniorProject.Equipments
 
             lblMaintenanceMessage.Visible = true;
             lblMaintenanceMessage.Text = Maintenance.addMassMaintenanceEquipment(ids, maint);
+
+            btnMaintenanceMessage_ModalPopupExtender.Show();
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -330,6 +338,8 @@ namespace SeniorProject.Equipments
 
             lblWarrantyMessage.Text = Warranty.deleteWarrantyEquipment(ids);
             lblWarrantyMessage.Visible = true;
+
+            btnWarrantyMessage_ModalPopupExtender.Show();
         }
 
         protected void chkBoxAddWarranty_CheckedChanged(object sender, EventArgs e)
@@ -363,6 +373,8 @@ namespace SeniorProject.Equipments
 
             lblWarrantyMessage.Text = Warranty.addWarrantysEquipment(ids, war);
             lblWarrantyMessage.Visible = true;
+
+            btnWarrantyMessage_ModalPopupExtender.Show();
         }
 
         protected void brnCancelWarranty_Click(object sender, EventArgs e)

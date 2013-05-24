@@ -571,6 +571,33 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Button btnCancelLicensing0;
         
         /// <summary>
+        /// btnMonitorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMonitorMessage;
+        
+        /// <summary>
+        /// btnMonitorMessage_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender btnMonitorMessage_ModalPopupExtender;
+        
+        /// <summary>
+        /// pnlMonitorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlMonitorMessage;
+        
+        /// <summary>
         /// lblMonitorMessage control.
         /// </summary>
         /// <remarks>
@@ -578,6 +605,15 @@ namespace SeniorProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMonitorMessage;
+        
+        /// <summary>
+        /// btnMonitorOK control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMonitorOK;
         
         /// <summary>
         /// updatePanelLicenses control.
@@ -679,6 +715,33 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Button btnCancelLicensing;
         
         /// <summary>
+        /// btnLicenseMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLicenseMessage;
+        
+        /// <summary>
+        /// btnLicenseMessage_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender btnLicenseMessage_ModalPopupExtender;
+        
+        /// <summary>
+        /// pnlLicenseMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlLicenseMessage;
+        
+        /// <summary>
         /// lblLicenseMessage control.
         /// </summary>
         /// <remarks>
@@ -686,6 +749,15 @@ namespace SeniorProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLicenseMessage;
+        
+        /// <summary>
+        /// btnLicenseMessageOK control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLicenseMessageOK;
         
         /// <summary>
         /// updatePanelWarranties control.
@@ -850,6 +922,42 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Button btnAddWarranty;
         
         /// <summary>
+        /// btnCancelWarranty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelWarranty;
+        
+        /// <summary>
+        /// btnWarrantyMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnWarrantyMessage;
+        
+        /// <summary>
+        /// btnWarrantyMessage_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender btnWarrantyMessage_ModalPopupExtender;
+        
+        /// <summary>
+        /// pnlWarrantyMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlWarrantyMessage;
+        
+        /// <summary>
         /// lblWarrantyMessage control.
         /// </summary>
         /// <remarks>
@@ -859,13 +967,13 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Label lblWarrantyMessage;
         
         /// <summary>
-        /// btnCancelWarranty control.
+        /// btnWarrantyMessageOK control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelWarranty;
+        protected global::System.Web.UI.WebControls.Button btnWarrantyMessageOK;
         
         /// <summary>
         /// updatePanelMaintenance control.
@@ -958,6 +1066,33 @@ namespace SeniorProject {
         protected global::System.Web.UI.WebControls.Button btnCancel;
         
         /// <summary>
+        /// btnMaintenanceMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMaintenanceMessage;
+        
+        /// <summary>
+        /// btnMaintenanceMessage_ModalPopupExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender btnMaintenanceMessage_ModalPopupExtender;
+        
+        /// <summary>
+        /// pnlMaintenanceMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlMaintenanceMessage;
+        
+        /// <summary>
         /// lblMaintenanceMessage control.
         /// </summary>
         /// <remarks>
@@ -965,6 +1100,15 @@ namespace SeniorProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMaintenanceMessage;
+        
+        /// <summary>
+        /// btnMaintenanceMessageOK control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMaintenanceMessageOK;
         
         /// <summary>
         /// txtBoxNotes control.

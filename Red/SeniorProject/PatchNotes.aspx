@@ -10,9 +10,10 @@
         <Panes>
             <asp:AccordionPane ID="AccordionPane1" runat="server" ContentCssClass="" 
                 HeaderCssClass="">
-            <Header><a>Release 1.3.0 - (Release Date Here</a></Header>
+            <Header><a>Release 1.3.0 - (Release Date Here)</a></Header>
             <Content>
                 -Upgraded to Visual Studio 2012<br />
+                -Added modal popups to insert and update pages<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane121" runat="server" ContentCssClass="" 

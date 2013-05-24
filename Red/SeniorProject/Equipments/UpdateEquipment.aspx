@@ -408,8 +408,22 @@
                                 <br />
                                 <asp:Button ID="btnCancelLicensing" runat="server" CausesValidation="False" 
                                     onclick="btnCancelLicensing_Click" Text="Cancel" Width="136px" />
+                                &nbsp;<asp:Button ID="btnLicenseMessage" runat="server" Text="btnLicenseMessage" CssClass="hidden"/>
+                                <asp:ModalPopupExtender ID="btnLicenseMessage_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" 
+                                    TargetControlID="btnLicenseMessage"
+                                    PopupControlID="pnlLicenseMessage"
+                                    BackgroundCssClass="PopUpBackground"
+                                    CancelControlID="btnLicenseMessageOK">
+                                </asp:ModalPopupExtender>
                                 <br />
-                                <asp:Label ID="lblLicenseMessage" runat="server" Visible="False"></asp:Label>
+                                <br />
+                                <asp:Panel ID="pnlLicenseMessage" runat="server" CssClass="PopUp">
+                                    <asp:Label ID="lblLicenseMessage" runat="server" Visible="False"></asp:Label>
+                                    <br />
+                                    <asp:Button ID="btnLicenseMessageOK" runat="server" Text="OK" Width="136px" />
+                                </asp:Panel>
+                                <br />
+                                
                             </asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -500,10 +514,22 @@
                                         </tr>
                                     </table>
                                 </asp:Panel>
-                                <asp:Label ID="lblWarrantyMessage" runat="server" Visible="False"></asp:Label>
                                 <br />
                                 <asp:Button ID="btnCancelWarranty" runat="server" 
-                                    onclick="brnCancelWarranty_Click" Text="Done" />
+                                    onclick="brnCancelWarranty_Click" Text="Done" Width="136px" />
+                                &nbsp;<asp:Button ID="btnWarrantyMessage" runat="server" Text="btnWarrantyMessage" CssClass="hidden"/>
+                                <asp:ModalPopupExtender ID="btnWarrantyMessage_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" 
+                                    TargetControlID="btnWarrantyMessage"
+                                    PopupControlID="pnlWarrantyMessage"
+                                    BackgroundCssClass="PopUpBackground"
+                                    CancelControlID="btnWarrantyMessageOK">
+                                </asp:ModalPopupExtender>
+                                <br />
+                                <asp:Panel ID="pnlWarrantyMessage" runat="server" CssClass="PopUp">
+                                    <asp:Label ID="lblWarrantyMessage" runat="server" Visible="False"></asp:Label><br />
+                                    <asp:Button ID="btnWarrantyMessageOK" runat="server" Text="OK" Width="136px" />
+                                    <br />
+                                </asp:Panel>
                             </asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
@@ -545,8 +571,23 @@
                                     Width="136px" />
                                 &nbsp;<asp:Button ID="btnCancel" runat="server" CausesValidation="False" 
                                     onclick="btnCancel_Click" Text="Cancel" Width="136px" />
+                                &nbsp;<asp:Button ID="btnMaintenanceMessage" runat="server" Text="btnMaintenanceMessage" CssClass="hidden"/>
+                                <asp:ModalPopupExtender ID="btnMaintenanceMessage_ModalPopupExtender" runat="server" DynamicServicePath="" Enabled="True" 
+                                    TargetControlID="btnMaintenanceMessage"
+                                    PopupcontrolID="pnlMaintenanceMessage"
+                                    BackgroundCssClass="PopUpBackground"
+                                    CancelControlID="btnMaintenanceMessageOK">
+                                </asp:ModalPopupExtender>
                                 <br />
-                                <asp:Label ID="lblMaintenanceMessage" runat="server" Visible="False"></asp:Label>
+                                <asp:Panel ID="pnlMaintenanceMessage" runat="server" CssClass="PopUp">
+                                    <asp:Label ID="lblMaintenanceMessage" runat="server" Visible="False"></asp:Label>
+
+                                    <br />
+                                    <asp:Button ID="btnMaintenanceMessageOK" runat="server" Text="OK" Width="136px" />
+
+                                </asp:Panel>
+                                <br />
+                                
                             </asp:Panel>
                         </ContentTemplate>
                     </asp:UpdatePanel>
