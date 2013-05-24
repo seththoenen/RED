@@ -163,5 +163,33 @@ namespace SeniorProjectClassLibrary.DAL
             return transferID;
         }
 
+        public static Transfer getTransfer(SqlCommand cmd, int InvID)
+        {
+            SqlDataReader dbReader;
+
+            string sql = "SELECT Transfers.TransID, Transfers.Name, Transfers.Date, Transfers.Whereto, Transfers.Notes " +
+                "FROM Transfers, TransferInventory WHERE Transfers.TransID = TransferInventory.TransID AND "
+            + "TransferInventory.InvID = @InvID";
+
+            cmd.CommandText = sql;
+
+            cmd.Parameters.AddWithValue("InvID", InvID);
+
+            dbReader = cmd.ExecuteReader();
+            Transfer trans = new Transfer();
+
+            while (dbReader.Read())
+            {
+                trans.ID = Convert.ToInt32(dbReader["TransID"]);
+                trans.Date = Convert.ToString(dbReader["Date"]);
+                trans.Where = Convert.ToString(dbReader["Whereto"]);
+                trans.Notes = Convert.ToString(dbReader["Notes"]);
+            }
+            dbReader.Close();
+            cmd.Parameters.Clear();
+
+            return trans;
+        }
+
     }
 }

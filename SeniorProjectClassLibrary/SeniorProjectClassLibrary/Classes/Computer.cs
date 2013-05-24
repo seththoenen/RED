@@ -31,6 +31,7 @@ namespace SeniorProjectClassLibrary.Classes
             currentLocation = new Logistics();
             licenses = new List<License>();
             warranties = new List<Warranty>();
+            transfer = new Transfer();
         }
 
         public int CompID

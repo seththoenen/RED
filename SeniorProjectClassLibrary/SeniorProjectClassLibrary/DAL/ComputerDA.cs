@@ -336,7 +336,11 @@ namespace SeniorProjectClassLibrary.DAL
                 }
                 dbReader.Close();
                 dbCmd.Parameters.Clear();
-                
+
+                if (comp.Status == "Transferred")
+                {
+                    comp.Transfer = Transfer.getTransfer(dbCmd, invID);
+                }                
 
                 comp.Monitors = MonitorDA.getMonitor(dbCmd,comp.CompID);
                 comp.PO = PODA.getPODetails(dbCmd, comp.InvID);
@@ -823,5 +827,6 @@ namespace SeniorProjectClassLibrary.DAL
             }
 
         }
+
     }
 }

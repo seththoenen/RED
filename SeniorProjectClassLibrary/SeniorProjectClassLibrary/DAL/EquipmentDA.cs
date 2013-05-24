@@ -175,6 +175,11 @@ namespace SeniorProjectClassLibrary.DAL
                 dbReader.Close();
                 dbCmd.Parameters.Clear();
 
+                if (equip.Status == "Transferred")
+                {
+                    equip.Transfer = Transfer.getTransfer(dbCmd, invID);
+                }                
+
                 equip.PO = PODA.getPODetails(dbCmd, equip.InvID);
                 equip.Groups = GroupDA.getGroups(dbCmd, equip.InvID);
 
@@ -190,6 +195,7 @@ namespace SeniorProjectClassLibrary.DAL
             {
                 Console.WriteLine(ex.ToString());
                 transaction.Rollback();
+                dbConn.Close();
                 return null;
             }
         }

@@ -34,9 +34,18 @@ namespace SeniorProject.Equipments
                     Session["Exception"] = ex.ToString();
                     Response.Redirect("~/Error.aspx");
                 }
-                
+
                 Equipment equip = new Equipment();
                 equip = Equipment.getEquipment(invID);
+
+                if (equip.Status == "Transferred")
+                {
+                    pnlTransferInfo.Visible = true;
+                    lblTransferDate.Text = equip.Transfer.Date;
+                    lblTransferTo.Text = equip.Transfer.Where;
+                    lblTransferNotes.Text = equip.Transfer.Notes;
+                    Session["CurrentTransfer"] = equip.Transfer.ID;
+                }
 
 
                 txtBoxSMSUTag.Text = equip.SMSUtag;
@@ -59,7 +68,7 @@ namespace SeniorProject.Equipments
                 else
                 {
                     ddlManufacturer.Text = equip.Manufacturer;
-                } 
+                }
                 if (equip.Status != "Transferred")
                 {
                     ddlStatus.Text = equip.Status;
@@ -70,7 +79,7 @@ namespace SeniorProject.Equipments
                     ddlStatus.Text = "Transferred";
                     ddlStatus.Enabled = false;
                 }
-                
+
                 txtBoxModel.Text = equip.Model;
                 txtBoxSerialNo.Text = equip.SerialNo;
 
@@ -180,16 +189,16 @@ namespace SeniorProject.Equipments
                     }
                 }
 
-            if (equip.Status == "Transferred")
-            {
-                btnEditGroups.Enabled = false;
-                btnAddLicense.Enabled = false;
-                btnRemoveSelectedLicense.Enabled = false;
-                btnAddMaintenance.Enabled = false;
-                btnAddWarranty.Enabled = false;
-                btnUpdateEquipment.Enabled = false;
-                GridView4.Enabled = false;
-            }
+                if (equip.Status == "Transferred")
+                {
+                    btnEditGroups.Enabled = false;
+                    btnAddLicense.Enabled = false;
+                    btnRemoveSelectedLicense.Enabled = false;
+                    btnAddMaintenance.Enabled = false;
+                    btnAddWarranty.Enabled = false;
+                    btnUpdateEquipment.Enabled = false;
+                    GridView4.Enabled = false;
+                }
 
             }
         }
@@ -507,6 +516,11 @@ namespace SeniorProject.Equipments
         protected void lnkButtonEdit_Click(object sender, EventArgs e)
         {
             GridView4.EditIndex = -1;
+        }
+
+        protected void lnkBtnViewTransfer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Transfers/ViewTransfer.aspx");
         }
     }
 }

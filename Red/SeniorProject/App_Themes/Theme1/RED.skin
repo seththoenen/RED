@@ -31,7 +31,7 @@ Default skin template. The following skins are provided as examples only.
 
 <asp:LinkButton runat="server" ForeColor="White" />
 
-<asp:LinkButton runat="server" SkinID="Blule" ForeColor="White" />
+<asp:LinkButton runat="server" SkinID="Blue" ForeColor="Blue" />
 
 <asp:button runat="server" BackColor="#E0E0E0 " BorderStyle="Groove"/>
 

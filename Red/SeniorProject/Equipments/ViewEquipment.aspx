@@ -117,6 +117,31 @@
             </td>
         </tr>
     </table>
+        <asp:Panel ID="pnlTransferInfo" runat="server" Visible="False">
+            <h2>Transfer Information</h2>
+            <table class="auto-style1">
+                <tr>
+                    <td>Date</td>
+                    <td>
+                        <asp:Label ID="lblTransferDate" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>To:</td>
+                    <td>
+                        <asp:Label ID="lblTransferTo" runat="server"></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Notes:</td>
+                    <td>
+                        <asp:Label ID="lblTransferNotes" runat="server"></asp:Label>
+                    </td>
+                </tr>
+            </table>
+            <asp:LinkButton ID="lnkBtnViewTransfer" runat="server" OnClick="lnkBtnViewTransfer_Click" SkinID="Blue">View Transfer</asp:LinkButton>
+        </asp:Panel>
+        <br />
     
         <h2>
             Logistics</h2>

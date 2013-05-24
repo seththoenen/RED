@@ -24,6 +24,7 @@ namespace SeniorProjectClassLibrary.Classes
         protected List<License> licenses;
         protected List<Warranty> warranties;
         protected string physicalAddress;
+        protected Transfer transfer;
 
         public int InvID
         {
@@ -215,6 +216,18 @@ namespace SeniorProjectClassLibrary.Classes
             set
             {
                 physicalAddress = value;
+            }
+        }
+
+        public Transfer Transfer 
+        {
+            get
+            {
+                return transfer;
+            }
+            set
+            {
+                transfer = value;
             }
         }
 

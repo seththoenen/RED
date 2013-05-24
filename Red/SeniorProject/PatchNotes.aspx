@@ -14,6 +14,7 @@
             <Content>
                 -Upgraded to Visual Studio 2012<br />
                 -Added modal popups to insert and update pages<br />
+                -Transferred inventory now has information about the transfer it belongs to<br />
             </Content>
         </asp:AccordionPane>
             <asp:AccordionPane ID="AccordionPane121" runat="server" ContentCssClass="" 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using SeniorProjectClassLibrary.DAL;
+using System.Data.SqlClient;
 
 namespace SeniorProjectClassLibrary.Classes
 {
@@ -96,6 +97,11 @@ namespace SeniorProjectClassLibrary.Classes
         public static string saveTransfer(Transfer transfer)
         {
             return TransferDA.saveTransfer(transfer);
+        }
+
+        public static Transfer getTransfer(SqlCommand cmd, int InvID)
+        {
+            return TransferDA.getTransfer(cmd, InvID);
         }
 
     }

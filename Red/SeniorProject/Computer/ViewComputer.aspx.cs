@@ -39,6 +39,15 @@ namespace SeniorProject
                 Computer comp = new Computer();
                 comp = Computer.getComputer(invID);
 
+                if (comp.Status == "Transferred")
+                {
+                    pnlTransferInfo.Visible = true;
+                    lblTransferDate.Text = comp.Transfer.Date;
+                    lblTransferTo.Text = comp.Transfer.Where;
+                    lblTransferNotes.Text = comp.Transfer.Notes;
+                    Session["CurrentTransfer"] = comp.Transfer.ID;
+                }
+
                 if (comp.InvID == 0 || comp.InvID == null)
                 {
                     Response.Redirect("~/PageNotFound.aspx");
@@ -606,6 +615,11 @@ namespace SeniorProject
                     e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor = 'White';");
                 }
             }
+        }
+
+        protected void lnkBtnViewTransfer_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Transfers/ViewTransfer.aspx");
         }
     }
 }
